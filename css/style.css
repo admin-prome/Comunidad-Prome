@@ -1,0 +1,23 @@
+.form-check-input:checked {
+    background-color: #23952E;
+    border-color: #23952E;
+}
+
+.tabactivobuscador {
+    background-color: #23952E;
+}
+
+.tabactivobuscador > h3 {
+    color: #FFFFFF;
+}
+
+
+.tabinactivobuscador {
+    background-color: #E3E3E3;
+}
+
+.tabinactivobuscador > h3 {
+    color: #626161;
+}
+
+
