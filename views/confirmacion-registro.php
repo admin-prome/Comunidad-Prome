@@ -15,7 +15,7 @@
             <div class="container" style="background-color: #F3F3F3; opacity: 0.9; padding: 20px; padding-bottom: 50px; padding-top: 30px">
                 <div class="container">
                     <div class="row" >
-                        <div class="col-10 offset-1">
+                        <div class="col-md-10 offset-1">
                             <h1 style="color: #23952E; text-align: left; font-weight: 600">
                                 Te damos la bienvenida a la Comunidad Prome
                             </h1>
@@ -25,19 +25,19 @@
                         </div>                       
                     </div>
                     <div class="row" style="margin-top: 40px">
-                        <div class="col-4">                           
+                        <div class="col-md-4">                           
                         </div>  
-                        <div class="col-4">
+                        <div class="col-md-4">
                             <div style="background-color: #FFFFFF; border-radius: 10px; padding: 15px ">
                                 <div class="row" style="margin-top: 30px">
-                                    <div class="col-12" style="text-align: center; padding: 0px 30px">
+                                    <div class="col-md-12" style="text-align: center; padding: 0px 30px">
                                         <div>
                                             <img src="../img/confirmacion.png" style="height: 140px" />
                                         </div>                                        
                                     </div>                                   
                                 </div>
                                 <div class="row" style="margin-top: 30px">
-                                    <div class="col-12" style="text-align: center; padding: 0px 30px">
+                                    <div class="col-md-12" style="text-align: center; padding: 0px 30px">
                                         <p style="color: #23952E; text-align: center; font-weight: 600; font-size: 20px; margin-bottom: 0px">
                                             Mensaje enviado con exito
                                         </p>
@@ -51,7 +51,7 @@
                     </div>
                     <div style="margin-top: 50px">
                         <div class="row">
-                            <div class="col-12" style="padding-right: 0px; text-align: center">
+                            <div class="col-md-12" style="padding-right: 0px; text-align: center">
                                 <a href="../" style="color: #23952E; text-decoration: none">
                                     Volver al buscador
                                 </a>

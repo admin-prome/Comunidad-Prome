@@ -6,6 +6,8 @@ ini_set ("memory_limit","-1");
 
 $tipo = isset($_GET['tipo']) ? $_GET['tipo'] : '';
 if ($tipo=="modificar"){$tipoactivomodificar = " selected='selected' ";}
+if ($tipo=="alta"){$tipoactivoalta = " selected='selected' ";}
+
 
 require_once "../views/registro.php";
 ?>

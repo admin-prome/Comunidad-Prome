@@ -6,10 +6,25 @@ ini_set ('memory_limit','-1');
 
 include_once '../models/conexion.php';
 
-function consultarComercios($buscador=null, $cuentadni=null, $envios=null){
+function formatearDistancia($distancia=null){
+
+    $distancia = round($distancia,0);    
+    $distanciaFormateo ="";
+    if ($distancia>1000){
+        $distanciaFormateo =  round(($distancia / 1000),1)." km";
+    }else{
+        $distanciaFormateo = round(($distancia),0)." m";
+    }
+
+    return $distanciaFormateo;
+    
+}
+
+function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $latitudbuscar=null, $longitudbuscar=null){
 
     if ($buscador!=""){
-        $where .= " and comercio.nombre like '%$buscador%' ";
+        $where .= " and (comercio.nombre like '%$buscador%' or rubrobusqueda.palabra like '%$buscador%' )";
+
     }
 
     if ($cuentadni=="on"){
@@ -20,29 +35,63 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null){
         $where .= " and comercio.haceenvios = '1' ";
     }
 
+    if ($latitudbuscar!=""){
+        $agregarselect = "         
+            , X(coordenadas) as latitud, Y(coordenadas) as longitud,
+            ST_Distance_Sphere(
+                coordenadas, POINT($latitudbuscar, $longitudbuscar)
+            ) as distancia
+        ";
+        $orderby = " 
+            ORDER BY ST_Distance_Sphere(
+                coordenadas, POINT($latitudbuscar, $longitudbuscar)
+            ) ASC
+        ";
+
+    }
 
     $sql = "
-        SELECT comercio.id, comercio.nombre, comercio.direccion, comercio.latitud, comercio.longitud, 
-        comercio.rubro_id, comercio.actividad_id, comercio.municipio_id, comercio.facebook, 
+        SELECT DISTINCT comercio.id, comercio.nombre, comercio.direccion, 
+        comercio.rubro_id, comercio.actividad_id, comercio.municipio_id, comercio.facebookurl, comercio.facebooknombre, 
         comercio.instagram, comercio.web, comercio.whatsapp, comercio.telefono, comercio.email, 
         comercio.estatus_id, comercio.activo, comercio.eliminado,
         comercio.cuentadni, comercio.haceenvios,
         rubro.nombre as rubro_nombre, rubro.icono as rubro_icono
+        $agregarselect
 
         FROM comercio 
         INNER JOIN rubro ON comercio.rubro_id = rubro.id
         INNER JOIN estatus on estatus.id = comercio.estatus_id
+
+        LEFT JOIN rubrobusqueda ON rubrobusqueda.rubro_id = rubro.id
+
+        
         WHERE comercio.activo = 1 AND estatus.activo = 1 AND estatus.visibleresultado = 1 $where
+        $orderby
     ";
+
+    //echo "where:$where";
+    //exit();
     
     $conexion = new Conexion();
     $arrResultado = $conexion->consulta($sql);
+    /*
+     echo "<pre>";
+    print_r($arrResultado);
+    echo "</pre>";
+    exit(); 
+    */
 
     $totalResultados = count($arrResultado);
 
     foreach($arrResultado as $resultado){
 
         $rubro_nombre = $resultado["rubro_nombre"];
+
+        $rubro_img = strtolower($rubro_nombre);
+        $rubro_img = str_replace(" ", "", $rubro_img);
+
+
         $rubro_icono = $resultado["rubro_icono"];
 
         $id = $resultado["id"];
@@ -53,7 +102,8 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null){
         $rubro_id = $resultado["rubro_id"];
         $actividad_id = $resultado["actividad_id"];
         $municipio_id = $resultado["municipio_id"];
-        $facebook = $resultado["facebook"];
+        $facebookurl = $resultado["facebookurl"];
+        $facebooknombre = $resultado["facebooknombre"];
         $instagram = $resultado["instagram"];
         $web = $resultado["web"];
         $whatsapp = $resultado["whatsapp"];
@@ -63,6 +113,9 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null){
         $activo = $resultado["activo"];
         $cuentadni = $resultado["cuentadni"];
         $haceenvios = $resultado["haceenvios"];
+        $distancia = $resultado["distancia"];
+
+        $distancia = formatearDistancia($distancia);
 
         $div_cuentadni = "";
         $div_cuentadniMapa = "";
@@ -78,56 +131,64 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null){
 
         if ($whatsapp!=""){
             $div_iconos .= "
-            <a title='Contactar por WhatsApp' href='https://api.whatsapp.com/send?phone=$whatsapp' style='color: #5C5B5B'><i style='font-size: 18px' class='fab fa-whatsapp'></i></a>
+            <a title='Contactar por WhatsApp' style='color: #5C5B5B'><i style='font-size: 18px' class='fab fa-whatsapp'></i></a>
             ";
         }
 
         if ($email!=""){
             $div_iconos .= "
-            <a title='Contactar por Email' href='mailto:$email' style='color: #5C5B5B'><i style='font-size: 18px' class='fa fa-envelope'></i></a>
+            <a title='Contactar por Email' style='color: #5C5B5B'><i style='font-size: 18px' class='fa fa-envelope'></i></a>
             ";
         }
 
         if ($web!=""){
             $div_iconos .= "
-            <a title='Abrir Web' href='$web' target='_blank' style='color: #5C5B5B'><i style='font-size: 18px' class='fa fa-globe'></i></a>
+            <a title='Abrir Web'  target='_blank' style='color: #5C5B5B'><i style='font-size: 18px' class='fa fa-globe'></i></a>
             ";
         }
 
         if ($instagram!=""){
             $div_iconos .= "
-            <a title='Abrir Instagram' href='$instagram' target='_blank' style='color: #5C5B5B'><i style='font-size: 18px' class='fab fa-instagram'></i></a>
+            <a title='Abrir Instagram' target='_blank' style='color: #5C5B5B'><i style='font-size: 18px' class='fab fa-instagram'></i></a>
             ";
         }
 
-        if ($facebook!=""){
+        if ($facebookurl!=""){
             $div_iconos .= "
-            <a title='Abrir Facebook' href='$facebook' target='_blank' style='color: #5C5B5B'><i style='font-size: 18px' class='fab fa-facebook-square'></i></a>
+            <a title='Abrir Facebook' target='_blank' style='color: #5C5B5B'><i style='font-size: 18px' class='fab fa-facebook-square'></i></a>
             ";
         }
         
 
         $divComercioMarkers .= " L.marker([$latitud, $longitud]).addTo(map).bindPopup('<b>$nombre </b><br>$direccion'); ";
-
-        $divComercio .="
-            <div style='background-color: #FBF8F8; border: 1px solid #D5D3D3; cursor: pointer; margin-top: 10px; padding-bottom: 10px' onclick='mostrarubicacion(\"".$latitud."\",\"".$longitud."\",\"".$nombre."\",\"".$direccion."\")'>
-
-                <div class='row'>
-                    <div class='col-3'  style='padding-right: 0px; text-align: center'>
-                        <div style='padding-top: 10px'>
+        /*
+        <div style='padding-top: 10px'>
                             <span class='material-symbols-outlined' style='font-size: 40px; background-color: #23952E; border-radius: 50%; padding: 10px; color: #FFF'>
                                 $rubro_icono
                             </span>
                         </div>
+        */
+
+        $urlicono = "../img/rubro/icono/icono_$rubro_img.png";
+
+        $divComercio .="
+            <div style='background-color: #FBF8F8; border: 1px solid #D5D3D3; cursor: pointer; margin-top: 10px; padding-bottom: 10px' onclick='mostrarubicacion(\"".$latitud."\",\"".$longitud."\",\"".$nombre."\",\"".$direccion."\",\"".$whatsapp."\",\"".$telefono."\",\"".$web."\",\"".$email."\",\"".$instagram."\",\"".$distancia."\",\"".$cuentadni."\",\"".$urlicono."\",\"".$facebookurl."\",\"".$facebooknombre."\")'>
+
+
+                <div class='row'>
+                    <div class='col-md-3'  style='padding-right: 0px; text-align: center'>
+                        <div style='padding-top: 10px'>
+                            <img src='$urlicono' style='height: 60px; max-width: auto' alt='$nombre' title='$nombre' />
+                        </div>
                     </div>
-                    <div class='col-9'  style='text-align: left; padding-top: 10px'>
+                    <div class='col-md-9'  style='text-align: left; padding-top: 10px'>
                         <div class='row'>
-                            <div class='col-9'>
+                            <div class='col-md-9'>
                                 <h3 style='font-size: 18px; margin-bottom: 4px'>
                                     $nombre
                                 </h3>                                                
                             </div>
-                            <div class='col-3' style='padding-right: 20px; text-align: right'>
+                            <div class='col-md-3' style='padding-right: 20px; text-align: right'>
                                 $div_cuentadni
                             </div>
                         </div>
@@ -139,12 +200,12 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null){
                         </p>
                         
                         <div class='row'>
-                            <div class='col-9'>
+                            <div class='col-md-8'>
                                 $div_iconos
                             </div>
-                            <div class='col-3' style='padding-right: 20px'>
-                                <p style='font-size: 16px; margin-bottom: 4px; color: #5C5B5B; text-align: right; font-weight: 600'>
-                                    
+                            <div class='col-md-4' style='padding-right: 30px'>
+                                <p style='font-size: 17px; margin-bottom: 4px; color: #5C5B5B; text-align: right; font-weight: 600'>
+                                    $distancia
                                 </p>
                             </div>
 
@@ -161,7 +222,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null){
 
     $totalDivResultados = "
             <div class='row' style='margin-top: 0px'>
-                <div class='col-12' style='text-align: right; padding: 0px 30px'>
+                <div class='col-md-12' style='text-align: right; padding: 0px 30px'>
                     <div>
                         <p style='margin-bottom: 0px; color: #23952E'>
                             $totalResultados resultados
@@ -233,7 +294,7 @@ function registrarFormulario($document=null, $tipoformulario=null, $mensaje=null
 
     $sql = "INSERT INTO formulario
         (documento, tipoformulario_id, mensaje, estatus_id, fecharegistro, activo, eliminado) 
-        VALUES ('$document', '$tipoformulario', '$estatusinicial', '$mensaje', '$fechaactual', '1', '0')";
+        VALUES ('$document', '$tipoformulario', '$mensaje', '$estatusinicial',  '$fechaactual', '1', '0')";
 
     $resultado = $conexion->ejecucion($sql);
 
