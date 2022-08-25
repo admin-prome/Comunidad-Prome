@@ -1,9 +1,11 @@
 <?php
+include_once "config.php";
+
 class Conexion {
 
     function consulta($sql){  
         
-        $conexion = mysqli_connect("localhost","prome","prome","prome");
+        $conexion = mysqli_connect(servidor,usuario,clave,basededatos);
 
         $resultado = mysqli_query($conexion, $sql);
 
@@ -26,7 +28,7 @@ class Conexion {
 
     function ejecucion($sql){  
         
-        $conexion = mysqli_connect("localhost","prome","prome","prome");
+        $conexion = mysqli_connect(servidor,usuario,clave,basededatos);
 
         $resultado = mysqli_query($conexion, $sql);
 
