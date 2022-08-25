@@ -45,7 +45,7 @@
                                                 Datos del titular
                                             </label>
                                             <div style="margin-top: 5px">
-                                                <input type="text" class="form-control" placeholder="Ingresá tu DNI, CUIT o CUIL" name="document" required="required">
+                                                <input type="text" class="form-control" placeholder="Ingresá tu DNI, CUIT o CUIL" name="document" required="required" autocomplete="off">
                                             </div>
                                         </div>                                   
                                     </div>

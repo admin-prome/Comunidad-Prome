@@ -48,7 +48,7 @@
                                     </div>
                                 </div>
                                 
-                                <form name="formBusqueda" id="formBusqueda" action="buscador" method="GET">
+                                <form name="formBusqueda" id="formBusqueda" action="buscador.php" method="GET">
                                     <div class="row" style="margin-top: 10px">
                                         <div class="col-md-12" style="text-align: left; padding: 0px 30px">
                                             <div>
@@ -73,7 +73,7 @@
                             <div style="margin-top: 20px">
                                 <div class="row">
                                     <div class="col-md-12" style="padding-right: 0px; text-align: center">
-                                        <a href="registro?tipo=alta">
+                                        <a href="registro.php?tipo=alta">
                                             <button class='btn' style="background-color: #23952E; color: #FFF; font-weight: 700; font-size: 18px">
                                                 Quiero sumarme a la Comunidad Prome
                                             </button>
@@ -83,7 +83,7 @@
                                 <div style="margin-top: 10px">
                                     <div class="row">
                                         <div class="col-md-12" style="padding-right: 0px; text-align: center">
-                                            <a href="registro?tipo=modificar" style="color: #FFF; text-decoration: none; font-size: 18px">
+                                            <a href="registro.php?tipo=modificar" style="color: #FFF; text-decoration: none; font-size: 18px">
                                                 O modifica tus datos acá
                                             </a>
                                         </div>                                    

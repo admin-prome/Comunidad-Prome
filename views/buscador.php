@@ -63,7 +63,7 @@
                                     </div>
                                 </div>
                                 
-                                <form name="formBusqueda" id="formBusqueda" action="buscador" method="GET" style="margin-bottom: 0px">
+                                <form name="formBusqueda" id="formBusqueda" action="buscador.php" method="GET" style="margin-bottom: 0px">
 
                                 
                                 
@@ -263,7 +263,7 @@
                         <div class="col-md-8">
                             <div id="map"></div> 
                             <br> 
-                            <a href="registro?tipo=alta">
+                            <a href="registro.php?tipo=alta">
                                 <button class='btn' style="background-color: #23952E; color: #FFF; font-weight: 700; font-size: 18px">
                                     Quiero sumarme a la Comunidad Prome
                                 </button>
@@ -315,7 +315,7 @@
             var actual_lon = document.getElementById('actual_lon').value;
             var actual_direccion = document.getElementById('actual_direccion').value;
 
-            window.location = "buscador?lat="+actual_lat+"&lon="+actual_lon+"&dir="+actual_direccion+"&tipodir=1";
+            window.location = "buscador.php?lat="+actual_lat+"&lon="+actual_lon+"&dir="+actual_direccion+"&tipodir=1";
 
         }else{
             document.getElementById('div_buscadordireccion').style.display = "";
@@ -434,7 +434,7 @@
 
             var buscadordireccion = document.getElementById('buscadordireccion').value;
 
-            window.location = "buscador?lat="+near_place.geometry.location.lat()+"&lon="+near_place.geometry.location.lng()+"&dir="+buscadordireccion;
+            window.location = "buscador.php?lat="+near_place.geometry.location.lat()+"&lon="+near_place.geometry.location.lng()+"&dir="+buscadordireccion;
             /*
             document.getElementById('loc_lat').value = near_place.geometry.location.lat();
             document.getElementById('loc_long').value = near_place.geometry.location.lng();
