@@ -21,7 +21,9 @@ define("clave", "prome"); // Clave de Usuario de Base de Datos <br>
 
 ## 2.- Importar Base de Datos
 
-Se debe importar la base de datos, el respaldo se encuentra en el siguiente directorio: bd/prome.sql
+Se debe importar la base de datos, el respaldo se encuentra en el siguiente directorio: 
+
+### bd/prome.sql
 
 
 
@@ -63,7 +65,7 @@ Es la tabla principal del sistema ya que en esta se guardan todos los comercios 
     Ejemplo:<br>
     MiEmpresa
 
-<b>web: (Es la dirección web del comercio)
+<b>web:</b> (Es la dirección web del comercio)
 
 <b>whatsapp:</b> (Es el whatsapp del comercio, colocar sin el simbolo + y sin espacios, todo el numero junto)
 
@@ -123,7 +125,7 @@ Son los formularios recibidos dentro del sistema
     5 = Aprobado<br>
     6 = Rechazado
 
-    Cuando se recibo un nuevo formulario dentro del sistema se crea con un estatus inicial en 4.
+    Cuando se recibe un nuevo formulario dentro del sistema se crea con un estatus inicial en 4.
 
 
 ### Tabla: rubro
@@ -131,10 +133,10 @@ Son los rubros que se tienen en el sistema para relacionar al comercio
 
 
 ### Tabla: rubrobusqueda
-Son las palabras que se tienen en el sistema para relacionar en la busqueda las palabras claves para relacionar al rubro.<br>
+Son las palabras que se tienen en el sistema para relacionar en la busqueda las palabras claves para relacionar al rubro.<br><br>
     Ejemplo:<br>
-    Rubro: Ropa<br>
-    Palabras Clave:<br>
+    <b>Rubro:</b> Ropa<br>
+    <b>Palabras Clave:</b><br>
         Camisa<br>
         Pantalon<br>
         Zapatos.
@@ -146,4 +148,9 @@ Son las actividades que se tienen en el sistema para relacionar al comercio
 Son los municipios que se tienen en el sistema para relacionar al comercio en el municipio, esto en el caso de que el usuario no tenga dirección dentro del mapa.
 
 
-      
+# Requerimientos Técnicos:<br>
+PHP Versión 7.4<br>
+Servidor de Base de Datos: MySQL<br>
+
+# Soporte:<br>
+En caso de requerir soporte comunicarse con el administrador del sistema
