@@ -24,6 +24,7 @@ define("clave", "prome"); // Clave de Usuario de Base de Datos <br>
 Se debe importar la base de datos, el respaldo se encuentra en el siguiente directorio: bd/prome.sql
 
 
+
 # Información de Base de Datos
 
 A continuación se explica la estructura de la base de datos para cargar correctamente la información:
@@ -33,11 +34,12 @@ A continuación se explica la estructura de la base de datos para cargar correct
 ### Tabla: comercio
 Es la tabla principal del sistema ya que en esta se guardan todos los comercios que son visibles dentro del proyecto.
 
-id: (Es el codigo autoincrementable)<br>
+<b>id:</b> (Es el codigo autoincrementable)
+
 direccion: (Es la dirección que se muestra en el comercio)
 
 coordenadas: (Este campo es un tipo de dato POINT)<br>
-    Ejemplo de editar este campo:<br>
+    Ejemplo de editar este campo:<br><br>
     UPDATE comercio SET coordenadas = 'POINT(-34.6045816 -58.3789308)',0 WHERE id = 0<br>
 
     El primer valor es la latitud
