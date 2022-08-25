@@ -58,11 +58,11 @@ Es la tabla principal del sistema ya que en esta se guardan todos los comercios 
     https://www.facebook.com/miempresa
 
 <b>facebooknombre:</b> (Es el nombre que va a ser visible en la vista del comercio)<br>
-    Ejemplo:<br>
+    <b>Ejemplo:</b><br>
     Mi Empresa
 
 <b>instagram:</b> (Es el usuario de instagram del comercio)<br>
-    Ejemplo:<br>
+    <b>Ejemplo:</b><br>
     MiEmpresa
 
 <b>web:</b> (Es la dirección web del comercio)
@@ -134,7 +134,7 @@ Son los rubros que se tienen en el sistema para relacionar al comercio
 
 ### Tabla: rubrobusqueda
 Son las palabras que se tienen en el sistema para relacionar en la busqueda las palabras claves para relacionar al rubro.<br><br>
-    Ejemplo:<br>
+    <b>Ejemplo:</b><br>
     <b>Rubro:</b> Ropa<br>
     <b>Palabras Clave:</b><br>
         Camisa<br>
@@ -149,8 +149,8 @@ Son los municipios que se tienen en el sistema para relacionar al comercio en el
 
 
 # Requerimientos Técnicos:<br>
-PHP Versión 7.4<br>
-Servidor de Base de Datos: MySQL<br>
+<b>Lenguaje de Programación: </b>PHP Versión 7.4<br>
+<b>Servidor de Base de Datos: </b> MySQL<br>
 
 # Soporte:<br>
 En caso de requerir soporte comunicarse con el administrador del sistema
