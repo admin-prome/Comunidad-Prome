@@ -36,60 +36,60 @@ Es la tabla principal del sistema ya que en esta se guardan todos los comercios 
 
 <b>id:</b> (Es el codigo autoincrementable)
 
-direccion: (Es la dirección que se muestra en el comercio)
+<b>direccion:</b> (Es la dirección que se muestra en el comercio)
 
-coordenadas: (Este campo es un tipo de dato POINT)<br>
+<b>coordenadas:</b> (Este campo es un tipo de dato POINT)<br>
     Ejemplo de editar este campo:<br><br>
     UPDATE comercio SET coordenadas = 'POINT(-34.6045816 -58.3789308)',0 WHERE id = 0<br>
 
     El primer valor es la latitud
     El segund valor es la longitud
 
-rubro_id: (Es el id que hace relación de la tabla "rubro")
+<b>rubro_id:</b> (Es el id que hace relación de la tabla "rubro")
 
-actividad_id: (Es el id que hace relación de la tabla "actividad")
+<b>actividad_id:</b> (Es el id que hace relación de la tabla "actividad")
 
-municipio_id: (Es el id que hace relación de la tabla "municipio")
+<b>municipio_id:</b> (Es el id que hace relación de la tabla "municipio")
 
-facebookurl: (Es la url del facebook del comercio)<br>
+<b>facebookurl:</b> (Es la url del facebook del comercio)<br>
     Ejemplo:<br>
     https://www.facebook.com/miempresa
 
-facebooknombre: (Es el nombre que va a ser visible en la vista del comercio)<br>
+<b>facebooknombre:</b> (Es el nombre que va a ser visible en la vista del comercio)<br>
     Ejemplo:<br>
     Mi Empresa
 
-instagram: (Es el usuario de instagram del comercio)<br>
+<b>instagram:</b> (Es el usuario de instagram del comercio)<br>
     Ejemplo:<br>
     MiEmpresa
 
-web: (Es la dirección web del comercio)
+<b>web: (Es la dirección web del comercio)
 
-whatsapp: (Es el whatsapp del comercio, colocar sin el simbolo + y sin espacios, todo el numero junto)
+<b>whatsapp:</b> (Es el whatsapp del comercio, colocar sin el simbolo + y sin espacios, todo el numero junto)
 
-telefono: (Es el telefono del comercio, colocar sin el simbolo + y sin espacios, todo el numero junto)
+<b>telefono:</b> (Es el telefono del comercio, colocar sin el simbolo + y sin espacios, todo el numero junto)
 
-email: (Es el email del comercio)
+<b>email:</b> (Es el email del comercio)
 
-cuentadni: (Se coloca los siguientes valores:)<br>
+<b>cuentadni:</b> (Se coloca los siguientes valores:)<br>
     1 = Si tiene cuenta dni<br>
     0 = No tiene cuenta dni
 
-haceenvios: (Se coloca los siguientes valores:)<br>
+<b>haceenvios:</b> (Se coloca los siguientes valores:)<br>
     1 = Si hace envíos<br>
     0 = No hace envíos
 
-estatus_id: (Es el iid estatus del comercio para el sistema)<br>
+<b>estatus_id:</b> (Es el iid estatus del comercio para el sistema)<br>
     Los valores son los que se encuentran en la tabla "estatus"<br>
     Ejemplo:<br>
     1 = Activado<br>
     2 = Pendiente de Activar
 
-activo: <br>
+<b>activo:</b> <br>
     1 = Activo en el sistema<br>
     0 = Inactivo en el sistema
 
-eliminado: <br>
+<b>eliminado:</b> <br>
     1 = Eliminado para que no se muestre en el sistema<br>
     0 = NO Eliminado en el sistema
 
@@ -98,27 +98,27 @@ eliminado: <br>
 ### Tabla: estatus
 Son los diferentes estatus que se manejan dentro del sistema, para los dos procesos.
 
-tipoestatus_id:<br>
+<b>tipoestatus_id:</b><br>
     1 = Estatus del Comercio<br>
     2 = Estatus del Formulario
 
-visibleresultado:<br>
+<b>visibleresultado:</b><br>
     1 = Es visible para mostrarse en el listado dentro de la web.        
 
 
 ### Tabla: formulario
 Son los formularios recibidos dentro del sistema
 
-tipoformulario_id: (Es para identificar de cual opcion fue recibido el formulario)<br>
+<b>tipoformulario_id:</b> (Es para identificar de cual opcion fue recibido el formulario)<br>
     1 = Alta<br>
     2 = Baja<br>
     3 = Modificacion
 
-documento: (Es el numero de documento introducido en el formulario)
+<b>documento:</b> (Es el numero de documento introducido en el formulario)
 
-mensaje: (Es el mensaje introducido en el formulario)
+<b>mensaje:</b> (Es el mensaje introducido en el formulario)
 
-estatus_id: (Es el id del estatus del formulario, esto para cambiar el estatus del formulario para saber si ya se proceso o no)<br>
+<b>estatus_id:</b> (Es el id del estatus del formulario, esto para cambiar el estatus del formulario para saber si ya se proceso o no)<br>
     4 = Pendiente de Revision<br>
     5 = Aprobado<br>
     6 = Rechazado
