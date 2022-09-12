@@ -3,6 +3,10 @@
     <title>
         Comunidad PROME
     </title>
+    <meta charset="utf-8">
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous"> 
 
@@ -28,14 +32,77 @@
         #map { height: 500px; width: 100% }
     </style>
 
+
+<style>
+        .scrolling-wrapper{
+            overflow-x: auto;
+        }
+
+        .card-block{
+            height: 300px;
+            background-color: #fff;
+            border: none;
+            background-position: center;
+            background-size: cover;
+            transition: all 0.2s ease-in-out !important;
+            border-radius: 24px;
+           
+        }
+
+        .card-1{
+            background-color: #4158D0;
+            background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+        }
+
+
+    </style>
+
 </head>
 <body style="background-color: #FFFFFF" id="inicio">
+
+   <!--  <div class="container-fluid">
+        <h1 class="mt-5">Bootstrap 4 Horizontal Scrolling</h1>
+		<p class="subtitle">Horizontal scrolling without CSS. Just copy scrolling wrapper classes</p>
+        <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2">
+			
+			<div class="col-5">
+				<div class="card card-block card-1"></div>
+			</div>
+			<div class="col-5">
+				<div class="card card-block card-1"></div>
+			</div>
+			<div class="col-5">
+				<div class="card card-block card-1"></div>
+			</div>
+			<div class="col-5">
+				<div class="card card-block card-1"></div>
+			</div>
+			<div class="col-5">
+				<div class="card card-block card-1"></div>
+			</div>
+			<div class="col-5">
+				<div class="card card-block card-1"></div>
+			</div>
+			<div class="col-5">
+				<div class="card card-block card-1"></div>
+			</div>
+			<div class="col-5">
+				<div class="card card-block card-1"></div>
+			</div>
+			<div class="col-5">
+				<div class="card card-block card-1"></div>
+			</div>
+			<div class="col-5">
+				<div class="card card-block card-1"></div>
+			</div>
+        </div>
+    </div> -->
    
         <div >
-            <div class="container" style="background-color: #FFF; opacity: 0.9; padding: 20px; padding-bottom: 50px; padding-top: 10px">
+            <div class="container" style="background-color: #FFF; opacity: 0.9; padding-bottom: 50px; padding-top: 10px">
                 <div class="container">     
                     
-                    <div class="row" style="margin-top: 0px; padding-bottom: 20px;">
+                    <div class="row" style="margin-top: 0px; padding-bottom: 20px; margin-left: 10px">
                         <div class="col-md-4"> 
                             <a href="./">
                                 <img src="../img/prome.png" style="height: 40px" />
@@ -44,17 +111,18 @@
                     </div>
                     <div class="row" style="margin-top: 0px">
                         <div class="col-md-4"> 
+                            <form name="formBusqueda" id="formBusqueda" action="buscador.php" method="GET" style="margin-bottom: 0px">
                             <div style="background-color: #FBF8F8; border: 1px solid #CFCFCF; box-shadow: 0px 2px #A9A9A9; margin-bottom: 10px">
 
                                 <div class="row">
-                                    <div class="col-md-6"  style="padding-right: 0px; text-align: center">
+                                    <div class="col-md-6 col-sm-6 col-6"  style="padding-right: 0px; text-align: center">
                                         <div id="div_buscadorcomercio" class="tabactivobuscador" style="border-top-left-radius: 3px; cursor: pointer" onclick="seleccionarTipoBuscador(this.id)">
                                             <h3 style="font-size: 16px; padding: 10px">
                                                 Comercios y Servicios
                                             </h3>
                                         </div>
                                     </div>
-                                    <div class="col-md-6" style="padding-left: 0px; text-align: center">
+                                    <div class="col-md-6 col-sm-6 col-6" style="padding-left: 0px; text-align: center">
                                         <div  id="div_buscadorproduccion" class="tabinactivobuscador" style="border-top-right-radius: 3px; cursor: pointer" onclick="seleccionarTipoBuscador(this.id)">
                                             <h3 style="font-size: 16px; padding: 10px">
                                                 Producción e Industria
@@ -62,59 +130,91 @@
                                         </div>
                                     </div>
                                 </div>
+                            
                                 
-                                <form name="formBusqueda" id="formBusqueda" action="buscador.php" method="GET" style="margin-bottom: 0px">
-
-                                
-                                
-                                
-                                    <div class="row" style="margin-top: 0px">
-                                        <div class="col-md-12" style="text-align: left; padding: 0px 30px">
-                                            <div>
-                                                <div class="form-check form-switch">
-                                                    <input class="form-check-input"  name="cercamio" type="checkbox" id="checkCercaMio" onclick="btnCheckCercaMio()" <?php echo $tipodirchecked;?> >
-                                                    <label class="form-check-label" for="checkCercaMio"style="color: #626161">Cerca mío</label>
-                                                </div>                                               
-                                            </div>
-                                            <div id="div_buscadordireccion" class="auto-search-wrapper" style="margin-top: 10px; margin-bottom: 10px  <?php echo $divbuscadormapa;?> ">
-                                                <input
-                                                    type="text"
-                                                    autocomplete="off"
-                                                    id="buscadordireccion"
-                                                    name="dirmapa"
-                                                    class="form-control"
-                                                    placeholder="Escribí la dirección"
-                                                    value="<?php echo $getdireccion;?>"
-                                                />
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-11">
-                                                    <div class="input-group mb-1" style="margin-top: 5px">
-                                                        <input type="text" class="form-control" placeholder="Escribí una marca, insumo" aria-label="Escribí una marca, insumo" name="q" aria-describedby="basic-addon2"  value="<?php echo $buscador;?>" autocomplete="off">
-                                                        <span class="input-group-text" id="basic-addon2" style="background-color: #23952E; color: #FFF; cursor: pointer" onclick="procesarFormBusqueda()">
-                                                            <i class="fas fa-search"></i>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-1" style="padding-left: 0px">
-                                                    <span style="cursor: pointer" onclick="procesarFormBusqueda()">
-                                                        <i class="fa fa-filter"></i>
+                                <div class="row" style="margin-top: 0px">
+                                    <div class="col-md-12" style="text-align: left; padding: 0px 30px">
+                                        <div>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input"  name="cercamio" type="checkbox" id="checkCercaMio" onclick="btnCheckCercaMio()" <?php echo $tipodirchecked;?> >
+                                                <label class="form-check-label" for="checkCercaMio"style="color: #626161">Cerca mío</label>
+                                            </div>                                               
+                                        </div>
+                                        <div id="div_buscadordireccion" class="auto-search-wrapper" style="margin-top: 10px; margin-bottom: 10px  <?php echo $divbuscadormapa;?> ">
+                                            <input
+                                                type="text"
+                                                autocomplete="off"
+                                                id="buscadordireccion"
+                                                name="dirmapa"
+                                                class="form-control"
+                                                placeholder="Indicá un domicilio"
+                                                value="<?php echo $getdireccion;?>"
+                                            />
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-11 col-sm-11 col-11">
+                                                <div class="input-group mb-1" style="margin-top: 5px">
+                                                    <input type="text" class="form-control" placeholder="Escribí un producto o servicio" aria-label="Escribí un producto o servicio" name="q" aria-describedby="basic-addon2"  value="<?php echo $buscador;?>" autocomplete="off">
+                                                    <span class="input-group-text" id="basic-addon2" style="background-color: #23952E; color: #FFF; cursor: pointer" onclick="procesarFormBusqueda()">
+                                                        <i class="fas fa-search"></i>
                                                     </span>
                                                 </div>
                                             </div>
-                                            
-                                            
-                                        </div>                                   
-                                    </div>
-
-                                    <div>
+                                            <div class="col-md-1 col-sm-1 col-1" style="padding-left: 0px; padding-top: 14px">
+                                                <span style="cursor: pointer" onclick="verfiltrosbusqueda()">
+                                                    <i class="fa fa-filter" style="font-size: 20px"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="row" id="div_busquedaavanzada" style="display: none">
+                                            <div class="col-md-12 mb-3" style="text-align: left; padding: 0px 10px">
+                                                <div class="mb-1">
+                                                    <i class="fa fa-list" style ="padding-left: 5px; padding-top: 10px; color: #C4C4C4; cursor: pointer" onclick="verfiltrosbusqueda()"></i> Búsqueda avanzada
+                                                </div>
+                                                
+                                                <div class="mt-2">
+                                                    <select class="form-control" name="m">
+                                                        <?php echo $optionmunicipio;?>
+                                                    </select>
+                                                </div>
+                                                <div class="mt-2">
+                                                    <select class="form-control" name="r">
+                                                        <?php echo $optionrubro;?>
+                                                    </select>
+                                                </div>
+                                                <div class="mt-2">
+                                                    <select class="form-control" name="a">
+                                                        <?php echo $optionactividad;?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
                                         
+                                        
+                                    </div>                                   
+                                </div>
 
-                                    </div>
-                                    
-                                    <?php echo $divTotalComercios;?>
+                                
 
-                                    <div class="row" style="margin-top: 0px">
+                                
+                                <?php echo $divTotalComercios;?>
+                        
+                                
+                               
+
+                                <input type="hidden" id="actual_lat" name="latact" />
+                                <input type="hidden" id="actual_lon" name="lonact" />
+                                <input type="hidden" id="actual_direccion"  name="diract" />
+
+                                <input type="hidden"  name="lat" value="<?php echo $getlatitud;?>" />
+                                <input type="hidden"  name="lon" value="<?php echo $getlongitud;?>" />
+                                <input type="hidden"  name="dir" value="<?php echo $getdireccion;?>" />
+
+                                <input type="hidden" id="tipovisualizacion" name="tp" value="<?php echo $gettipovisualizacion;?>" >
+                                
+                            </div>
+                            <div style="background-color: #FFF; border: 0px solid #CFCFCF; box-shadow: 0px 0px #A9A9A9; margin-bottom: 10px">                            
+                                    <div class="row" style="margin-top: 14px">
                                         <div class="col-md-12" style="text-align: left; padding: 0px 30px">
                                             <div>
                                                 <div class="form-check form-switch">
@@ -131,28 +231,22 @@
                                         </div>                                   
                                     </div>
                                     
-                                    <input type="hidden" id="actual_lat" name="latact" />
-                                    <input type="hidden" id="actual_lon" name="lonact" />
-                                    <input type="hidden" id="actual_direccion"  name="diract" />
-
-                                    <input type="hidden"  name="lat" value="<?php echo $getlatitud;?>" />
-                                    <input type="hidden"  name="lon" value="<?php echo $getlongitud;?>" />
-                                    <input type="hidden"  name="dir" value="<?php echo $getdireccion;?>" />
-                                </form>
                             </div>
+                            </form>
+
+
                             <div id="div_detalle" style='background-color: #FBF8F8; border: 1px solid #D5D3D3; cursor: pointer; margin-top: 20px; padding-bottom: 10px; display: none' onclick='mostrarubicacion(\"".$latitud."\",\"".$longitud."\",\"".$nombre."\",\"".$direccion."\")'>
                                 <a href="#inicio" id="irdetalle"></a>
                                 <div style="float: right; margin-right: 10px; margin-top: 10px" onclick="cerrardetalle()">
                                     <i class="far fa-times-circle" style="color: #6E7679; font-size: 20px"></i>
                                 </div> 
                                 <div class='row'>
-                                    <div class='col-md-3'  style='padding-right: 0px; text-align: center'>
+                                    <div class='col-md-3 col-sm-3 col-3'  style='padding-right: 0px; text-align: center'>
                                         <div style='padding-top: 10px'>
                                             <img id="det_logo" style='height: 60px; max-width: auto'/>
-                                            
                                         </div>
                                     </div>
-                                    <div class='col-md-9'  style='text-align: left; padding-top: 10px'>
+                                    <div class='col-md-9 col-sm-9 col-9'  style='text-align: left; padding-top: 10px'>
                                         <div class='row'>
                                             <div class='col-md-12'>
                                                 <h3 id="det_nombre" style='font-size: 18px; margin-bottom: 4px; font-weight: 700'></h3>    
@@ -166,7 +260,7 @@
                                     </div>                                    
                                 </div>
                                 <div class='row'>
-                                    <div class='col-md-3' id="det_div_whatsapp" style='text-align: center; display: none'>
+                                    <div class='col-md-3 col-sm-3 col-3' id="det_div_whatsapp" style='text-align: center; display: none'>
                                         <div style='padding-top: 10px'>
                                             <a id="det_whatsapp" style="; text-decoration: none">
                                                 <img src='../img/det_whatsapp.png' style='height: 60px; max-width: auto' alt='Contactar' title='Contactar' />
@@ -176,7 +270,7 @@
                                             </a>
                                         </div>
                                     </div>
-                                    <div class='col-md-3'  id="det_div_tel" style=' text-align: center; display: none'>
+                                    <div class='col-md-3 col-sm-3 col-3'  id="det_div_tel" style=' text-align: center; display: none'>
                                         <div style='padding-top: 10px'>
                                             <a id="det_tel" style="; text-decoration: none">
                                                 <img src='../img/det_tel.png' style='height: 60px; max-width: auto' alt='Llamar' title='Llamar' />
@@ -186,7 +280,7 @@
                                             </a>
                                         </div>
                                     </div>
-                                    <div class='col-md-3' id="det_div_web"  style='text-align: center; display: none'>
+                                    <div class='col-md-3 col-sm-3 col-3' id="det_div_web"  style='text-align: center; display: none'>
                                         <div style='padding-top: 10px'>
                                             <a id="det_web" target='_blank' style="; text-decoration: none">
                                                 <img src='../img/det_web.png' style='height: 60px; max-width: auto' alt='Ver web' title='Ver web' />
@@ -196,7 +290,27 @@
                                             </a>
                                         </div>
                                     </div>
-                                    <div class='col-md-3' id="det_div_compartir"  style='text-align: center;'>
+                                    <div class='col-md-3 col-sm-3 col-3' id="det_div_facebook"  style='text-align: center; display: none'>
+                                        <div style='padding-top: 10px'>
+                                            <a id="det_facebook" target='_blank' style="; text-decoration: none">
+                                                <img src='../img/det_facebook.png' style='height: 60px; max-width: auto' alt='Ver web' title='Ver web' />
+                                                <p style="color: #23952E">
+                                                    Facebook
+                                                </p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class='col-md-3 col-sm-3 col-3' id="det_div_instagram"  style='text-align: center; display: none'>
+                                        <div style='padding-top: 10px'>
+                                            <a id="det_instagram" target='_blank' style="; text-decoration: none">
+                                                <img src='../img/det_instagram.png' style='height: 60px; max-width: auto' alt='Ver web' title='Ver web' />
+                                                <p style="color: #23952E">
+                                                    Instagram
+                                                </p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class='col-md-3 col-sm-3 col-3' id="det_div_compartir"  style='text-align: center;'>
                                         <div style='padding-top: 10px'>
                                             <a id="det_compartir" style="text-decoration: none">
                                                 <img src='../img/det_compartir.png' style='height: 60px; max-width: auto' alt='Compartir' title='Compartir' />
@@ -211,7 +325,7 @@
                                 <div class='row'>                                    
                                     <div class='col-md-12' style='text-align: left; padding-left: 20px; padding-right: 20px'>                                        
                                         <div class='row' style="padding-top: 0px;">
-                                            <div class='col-md-9' style='text-align: left; padding-top: 0px'>
+                                            <div class='col-md-9 col-sm-9 col-9' style='text-align: left; padding-top: 0px'>
                                                 <div id="det2_div_direccion" style="display: none">
                                                     <a id="det2_div_direccionurl" target='_blank' title='Abrir Web' href='#' style='color: #5C5B5B; text-decoration: none'>
                                                         <i style='font-size: 18px' class='fa fa-map-marker-alt'></i>
@@ -245,7 +359,7 @@
                                                 
                                             
                                             </div>
-                                            <div class='col-md-3' style='text-align: right; padding-top: 0px'>
+                                            <div class='col-md-3 col-sm-3 col-3' style='text-align: right; padding-top: 0px'>
                                                 <span  id="det2_div_metros" style='font-weight: 600'></span>
                                             </div>
                                         </div>
@@ -256,19 +370,42 @@
 
                             </div>
                             
-                            <?php echo $divComercios;?>
+                            <div id="divComercios" <?php echo $displaycomercios;?>>
+                                <?php echo $divComercios;?>
+                            </div>  
+
+                            
 
                                 
                         </div>  
-                        <div class="col-md-8">
+                        <div class="col-md-8" id="div_mapa" <?php echo $displaymapa;?>>
                             <div id="map"></div> 
-                            <br> 
-                            <a href="registro.php?tipo=alta">
-                                <button class='btn' style="background-color: #23952E; color: #FFF; font-weight: 700; font-size: 18px">
-                                    Quiero sumarme a la Comunidad Prome
-                                </button>
-                            </a>                                               
-                        </div>                       
+                            <br>
+                            <div class="d-none d-sm-block"> 
+                                <a href="registro.php?tipo=alta">
+                                    <button class='btn' style="background-color: #23952E; color: #FFF; font-weight: 700; font-size: 18px">
+                                        Quiero sumarme a la Comunidad Prome
+                                    </button>
+                                </a> 
+                            </div>                                              
+                        </div>
+                        <div class="d-block d-md-none" onclick="mostrarBuscadorMobile()">
+                            <a class="btn-flotante">
+                                <i id="iconMapaResultado" class="fa fa-map-marker-alt" style="font-size: 20px"></i> 
+                                <i id="iconListaResultado" class="fa fa-list" style="font-size: 20px; display: none"></i> 
+                                <span id="tituloBotonFlotante">Mapa</span>
+                            </a>
+                            
+                        </div>
+                        <div id="divComercios2" class="d-block d-md-none" <?php echo $divComercios2;?>>
+                            <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2">
+                                <?php echo $divComercioListaOver;?>
+                            </div>
+                        </div>  
+
+
+
+
                     </div>
                    
                 </div>
@@ -296,19 +433,61 @@
         
     </div>
 </main>     
-
+<input type="hidden" id="mobileclickcomercio" />
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="../js/funciones.js"></script>
 <!-- <script src="../js/geolocalizacion.js"></script>
  -->
  <script>
+
+    function verfiltrosbusqueda(){
+        
+        var div_busquedaavanzada = document.getElementById('div_busquedaavanzada').style.display;
+        if (div_busquedaavanzada==""){
+            document.getElementById('div_busquedaavanzada').style.display = "none";
+        }else{
+            document.getElementById('div_busquedaavanzada').style.display = "";
+            
+        }
+    }
+
+    function mostrarBuscadorMobile(){
+
+        
+        
+        var tipovisualizacion = document.getElementById('tipovisualizacion').value;
+        if (tipovisualizacion==""){
+            document.getElementById('tipovisualizacion').value = "mapa"; // Mapa
+            document.getElementById('divComercios').style.display = "none";
+            document.getElementById('divComercios2').style.display = "";
+            document.getElementById('tituloBotonFlotante').innerHTML = "Lista";
+            document.getElementById('iconListaResultado').style.display = "";
+            document.getElementById('iconMapaResultado').style.display = "none";
+            document.getElementById('div_mapa').style.display = "";
+            
+            
+        }else{
+            document.getElementById('tipovisualizacion').value = "";            
+            document.getElementById('divComercios').style.display = "";
+            document.getElementById('divComercios2').style.display = "none";
+            document.getElementById('tituloBotonFlotante').innerHTML = "Mapa";
+            document.getElementById('iconListaResultado').style.display = "none";
+            document.getElementById('iconMapaResultado').style.display = "";
+            document.getElementById('div_mapa').style.display = "none";
+        }
+
+    
+    }
+
     function refrescar(){
         procesarFormBusqueda();        
     }
 
     function btnCheckCercaMio(){
-        
+
+        procesarFormBusqueda();
+        /*
         var checkCercaMio = document.getElementById('checkCercaMio').checked;
         if (checkCercaMio==true){
             var actual_lat = document.getElementById('actual_lat').value;
@@ -321,6 +500,7 @@
             document.getElementById('div_buscadordireccion').style.display = "";
             
         }
+        */
     }
 </script>
 <script>
@@ -353,7 +533,7 @@
                     //alert("si esta definido google");
                 }
             }catch{
-                window.location.reload();
+                //window.location.reload();
             }
 
             var latlng = new google.maps.LatLng(coordenadas.latitude, coordenadas.longitude);
@@ -417,6 +597,7 @@
 
     document.addEventListener("DOMContentLoaded", funcionInit);
 </script>
+
 <script>
     var searchInput = 'buscadordireccion';
     
@@ -435,13 +616,6 @@
             var buscadordireccion = document.getElementById('buscadordireccion').value;
 
             window.location = "buscador.php?lat="+near_place.geometry.location.lat()+"&lon="+near_place.geometry.location.lng()+"&dir="+buscadordireccion;
-            /*
-            document.getElementById('loc_lat').value = near_place.geometry.location.lat();
-            document.getElementById('loc_long').value = near_place.geometry.location.lng();
-                    
-            document.getElementById('latitude_view').innerHTML = near_place.geometry.location.lat();
-            document.getElementById('longitude_view').innerHTML = near_place.geometry.location.lng();
-            */
         });
     });
     
@@ -452,6 +626,13 @@
     function cerrardetalle(){
         document.getElementById('div_detalle').style.display = "none";
         limpiarDivDetalle();
+
+        var mobileclickcomercio = document.getElementById('mobileclickcomercio').value;
+
+        if (mobileclickcomercio=="1"){
+            document.getElementById('divComercios').style.display = "";
+        }
+        
     }
 
     function limpiarDivDetalle(){
@@ -470,6 +651,12 @@
         document.getElementById('det_div_web').style.display = "none";
         document.getElementById('det_web').href = "";
 
+        document.getElementById('det_div_facebook').style.display = "none";
+        document.getElementById('det_facebook').href = "";
+
+        document.getElementById('det_div_instagram').style.display = "none";
+        document.getElementById('det_instagram').href = "";
+
         document.getElementById('det2_div_direccion').style.display = "none";
         document.getElementById('det2_div_direccionurl').href = "";
         document.getElementById('det2_div_direcciontexto').innerHTML = "";
@@ -482,6 +669,7 @@
         document.getElementById('det2_div_emailurl').href = "";
         document.getElementById('det2_div_emailtexto').innerHTML = "";
 
+        /*
         document.getElementById('det2_div_instagram').style.display = "none";
         document.getElementById('det2_div_instagramurl').href = "";
         document.getElementById('det2_div_instagramtexto').innerHTML = ""
@@ -489,15 +677,18 @@
         document.getElementById('det2_div_facebook').style.display = "none";
         document.getElementById('det2_div_facebookurl').href = "";
         document.getElementById('det2_div_facebooktexto').innerHTML = ""
+        */
 
         document.getElementById('det2_div_metros').innerHTML = "";
 
 
     }
 
-    function mostrarubicacion(latitud, longitud, nombre, direccion, whatsapp, telefono, web, email, instagram, distancia, cuentadni, urlicono, facebookurl, facebooknombre){  
+    function mostrarubicacion(latitud, longitud, nombre, direccion, whatsapp, telefono, web, email, instagram, distancia, cuentadni, urlicono, facebookurl, facebooknombre, mobile){  
 
         limpiarDivDetalle();
+
+        var cont = 0;
 
         document.getElementById('div_detalle').style.display = "";
 
@@ -515,17 +706,37 @@
         if (whatsapp!=""){
             document.getElementById('det_div_whatsapp').style.display = "";
             document.getElementById('det_whatsapp').href = "https://api.whatsapp.com/send?phone="+whatsapp;
+
+            cont = cont + 1;
         }
         
 
         if (telefono!=""){
             document.getElementById('det_div_tel').style.display = "";
             document.getElementById('det_tel').href = "tel:"+telefono;
+
+            cont = cont + 1;
         }
 
         if (web!=""){
             document.getElementById('det_div_web').style.display = "";
             document.getElementById('det_web').href = web;
+
+            cont = cont + 1;
+        }
+
+        if (facebookurl!="" && cont < 3){
+            document.getElementById('det_div_facebook').style.display = "";
+            document.getElementById('det_facebook').href = facebookurl;
+
+            cont = cont + 1;
+        }
+
+        if (instagram!="" && cont < 3){
+            document.getElementById('det_div_instagram').style.display = "";
+            document.getElementById('det_instagram').href = instagram;
+
+            cont = cont + 1;
         }
 
         
@@ -549,7 +760,7 @@
             document.getElementById('det2_div_emailtexto').innerHTML = email;
         }        
 
-        if (instagram!=""){
+        /* if (instagram!=""){
             document.getElementById('det2_div_instagram').style.display = "";
             document.getElementById('det2_div_instagramurl').href = "https://www.instagram.com/"+instagram;
             document.getElementById('det2_div_instagramtexto').innerHTML = "@"+instagram;
@@ -559,6 +770,12 @@
             document.getElementById('det2_div_facebook').style.display = "";
             document.getElementById('det2_div_facebookurl').href = facebookurl;
             document.getElementById('det2_div_facebooktexto').innerHTML = facebooknombre;
+        } */
+
+        if (mobile=="1"){
+            document.getElementById('divComercios2').style.display = "none";
+            document.getElementById('mobileclickcomercio').value = "1";
+            
         }
         
         if (distancia!=""){

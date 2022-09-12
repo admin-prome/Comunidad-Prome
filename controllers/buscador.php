@@ -6,6 +6,8 @@ ini_set ("memory_limit","-1");
 
 include_once "../models/funciones.php";
 
+
+
 $buscador = isset($_GET['q']) ? $_GET['q'] : '';
 $cuentadni = isset($_GET['cuentadni']) ? $_GET['cuentadni'] : '';
 if ($cuentadni=="on"){$cuentadnichecked = " checked='checked' ";}
@@ -14,6 +16,11 @@ $envios = isset($_GET['envios']) ? $_GET['envios'] : '';
 if ($envios=="on"){$envioschecked = " checked='checked' ";}
 
 $cercamio = isset($_GET['cercamio']) ? $_GET['cercamio'] : '';
+
+$getmunicipio = isset($_GET['m']) ? $_GET['m'] : '';
+$getrubro = isset($_GET['r']) ? $_GET['r'] : '';
+$getactividad = isset($_GET['a']) ? $_GET['a'] : '';
+$gettipovisualizacion = isset($_GET['tp']) ? $_GET['tp'] : '';
 
 
 
@@ -25,6 +32,7 @@ $getdireccion = isset($_GET['dir']) ? $_GET['dir'] : '';
 $getdireccionmapa = isset($_GET['dirmapa']) ? $_GET['dirmapa'] : '';
 $tipodir = isset($_GET['tipodir']) ? $_GET['tipodir'] : '';
 
+/*
 if ($tipodir=="1"){
     $tipodirchecked = " checked='checked' ";
     $divbuscadormapa = " ; display: none";
@@ -32,8 +40,26 @@ if ($tipodir=="1"){
     $tipodirchecked = "  ";
     $divbuscadormapa = " ";
 }
+*/
 
-if ($cercamio=="on"){$tipodirchecked = " checked='checked' ";}
+$displaymapaa = " style='display: none' ";
+$displaycomercios = " ";
+$divComercios2 = " style='display: none' ";
+
+
+if ($cercamio=="on"){
+    $tipodirchecked = " checked='checked' ";
+    $displaymapa = " ";
+    $displaycomercios = " style='display: none' ";
+    $divbuscadormapa = " ";
+    $gettipovisualizacion = "mapa";
+    $divComercios2 = "";
+}else{
+    $tipodirchecked = "  ";    
+    $divbuscadormapa = " ; display: none";
+    $gettipovisualizacion = "";
+}
+
 
 
 $latitudbuscar = -34.6009755;
@@ -48,13 +74,18 @@ if ($getlongitud!=""){
 }
 
 
-$comercios = consultarComercios($buscador, $cuentadni, $envios, $latitudbuscar, $longitudbuscar);
+
+
+$comercios = consultarComercios($buscador, $cuentadni, $envios, $latitudbuscar, $longitudbuscar, $getmunicipio, $getactividad, $getrubro, $cercamio);
 
 $divComercios = $comercios["divComercio"];
+$divComercioListaOver = $comercios["divComercioListaOver"];
 $divComercioMarkers = $comercios["divComercioMarkers"];
 $divTotalComercios = $comercios["divTotalComercios"];
 
-
+$optionmunicipio = consultarMunicipios($getmunicipio);
+$optionactividad = consultarActividad($getactividad);
+$optionrubro = consultarRubros($getrubro);
 
 require_once "../views/buscador.php";
 ?>

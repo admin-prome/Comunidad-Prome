@@ -3,6 +3,10 @@
     <title>
         Comunidad PROME
     </title>
+    <meta charset="utf-8">
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous"> 
 
@@ -20,7 +24,7 @@
                                 Te damos la bienvenida a la Comunidad Prome
                             </h1>
                             <h2 style="color: #4E4E4E; text-align: left; font-size: 24px">
-                                un espacio pensado para potenciar tu negocio
+                                Un espacio pensado para potenciar tu negocio.
                             </h2>
                         </div>                       
                     </div>
@@ -34,7 +38,7 @@
                                         <div class="col-md-12" style="text-align: left; padding: 0px 30px">
                                             <div>
                                                 <h3 style="font-size: 16px">
-                                                    Completá el formulario y  te contactamos a la brevedad
+                                                    Completá el formulario y  te contactamos a la brevedad.
                                                 </h3>
                                             </div>                                        
                                         </div>                                   
@@ -42,17 +46,17 @@
                                     <div class="row" style="margin-top: 10px">
                                         <div class="col-md-8" style="text-align: left; padding: 0px 30px">
                                             <label>
-                                                Datos del titular
+                                                DNI del titular
                                             </label>
                                             <div style="margin-top: 5px">
-                                                <input type="text" class="form-control" placeholder="Ingresá tu DNI, CUIT o CUIL" name="document" required="required" autocomplete="off">
+                                                <input type="text" class="form-control" placeholder="Sin guiones ni puntos" name="document" required="required" autocomplete="off">
                                             </div>
                                         </div>                                   
                                     </div>
                                     <div class="row" style="margin-top: 10px">
                                         <div class="col-md-8" style="text-align: left; padding: 0px 30px">
                                             <label>
-                                                Tipo de tramite
+                                                Tipo de trámite
                                             </label>
                                             <div style="margin-top: 5px">
                                                 <select class="form-control" required="required" name="tipo">
@@ -77,14 +81,14 @@
                                         </div>                                   
                                     </div>
                                     <div class="row" style="margin-top: 40px">
-                                        <div class="col-md-6" style="text-align: center; padding: 0px 30px; padding-right: 15px">
+                                        <div class="col-md-6 col-sm-6 col-6" style="text-align: center; padding: 0px 30px; padding-right: 15px">
                                             <a href="../">
                                                 <button type="button" class='btn' style="background-color: #FFF; color: #23952E; font-weight: 500; font-size: 18px; border: 1px solid #23952E; width: 100%">
-                                                    volver
+                                                    Volver
                                                 </button>
                                             </a>
                                         </div> 
-                                        <div class="col-md-6" style="text-align: center; padding: 0px 30px; padding-left: 15px">
+                                        <div class="col-md-6 col-sm-6 col-6" style="text-align: center; padding: 0px 30px; padding-left: 15px">
                                             <button type="submit" class='btn' style="background-color: #23952E; color: #FFFFFF; font-weight: 500; font-size: 18px; border: 1px solid #23952E; width: 100%">
                                                 Enviar
                                             </button>

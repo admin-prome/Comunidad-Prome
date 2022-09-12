@@ -13,6 +13,10 @@ $message = isset($_POST['message']) ? $_POST['message'] : '';
 if ($tipo!=""){
 
     $verificar = verificarExisteDocumento($document);
+
+    //print_r($verificar);
+
+    //exit();
     
     $resultado = registrarFormulario($document, $tipo, $message);
 }

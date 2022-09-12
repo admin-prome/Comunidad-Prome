@@ -6,6 +6,94 @@ ini_set ('memory_limit','-1');
 
 include_once '../models/conexion.php';
 
+
+function consultarMunicipios($municipio=null){
+
+    $sql = "
+        SELECT id, nombre 
+        FROM municipio 
+        ORDER BY nombre asc
+    ";
+    
+    $conexion = new Conexion();
+    $arrResultado = $conexion->consulta($sql);
+
+    $option = "<option value=''>Seleccioná el municipio</option>";
+
+    foreach($arrResultado as $resultado){
+
+        $id = $resultado["id"];
+        $nombre = $resultado["nombre"];
+
+        if ($municipio==$id){
+            $option .= "<option value='$id' selected='selected'>$nombre</option>";
+        }else{
+            $option .= "<option value='$id'>$nombre</option>";
+        }
+
+    }
+
+    return $option;
+}
+
+function consultarActividad($actividad=null){
+
+    $sql = "
+        SELECT id, nombre 
+        FROM actividad 
+        ORDER BY nombre asc
+    ";
+    
+    $conexion = new Conexion();
+    $arrResultado = $conexion->consulta($sql);
+
+    $option = "<option value=''>Seleccioná la actividad</option>";
+
+    foreach($arrResultado as $resultado){
+
+        $id = $resultado["id"];
+        $nombre = $resultado["nombre"];
+
+        if ($actividad==$id){
+            $option .= "<option value='$id' selected='selected'>$nombre</option>";
+        }else{
+            $option .= "<option value='$id'>$nombre</option>";
+        }
+
+    }
+
+    return $option;
+}
+
+function consultarRubros($rubro=null){
+
+    $sql = "
+        SELECT id, nombre 
+        FROM rubro 
+        ORDER BY nombre asc
+    ";
+    
+    $conexion = new Conexion();
+    $arrResultado = $conexion->consulta($sql);
+
+    $option = "<option value=''>Seleccioná el rubro</option>";
+
+    foreach($arrResultado as $resultado){
+
+        $id = $resultado["id"];
+        $nombre = $resultado["nombre"];
+
+        if ($rubro==$id){
+            $option .= "<option value='$id' selected='selected'>$nombre</option>";
+        }else{
+            $option .= "<option value='$id'>$nombre</option>";
+        }
+
+    }
+
+    return $option;
+}
+
 function formatearDistancia($distancia=null){
 
     $distancia = round($distancia,0);    
@@ -20,11 +108,23 @@ function formatearDistancia($distancia=null){
     
 }
 
-function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $latitudbuscar=null, $longitudbuscar=null){
+function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $latitudbuscar=null, $longitudbuscar=null, $getmunicipio=null, $getactividad=null, $getrubro=null, $cercamio=null){
 
     if ($buscador!=""){
         $where .= " and (comercio.nombre like '%$buscador%' or rubrobusqueda.palabra like '%$buscador%' )";
 
+    }
+
+    if ($getmunicipio!=""){
+        $where .= " and (comercio.municipio_id = '$getmunicipio')";
+    }
+
+    if ($getactividad!=""){
+        $where .= " and (comercio.actividad_id = '$getactividad')";
+    }
+
+    if ($getrubro!=""){
+        $where .= " and (comercio.rubro_id = '$getrubro')";
     }
 
     if ($cuentadni=="on"){
@@ -171,39 +271,100 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
 
         $urlicono = "../img/rubro/icono/icono_$rubro_img.png";
 
+        if ($cercamio!="on"){
+            $distancia ="";
+        }
+
+        // 
+
         $divComercio .="
-            <div style='background-color: #FBF8F8; border: 1px solid #D5D3D3; cursor: pointer; margin-top: 10px; padding-bottom: 10px' onclick='mostrarubicacion(\"".$latitud."\",\"".$longitud."\",\"".$nombre."\",\"".$direccion."\",\"".$whatsapp."\",\"".$telefono."\",\"".$web."\",\"".$email."\",\"".$instagram."\",\"".$distancia."\",\"".$cuentadni."\",\"".$urlicono."\",\"".$facebookurl."\",\"".$facebooknombre."\")'>
+            <div style='background-color: #FBF8F8; border: 1px solid #D5D3D3; cursor: pointer; margin-top: 10px; padding-bottom: 10px; box-shadow: 2px 2px #B9B9B9' onclick='mostrarubicacion(\"".$latitud."\",\"".$longitud."\",\"".$nombre."\",\"".$direccion."\",\"".$whatsapp."\",\"".$telefono."\",\"".$web."\",\"".$email."\",\"".$instagram."\",\"".$distancia."\",\"".$cuentadni."\",\"".$urlicono."\",\"".$facebookurl."\",\"".$facebooknombre."\")'>
 
 
                 <div class='row'>
-                    <div class='col-md-3'  style='padding-right: 0px; text-align: center'>
+                    <div class='col-md-3 col-sm-3 col-3'  style='padding-right: 0px; text-align: center'>
                         <div style='padding-top: 10px'>
-                            <img src='$urlicono' style='height: 60px; max-width: auto' alt='$nombre' title='$nombre' />
+                            <img src='$urlicono' style='max-height: 60px; max-width: auto' alt='$nombre' title='$nombre' />
                         </div>
                     </div>
-                    <div class='col-md-9'  style='text-align: left; padding-top: 10px'>
+                    <div class='col-md-9 col-sm-9 col-9'  style='text-align: left; padding-top: 10px'>
                         <div class='row'>
-                            <div class='col-md-9'>
+                            <div class='col-md-9 col-sm-9 col-9' style='padding-right: 0px'>
                                 <h3 style='font-size: 18px; margin-bottom: 4px'>
                                     $nombre
-                                </h3>                                                
+                                </h3> 
+                                <p style='font-size: 16px; margin-bottom: 0px; color: #5C5B5B'>
+                                    $rubro_nombre
+                                </p>
+                                <p style='font-size: 16px; margin-bottom: 4px; color: #5C5B5B'>
+                                    $direccion
+                                </p>                                               
                             </div>
-                            <div class='col-md-3' style='padding-right: 20px; text-align: right'>
+                            <div class='col-md-3 col-sm-3 col-3' style='padding-right: 20px; padding-left: 0px; text-align: center'>
                                 $div_cuentadni
+                                
+                                <div style='margin-top: 15px'>
+                                    <i style='font-size: 18px' class='fas fa-chevron-right'></i>
+                                </div>
                             </div>
                         </div>
-                        <p style='font-size: 16px; margin-bottom: 0px; color: #5C5B5B'>
-                            $rubro_nombre
-                        </p>
-                        <p style='font-size: 16px; margin-bottom: 4px; color: #5C5B5B'>
-                            $direccion
-                        </p>
+                        
                         
                         <div class='row'>
-                            <div class='col-md-8'>
+                            <div class='col-md-8 col-sm-8 col-8'>
                                 $div_iconos
                             </div>
-                            <div class='col-md-4' style='padding-right: 30px'>
+                            <div class='col-md-4 col-sm-4 col-4' style='padding-right: 30px'>
+                                <p style='font-size: 17px; margin-bottom: 4px; color: #5C5B5B; text-align: right; font-weight: 600'>
+                                    $distancia
+                                </p>
+                            </div>
+
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+
+            </div>
+        ";
+        $mobile = 1;
+        $divComercioListaOver .="
+            <div style='background-color: #FBF8F8; border: 1px solid #D5D3D3; cursor: pointer; margin-top: 10px; padding-bottom: 10px; margin-right: 10px' onclick='mostrarubicacion(\"".$latitud."\",\"".$longitud."\",\"".$nombre."\",\"".$direccion."\",\"".$whatsapp."\",\"".$telefono."\",\"".$web."\",\"".$email."\",\"".$instagram."\",\"".$distancia."\",\"".$cuentadni."\",\"".$urlicono."\",\"".$facebookurl."\",\"".$facebooknombre."\",\"".$mobile."\")'>
+                <div class='row'>
+                    <div class='col-md-3 col-sm-3 col-3'  style='padding-right: 0px; text-align: center'>
+                        <div style='padding-top: 10px'>
+                            <img src='$urlicono' style='max-height: 60px; max-width: auto' alt='$nombre' title='$nombre' />
+                        </div>
+                    </div>
+                    <div class='col-md-9 col-sm-9 col-9'  style='text-align: left; padding-top: 10px'>
+                        <div class='row'>
+                            <div class='col-md-9 col-sm-9 col-9' style='padding-right: 0px'>
+                                <h3 style='font-size: 18px; margin-bottom: 4px'>
+                                    $nombre
+                                </h3> 
+                                <p style='font-size: 16px; margin-bottom: 0px; color: #5C5B5B'>
+                                    $rubro_nombre
+                                </p>
+                                <p style='font-size: 16px; margin-bottom: 4px; color: #5C5B5B'>
+                                    $direccion
+                                </p>                                               
+                            </div>
+                            <div class='col-md-3 col-sm-3 col-3' style='padding-right: 20px; padding-left: 0px; text-align: center'>
+                                $div_cuentadni
+                                
+                                <div style='margin-top: 15px'>
+                                    <i style='font-size: 18px' class='fas fa-chevron-right'></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class='row'>
+                            <div class='col-md-8 col-sm-8 col-8'>
+                                $div_iconos
+                            </div>
+                            <div class='col-md-4 col-sm-4 col-4' style='padding-right: 30px'>
                                 <p style='font-size: 17px; margin-bottom: 4px; color: #5C5B5B; text-align: right; font-weight: 600'>
                                     $distancia
                                 </p>
@@ -221,7 +382,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
     }
 
     $totalDivResultados = "
-            <div class='row' style='margin-top: 0px'>
+            <div class='row' style='margin-top: 0px; margin-bottom: 5px'>
                 <div class='col-md-12' style='text-align: right; padding: 0px 30px'>
                     <div>
                         <p style='margin-bottom: 0px; color: #23952E'>
@@ -244,16 +405,18 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         $resultado = array(            
             "divComercio" => $divComercio, 
             "divComercioMarkers" => 0,
-            "divTotalComercios" => $totalDivResultados
+            "divTotalComercios" => $totalDivResultados,
+            "divComercioListaOver" => $divComercioListaOver
         );
-
+        
     }else{
 
 
         $resultado = array(            
             "divComercio" => $divComercio, 
             "divComercioMarkers" => $divComercioMarkers,
-            "divTotalComercios" => $totalDivResultados
+            "divTotalComercios" => $totalDivResultados,
+            "divComercioListaOver" => $divComercioListaOver
         );
     }
 
@@ -264,12 +427,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
 
 function verificarExisteDocumento($document=null){
 
-    $query = array(
-        "client_id" => "123", 
-        "client_secret" => "456"
-    );		
-
-    $urlAPI = "https://api.publicapis.org/entries";
+    $urlAPI = "https://catalogoprome.azurewebsites.net/Catalogo/$document";
 
     $ch = curl_init($urlAPI);
     curl_setopt($ch, CURLOPT_URL, $urlAPI);
