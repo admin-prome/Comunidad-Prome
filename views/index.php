@@ -1,21 +1,8 @@
 <html>
 <head>
-    <title>
-        Comunidad PROME
-    </title>
-    <meta charset="utf-8">
-    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous"> 
-
+    <title> Comunidad PROME </title>
     
-   <script async
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgohyH98VEPgrrtHzVjZmm-d89eCNlktw&libraries=places">
-    </script>
-
-    <link rel="stylesheet" href="../css/style.css" >
+    <?php include_once "head.php"; ?>
 
 </head>
 <body>
@@ -121,6 +108,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <?php include_once "include_camposmapa.php"; ?>
                                 </form>
                             </div>  
                             <div style="margin-top: 20px">
@@ -163,53 +151,20 @@
         </div>           
     </div>
 
-<main role="main" class="container" style="display: none">
-    <div class="row">
-        <div class="col-md-12">
-            <h1>Acceder a la ubicación con JavaScript</h1>
-            <a href="//parzibyte.me/blog" target="_blank">By Parzibyte</a>
-            <br>
-            <strong>Latitud: </strong> <p id="latitud"></p>
-            <br>
-            <strong>Longitud: </strong> <p id="longitud"></p>
-            <br>
-            <a target="_blank" id="enlace" href="#">Abrir en Google Maps</a>
-        </div>
-    </div>
-</main>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-<script src="../js/funciones.js"></script>
-<script src="../js/geolocalizacion.js"></script>
-
+<?php include_once "footer.php"; ?>
 
 <script>
 
-    // Get the input field
     var input = document.getElementById("buscador");
 
-    // Execute a function when the user presses a key on the keyboard
     input.addEventListener("keypress", function(event) {
-    // If the user presses the "Enter" key on the keyboard
     if (event.key === "Enter") {
-        // Cancel the default action, if needed
         event.preventDefault();
-        // Trigger the button element with a click
         procesarFormBusqueda();
     }
     });
 
-    function verfiltrosbusqueda(){
-        
-        var div_busquedaavanzada = document.getElementById('div_busquedaavanzada').style.display;
-        if (div_busquedaavanzada==""){
-            document.getElementById('div_busquedaavanzada').style.display = "none";
-        }else{
-            document.getElementById('div_busquedaavanzada').style.display = "";
-            
-        }
-    }
     var searchInput = 'buscadordireccion';
     
     $(document).ready(function () {
@@ -226,12 +181,74 @@
 
             var buscadordireccion = document.getElementById('buscadordireccion').value;
 
-            window.location = "buscador.php?lat="+near_place.geometry.location.lat()+"&lon="+near_place.geometry.location.lng()+"&dir="+buscadordireccion;
+            document.getElementById('lat').value = near_place.geometry.location.lat();
+            document.getElementById('lon').value = near_place.geometry.location.lng();
+            document.getElementById('dir').value = buscadordireccion;
+
+            //window.location = "buscador.php?lat="+near_place.geometry.location.lat()+"&lon="+near_place.geometry.location.lng()+"&dir="+buscadordireccion;
+
         });
     });
-    
 </script>
 
+<script>
+    const funcionInit = () => {
+        if (!"geolocation" in navigator) {
+            return alert("Tu navegador no soporta el acceso a la ubicación. Intenta con otro");
+        }
+
+        const $latitud = document.querySelector("#actual_lat"),
+            $longitud = document.querySelector("#actual_lon");
+
+        const onUbicacionConcedida = ubicacion => {
+            console.log("Tengo la ubicación: ", ubicacion);
+            const coordenadas = ubicacion.coords;
+
+            try{
+                if (google==undefined){
+                    //alert("si esta definido google");
+                }
+            }catch{
+                //window.location.reload();
+            }
+
+            var latlng = new google.maps.LatLng(coordenadas.latitude, coordenadas.longitude);
+            var geocoder = geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[1]) {
+                        //alert("Location: " + results[1].formatted_address);
+                        document.getElementById('actual_direccion').value = results[1].formatted_address;
+                    }
+                }
+            });
+
+            document.getElementById('actual_lat').value = coordenadas.latitude;
+            document.getElementById('actual_lon').value = coordenadas.longitude;
+        }
+
+        const onErrorDeUbicacion = err => {
+
+            $latitud.value = "Error obteniendo ubicación: " + err.message;
+            $longitud.value = "Error obteniendo ubicación: " + err.message;
+            console.log("Error obteniendo ubicación: ", err);
+        }
+
+        const opcionesDeSolicitud = {
+            enableHighAccuracy: true, 
+            maximumAge: 0, 
+            timeout: 5000 
+        };
+        navigator.geolocation.getCurrentPosition(onUbicacionConcedida, onErrorDeUbicacion, opcionesDeSolicitud);
+
+
+
+
+    };
+
+    document.addEventListener("DOMContentLoaded", funcionInit);
+    
+</script>
 
 </body>
 </html>

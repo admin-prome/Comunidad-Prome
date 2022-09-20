@@ -30,6 +30,8 @@ $getlatitudactual = isset($_GET['latact']) ? $_GET['latact'] : '';
 $getlongitudactual = isset($_GET['lonact']) ? $_GET['lonact'] : '';
 $getdireccion = isset($_GET['dir']) ? $_GET['dir'] : '';
 $getdireccionmapa = isset($_GET['dirmapa']) ? $_GET['dirmapa'] : '';
+$getdireccionactual = isset($_GET['diract']) ? $_GET['diract'] : '';
+
 $tipodir = isset($_GET['tipodir']) ? $_GET['tipodir'] : '';
 
 /*
@@ -86,6 +88,7 @@ $divTotalComercios = $comercios["divTotalComercios"];
 $optionmunicipio = consultarMunicipios($getmunicipio);
 $optionactividad = consultarActividad($getactividad);
 $optionrubro = consultarRubros($getrubro);
+
 
 require_once "../views/buscador.php";
 ?>

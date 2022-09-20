@@ -12,6 +12,7 @@ function consultarMunicipios($municipio=null){
     $sql = "
         SELECT id, nombre 
         FROM municipio 
+        WHERE activo = 1
         ORDER BY nombre asc
     ";
     
@@ -39,8 +40,9 @@ function consultarMunicipios($municipio=null){
 function consultarActividad($actividad=null){
 
     $sql = "
-        SELECT id, nombre 
+        SELECT DISTINCT id, nombre 
         FROM actividad 
+        WHERE activo = 1
         ORDER BY nombre asc
     ";
     
@@ -70,6 +72,7 @@ function consultarRubros($rubro=null){
     $sql = "
         SELECT id, nombre 
         FROM rubro 
+        WHERE activo = 1
         ORDER BY nombre asc
     ";
     
@@ -427,6 +430,12 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
 
 function verificarExisteDocumento($document=null){
 
+    $result = file_get_contents("https://catalogoprome.azurewebsites.net/Catalogo/$document");
+    return $result;
+
+    /*
+
+
     $urlAPI = "https://catalogoprome.azurewebsites.net/Catalogo/$document";
 
     $ch = curl_init($urlAPI);
@@ -440,6 +449,9 @@ function verificarExisteDocumento($document=null){
     $result = json_decode($result, true);
 
     return $result;
+
+
+    */
 }
 
 

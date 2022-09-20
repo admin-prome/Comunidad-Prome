@@ -33,14 +33,15 @@
                         </div>  
                         <div class="col-md-6">
                             <div style="background-color: #FFFFFF; border-radius: 10px; padding: 15px ">
-                               <form method="POST" action="confirmacion-registro.php">
+                               <form method="POST" id="formRegistro" name="formRegistro" action="confirmacion-registro.php">
                                     <div class="row" style="margin-top: 10px">
                                         <div class="col-md-12" style="text-align: left; padding: 0px 30px">
                                             <div>
                                                 <h3 style="font-size: 16px">
                                                     Completá el formulario y  te contactamos a la brevedad.
                                                 </h3>
-                                            </div>                                        
+                                            </div>
+                                            <div id="mensajeprocesar"></div>
                                         </div>                                   
                                     </div>
                                     <div class="row" style="margin-top: 10px">
@@ -49,7 +50,7 @@
                                                 DNI del titular
                                             </label>
                                             <div style="margin-top: 5px">
-                                                <input type="text" class="form-control" placeholder="Sin guiones ni puntos" name="document" required="required" autocomplete="off">
+                                                <input type="text" class="form-control" placeholder="Sin guiones ni puntos" name="document" id="document" required="required" autocomplete="off">
                                             </div>
                                         </div>                                   
                                     </div>
@@ -59,7 +60,7 @@
                                                 Tipo de trámite
                                             </label>
                                             <div style="margin-top: 5px">
-                                                <select class="form-control" required="required" name="tipo">
+                                                <select class="form-control" required="required" name="tipo" id="tipo">
                                                     <option value="">
                                                         Seleccioná el tipo de gestión
                                                     </option>
@@ -76,7 +77,7 @@
                                                 ¿Querés dejarnos un mensaje?
                                             </label>
                                             <div style="margin-top: 5px">
-                                                <textarea class="form-control" name="message" style="width: 100%; height: 180px"></textarea>
+                                                <textarea class="form-control" id="message" name="message" style="width: 100%; height: 180px"></textarea>
                                             </div>
                                         </div>                                   
                                     </div>
@@ -89,7 +90,7 @@
                                             </a>
                                         </div> 
                                         <div class="col-md-6 col-sm-6 col-6" style="text-align: center; padding: 0px 30px; padding-left: 15px">
-                                            <button type="submit" class='btn' style="background-color: #23952E; color: #FFFFFF; font-weight: 500; font-size: 18px; border: 1px solid #23952E; width: 100%">
+                                            <button type="button" id="btnRegistro" class='btn' style="background-color: #23952E; color: #FFFFFF; font-weight: 500; font-size: 18px; border: 1px solid #23952E; width: 100%">
                                                 Enviar
                                             </button>
                                         </div>                                   
@@ -106,6 +107,36 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $(document).on("click","#btnRegistro", function(){
+        var valor = "update";
+        var documento = jQuery('#document').val();
+        var tipo = jQuery('#tipo').val();
+        var message = jQuery('#message').val();
+
+        $("#mensajeprocesar").html("<div class='alert alert-info' role='alert'>Procesando...</div> ");
+       
+        $.ajax({
+            url:"verificar-registro.php",
+            type:"POST",
+            cache:false,
+            data:{documento:documento,tipo:tipo,message:message},
+            success:function(data){
+                if (data =="false") {                    
+                    $("#mensajeprocesar").html("<div class='alert alert-danger' role='alert'>El DNI no se encuentra en nuestra base de datos</div> ");
+                }else{
+                    document.getElementById('formRegistro').submit();
+                }
+            }
+        });
+    });
+});
+</script>
+
+
 
 </body>
 </html>
