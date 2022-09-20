@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 20, 2022 at 02:26 PM
+-- Generation Time: Sep 20, 2022 at 04:39 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -420,7 +420,9 @@ CREATE TABLE `municipio` (
 --
 
 INSERT INTO `municipio` (`id`, `nombre`, `activo`) VALUES
-(1, 'Caseros', 1);
+(1, 'Buenos Aires', 1),
+(2, 'Azul', 1),
+(3, 'San Martin', 1);
 
 -- --------------------------------------------------------
 
@@ -3746,7 +3748,7 @@ ALTER TABLE `formulario`
 -- AUTO_INCREMENT for table `municipio`
 --
 ALTER TABLE `municipio`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `rubro`
