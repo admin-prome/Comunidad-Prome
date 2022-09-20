@@ -24,14 +24,39 @@ function verfiltrosbusqueda(){
         
     var div_busquedaavanzada = document.getElementById('div_busquedaavanzada').style.display;
     if (div_busquedaavanzada==""){
+        document.getElementById('div_municipios').style.display = "none";
         document.getElementById('div_busquedaavanzada').style.display = "none";
     }else{
-        document.getElementById('div_busquedaavanzada').style.display = "";
-        
+        document.getElementById('div_municipios').style.display = "none";
+
+        var checkCercaMio = document.getElementById('checkCercaMio').checked;
+        if (checkCercaMio==true){
+            document.getElementById('filtro_municipio').style.display = "none";
+            document.getElementById('filtro_rubro').style.display = "";
+            document.getElementById('filtro_actividad').style.display = "";            
+        }else{
+            document.getElementById('filtro_municipio').style.display = "";
+            document.getElementById('filtro_rubro').style.display = "";
+            document.getElementById('filtro_actividad').style.display = "";         
+        }
+
+
+        document.getElementById('div_busquedaavanzada').style.display = "";        
     }
 }
 
 
+function verfiltrosbusquedamunicipio(){
+        
+    var div_municipios = document.getElementById('div_municipios').style.display;
+    if (div_municipios==""){
+        document.getElementById('div_municipios').style.display = "none";
+        document.getElementById('div_busquedaavanzada').style.display = "none";
+    }else{
+        document.getElementById('div_busquedaavanzada').style.display = "none";
+        document.getElementById('div_municipios').style.display = "";      
+    }
+}
 
 
 function mostrarBuscadorMobile(){
@@ -253,3 +278,5 @@ function mostrarubicacion(latitud, longitud, nombre, direccion, whatsapp, telefo
     var marker = L.marker([latitud, longitud]).addTo(map)
     .bindPopup('<b>'+nombre+'</b><br>'+direccion).openPopup();
 }
+
+

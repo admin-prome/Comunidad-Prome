@@ -47,12 +47,9 @@
                                         <div class="col-md-12" style="text-align: left; padding: 0px 30px">
                                             <div>
                                                 <div class="form-check form-switch">
-                                                    <input class="form-check-input"   type="checkbox" id="flexSwitchCheckChecked">
-                                                    <label class="form-check-label" for="flexSwitchCheckChecked">Cerca mío</label>
-                                                </div>
-                                                <p style="color: #4B4B4B; text-align: left">
-                                                    
-                                                </p>
+                                                    <input class="form-check-input" name="cercamio" type="checkbox" id="checkCercaMio">
+                                                    <label class="form-check-label" for="checkCercaMio">Cerca mío</label>
+                                                </div>                                                
                                             </div>
                                             <div class="input-group mb-3 pl-1">
                                                 <i class="fa fa-list" style ="border-top: 1px solid #ced4da;border-left: 1px solid #ced4da; border-bottom: 1px solid #ced4da; padding-left: 5px; padding-top: 10px; color: #C4C4C4; cursor: pointer" onclick="verfiltrosbusqueda()"></i>

@@ -29,6 +29,8 @@
 
     </style>
 
+    
+
 </head>
 <body style="background-color: #FFFFFF" id="inicio">
 
@@ -88,39 +90,54 @@
                                     <div class="row">
                                         <div class="col-md-11 col-sm-11 col-11">
                                             <div class="input-group mb-1" style="margin-top: 5px">
-                                                <input type="text" class="form-control" placeholder="Escribí un producto o servicio" aria-label="Escribí un producto o servicio" name="q" aria-describedby="basic-addon2"  value="<?php echo $buscador;?>" autocomplete="off">
+                                                <i class="fa fa-list" style ="border-top: 1px solid #ced4da;border-left: 1px solid #ced4da; border-bottom: 1px solid #ced4da; border-right: 0px solid #ced4da; padding-left: 5px; padding-top: 10px; color: #C4C4C4; cursor: pointer" onclick="verfiltrosbusqueda()"></i>
+                                                <input type="text" class="form-control" placeholder="Escribí un producto o servicio" aria-label="Escribí un producto o servicio" name="q" aria-describedby="basic-addon2"  value="<?php echo $buscador;?>" autocomplete="off" style="border-left: 0px solid #FFF">
                                                 <span class="input-group-text" id="basic-addon2" style="background-color: #23952E; color: #FFF; cursor: pointer" onclick="procesarFormBusqueda()">
                                                     <i class="fas fa-search"></i>
                                                 </span>
                                             </div>
                                         </div>
                                         <div class="col-md-1 col-sm-1 col-1" style="padding-left: 0px; padding-top: 14px">
-                                            <span style="cursor: pointer" onclick="verfiltrosbusqueda()">
+                                            <span style="cursor: pointer" onclick="verfiltrosbusquedamunicipio()">
                                                 <i class="fa fa-filter" style="font-size: 20px"></i>
                                             </span>
                                         </div>
                                     </div>
-                                    <div class="row" id="div_busquedaavanzada" style="display: none">
+                                    <div class="row" id="div_busquedaavanzada" <?php echo $divBusquedaAvanzada;?>>
                                         <div class="col-md-12 mb-3" style="text-align: left; padding: 0px 10px">
                                             <div class="mb-1">
                                                 <i class="fa fa-list" style ="padding-left: 5px; padding-top: 10px; color: #C4C4C4; cursor: pointer" onclick="verfiltrosbusqueda()"></i> Búsqueda avanzada
                                             </div>
                                             
-                                            <div class="mt-2">
+                                            <div class="mt-2" id="filtro_municipio" <?php echo $displaymunicipio;?>>
                                                 <select class="form-control" name="m">
                                                     <?php echo $optionmunicipio;?>
                                                 </select>
                                             </div>
-                                            <div class="mt-2">
+                                            <div class="mt-2" id="filtro_rubro">
                                                 <select class="form-control" name="r">
                                                     <?php echo $optionrubro;?>
                                                 </select>
                                             </div>
-                                            <div class="mt-2">
+                                            <div class="mt-2" id="filtro_actividad">
                                                 <select class="form-control" name="a">
                                                     <?php echo $optionactividad;?>
                                                 </select>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="div_municipios" <?php echo $divBusquedaMunicipios;?>>
+                                        <div class="col-md-12 mb-3" style="text-align: left; padding: 0px 10px">
+                                            <div class="mb-1">
+                                                Municipio
+                                            </div>
+                                            
+                                            <div class="mt-2">
+                                                <?php echo $optionmunicipiob;?>
+                                            </div>
+                                            <button type="submit" class='btn' style="background-color: #23952E; color: #FFF; font-weight: 700; font-size: 18px; width: 100%; margin-top: 10">
+                                                Aplicar filtros
+                                            </button>
                                         </div>
                                     </div>
                                     
@@ -128,11 +145,8 @@
                                 </div>                                   
                             </div>
 
-                            
-
-                            
                             <?php echo $divTotalComercios;?>
-                    
+
                             
                             <?php include_once "include_camposmapa.php"; ?>
 
@@ -297,9 +311,11 @@
 
                         </div>
                         
-                        <div id="divComercios" <?php echo $displaycomercios;?>>
-                            <?php echo $divComercios;?>
-                        </div>  
+                        <div style="height: 400px; overflow-y: scroll; overflow-x: hidden">
+                            <div id="divComercios" <?php echo $displaycomercios;?>>
+                                <?php echo $divComercios;?>
+                            </div>  
+                        </div>
 
                         
 
@@ -343,14 +359,7 @@
 <input type="hidden" id="mobileclickcomercio" />
 
 <?php include_once "footer.php"; ?>
-getlatitud:
-<?php echo $getlatitudactual;?>
-<br>
-getlongitud:
-<?php echo $getlongitudactual;?>
-<br>
-getdireccion:
-<?php echo $getdireccionactual;?>
+
 
 <script>
     const funcionInit = () => {
@@ -479,10 +488,16 @@ getdireccion:
 
             var buscadordireccion = document.getElementById('buscadordireccion').value;
 
-            window.location = "buscador.php?lat="+near_place.geometry.location.lat()+"&lon="+near_place.geometry.location.lng()+"&dir="+buscadordireccion;
+            //window.location = "buscador.php?lat="+near_place.geometry.location.lat()+"&lon="+near_place.geometry.location.lng()+"&dir="+buscadordireccion;
         });
     });
 
+
+
+    
+
 </script>
+
+
 </body>
 </html>

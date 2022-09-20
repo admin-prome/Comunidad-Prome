@@ -7,7 +7,7 @@ ini_set ('memory_limit','-1');
 include_once '../models/conexion.php';
 
 
-function consultarMunicipios($municipio=null){
+function consultarMunicipios($municipio=null, $sinselect=null){
 
     $sql = "
         SELECT id, nombre 
@@ -19,17 +19,41 @@ function consultarMunicipios($municipio=null){
     $conexion = new Conexion();
     $arrResultado = $conexion->consulta($sql);
 
-    $option = "<option value=''>Seleccioná el municipio</option>";
+    if ($sinselect==""){
+        $option = "<option value=''>Seleccioná el municipio</option>";
+    }
 
     foreach($arrResultado as $resultado){
 
         $id = $resultado["id"];
         $nombre = $resultado["nombre"];
 
-        if ($municipio==$id){
-            $option .= "<option value='$id' selected='selected'>$nombre</option>";
+        if ($sinselect!=""){
+
+            $checked = " ";
+
+            foreach($municipio as $getmunicipioDetalle){
+                if($id==$getmunicipioDetalle){
+                    $checked = " checked = 'checked' ";
+                }
+            }
+
+            $option .="
+            <div class='form-check'>
+                <input class='form-check-input' $checked name='mb[]' type='checkbox' value='$id' id='municipio_$id'>
+                <label class='form-check-label' for='municipio_$id'>
+                    $nombre
+                </label>
+            </div>
+            ";
         }else{
-            $option .= "<option value='$id'>$nombre</option>";
+
+            if ($municipio==$id){
+                $option .= "<option value='$id' selected='selected'>$nombre</option>";
+            }else{
+                $option .= "<option value='$id'>$nombre</option>";
+            }
+    
         }
 
     }
@@ -111,11 +135,29 @@ function formatearDistancia($distancia=null){
     
 }
 
-function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $latitudbuscar=null, $longitudbuscar=null, $getmunicipio=null, $getactividad=null, $getrubro=null, $cercamio=null){
+function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $latitudbuscar=null, $longitudbuscar=null, $getmunicipio=null, $getactividad=null, $getrubro=null, $cercamio=null, $getmunicipiob=null){
 
     if ($buscador!=""){
         $where .= " and (comercio.nombre like '%$buscador%' or rubrobusqueda.palabra like '%$buscador%' )";
 
+    }
+
+    if ($getmunicipio!=""){
+        $where .= " and (comercio.municipio_id = '$getmunicipio')";
+    }
+
+    $filtrowheremunicipiomultiple = "";
+
+    foreach($getmunicipiob as $getmunicipioDetalle){
+        if($filtrowheremunicipiomultiple==""){
+            $filtrowheremunicipiomultiple = $getmunicipioDetalle;
+        }else{
+            $filtrowheremunicipiomultiple .= ",".$getmunicipioDetalle;
+        }
+    }
+
+    if($filtrowheremunicipiomultiple!=""){
+        $where = " and comercio.municipio_id in ($filtrowheremunicipiomultiple)  ";
     }
 
     if ($getmunicipio!=""){
@@ -273,6 +315,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         */
 
         $urlicono = "../img/rubro/icono/icono_$rubro_img.png";
+        $urlicono = "../img/rubro/icono/icono_general.png";
 
         if ($cercamio!="on"){
             $distancia ="";

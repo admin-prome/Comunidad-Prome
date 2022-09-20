@@ -19,9 +19,10 @@ $cercamio = isset($_GET['cercamio']) ? $_GET['cercamio'] : '';
 
 $getmunicipio = isset($_GET['m']) ? $_GET['m'] : '';
 $getrubro = isset($_GET['r']) ? $_GET['r'] : '';
+$getmunicipiob = isset($_GET['mb']) ? $_GET['mb'] : '';
+
 $getactividad = isset($_GET['a']) ? $_GET['a'] : '';
 $gettipovisualizacion = isset($_GET['tp']) ? $_GET['tp'] : '';
-
 
 
 $getlatitud = isset($_GET['lat']) ? $_GET['lat'] : '';
@@ -47,22 +48,33 @@ if ($tipodir=="1"){
 $displaymapaa = " style='display: none' ";
 $displaycomercios = " ";
 $divComercios2 = " style='display: none' ";
+$divBusquedaAvanzada = " style='display: none' ";
+$divBusquedaMunicipios = " style='display: none' ";
 
+if ($getmunicipiob!=""){
+    $divBusquedaMunicipios = "";
+}
 
 if ($cercamio=="on"){
+    $getmunicipio = "";
     $tipodirchecked = " checked='checked' ";
     $displaymapa = " ";
-    $displaycomercios = " style='display: none' ";
+    $displaycomercios___ = " style='display: none' ";
     $divbuscadormapa = " ";
     $gettipovisualizacion = "mapa";
     $divComercios2 = "";
+    $displaymunicipio = " style='display: none' ";
+
 }else{
     $tipodirchecked = "  ";    
     $divbuscadormapa = " ; display: none";
     $gettipovisualizacion = "";
 }
 
+if ($getmunicipio!="" || $getrubro!="" || $getactividad!=""){
+    $divBusquedaAvanzada = "";
 
+}
 
 $latitudbuscar = -34.6009755;
 $longitudbuscar = -58.3826927;
@@ -77,8 +89,7 @@ if ($getlongitud!=""){
 
 
 
-
-$comercios = consultarComercios($buscador, $cuentadni, $envios, $latitudbuscar, $longitudbuscar, $getmunicipio, $getactividad, $getrubro, $cercamio);
+$comercios = consultarComercios($buscador, $cuentadni, $envios, $latitudbuscar, $longitudbuscar, $getmunicipio, $getactividad, $getrubro, $cercamio, $getmunicipiob);
 
 $divComercios = $comercios["divComercio"];
 $divComercioListaOver = $comercios["divComercioListaOver"];
@@ -86,6 +97,7 @@ $divComercioMarkers = $comercios["divComercioMarkers"];
 $divTotalComercios = $comercios["divTotalComercios"];
 
 $optionmunicipio = consultarMunicipios($getmunicipio);
+$optionmunicipiob = consultarMunicipios($getmunicipiob, true);
 $optionactividad = consultarActividad($getactividad);
 $optionrubro = consultarRubros($getrubro);
 
