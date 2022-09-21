@@ -46,6 +46,17 @@ function verfiltrosbusqueda(){
 }
 
 
+function verfiltrosbusquedaindex(){
+        
+    var div_busquedaavanzada = document.getElementById('div_busquedaavanzada').style.display;
+    if (div_busquedaavanzada==""){
+        document.getElementById('div_busquedaavanzada').style.display = "none";
+    }else{
+        document.getElementById('div_busquedaavanzada').style.display = "";        
+    }
+}
+
+
 function verfiltrosbusquedamunicipio(){
         
     var div_municipios = document.getElementById('div_municipios').style.display;

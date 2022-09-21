@@ -1,13 +1,11 @@
 <?php
-define ('EXP',6000000);
-setlocale (LC_CTYPE, 'es_ES');
-ini_set ('display_errors','0');
-ini_set ('memory_limit','-1');
-
+include_once "../models/config.php";
 include_once '../models/conexion.php';
 
 
 function consultarMunicipios($municipio=null, $sinselect=null){
+
+    $option = "";
 
     $sql = "
         SELECT id, nombre 
@@ -31,10 +29,11 @@ function consultarMunicipios($municipio=null, $sinselect=null){
         if ($sinselect!=""){
 
             $checked = " ";
-
-            foreach($municipio as $getmunicipioDetalle){
-                if($id==$getmunicipioDetalle){
-                    $checked = " checked = 'checked' ";
+            if ($municipio!=""){
+                foreach($municipio as $getmunicipioDetalle){
+                    if($id==$getmunicipioDetalle){
+                        $checked = " checked = 'checked' ";
+                    }
                 }
             }
 
@@ -137,6 +136,13 @@ function formatearDistancia($distancia=null){
 
 function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $latitudbuscar=null, $longitudbuscar=null, $getmunicipio=null, $getactividad=null, $getrubro=null, $cercamio=null, $getmunicipiob=null){
 
+    $where = "";
+    $agregarselect = "";
+    $orderby = "";
+    $divComercioMarkers = "";
+    $divComercio = "";
+    $divComercioListaOver = "";
+
     if ($buscador!=""){
         $where .= " and (comercio.nombre like '%$buscador%' or rubrobusqueda.palabra like '%$buscador%' )";
 
@@ -147,12 +153,13 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
     }
 
     $filtrowheremunicipiomultiple = "";
-
-    foreach($getmunicipiob as $getmunicipioDetalle){
-        if($filtrowheremunicipiomultiple==""){
-            $filtrowheremunicipiomultiple = $getmunicipioDetalle;
-        }else{
-            $filtrowheremunicipiomultiple .= ",".$getmunicipioDetalle;
+    if ($getmunicipiob!=""){
+        foreach($getmunicipiob as $getmunicipioDetalle){
+            if($filtrowheremunicipiomultiple==""){
+                $filtrowheremunicipiomultiple = $getmunicipioDetalle;
+            }else{
+                $filtrowheremunicipiomultiple .= ",".$getmunicipioDetalle;
+            }
         }
     }
 

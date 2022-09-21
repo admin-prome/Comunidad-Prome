@@ -1,3 +1,6 @@
+<?php 
+include_once "../models/config.php";
+?>
 <input type="hidden" id="actual_lat" name="latact" />
 <input type="hidden" id="actual_lon" name="lonact" />
 <input type="hidden" id="actual_direccion"  name="diract" />

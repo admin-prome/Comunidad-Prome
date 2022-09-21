@@ -1,10 +1,12 @@
 <?php
-define ("EXP",6000000);
-setlocale (LC_CTYPE, 'es_ES');
-ini_set ("display_errors","0");
-ini_set ("memory_limit","-1");
-
+include_once "../models/config.php";
 include_once "../models/funciones.php";
+
+
+$getlatitud ="";
+$getlongitud ="";
+$getdireccion ="";
+$gettipovisualizacion ="";
 
 $optionmunicipio = consultarMunicipios();
 $optionactividad = consultarActividad();

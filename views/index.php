@@ -52,7 +52,7 @@
                                                 </div>                                                
                                             </div>
                                             <div class="input-group mb-3 pl-1">
-                                                <i class="fa fa-list" style ="border-top: 1px solid #ced4da;border-left: 1px solid #ced4da; border-bottom: 1px solid #ced4da; padding-left: 5px; padding-top: 10px; color: #C4C4C4; cursor: pointer" onclick="verfiltrosbusqueda()"></i>
+                                                <i class="fa fa-list" style ="border-top: 1px solid #ced4da;border-left: 1px solid #ced4da; border-bottom: 1px solid #ced4da; padding-left: 5px; padding-top: 10px; color: #C4C4C4; cursor: pointer" onclick="verfiltrosbusquedaindex()"></i>
                                                 <input type="text" class="form-control" placeholder="Escribí un producto o servicio" aria-label="Escribí un producto o servicio" aria-describedby="basic-addon2" name="q" required="required" id="buscador"  autocomplete="off" style="border-left: 0px solid #FFF"  >
                                                 <span class="input-group-text" id="basic-addon2" style="background-color: #23952E; color: #FFF; cursor: pointer" onclick="procesarFormBusqueda()">
                                                     <i class="fas fa-search"></i>
@@ -63,17 +63,17 @@
                                     <div class="row" id="div_busquedaavanzada" style="display: none">
                                         <div class="col-md-6 mb-3" style="text-align: left; padding: 0px 30px">
                                             <div class="mb-1">
-                                                <i class="fa fa-list" style ="padding-left: 5px; padding-top: 10px; color: #C4C4C4; cursor: pointer" onclick="verfiltrosbusqueda()"></i> Búsqueda avanzada
+                                                <i class="fa fa-list" style ="padding-left: 5px; padding-top: 10px; color: #C4C4C4; cursor: pointer" onclick="verfiltrosbusquedaindex()"></i> Búsqueda avanzada
                                             </div>
                                             <div>
                                                 <div class="form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox" id="checkAdherido" name="cuentadni" <?php echo $cuentadnichecked;?> onclick="refrescar()" >
+                                                    <input class="form-check-input" type="checkbox" id="checkAdherido" name="cuentadni" onclick="refrescar()" >
                                                     <label class="form-check-label" for="checkAdherido" style="color: #626161">Adherido a Cuenta DNI Comercios</label>
                                                 </div>                                               
                                             </div>
                                             <div style="margin-top: 10px; margin-bottom: 10px">
                                                 <div class="form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox" id="checkEnvios" name="envios" <?php echo $envioschecked;?>  onclick="refrescar()">
+                                                    <input class="form-check-input" type="checkbox" id="checkEnvios" name="envios"  onclick="refrescar()">
                                                     <label class="form-check-label" for="checkEnvios" style="color: #626161">Hace envíos/Servicio a domicilio</label>
                                                 </div>                                               
                                             </div>
@@ -85,7 +85,7 @@
                                                     name="dirmapa"
                                                     class="form-control"
                                                     placeholder="Indicá un domicilio"
-                                                    value="<?php echo $getdireccion;?>"
+                                                    
                                                 />
                                             </div>
                                             <div class="mt-2">
