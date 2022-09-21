@@ -315,8 +315,7 @@
                             <div id="divComercios" <?php echo $displaycomercios;?>>
                                 <?php echo $divComercios;?>
                             </div>  
-                        </div>
-
+                        </div> 
                         
 
                             
