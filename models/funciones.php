@@ -272,6 +272,8 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         $cuentadni = $resultado["cuentadni"];
         $haceenvios = $resultado["haceenvios"];
         $distancia = $resultado["distancia"];
+		$facebooknombre = "";
+
 
         $distancia = formatearDistancia($distancia);
 
