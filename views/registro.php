@@ -112,7 +112,6 @@
 <script type="text/javascript">
 $(document).ready(function(){
     $(document).on("click","#btnRegistro", function(){
-        var valor = "update";
         var documento = jQuery('#document').val();
         var tipo = jQuery('#tipo').val();
         var message = jQuery('#message').val();
@@ -128,15 +127,15 @@ $(document).ready(function(){
                 if (data =="false") {                    
                     $("#mensajeprocesar").html("<div class='alert alert-danger' role='alert'>El DNI no se encuentra en nuestra base de datos</div> ");
                 }else{
-                    document.getElementById('formRegistro').submit();
+                    $("#mensajeprocesar").html("<div class='alert alert-success' role='alert'><a href='http://www.provinciamicrocreditos.com.ar/creditos/creditos-fondep/' style='text-decoration: none; color: #000000' target='_blank'>Por favor completar la solicitud en la ventana que se le abrió o haz click aquí</a></div>");
+                    window.open('http://www.provinciamicrocreditos.com.ar/creditos/creditos-fondep/');
+                    //document.getElementById('formRegistro').submit();
                 }
             }
         });
     });
 });
 </script>
-
-
 
 </body>
 </html>

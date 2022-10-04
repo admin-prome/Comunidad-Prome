@@ -183,7 +183,7 @@ function limpiarDivDetalle(){
 
 }
 
-function mostrarubicacion(latitud, longitud, nombre, direccion, whatsapp, telefono, web, email, instagram, distancia, cuentadni, urlicono, facebookurl, facebooknombre, mobile){  
+function mostrarubicacion(latitud, longitud, nombre, direccion, whatsapp, telefono, web, email, instagram, distancia, cuentadni, urlicono, facebookurl, mobile){  
 
     limpiarDivDetalle();
 

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 61.89 61.89">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #25b4bd;
+      }
+
+      .cls-2, .cls-3 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2, .cls-3, .cls-4 {
+        fill: none;
+        stroke: #fff;
+        stroke-width: 1.04px;
+      }
+
+      .cls-2, .cls-4 {
+        stroke-linecap: round;
+      }
+
+      .cls-4 {
+        stroke-linejoin: round;
+      }
+    </style>
+  </defs>
+  <g id="Capa_1-2" data-name="Capa 1">
+    <g>
+      <circle class="cls-1" cx="30.95" cy="30.95" r="30.95"/>
+      <g>
+        <line class="cls-2" x1="34.39" y1="39.99" x2="39.94" y2="34.44"/>
+        <line class="cls-2" x1="38.02" y1="39.99" x2="40.32" y2="37.7"/>
+        <g>
+          <line class="cls-3" x1="18.33" y1="44.56" x2="18.33" y2="30.84"/>
+          <line class="cls-3" x1="43.56" y1="30.84" x2="43.56" y2="44.56"/>
+          <line class="cls-3" x1="26.28" y1="30.84" x2="26.28" y2="44.52"/>
+        </g>
+        <line class="cls-2" x1="23.54" y1="35.28" x2="23.54" y2="37.13"/>
+        <g>
+          <path class="cls-4" d="M28.03,25.94c0,1.58-1.28,2.86-2.86,2.86s-2.83-1.28-2.83-2.86"/>
+          <path class="cls-4" d="M33.74,25.94c0,1.58-1.28,2.86-2.86,2.86s-2.86-1.28-2.86-2.86"/>
+          <path class="cls-4" d="M39.48,25.94c0,1.58-1.31,2.86-2.89,2.86s-2.86-1.28-2.86-2.86"/>
+        </g>
+        <path class="cls-4" d="M39.48,25.94c0,1.58,1.31,2.86,2.89,2.86s2.86-1.28,2.86-2.86v-2.48l-3.48-6.13H20.22l-3.55,6.13v2.48c0,1.58,1.28,2.86,2.86,2.86s2.83-1.28,2.83-2.86"/>
+        <g>
+          <line class="cls-4" x1="28.43" y1="20.81" x2="28.65" y2="17.39"/>
+          <line class="cls-4" x1="23.45" y1="20.81" x2="24.25" y2="17.39"/>
+          <line class="cls-4" x1="33.34" y1="20.81" x2="33.12" y2="17.39"/>
+          <line class="cls-4" x1="38.33" y1="20.81" x2="37.52" y2="17.39"/>
+        </g>
+        <line class="cls-4" x1="15.81" y1="44.55" x2="46.08" y2="44.55"/>
+      </g>
+    </g>
+  </g>
+</svg>

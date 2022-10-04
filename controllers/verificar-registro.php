@@ -7,7 +7,6 @@ $document = isset($_POST['documento']) ? $_POST['documento'] : '';
 $message = isset($_POST['message']) ? $_POST['message'] : '';
 
 if ($tipo!=""){
-    //24628312
     $verificar = verificarExisteDocumento($document);
 
     if ($verificar=="false"){

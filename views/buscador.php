@@ -115,12 +115,12 @@
                                                 </select>
                                             </div>
                                             <div class="mt-2" id="filtro_rubro">
-                                                <select class="form-control" name="r">
+                                                <select class="form-control" id="select_rubro" name="r">
                                                     <?php echo $optionrubro;?>
                                                 </select>
                                             </div>
                                             <div class="mt-2" id="filtro_actividad">
-                                                <select class="form-control" name="a">
+                                                <select class="form-control" id="select_actividad" name="a">
                                                     <?php echo $optionactividad;?>
                                                 </select>
                                             </div>
@@ -401,8 +401,8 @@
 
             // Icono ubicacion actual
             var iconActual = L.icon({
-                iconUrl: '../img/mapuser.png',		
-                iconSize:     [38, 55], 
+                iconUrl: '../img/icono_varios.png',		
+                iconSize:     [38, 50], 
                 shadowSize:   [50, 64], 
                 iconAnchor:   [22, 94], 
                 shadowAnchor: [4, 62], 
@@ -419,7 +419,7 @@
 
             // Icono ubicacion buscada
             var iconBusqueda = L.icon({
-                iconUrl: '../img/iconbusqueda.png',		
+                iconUrl: '../img/icono_varios.png',		
                 iconSize:     [38, 50], 
                 shadowSize:   [50, 64], 
                 iconAnchor:   [22, 94], 
@@ -495,6 +495,27 @@
 
     
 
+</script>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+    $(document).on("change","#select_rubro", function(){
+        var select_rubro = jQuery('#select_rubro').val();
+
+        $.ajax({
+            url:"cargar-actividad.php",
+            type:"POST",
+            cache:false,
+            data:{rubro:select_rubro},
+            success:function(data){                
+                $('#select_actividad').empty().append(data);             
+            }
+        });
+    });
+});
 </script>
 
 

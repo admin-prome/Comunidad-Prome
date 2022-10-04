@@ -60,12 +60,18 @@ function consultarMunicipios($municipio=null, $sinselect=null){
     return $option;
 }
 
-function consultarActividad($actividad=null){
+function consultarActividad($actividad=null, $rubro=null){
+
+    $where = "";
+
+    if ($rubro!=""){
+        $where = " and actividad.rubro_id = '$rubro' ";
+    }
 
     $sql = "
         SELECT DISTINCT id, nombre 
         FROM actividad 
-        WHERE activo = 1
+        WHERE activo = 1 $where
         ORDER BY nombre asc
     ";
     
@@ -85,6 +91,10 @@ function consultarActividad($actividad=null){
             $option .= "<option value='$id'>$nombre</option>";
         }
 
+    }
+
+    if (count($arrResultado)==0){
+        $option = "<option value=''>No existen actividaddes</option>";
     }
 
     return $option;
@@ -204,11 +214,11 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
 
     $sql = "
         SELECT DISTINCT comercio.id, comercio.nombre, comercio.direccion, 
-        comercio.rubro_id, comercio.actividad_id, comercio.municipio_id, comercio.facebookurl, comercio.facebooknombre, 
-        comercio.instagram, comercio.web, comercio.whatsapp, comercio.telefono, comercio.email, 
+        comercio.rubro_id, comercio.actividad_id, comercio.municipio_id, comercio.facebookurl, 
+        comercio.instagramurl, comercio.web, comercio.whatsapp, comercio.telefono, comercio.email, 
         comercio.estatus_id, comercio.activo, comercio.eliminado,
         comercio.cuentadni, comercio.haceenvios,
-        rubro.nombre as rubro_nombre, rubro.icono as rubro_icono
+        rubro.nombre as rubro_nombre
         $agregarselect
 
         FROM comercio 
@@ -243,9 +253,6 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         $rubro_img = strtolower($rubro_nombre);
         $rubro_img = str_replace(" ", "", $rubro_img);
 
-
-        $rubro_icono = $resultado["rubro_icono"];
-
         $id = $resultado["id"];
         $nombre = $resultado["nombre"];
         $direccion = $resultado["direccion"];
@@ -255,8 +262,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         $actividad_id = $resultado["actividad_id"];
         $municipio_id = $resultado["municipio_id"];
         $facebookurl = $resultado["facebookurl"];
-        $facebooknombre = $resultado["facebooknombre"];
-        $instagram = $resultado["instagram"];
+        $instagramurl = $resultado["instagramurl"];
         $web = $resultado["web"];
         $whatsapp = $resultado["whatsapp"];
         $telefono = $resultado["telefono"];
@@ -299,7 +305,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
             ";
         }
 
-        if ($instagram!=""){
+        if ($instagramurl!=""){
             $div_iconos .= "
             <a title='Abrir Instagram' target='_blank' style='color: #5C5B5B'><i style='font-size: 18px' class='fab fa-instagram'></i></a>
             ";
@@ -310,19 +316,52 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
             <a title='Abrir Facebook' target='_blank' style='color: #5C5B5B'><i style='font-size: 18px' class='fab fa-facebook-square'></i></a>
             ";
         }
-        
 
-        $divComercioMarkers .= " L.marker([$latitud, $longitud]).addTo(map).bindPopup('<b>$nombre </b><br>$direccion'); ";
         /*
-        <div style='padding-top: 10px'>
-                            <span class='material-symbols-outlined' style='font-size: 40px; background-color: #23952E; border-radius: 50%; padding: 10px; color: #FFF'>
-                                $rubro_icono
-                            </span>
-                        </div>
+        var iconBusqueda = L.icon({
+            iconUrl: '../img/icono_varios.png',		
+            iconSize:     [38, 50], 
+            shadowSize:   [50, 64], 
+            iconAnchor:   [22, 94], 
+            shadowAnchor: [4, 62], 
+            popupAnchor:  [-3, -76]
+        });
+        
+        var latitudget = "<?php echo $getlatitud;?>"; 
+        if (latitudget ==""){
+            //L.marker([coordenadas.latitude, coordenadas.longitude], {icon: iconActual}).addTo(map).bindPopup('<b>Mi Ubicación Actual </b>'); 
+        }else{
+            L.marker([<?php echo $getlatitud;?>, <?php echo $getlongitud;?>], {icon: iconBusqueda}).addTo(map).bindPopup('<b><?php echo $getdireccion;?> </b>');                 
+        }
         */
 
-        $urlicono = "../img/rubro/icono/icono_$rubro_img.png";
-        $urlicono = "../img/rubro/icono/icono_general.png";
+        $iconocolocarrrr = "
+            var iconBusqueda = L.icon({
+                iconUrl: '../img/icono_varios.png',		
+                iconSize:     [38, 50], 
+                shadowSize:   [50, 64], 
+                iconAnchor:   [22, 94], 
+                shadowAnchor: [4, 62], 
+                popupAnchor:  [-3, -76]
+            });
+        ";
+        
+
+        $divComercioMarkers .= " L.marker([$latitud, $longitud], {icon: L.icon({
+            iconUrl: '../img/rubro/mapa/icono_$rubro_img.png',		
+            iconSize:     [38, 50], 
+            shadowSize:   [50, 64], 
+            iconAnchor:   [22, 94], 
+            shadowAnchor: [4, 62], 
+            popupAnchor:  [-3, -76]
+        })}).addTo(map).bindPopup('<b>$nombre </b><br>$direccion'); ";
+
+        if ($rubro_img==""){
+            $urlicono = "../img/rubro/icono/icono_varios.svg";
+        }else{
+            $urlicono = "../img/rubro/icono/icono_$rubro_img.svg";
+        }
+        
 
         if ($cercamio!="on"){
             $distancia ="";
@@ -331,7 +370,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         // 
 
         $divComercio .="
-            <div style='background-color: #FBF8F8; border: 1px solid #D5D3D3; cursor: pointer; margin-top: 10px; padding-bottom: 10px; box-shadow: 2px 2px #B9B9B9' onclick='mostrarubicacion(\"".$latitud."\",\"".$longitud."\",\"".$nombre."\",\"".$direccion."\",\"".$whatsapp."\",\"".$telefono."\",\"".$web."\",\"".$email."\",\"".$instagram."\",\"".$distancia."\",\"".$cuentadni."\",\"".$urlicono."\",\"".$facebookurl."\",\"".$facebooknombre."\")'>
+            <div style='background-color: #FBF8F8; border: 1px solid #D5D3D3; cursor: pointer; margin-top: 10px; padding-bottom: 10px; box-shadow: 2px 2px #B9B9B9' onclick='mostrarubicacion(\"".$latitud."\",\"".$longitud."\",\"".$nombre."\",\"".$direccion."\",\"".$whatsapp."\",\"".$telefono."\",\"".$web."\",\"".$email."\",\"".$instagramurl."\",\"".$distancia."\",\"".$cuentadni."\",\"".$urlicono."\",\"".$facebookurl."\",\"".$facebooknombre."\")'>
 
 
                 <div class='row'>
@@ -383,7 +422,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         ";
         $mobile = 1;
         $divComercioListaOver .="
-            <div style='background-color: #FBF8F8; border: 1px solid #D5D3D3; cursor: pointer; margin-top: 10px; padding-bottom: 10px; margin-right: 10px' onclick='mostrarubicacion(\"".$latitud."\",\"".$longitud."\",\"".$nombre."\",\"".$direccion."\",\"".$whatsapp."\",\"".$telefono."\",\"".$web."\",\"".$email."\",\"".$instagram."\",\"".$distancia."\",\"".$cuentadni."\",\"".$urlicono."\",\"".$facebookurl."\",\"".$facebooknombre."\",\"".$mobile."\")'>
+            <div style='background-color: #FBF8F8; border: 1px solid #D5D3D3; cursor: pointer; margin-top: 10px; padding-bottom: 10px; margin-right: 10px' onclick='mostrarubicacion(\"".$latitud."\",\"".$longitud."\",\"".$nombre."\",\"".$direccion."\",\"".$whatsapp."\",\"".$telefono."\",\"".$web."\",\"".$email."\",\"".$instagramurl."\",\"".$distancia."\",\"".$cuentadni."\",\"".$urlicono."\",\"".$facebookurl."\",\"".$facebooknombre."\",\"".$mobile."\")'>
                 <div class='row'>
                     <div class='col-md-3 col-sm-3 col-3'  style='padding-right: 0px; text-align: center'>
                         <div style='padding-top: 10px'>
