@@ -127,8 +127,8 @@ $(document).ready(function(){
                 if (data =="false") {                    
                     $("#mensajeprocesar").html("<div class='alert alert-danger' role='alert'>El DNI no se encuentra en nuestra base de datos</div> ");
                 }else{
-                    $("#mensajeprocesar").html("<div class='alert alert-success' role='alert'><a href='http://www.provinciamicrocreditos.com.ar/creditos/creditos-fondep/' style='text-decoration: none; color: #000000' target='_blank'>Por favor completar la solicitud en la ventana que se le abrió o haz click aquí</a></div>");
-                    window.open('http://www.provinciamicrocreditos.com.ar/creditos/creditos-fondep/');
+                    $("#mensajeprocesar").html("<div class='alert alert-success' role='alert'><a href='https://www.provinciamicrocreditos.com.ar/comunidad-prome-alta/' style='text-decoration: none; color: #000000' target='_blank'>Por favor completar la solicitud en la ventana que se le abrió o haz click aquí</a></div>");
+                    window.open('https://www.provinciamicrocreditos.com.ar/comunidad-prome-alta/');
                     //document.getElementById('formRegistro').submit();
                 }
             }
