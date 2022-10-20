@@ -54,7 +54,7 @@
                                             </div>
                                         </div>                                   
                                     </div>
-                                    <div class="row" style="margin-top: 10px">
+                                    <div class="row" style="margin-top: 10px;<?php echo $displaytiporamite;?>">
                                         <div class="col-md-8" style="text-align: left; padding: 0px 30px">
                                             <label>
                                                 Tipo de trámite

@@ -71,30 +71,68 @@ function verfiltrosbusquedamunicipio(){
 
 
 function mostrarBuscadorMobile(){
-
-        
         
     var tipovisualizacion = document.getElementById('tipovisualizacion').value;
-    if (tipovisualizacion==""){
-        document.getElementById('tipovisualizacion').value = "mapa"; // Mapa
+    if (tipovisualizacion==""){ // Se cambia para lista
+
+        document.getElementById('tipovisualizacion').value = "lista";
+
+        // Oculto lista de resultados para arriba del mapa
+        var divComercios2 = document.getElementById("divComercios2");
+        var elemento = divComercios2.style.setProperty("display", "none", "important")
+
+        // Muestro el listado de comercios en forma de lista
+        document.getElementById("divComercios").style.setProperty("display", "inline", "important")
+
+        // El titulo flotante lo cambio para Mapa
+        document.getElementById('tituloBotonFlotante').innerHTML = "Mapa";
+
+        // El icono de Lista lo oculto y muestro el del mapa.
+        document.getElementById('iconListaResultado').style.display = "none";
+        document.getElementById('iconMapaResultado').style.display = "";
+
+        // Oculto el mapa
+        document.getElementById('div_mapa').style.display = "none";
+
+        
+    }else{ // Se cambia para mapa
+
+        document.getElementById('tipovisualizacion').value = "";
+
+        // Muestro lista de resultados para arriba del mapa
+        var divComercios2 = document.getElementById("divComercios2");
+        var elemento = divComercios2.style.setProperty("display", "none", "important")
+
+        // Oculto el listado de comercios en forma de lista
         document.getElementById('divComercios').style.display = "none";
-        document.getElementById('divComercios2').style.display = "";
+
+        // El titulo flotante lo cambio para Lista
         document.getElementById('tituloBotonFlotante').innerHTML = "Lista";
+
+        // El icono de Lista lo muestro y oculto el del mapa.
         document.getElementById('iconListaResultado').style.display = "";
         document.getElementById('iconMapaResultado').style.display = "none";
+
+        // Muestro el mapa
         document.getElementById('div_mapa').style.display = "";
         
-        
-    }else{
         document.getElementById('tipovisualizacion').value = "";            
-        document.getElementById('divComercios').style.display = "";
-        document.getElementById('divComercios2').style.display = "none";
+        document.getElementById('divComercios').style.display = "inline";
+
+        var divComercios2 = document.getElementById("divComercios2");
+        var elemento = divComercios2.style.setProperty("display", "inline", "important")
+        
+        /*
+        //  document.getElementById('divComercios2').style.display = "none";
         document.getElementById('tituloBotonFlotante').innerHTML = "Mapa";
         document.getElementById('iconListaResultado').style.display = "none";
         document.getElementById('iconMapaResultado').style.display = "";
         document.getElementById('div_mapa').style.display = "none";
+        */
+        
     }
 
+    
 
 }
 
@@ -102,10 +140,31 @@ function refrescar(){
     procesarFormBusqueda();        
 }
 
+
+function btnCheckCercaMioIndex(){
+
+    var checkCercaMio = document.getElementById('checkCercaMio').checked;
+    if (checkCercaMio==true){
+
+        document.getElementById('div_direccion').style.display = "";
+
+        /*
+        var actual_lat = document.getElementById('actual_lat').value;
+        var actual_lon = document.getElementById('actual_lon').value;
+        var actual_direccion = document.getElementById('div_direccion').value;
+
+        window.location = "buscador.php?lat="+actual_lat+"&lon="+actual_lon+"&dir="+actual_direccion+"&tipodir=1";
+*/
+    }else{
+        document.getElementById('div_direccion').style.display = "none";
+  //      document.getElementById('div_direccion').style.display = "";
+    }
+}
+
 function btnCheckCercaMio(){
 
-    procesarFormBusqueda();
-    /*
+    //procesarFormBusqueda();
+    
     var checkCercaMio = document.getElementById('checkCercaMio').checked;
     if (checkCercaMio==true){
         var actual_lat = document.getElementById('actual_lat').value;
@@ -114,11 +173,22 @@ function btnCheckCercaMio(){
 
         window.location = "buscador.php?lat="+actual_lat+"&lon="+actual_lon+"&dir="+actual_direccion+"&tipodir=1";
 
-    }else{
-        document.getElementById('div_buscadordireccion').style.display = "";
+    }else{        
+        document.getElementById('div_buscadordireccion').style.display = "none";
         
+        document.getElementById('actual_lat').value = "";
+        document.getElementById('actual_lon').value = "";
+        document.getElementById('actual_direccion').value = "";
+
+        document.getElementById('lat').value = "";
+        document.getElementById('lon').value = "";
+        document.getElementById('dir').value = "";
+
+
     }
-    */
+
+   
+    
 }
 
 

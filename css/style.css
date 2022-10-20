@@ -52,6 +52,15 @@
 	transform: translateY(-7px);
     color: #ffffff; /* Color del texto */
 }
+
+.div-back-index {
+	padding-top: 100px
+}
+
+.div-solicitar-index{
+	margin-top: 20px;
+}
+
 @media only screen and (max-width: 600px) {
  	.btn-flotante {
 		font-size: 14px;
@@ -63,6 +72,14 @@
 	.container {
 		padding-left: 0px;
 		padding-right: 0px;
+	}
+
+	.div-back-index {
+		padding-top: 10px
+	}
+
+	.div-solicitar-index{
+		margin-top: 3px;
 	}
 } 
 

@@ -204,6 +204,15 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
                 coordenadas, POINT($latitudbuscar, $longitudbuscar)
             ) as distancia
         ";
+        $where  .=" and 
+            ST_Distance_Sphere(
+                coordenadas, POINT($latitudbuscar, $longitudbuscar)
+            ) <= 2000 and  
+            ST_Distance_Sphere(
+                coordenadas, POINT($latitudbuscar, $longitudbuscar)
+            ) > 0
+        
+        ";
         $orderby = " 
             ORDER BY ST_Distance_Sphere(
                 coordenadas, POINT($latitudbuscar, $longitudbuscar)
@@ -232,11 +241,22 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         $orderby
     ";
 
+    $sqlMunicipio = "
+        SELECT DISTINCT municipio.id as id, municipio.nombre as nombre
+        FROM comercio 
+        INNER JOIN rubro ON comercio.rubro_id = rubro.id
+        INNER JOIN estatus on estatus.id = comercio.estatus_id
+        INNER JOIN municipio ON municipio.id = comercio.municipio_id
+        WHERE comercio.activo = 1 AND estatus.activo = 1 AND estatus.visibleresultado = 1 $where
+        
+    ";
+
     //echo "where:$where";
     //exit();
     
     $conexion = new Conexion();
     $arrResultado = $conexion->consulta($sql);
+    
     /*
      echo "<pre>";
     print_r($arrResultado);
@@ -474,7 +494,11 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         ";
 
     }
+    $totalDivResultados = "";
 
+    if ($totalResultados>0){
+
+    
     $totalDivResultados = "
             <div class='row' style='margin-top: 0px; margin-bottom: 5px'>
                 <div class='col-md-12' style='text-align: right; padding: 0px 30px'>
@@ -486,6 +510,36 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
                 </div>                                   
             </div>
         ";
+    }
+
+    // Municipios
+    $arrResultado = $conexion->consulta($sqlMunicipio);
+    $optionMunicipio = "";
+
+    foreach($arrResultado as $resultado){
+
+        $id = $resultado["id"];
+        $nombre = $resultado["nombre"];
+
+        $checked = "";
+
+        if ($getmunicipiob!=""){
+            foreach($getmunicipiob as $getmunicipioDetalle){
+                if($getmunicipioDetalle==$id){
+                    $checked = " checked='checked' ";
+                }
+            }
+        }
+
+        $optionMunicipio .="
+        <div class='form-check'>
+            <input class='form-check-input' $checked name='mb[]' type='checkbox' value='$id' id='municipio_$id'>
+            <label class='form-check-label' for='municipio_$id'>
+                $nombre
+            </label>
+        </div>
+        ";
+    }
 
     if ($divComercio==""){
         $divComercio ="
@@ -498,6 +552,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
 
         $resultado = array(            
             "divComercio" => $divComercio, 
+            "divMunicipios" => $optionMunicipio, 
             "divComercioMarkers" => 0,
             "divTotalComercios" => $totalDivResultados,
             "divComercioListaOver" => $divComercioListaOver
@@ -508,6 +563,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
 
         $resultado = array(            
             "divComercio" => $divComercio, 
+            "divMunicipios" => $optionMunicipio, 
             "divComercioMarkers" => $divComercioMarkers,
             "divTotalComercios" => $totalDivResultados,
             "divComercioListaOver" => $divComercioListaOver

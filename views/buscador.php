@@ -84,7 +84,7 @@
                                             name="dirmapa"
                                             class="form-control"
                                             placeholder="Indicá un domicilio"
-                                            value="<?php echo $getdireccion;?>"
+                                            value="<?php echo $getdireccionmapa;?>"
                                         />
                                     </div>
                                     <div class="row">
@@ -203,7 +203,7 @@
                             <div class='row'>
                                 <div class='col-md-3 col-sm-3 col-3' id="det_div_whatsapp" style='text-align: center; display: none'>
                                     <div style='padding-top: 10px'>
-                                        <a id="det_whatsapp" style="; text-decoration: none">
+                                        <a id="det_whatsapp" target='_blank' style="; text-decoration: none">
                                             <img src='../img/det_whatsapp.png' style='height: 60px; max-width: auto' alt='Contactar' title='Contactar' />
                                             <p style="color: #23952E">
                                                 Contactar
@@ -251,7 +251,7 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class='col-md-3 col-sm-3 col-3' id="det_div_compartir"  style='text-align: center;'>
+                                <div class='col-md-3 col-sm-3 col-3 d-block d-sm-none' id="det_div_compartir"  style='text-align: center;'>
                                     <div style='padding-top: 10px'>
                                         <a id="det_compartir" style="text-decoration: none">
                                             <img src='../img/det_compartir.png' style='height: 60px; max-width: auto' alt='Compartir' title='Compartir' />
@@ -311,8 +311,8 @@
 
                         </div>
                         
-                        <div style="height: 400px; overflow-y: scroll; overflow-x: hidden">
-                            <div id="divComercios" <?php echo $displaycomercios;?>>
+                        <div id="divComercios" class="d-none d-sm-block" style="height: 400px; overflow-y: scroll; overflow-x: hidden;">
+                            <div  <?php echo $displaycomercios;?>>
                                 <?php echo $divComercios;?>
                             </div>  
                         </div> 
@@ -333,13 +333,13 @@
                     </div>
                     <div class="d-block d-md-none" onclick="mostrarBuscadorMobile()">
                         <a class="btn-flotante">
-                            <i id="iconMapaResultado" class="fa fa-map-marker-alt" style="font-size: 20px"></i> 
-                            <i id="iconListaResultado" class="fa fa-list" style="font-size: 20px; display: none"></i> 
-                            <span id="tituloBotonFlotante">Mapa</span>
+                            <i id="iconMapaResultado" class="fa fa-map-marker-alt" style="font-size: 20px; display: none"></i> 
+                            <i id="iconListaResultado" class="fa fa-list" style="font-size: 20px"></i> 
+                            <span id="tituloBotonFlotante">Lista</span>
                         </a>
                         
                     </div>
-                    <div id="divComercios2" class="d-block d-md-none" <?php echo $divComercios2;?>>
+                    <div id="divComercios2" class="d-block d-sm-none" <?php echo $divComercios2;?>>
                         <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2">
                             <?php echo $divComercioListaOver;?>
                         </div>
@@ -361,6 +361,30 @@
 
 
 <script>
+    const shareButton = document.getElementById("det_compartir");
+ 
+    // Creamos una función que se ejecutará cuando el usuario haga click en el botón
+    shareButton.addEventListener("click", (event) => {
+    
+    // Verificamos si el navegador tiene soporte para el API compartir
+    if ("share" in navigator) {
+        navigator
+        .share({
+            title: document.getElementById('det_nombre').innerHTML, 
+            url: "http://catalogo-prome.provinciamicrocreditos.com/"
+        })
+    
+        // Mensaje en Consola cuando se presiona el botón de compartir 
+        .then(() => {
+            console.log("Contenido Compartido !");
+        })
+        .catch(console.error);
+    } else {
+        // Si el navegador no tiene soporte para la API compartir, le enviamos un mensaje al usuario
+        alert('Lo siento, este navegador no tiene soporte para recursos compartidos.')
+    }
+    });
+   
     const funcionInit = () => {
         if (!"geolocation" in navigator) {
             return alert("Tu navegador no soporta el acceso a la ubicación. Intenta con otro");
@@ -487,7 +511,7 @@
 
             var buscadordireccion = document.getElementById('buscadordireccion').value;
 
-            //window.location = "buscador.php?lat="+near_place.geometry.location.lat()+"&lon="+near_place.geometry.location.lng()+"&dir="+buscadordireccion;
+            window.location = "buscador.php?lat="+near_place.geometry.location.lat()+"&lon="+near_place.geometry.location.lng()+"&dir="+buscadordireccion;
         });
     });
 

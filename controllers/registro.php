@@ -5,8 +5,9 @@ $tipoactivomodificar = "";
 $tipoactivoalta = "";
 
 $tipo = isset($_GET['tipo']) ? $_GET['tipo'] : '';
-if ($tipo=="modificar"){$tipoactivomodificar = " selected='selected' ";}
-if ($tipo=="alta"){$tipoactivoalta = " selected='selected' ";}
+if ($tipo=="modificar"){$tipoactivomodificar = " selected='selected' "; $tipoactivoalta = " style='display: none'";}
+if ($tipo=="alta"){$tipoactivoalta = " selected='selected' "; $displaytiporamite="; display: none";}
+
 
 
 require_once "../views/registro.php";

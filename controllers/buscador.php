@@ -9,7 +9,6 @@ $displaymapa = "";
 $getlatitud ="";
 $getlongitud ="";
 $getdireccion ="";
-$gettipovisualizacion ="";
 
 
 $buscador = isset($_GET['q']) ? $_GET['q'] : '';
@@ -39,6 +38,16 @@ $getdireccionactual = isset($_GET['diract']) ? $_GET['diract'] : '';
 
 $tipodir = isset($_GET['tipodir']) ? $_GET['tipodir'] : '';
 
+if ($getdireccionactual!="" && $getdireccionmapa==""){
+    $getdireccionmapa = $getdireccionactual;
+    $cercamio="on";
+}
+
+if ($getdireccion!=""){
+    $getdireccionmapa = $getdireccion;
+    $cercamio="on";
+}
+
 /*
 if ($tipodir=="1"){
     $tipodirchecked = " checked='checked' ";
@@ -51,7 +60,8 @@ if ($tipodir=="1"){
 
 $displaymapaa = " style='display: none' ";
 $displaycomercios = " ";
-$divComercios2 = " style='display: none' ";
+$divComercios2 = "";
+//$divComercios2 = " style='display: none !important' ";
 $divBusquedaAvanzada = " style='display: none' ";
 $divBusquedaMunicipios = " style='display: none' ";
 
@@ -65,14 +75,12 @@ if ($cercamio=="on"){
     $displaymapa = " ";
     $displaycomercios___ = " style='display: none' ";
     $divbuscadormapa = " ";
-    $gettipovisualizacion = "mapa";
     $divComercios2 = "";
     $displaymunicipio = " style='display: none' ";
 
 }else{
     $tipodirchecked = "  ";    
     $divbuscadormapa = " ; display: none";
-    $gettipovisualizacion = "";
 }
 
 if ($getmunicipio!="" || $getrubro!="" || $getactividad!=""){
@@ -99,10 +107,13 @@ $divComercios = $comercios["divComercio"];
 $divComercioListaOver = $comercios["divComercioListaOver"];
 $divComercioMarkers = $comercios["divComercioMarkers"];
 $divTotalComercios = $comercios["divTotalComercios"];
+$optionmunicipiob = $comercios["divMunicipios"];
+
+
 
 $optionmunicipio = consultarMunicipios($getmunicipio);
-$optionmunicipiob = consultarMunicipios($getmunicipiob, true);
-$optionactividad = consultarActividad($getactividad);
+//$optionmunicipiob = consultarMunicipios($getmunicipiob, true);
+$optionactividad = consultarActividad($getactividad, $getrubro);
 $optionrubro = consultarRubros($getrubro);
 
 
