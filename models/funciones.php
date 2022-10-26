@@ -247,6 +247,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         INNER JOIN rubro ON comercio.rubro_id = rubro.id
         INNER JOIN estatus on estatus.id = comercio.estatus_id
         INNER JOIN municipio ON municipio.id = comercio.municipio_id
+        LEFT JOIN rubrobusqueda ON rubrobusqueda.rubro_id = rubro.id
         WHERE comercio.activo = 1 AND estatus.activo = 1 AND estatus.visibleresultado = 1 $where
         
     ";
