@@ -267,6 +267,9 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
 
     $totalResultados = count($arrResultado);
 
+    ini_set ('display_errors','0');
+    ini_set ('memory_limit','-1');
+
     foreach($arrResultado as $resultado){
 
         $rubro_nombre = $resultado["rubro_nombre"];

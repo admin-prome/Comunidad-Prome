@@ -88,20 +88,23 @@ if ($getmunicipio!="" || $getrubro!="" || $getactividad!=""){
 
 }
 
+$latitudbuscarcomercios  = "";
+$longitudbuscarcomercios  = "";
+
 $latitudbuscar = -34.6009755;
 $longitudbuscar = -58.3826927;
 
 if ($getlatitud!=""){
-    $latitudbuscar = $getlatitud;
+    $latitudbuscarcomercios = $getlatitud;
 }
 
 if ($getlongitud!=""){
-    $longitudbuscar = $getlongitud;
+    $longitudbuscarcomercios = $getlongitud;
 }
 
 
 
-$comercios = consultarComercios($buscador, $cuentadni, $envios, $latitudbuscar, $longitudbuscar, $getmunicipio, $getactividad, $getrubro, $cercamio, $getmunicipiob);
+$comercios = consultarComercios($buscador, $cuentadni, $envios, $latitudbuscarcomercios, $longitudbuscarcomercios, $getmunicipio, $getactividad, $getrubro, $cercamio, $getmunicipiob);
 
 $divComercios = $comercios["divComercio"];
 $divComercioListaOver = $comercios["divComercioListaOver"];
