@@ -176,7 +176,7 @@
                         </form>
 
 
-                        <div id="div_detalle" style='background-color: #FBF8F8; border: 1px solid #D5D3D3; cursor: pointer; margin-top: 20px; padding-bottom: 10px; display: none' onclick='mostrarubicacion(\"".$latitud."\",\"".$longitud."\",\"".$nombre."\",\"".$direccion."\")'>
+                        <div id="div_detalle" style='background-color: #FBF8F8; border: 1px solid #D5D3D3; cursor: pointer; margin-top: 20px; padding-bottom: 10px; display: none' >
                             <a href="#inicio" id="irdetalle"></a>
                             <div style="float: right; margin-right: 10px; margin-top: 10px" onclick="cerrardetalle()">
                                 <i class="far fa-times-circle" style="color: #6E7679; font-size: 20px"></i>
@@ -421,17 +421,27 @@
 
             document.getElementById('actual_lat').value = coordenadas.latitude;
             document.getElementById('actual_lon').value = coordenadas.longitude;
-
-
-            // Icono ubicacion actual
-            var iconActual = L.icon({
-                iconUrl: '../img/icono_varios.png',		
+            /*
+ var iconActual = L.icon({
+                iconUrl: '../img/icono_puntero.png',		
                 iconSize:     [38, 50], 
                 shadowSize:   [50, 64], 
                 iconAnchor:   [22, 94], 
                 shadowAnchor: [4, 62], 
                 popupAnchor:  [-3, -76]
             });
+            */
+
+            // Icono ubicacion actual
+            var iconActual = L.icon({
+                iconUrl: '../img/icono_puntero.png',		
+                iconSize:     [38, 50], 
+                shadowSize:   [50, 64], 
+                iconAnchor:   [45, 50], 
+                shadowAnchor: [4, 62], 
+                popupAnchor:  [-3, -46]
+            });
+
             
             var latitudget = "<?php echo $getlatitudactual;?>"; 
             if (latitudget ==""){
@@ -440,32 +450,59 @@
                 L.marker([<?php echo $getlatitudactual;?>, <?php echo $getlongitudactual;?>], {icon: iconActual}).addTo(map).bindPopup('<b><?php echo $getdireccionactual;?> </b>');                 
             }
 
-
+            
+            
             // Icono ubicacion buscada
             var iconBusqueda = L.icon({
-                iconUrl: '../img/icono_varios.png',		
-                iconSize:     [38, 50], 
+                iconUrl: '../img/icono_puntero.png',		
+                iconSize:     [45, 50], 
                 shadowSize:   [50, 64], 
-                iconAnchor:   [22, 94], 
+                iconAnchor:   [45, 50], 
                 shadowAnchor: [4, 62], 
-                popupAnchor:  [-3, -76]
+                popupAnchor:  [-3, -46]
             });
             
             var latitudget = "<?php echo $getlatitud;?>"; 
             if (latitudget ==""){
-                //L.marker([coordenadas.latitude, coordenadas.longitude], {icon: iconActual}).addTo(map).bindPopup('<b>Mi Ubicación Actual </b>'); 
+                //L.marker([coordenadas.latitude, coordenadas.longitude], {icon: iconActual}).addTo(map).bindPopup('<b>Mi Ubicación Actual </b>');
+                //console.log(1); 
             }else{
+                //console.log(2); 
                 L.marker([<?php echo $getlatitud;?>, <?php echo $getlongitud;?>], {icon: iconBusqueda}).addTo(map).bindPopup('<b><?php echo $getdireccion;?> </b>');                 
             }
+
+            
 
 
 
         }
         const onErrorDeUbicacion = err => {
 
-            $latitud.value = "Error obteniendo ubicación: " + err.message;
-            $longitud.value = "Error obteniendo ubicación: " + err.message;
-            console.log("Error obteniendo ubicación: ", err);
+            //$latitud.value = "Error obteniendo ubicación: " + err.message;
+            //$longitud.value = "Error obteniendo ubicación: " + err.message;
+            $latitud.value = "";
+            $longitud.value = "";
+            //console.log("Error obteniendo ubicación: ", err);
+            //console.log(3); 
+
+            // Icono ubicacion buscada
+            var iconBusqueda = L.icon({
+                iconUrl: '../img/icono_puntero.png',		
+                iconSize:     [45, 50], 
+                shadowSize:   [50, 64], 
+                iconAnchor:   [45, 50], 
+                shadowAnchor: [4, 62], 
+                popupAnchor:  [-3, -76]
+            });
+            
+            var latitudget = "<?php echo $getlatitud;?>"; 
+            if (latitudget ==""){
+                //L.marker([coordenadas.latitude, coordenadas.longitude], {icon: iconActual}).addTo(map).bindPopup('<b>Mi Ubicación Actual </b>');
+                //console.log(1); 
+            }else{
+                //console.log(2); 
+                L.marker([<?php echo $getlatitud;?>, <?php echo $getlongitud;?>], {icon: iconBusqueda}).addTo(map).bindPopup('<b><?php echo $getdireccion;?> </b>');                 
+            }
         }
 
         const opcionesDeSolicitud = {
@@ -485,7 +522,7 @@
 
 <script>
 
-	var map = L.map('map').setView([<?php echo $latitudbuscar;?>, <?php echo $longitudbuscar;?>], 13);
+	var map = L.map('map').setView([<?php echo $latitudbuscar;?>, <?php echo $longitudbuscar;?>], 8);
 
 	var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		maxZoom: 19,

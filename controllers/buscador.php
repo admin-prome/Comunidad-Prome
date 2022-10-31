@@ -43,6 +43,10 @@ if ($getdireccionactual!="" && $getdireccionmapa==""){
     $cercamio="on";
 }
 
+if ($tipodir=="1"){
+    $cercamio="on";
+}
+
 if ($getdireccion!=""){
     $getdireccionmapa = $getdireccion;
     $cercamio="on";
@@ -91,18 +95,30 @@ if ($getmunicipio!="" || $getrubro!="" || $getactividad!=""){
 $latitudbuscarcomercios  = "";
 $longitudbuscarcomercios  = "";
 
-$latitudbuscar = -34.6009755;
-$longitudbuscar = -58.3826927;
+$latitudbuscar = -35.1194969;
+$longitudbuscar = -60.4916407;
 
 if ($getlatitud!=""){
     $latitudbuscarcomercios = $getlatitud;
+    $latitudbuscar = $getlatitud;
+
 }
 
 if ($getlongitud!=""){
     $longitudbuscarcomercios = $getlongitud;
+    $longitudbuscar = $getlongitud;
+}
+
+if ($getlatitudactual!=""){
+    $latitudbuscarcomercios = $getlatitudactual;
+    $latitudbuscar = $getlatitudactual;
 }
 
 
+if ($getlongitudactual!=""){
+    $longitudbuscarcomercios = $getlongitudactual;
+    $longitudbuscar = $getlongitudactual;
+}
 
 $comercios = consultarComercios($buscador, $cuentadni, $envios, $latitudbuscarcomercios, $longitudbuscarcomercios, $getmunicipio, $getactividad, $getrubro, $cercamio, $getmunicipiob);
 
@@ -111,8 +127,6 @@ $divComercioListaOver = $comercios["divComercioListaOver"];
 $divComercioMarkers = $comercios["divComercioMarkers"];
 $divTotalComercios = $comercios["divTotalComercios"];
 $optionmunicipiob = $comercios["divMunicipios"];
-
-
 
 $optionmunicipio = consultarMunicipios($getmunicipio);
 //$optionmunicipiob = consultarMunicipios($getmunicipiob, true);

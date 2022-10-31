@@ -197,13 +197,11 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         $where .= " and comercio.haceenvios = '1' ";
     }
 
+   
+
+
     if ($latitudbuscar!=""){
-        $agregarselect = "         
-            , X(coordenadas) as latitud, Y(coordenadas) as longitud,
-            ST_Distance_Sphere(
-                coordenadas, POINT($latitudbuscar, $longitudbuscar)
-            ) as distancia
-        ";
+
         $where  .=" and 
             ST_Distance_Sphere(
                 coordenadas, POINT($latitudbuscar, $longitudbuscar)
@@ -219,7 +217,17 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
             ) ASC
         ";
 
+    }else{
+        $latitudbuscar = 0;
+        $longitudbuscar = 0;
+        $agregarselect = "         
+        , X(coordenadas) as latitud, Y(coordenadas) as longitud,
+            ST_Distance_Sphere(
+                coordenadas, POINT($latitudbuscar, $longitudbuscar)
+            ) as distancia
+        ";
     }
+
 
     $sql = "
         SELECT DISTINCT comercio.id, comercio.nombre, comercio.direccion, 
@@ -273,9 +281,20 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
     foreach($arrResultado as $resultado){
 
         $rubro_nombre = $resultado["rubro_nombre"];
+        $rubro_nombreimg = str_replace("Á", "A", $rubro_nombre);
+        $rubro_nombreimg = str_replace("É", "E", $rubro_nombreimg);
+        $rubro_nombreimg = str_replace("Í", "I", $rubro_nombreimg);
+        $rubro_nombreimg = str_replace("Ó", "O", $rubro_nombreimg);
+        $rubro_nombreimg = str_replace("Ú", "U", $rubro_nombreimg);
 
-        $rubro_img = strtolower($rubro_nombre);
+        $rubro_img = strtolower($rubro_nombreimg);
         $rubro_img = str_replace(" ", "", $rubro_img);
+        $rubro_img = str_replace("á", "a", $rubro_img);
+        $rubro_img = str_replace("é", "e", $rubro_img);
+        $rubro_img = str_replace("Í", "i", $rubro_img);
+        $rubro_img = str_replace("ó", "o", $rubro_img);
+        $rubro_img = str_replace("ú", "u", $rubro_img);
+        $rubro_img = str_replace("ñ", "n", $rubro_img);
 
         $id = $resultado["id"];
         $nombre = $resultado["nombre"];
@@ -361,6 +380,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         }
         */
 
+
         $iconocolocarrrr = "
             var iconBusqueda = L.icon({
                 iconUrl: '../img/icono_varios.png',		
@@ -368,19 +388,22 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
                 shadowSize:   [50, 64], 
                 iconAnchor:   [22, 94], 
                 shadowAnchor: [4, 62], 
-                popupAnchor:  [-3, -76]
+                popupAnchor:  [-3, -46]
             });
         ";
         
 
-        $divComercioMarkers .= " L.marker([$latitud, $longitud], {icon: L.icon({
-            iconUrl: '../img/rubro/mapa/icono_$rubro_img.png',		
-            iconSize:     [38, 50], 
-            shadowSize:   [50, 64], 
-            iconAnchor:   [22, 94], 
-            shadowAnchor: [4, 62], 
-            popupAnchor:  [-3, -76]
-        })}).addTo(map).bindPopup('<b>$nombre </b><br>$direccion'); ";
+        if ($latitud!="" && $longitud!=""){
+            $divComercioMarkers .= " L.marker([$latitud, $longitud], {icon: L.icon({
+                iconUrl: '../img/rubro/mapa/icono_$rubro_img.png',		
+                iconSize:     [38, 50], 
+                shadowSize:   [50, 64], 
+                iconAnchor:   [38, 50], 
+                shadowAnchor: [4, 62], 
+                popupAnchor:  [-3, -46]
+            })}).addTo(map).bindPopup('<b>$nombre </b><br>$direccion'); ";
+
+        }
 
         if ($rubro_img==""){
             $urlicono = "../img/rubro/icono/icono_varios.svg";
@@ -396,7 +419,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         // 
 
         $divComercio .="
-            <div style='background-color: #FBF8F8; border: 1px solid #D5D3D3; cursor: pointer; margin-top: 10px; padding-bottom: 10px; box-shadow: 2px 2px #B9B9B9' onclick='mostrarubicacion(\"".$latitud."\",\"".$longitud."\",\"".$nombre."\",\"".$direccion."\",\"".$whatsapp."\",\"".$telefono."\",\"".$web."\",\"".$email."\",\"".$instagramurl."\",\"".$distancia."\",\"".$cuentadni."\",\"".$urlicono."\",\"".$facebookurl."\",\"".$facebooknombre."\")'>
+            <div style='background-color: #FBF8F8; border: 1px solid #D5D3D3; cursor: pointer; margin-top: 10px; padding-bottom: 10px; box-shadow: 2px 2px #B9B9B9' onclick='mostrarubicacion($latitud,$longitud,\"".$nombre."\",\"".$direccion."\",\"".$whatsapp."\",\"".$telefono."\",\"".$web."\",\"".$email."\",\"".$instagramurl."\",\"".$distancia."\",\"".$cuentadni."\",\"".$urlicono."\",\"".$facebookurl."\",\"".$facebooknombre."\")'>
 
 
                 <div class='row'>

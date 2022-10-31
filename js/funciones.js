@@ -179,6 +179,8 @@ function btnCheckCercaMio(){
         document.getElementById('actual_lat').value = "";
         document.getElementById('actual_lon').value = "";
         document.getElementById('actual_direccion').value = "";
+        document.getElementById('buscadordireccion').value = "";
+        
 
         document.getElementById('lat').value = "";
         document.getElementById('lon').value = "";
@@ -350,14 +352,30 @@ function mostrarubicacion(latitud, longitud, nombre, direccion, whatsapp, telefo
     if (distancia!=""){
         document.getElementById('det2_div_metros').innerHTML = distancia;
     }
-    
+
+    var cant = 0;
+    map.eachLayer(function(layer){
+        if (cant>0){
+            if (latitud==layer._latlng.lat && longitud == layer._latlng.lng){
+                layer.openPopup();
+            }
+        }
+
+        cant = cant + 1;
+    });
+    //console.log(map._layers);
+    /*
     document.getElementById('irdetalle').click();
     
+    if (latitud!="" && longitud!=""){
+        var marker = L.marker([latitud, longitud]).addTo(map)
+        .bindPopup('<b>'+nombre+'</b><br>'+direccion).openPopup();
+    }
+    */
+
     
     
 
-    var marker = L.marker([latitud, longitud]).addTo(map)
-    .bindPopup('<b>'+nombre+'</b><br>'+direccion).openPopup();
 }
 
 
