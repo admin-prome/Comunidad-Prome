@@ -57,7 +57,34 @@ function verfiltrosbusquedaindex(){
 }
 
 
-function verfiltrosbusquedamunicipio(){
+function verfiltrosbusquedabuscador(){
+
+    var checkCercaMio = document.getElementById('checkCercaMio').checked;
+    if (checkCercaMio==false){
+        document.getElementById('div_rubros').style.display = "none";
+
+        var div_municipios = document.getElementById('div_municipios').style.display;
+        if (div_municipios==""){
+            document.getElementById('div_municipios').style.display = "none";
+            document.getElementById('div_busquedaavanzada').style.display = "none";
+        }else{
+            document.getElementById('div_busquedaavanzada').style.display = "none";
+            document.getElementById('div_municipios').style.display = "";      
+        }        
+    }else{
+        document.getElementById('div_municipios').style.display = "none";
+
+        var div_rubros = document.getElementById('div_rubros').style.display;
+        if (div_rubros==""){
+            document.getElementById('div_rubros').style.display = "none";
+            document.getElementById('div_busquedaavanzada').style.display = "none";
+        }else{
+            document.getElementById('div_busquedaavanzada').style.display = "none";
+            document.getElementById('div_rubros').style.display = "";      
+        }   
+    }
+
+    /*
         
     var div_municipios = document.getElementById('div_municipios').style.display;
     if (div_municipios==""){
@@ -67,6 +94,8 @@ function verfiltrosbusquedamunicipio(){
         document.getElementById('div_busquedaavanzada').style.display = "none";
         document.getElementById('div_municipios').style.display = "";      
     }
+
+    */
 }
 
 

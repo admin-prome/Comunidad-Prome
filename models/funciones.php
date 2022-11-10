@@ -144,7 +144,7 @@ function formatearDistancia($distancia=null){
     
 }
 
-function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $latitudbuscar=null, $longitudbuscar=null, $getmunicipio=null, $getactividad=null, $getrubro=null, $cercamio=null, $getmunicipiob=null){
+function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $latitudbuscar=null, $longitudbuscar=null, $getmunicipio=null, $getactividad=null, $getrubro=null, $cercamio=null, $getmunicipiob=null, $getrubrob=null){
 
     $where = "";
     $agregarselect = "";
@@ -174,7 +174,23 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
     }
 
     if($filtrowheremunicipiomultiple!=""){
-        $where = " and comercio.municipio_id in ($filtrowheremunicipiomultiple)  ";
+        $where .= " and comercio.municipio_id in ($filtrowheremunicipiomultiple)  ";
+    }
+
+
+    $filtrowhererubromultiple = "";
+    if ($getrubrob!=""){
+        foreach($getrubrob as $getrubroDetalle){
+            if($filtrowhererubromultiple==""){
+                $filtrowhererubromultiple = $getrubroDetalle;
+            }else{
+                $filtrowhererubromultiple .= ",".$getrubroDetalle;
+            }
+        }
+    }
+
+    if($filtrowhererubromultiple!=""){
+        $where .= " and comercio.rubro_id in ($filtrowhererubromultiple)  ";
     }
 
     if ($getmunicipio!=""){
@@ -199,13 +215,14 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
 
    
 
-
     if ($latitudbuscar!=""){
+
+        
 
         $where  .=" and 
             ST_Distance_Sphere(
                 coordenadas, POINT($latitudbuscar, $longitudbuscar)
-            ) <= 2000 and  
+            ) <= 200000 and  
             ST_Distance_Sphere(
                 coordenadas, POINT($latitudbuscar, $longitudbuscar)
             ) > 0
@@ -217,17 +234,16 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
             ) ASC
         ";
 
-    }else{
-        $latitudbuscar = 0;
-        $longitudbuscar = 0;
-        $agregarselect = "         
-        , X(coordenadas) as latitud, Y(coordenadas) as longitud,
+        $agregarselect = ",        
             ST_Distance_Sphere(
                 coordenadas, POINT($latitudbuscar, $longitudbuscar)
             ) as distancia
         ";
-    }
 
+    }else{
+        //$latitudbuscar = 0;
+        //$longitudbuscar = 0;
+    }
 
     $sql = "
         SELECT DISTINCT comercio.id, comercio.nombre, comercio.direccion, 
@@ -235,7 +251,8 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         comercio.instagramurl, comercio.web, comercio.whatsapp, comercio.telefono, comercio.email, 
         comercio.estatus_id, comercio.activo, comercio.eliminado,
         comercio.cuentadni, comercio.haceenvios,
-        rubro.nombre as rubro_nombre
+        rubro.nombre as rubro_nombre,
+        X(coordenadas) as latitud, Y(coordenadas) as longitud
         $agregarselect
 
         FROM comercio 
@@ -246,8 +263,9 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
 
         
         WHERE comercio.activo = 1 AND estatus.activo = 1 AND estatus.visibleresultado = 1 $where
-        $orderby
+        
     ";
+ 
 
     $sqlMunicipio = "
         SELECT DISTINCT municipio.id as id, municipio.nombre as nombre
@@ -257,7 +275,18 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         INNER JOIN municipio ON municipio.id = comercio.municipio_id
         LEFT JOIN rubrobusqueda ON rubrobusqueda.rubro_id = rubro.id
         WHERE comercio.activo = 1 AND estatus.activo = 1 AND estatus.visibleresultado = 1 $where
-        
+        ORDER BY municipio.nombre asc
+    ";
+
+    $sqlRubro = "
+        SELECT DISTINCT rubro.id as id, rubro.nombre as nombre
+        FROM comercio 
+        INNER JOIN rubro ON comercio.rubro_id = rubro.id
+        INNER JOIN estatus on estatus.id = comercio.estatus_id
+        INNER JOIN municipio ON municipio.id = comercio.municipio_id
+        LEFT JOIN rubrobusqueda ON rubrobusqueda.rubro_id = rubro.id
+        WHERE comercio.activo = 1 AND estatus.activo = 1 AND estatus.visibleresultado = 1 $where
+        ORDER BY rubro.nombre asc
     ";
 
     //echo "where:$where";
@@ -432,7 +461,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
                         <div class='row'>
                             <div class='col-md-9 col-sm-9 col-9' style='padding-right: 0px'>
                                 <h3 style='font-size: 18px; margin-bottom: 4px'>
-                                    $nombre
+                                    $nombre                                   
                                 </h3> 
                                 <p style='font-size: 16px; margin-bottom: 0px; color: #5C5B5B'>
                                     $rubro_nombre
@@ -568,6 +597,35 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         ";
     }
 
+    // Rubros
+    $arrResultado = $conexion->consulta($sqlRubro);
+    $optionRubro = "";
+
+    foreach($arrResultado as $resultado){
+
+        $id = $resultado["id"];
+        $nombre = $resultado["nombre"];
+
+        $checked = "";
+
+        if ($getrubrob!=""){
+            foreach($getrubrob as $getrubroDetalle){
+                if($getrubroDetalle==$id){
+                    $checked = " checked='checked' ";
+                }
+            }
+        }
+
+        $optionRubro .="
+        <div class='form-check'>
+            <input class='form-check-input' $checked name='rb[]' type='checkbox' value='$id' id='rubro_$id'>
+            <label class='form-check-label' for='rubro_$id'>
+                $nombre
+            </label>
+        </div>
+        ";
+    }
+
     if ($divComercio==""){
         $divComercio ="
             <div>
@@ -580,6 +638,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         $resultado = array(            
             "divComercio" => $divComercio, 
             "divMunicipios" => $optionMunicipio, 
+            "divRubros" => $optionRubro, 
             "divComercioMarkers" => 0,
             "divTotalComercios" => $totalDivResultados,
             "divComercioListaOver" => $divComercioListaOver
@@ -591,6 +650,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         $resultado = array(            
             "divComercio" => $divComercio, 
             "divMunicipios" => $optionMunicipio, 
+            "divRubros" => $optionRubro, 
             "divComercioMarkers" => $divComercioMarkers,
             "divTotalComercios" => $totalDivResultados,
             "divComercioListaOver" => $divComercioListaOver

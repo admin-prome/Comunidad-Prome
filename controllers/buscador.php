@@ -21,8 +21,11 @@ if ($envios=="on"){$envioschecked = " checked='checked' ";}
 $cercamio = isset($_GET['cercamio']) ? $_GET['cercamio'] : '';
 
 $getmunicipio = isset($_GET['m']) ? $_GET['m'] : '';
-$getrubro = isset($_GET['r']) ? $_GET['r'] : '';
 $getmunicipiob = isset($_GET['mb']) ? $_GET['mb'] : '';
+
+$getrubro = isset($_GET['r']) ? $_GET['r'] : '';
+$getrubrob = isset($_GET['rb']) ? $_GET['rb'] : '';
+
 
 $getactividad = isset($_GET['a']) ? $_GET['a'] : '';
 $gettipovisualizacion = isset($_GET['tp']) ? $_GET['tp'] : '';
@@ -68,9 +71,12 @@ $divComercios2 = "";
 //$divComercios2 = " style='display: none !important' ";
 $divBusquedaAvanzada = " style='display: none' ";
 $divBusquedaMunicipios = " style='display: none' ";
+$divBusquedaRubros = " style='display: none' ";
 
-if ($getmunicipiob!=""){
+if ($getmunicipiob!=""){    
     $divBusquedaMunicipios = "";
+}else if ($getrubrob!=""){
+    $divBusquedaRubros = "";
 }
 
 if ($cercamio=="on"){
@@ -120,19 +126,20 @@ if ($getlongitudactual!=""){
     $longitudbuscar = $getlongitudactual;
 }
 
-$comercios = consultarComercios($buscador, $cuentadni, $envios, $latitudbuscarcomercios, $longitudbuscarcomercios, $getmunicipio, $getactividad, $getrubro, $cercamio, $getmunicipiob);
+$comercios = consultarComercios($buscador, $cuentadni, $envios, $latitudbuscarcomercios, $longitudbuscarcomercios, $getmunicipio, $getactividad, $getrubro, $cercamio, $getmunicipiob,  $getrubrob);
 
 $divComercios = $comercios["divComercio"];
 $divComercioListaOver = $comercios["divComercioListaOver"];
 $divComercioMarkers = $comercios["divComercioMarkers"];
 $divTotalComercios = $comercios["divTotalComercios"];
 $optionmunicipiob = $comercios["divMunicipios"];
+$optionrubrob = $comercios["divRubros"];
+
 
 $optionmunicipio = consultarMunicipios($getmunicipio);
 //$optionmunicipiob = consultarMunicipios($getmunicipiob, true);
 $optionactividad = consultarActividad($getactividad, $getrubro);
 $optionrubro = consultarRubros($getrubro);
-
 
 require_once "../views/buscador.php";
 ?>

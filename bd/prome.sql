@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 31, 2022 at 08:09 PM
+-- Generation Time: Nov 10, 2022 at 04:22 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -326,10 +326,106 @@ CREATE TABLE `comercio` (
 --
 
 INSERT INTO `comercio` (`id`, `nombre`, `direccion`, `coordenadas`, `rubro_id`, `actividad_id`, `municipio_id`, `facebookurl`, `instagramurl`, `web`, `whatsapp`, `telefono`, `email`, `cuentadni`, `haceenvios`, `estatus_id`, `activo`, `eliminado`) VALUES
-(1, 'Indumentaría Total', 'Av Caseros 1010, Lomas de Zamora', 0x000000000101000000b6e10bee624d41c03bb9f0cd80304dc0, 3, 1, 1, 'https://www.facebook.com', 'https://www.instagram.com', 'https://www.google.com', '5491112345678', '5491112345678', 'info@indumentaria.com', 1, 1, 1, 1, 0),
-(2, 'Inversiones Intel', 'Avenida 1 Calle 2', 0x000000000101000000396403e9624d41c0113a43cc80304dc0, 2, 1, 2, 'https://www.facebook.com', NULL, NULL, '549111111111', NULL, NULL, 1, 1, 1, 1, 0),
-(3, 'Panaderia Jose', 'Avenida 2 Cale 4', 0x0000000001010000001e605694a94c41c0a697ce9b483e4dc0, 2, 1, 3, 'https://www.facebook.com', 'bbb', NULL, '54911112122', NULL, NULL, NULL, 1, 1, 1, 0),
-(4, 'Yamani Alimentos', 'Horacio Julian 460', 0x000000000101000000cf31207bbd5341c08351499d804e4dc0, 2, 120, 90, 'https://www.facebook.com/yamani.alimentos', 'https://www.instagram.com/@yamani.alimentos', NULL, '116202576', '1150257056', 'alimentosyamani@gmail.com', 0, 0, 1, 1, 0);
+(1, 'Indumentaria Total', 'Av Caseros 1010, Lomas de Zamora', 0x000000000101000000b6e10bee624d41c03bb9f0cd80304dc0, 1, 1, NULL, 'https://www.facebook.com', 'https://www.instagram.com', 'https://www.google.com', '5491112345678', '5491112345678', 'info@indumentaria.com', 1, 1, 1, 0, 0),
+(2, 'Inversiones Intel2', 'Avenida 1 Calle 2', 0x000000000101000000c5b69648454c41c06cd0c74bc8304dc0, 2, 1, 1, 'https://www.facebook.com', NULL, NULL, '549111111111', NULL, NULL, 1, 1, 1, 0, 0),
+(3, 'Panaderia Jose', 'Avenida 2 Cale 4', 0x0000000001010000001e605694a94c41c0a697ce9b483e4dc0, 2, 1, NULL, 'https://www.facebook.com', 'bbb', NULL, '54911112122', NULL, NULL, NULL, 1, 1, 0, 0),
+(4, 'Yamani Alimentos', 'Horacio Julian 460', 0x000000000101000000cf31207bbd5341c08351499d804e4dc0, 2, 120, 90, 'https://www.facebook.com/yamani.alimentos', 'https://www.instagram.com/@yamani.alimentos', NULL, '116202576', '1150257056', 'alimentosyamani@gmail.com', 0, 0, 1, 1, 0),
+(6, 'Grafica Lyon', NULL, NULL, 13, 130, 68, 'https://www.facebook.com/grafica.lyon', NULL, 'https://graficalyon.wordpress.com/', '1167149918', '1167149918', 'lyon-grafica-web@outlook.com', 0, 0, 1, 1, 0),
+(7, 'Almacen De Dulces Y Salados', 'Calle 63 Nro 2733', 0x000000000101000000c959d8d30e4743c04f3bfc35595f4dc0, 2, 174, 92, NULL, NULL, NULL, '2262492190', '226219429190', 'jor1956@live.com.ar', 0, 1, 1, 1, 0),
+(8, 'Namaste Construcciones', 'Planos Construccion Obras  Llave En Mano Gasista  Matriculado', NULL, 11, 8, 56, NULL, NULL, NULL, '2235337541', '2235337541', 'namasteconstrucciones@gmail.com', 0, 0, 1, 1, 0),
+(9, 'Andrea Juarez Estilista', NULL, NULL, 10, 182, 86, NULL, 'https://www.instagram.com/andrea_juarez.estilista', NULL, '1163635159', '1163635159', 'andybest1960@yahoo.com.ar', 0, 0, 1, 1, 0),
+(10, 'Destan', 'Gral Rodriguez 2419', 0x000000000101000000003acc97177841c0c3b645990d4e4dc0, 13, 204, 21, NULL, NULL, NULL, '1157937586', '1157937586', 'elena.b.rios.1960@gmail.com', 1, 0, 1, 1, 0),
+(11, 'Artexanabijou Y Vias De Sanacion', NULL, NULL, 3, 138, 39, NULL, NULL, NULL, '1154059544', '1154059544', 'viasdesanacion@gmail.com', 1, 0, 1, 1, 0),
+(12, 'Yatasto Construcciones', 'Inca 5328', 0x0000000001010000000d897b2c7d6041c04260e5d0224f4dc0, 7, 8, 68, NULL, NULL, NULL, '1132391971', '1132391971', 'renewagu@gmail.com', 0, 0, 1, 1, 0),
+(13, 'Feria Del Usado,Limpieza Y Mas Terdan', NULL, NULL, 13, 200, 100, NULL, NULL, NULL, '2678267826', '1126782649', 'murisi2016@outlook.com', 1, 0, 1, 1, 0),
+(14, '1000 Cosas', 'Alsina 786', 0x00000000010100000036b05582c5f140c09a99999999494ec0, 6, 112, 97, NULL, NULL, NULL, '15453947', '247715453947', 'brunabibiana@hotmail.com', 0, 0, 1, 1, 0),
+(15, 'Taller De Arte Clau', NULL, NULL, 3, 212, 132, NULL, 'https://www.instagram.com/tallerdearte.clau', NULL, '1613704542', '1163704542', 'claugdw@gmail.com', 1, 1, 1, 1, 0),
+(16, 'Deposito Guillermo', 'La Carolina', 0x000000000101000000a7052ffa0a6641c0edbb22f8df224dc0, 13, 212, 43, NULL, NULL, NULL, '1157154178', '1157154178', 'guillermoalejandrodestefano@gmail.com', 0, 0, 1, 1, 0),
+(17, 'Nnaf+B', 'Lobos 36', 0x0000000001010000003012da722e3941c084471b47ac4d4dc0, 8, 21, 125, 'https://www.facebook.com/carterasnnaf63', NULL, NULL, '1173614390', '111131243392', 'baidaqtec@gmail.com', 1, 1, 1, 1, 0),
+(18, 'Ave Fenix', 'Barrio Lomas Del Golf Manz6 Casa36', 0x000000000101000000567daeb6620743c09be61da7e8cc4cc0, 2, 143, 56, NULL, NULL, NULL, '2236005830', '2236005830', 'reinamora1199@gmail.com', 0, 1, 1, 1, 0),
+(19, 'Claudiaromas', 'Navarro 5200', 0x00000000010100000066666666664e41c05d33f9669b434dc0, 13, 74, 136, NULL, NULL, NULL, '62676281', '1162676281', 'clausalamendy@yahoo.com.ar', 1, 1, 1, 1, 0),
+(20, 'F De F Cueros', 'Monteagudo 99', 0x0000000001010000003541d47d007241c01a170e8464014ec0, 8, 21, 29, NULL, 'https://www.instagram.com/fdefcueros_chivilcoy', NULL, '2346537759', '23462346537759', 'gildabastiani@hotmail.com', 0, 0, 1, 1, 0),
+(21, 'Grama Catering', 'Calle 8 Nº2441', 0x000000000101000000e3361ac05b5441c0ebc5504eb4bb4dc0, 2, 174, 85, 'https://www.facebook.com/gramamercedes', 'https://www.instagram.com/gramacatering', 'http://www.grama-eventos.com.ar/index.html', '1161456930', '1139099097', 'graciela@grama-eventos.com.ar', 0, 0, 1, 1, 0),
+(22, 'Comercial Sol Y Gonzy', 'Atepam 3 Casa: 341', 0x000000000101000000b6a1629cbf4543c082c5e1ccafae4fc0, 3, 3, 33, 'https://www.facebook.com/ComercialSolyGonzy', NULL, NULL, '2932552176', '2932552176', 'guviri@hotmail.com', 0, 0, 1, 1, 0),
+(23, 'Mf Soluciones', NULL, NULL, 11, 213, 85, 'https://www.facebook.com/mfmediossoluciones', 'https://www.instagram.com/mfsoluciones', 'https://www.mfmedios.info', '2324543190', '2324543190', 'mfmedios@gmail.com', 0, 0, 1, 1, 0),
+(24, 'Peluche', 'Prat 357', 0x000000000101000000c976be9f1a6342c04a7b832f4cee4dc0, 2, 10, 10, NULL, NULL, NULL, '2281505066', '2281505066', 'clau42tiso@gmail.com', 1, 0, 1, 1, 0),
+(25, 'La Nochera', 'Andrade 1186', 0x000000000101000000eca353573e4741c060764f1e16564dc0, 2, 34, 118, 'https://www.facebook.com/LaNocheraa', 'https://www.instagram.com/lanocheraa', 'https://lanochera.negocio.site/', '1568258947', '111126308197', 'rojasergiofer@yahoo.com.ar', 1, 0, 1, 1, 0),
+(26, 'Trunkdesign', 'Benjamin Franklin 1700', 0x0000000001010000008c2d0439284541c002486de2e4424dc0, 7, 168, 132, 'https://www.facebook.com/TrunkDesign', 'https://www.instagram.com/TrunkDesign', NULL, '1135692874', '1135692874', 'borellooscar@hotmail.com', 0, 0, 1, 1, 0),
+(27, 'Mix Producciones', 'Soldado Echave 1787', 0x000000000101000000ef8ff7aa959541c0c1adbb79aa8b4dc0, 13, 72, 77, NULL, 'https://www.instagram.com/mix.producciones', NULL, '2227536081', '2227222753608', 'mix-producciones@hotmail.com', 0, 0, 1, 1, 0),
+(28, 'Rodamundos Textil', 'Av. Sargento Cayetano Beliera 5070', 0x0000000001010000009a999999993941c0f3ab3940306b4dc0, 7, 201, 36, NULL, 'https://www.instagram.com/rodamundos_textil', NULL, '1123358999', '1123358999', 'anamabelrosa@hotmail.com', 1, 1, 1, 1, 0),
+(29, 'La Casita Del Duende', 'Santamarina, 1591', 0x000000000101000000185b087250c642c087a2409fc8674ec0, 2, 143, 71, NULL, 'https://www.instagram.com/lacasitadelduende1', NULL, '2284468870', '2284468870', 'hernan_g_k@hotmail.com', 0, 1, 1, 1, 0),
+(30, 'Sergioflete', 'Bronzini 3029', 0x000000000101000000c9b08a3732ff42c0e42cec6987cb4cc0, 12, 237, 56, 'https://www.facebook.com//sergio.flete.77/', NULL, NULL, '2233031119', '223153031119', 'sergiorodo5326@gmail.com', 0, 0, 1, 1, 0),
+(31, 'Chenoa Lujan', 'Colon 1035 Lujan (B)', 0x000000000101000000959f54fb744841c073637ac2128f4dc0, 8, 200, 79, 'https://www.facebook.com/chenoa.lujan', 'https://www.instagram.com/chenoalujan/', NULL, '2323676520', '2323676520', 'chenoalujan@hotmail.com.ar', 0, 0, 1, 1, 0),
+(32, 'Libreria Mizpa', 'Calle 41 N°472', 0x0000000001010000002f34d769a44542c00c76c3b645594cc0, 9, 148, 67, 'https://www.facebook.com/marcelo.casas.940098', 'https://www.instagram.com/libreria_mizpa41', NULL, '2257549110', '2246524051', 'casas232@hotmail.com', 0, 0, 1, 1, 0),
+(33, 'Gestionayres', 'Berutti 6663, E/ San Martin Y Einstein', 0x000000000101000000ad6ef59cf44641c000a94d9cdc4b4dc0, 11, 212, 58, NULL, 'https://www.instagram.com/ari18.rg', NULL, '34206423', '1134206423', 'arielrg2015@gmail.com', 0, 0, 1, 1, 0),
+(34, 'Kro Fitness', 'Juncal 1076', 0x000000000101000000c2340c1f115341c0e04a766c04564dc0, 8, 147, 64, NULL, 'https://www.instagram.com/kro_fitness', NULL, '1140282805', '111540282805', 'carolinaperaltaster@gmail.com', 0, 0, 1, 1, 0),
+(35, 'Plomero Y Gasista', 'Libertad 7952', 0x000000000101000000234a7b832f4841c0d3872ea86f614dc0, 11, 190, 58, NULL, NULL, NULL, '1135221029', '1122003080', 'klaudioraulbalu@gmail.com', 0, 0, 1, 1, 0),
+(36, 'Analia Stefano Pasteleria', 'San Martin 749', 0x000000000101000000dc63e943172c43c052f2ea1c03ce4dc0, 2, 210, 115, NULL, NULL, NULL, '2983407209', '2983407209', 'analiastefano70@gmail.com', 0, 0, 1, 1, 0),
+(37, 'El Nono', 'Rioja Y Ameghino', 0x0000000001010000007f130a1170ac40c052448655bc1d4ec0, 2, 143, 119, NULL, NULL, NULL, '3364634299', '3364634299', 'clauve106@hotmail.com', 1, 0, 1, 1, 0),
+(38, 'Karina Becerra Fotografia', 'De Los Trabajadores 510', 0x000000000101000000c9e53fa4df1a41c0f7065f984c794dc0, 13, 116, 20, 'https://www.facebook.com/karinabecerra.fotografia', 'https://instagram.com/karinabecerra_fotografia?igshid=YmMyMTA2M2Y=', 'https://karinabecerrafotografia.my.canva.site/', '1120196080', '1120196080', 'karyfotos14@gmail.com', 1, 0, 1, 1, 0),
+(39, 'Viviero Vida Flor', 'Calle 133 N°5000 Duplex 841', 0x000000000101000000c2c073efe16641c0637ac2120f184dc0, 13, 136, 15, NULL, NULL, NULL, '5491150092', '1150092124', 'miriambeatrizibarra@yahoo.com.ar', 0, 0, 1, 1, 0),
+(40, 'Chocolateria Y Grisines Trujui', 'Sargento Romero 7387', 0x00000000010100000007ebff1ce64b41c01e6d1cb1165f4dc0, 2, 81, 89, 'https://www.facebook.com/chocolateriatrujui/', 'https://www.instagram.com/trujuichocolateria/', NULL, '1139043914', '1139043914', 'fabiannagimeno@hotmail.com.ar', 1, 0, 1, 1, 0),
+(41, 'The King', 'Alem 3774', 0x000000000101000000eeebc03923d241c013f241cf66e54dc0, 13, 18, 110, 'https://www.facebook.com/TheKinglimpiezaprofunda', NULL, NULL, '2344445923', '2344445923', 'karlalvarezsaladillo@hotmail.com', 0, 1, 1, 1, 0),
+(42, 'El Spleen Objetos Ideales', 'San Martin E Iguazu', 0x0000000001010000005abbed42731143c0ad4cf8a57ee64ec0, 3, 59, 127, 'https://www.facebook.com/elspleensierra', 'https://www.instagram.com/elspleensierra', 'https://www.elspleen.com.ar', '1135987352', '1135987352', 'caromizrahi@gmail.com', 0, 0, 1, 1, 0),
+(43, 'Nohelia Giuliano', 'Rivadavia 567, 0', 0x0000000001010000005e11fc6f259741c030478fdfdb8c4dc0, 13, 230, 77, 'https://www.facebook.com/elgaragedelalma', 'https://www.instagram.com/elgaragedelalma', NULL, '2227552489', '222715552489', 'noe_giuliano@hotmail.com', 0, 1, 1, 1, 0),
+(44, 'Complementos Arbustivos', NULL, NULL, 7, 136, 64, NULL, NULL, NULL, '1144951533', '1144951533', 'complementosarbustivos@gmail.com', 1, 1, 1, 1, 0),
+(45, 'Myp Personalizados', NULL, NULL, 8, 200, 56, NULL, 'https://www.instagram.com/myp.personalizados/', NULL, '2234380547', '2234380547', 'rosomaria2015@gmail.com', 0, 0, 1, 1, 0),
+(46, 'Vivero Los Nietos', 'Bulevar Roca 512', 0x0000000001010000002c7de882faa242c0bb61dba2cce24cc0, 13, 65, 83, 'https://www.facebook.com/viverolosnietosgeneral.piran.com', NULL, 'https://www.viveroloslosnietos.com', '2265407137', '2265407137', 'zulemamujica2@gmail.com', 0, 1, 1, 1, 0),
+(47, 'Descocidos', 'Barrio Parque Del Sol Casa 92', 0x000000000101000000a930b610e4b041c0ed2aa4fca4aa4cc0, 13, 200, 102, 'https://www.facebook.com/Descocidos', 'https://www.instagram.com/Descocidos', 'https://www.Descocidos', '2221410025', '22212221410025', 'fernandezeva70@gmail.com', 1, 1, 1, 1, 0),
+(48, 'Herreria Xym', 'Dardo Rocha 2581', 0x00000000010100000082a8fb00a43641c0894160e5d04a4dc0, 6, 168, 125, 'https://www.facebook.com/herreriaxym', 'https://www.instagram.com/herreriaxym', NULL, '1126513718', '1126513718', 'victormpotschka@gmail.com', 0, 0, 1, 1, 0),
+(49, 'Azahares Miel Premium', 'Adrian Del Rosario Luna 1230', 0x00000000010100000070b6b9313d4d41c0425bcea5b8524dc0, 2, 16, 63, NULL, 'https://www.instagram.com/azahares_miel_pura', NULL, '1132048194', '1132048194', 'azaharesmielpura@gmail.com', 0, 0, 1, 1, 0),
+(50, 'Herreriaxym', 'Dardo Rocha 2581', 0x00000000010100000002f1ba7ec13641c0f41abb44f54a4dc0, 7, 168, 125, 'https://www.facebook.com/herreriaxym', 'https://www.instagram.com/herreriaxym', NULL, '1126513718', '1126513718', 'victormpotschka@gmail.com', 1, 0, 1, 1, 0),
+(51, 'Carniceria La Argentina', 'Marco Avellaneda 1628', 0x000000000101000000bf60376c5b5c41c0a2d11dc4ce344dc0, 2, 30, 70, 'https://www.facebook.com/carnicerialaargentina', 'https://www.instagram.com/carnicerialaargentina', NULL, '1169897589', '111169897589', 'sebastianvelez2020@gmail.com', 0, 1, 1, 1, 0),
+(52, 'Linea De Delicias Luna', NULL, NULL, 2, 3, 136, 'https://www.facebook.com/barrasdecerealesluna', 'https://www.instagram.com/linea_de_deliciasluna', NULL, '37598918', '11111111111', 'gildaluna18@gmail.com', 0, 1, 1, 1, 0),
+(53, 'Natalia Hernandez Pasteleria', NULL, NULL, 2, 81, 68, 'https://www.facebook.com/tododulce.beltran', 'https://www.instagram.com/natalia_pasteleria_', NULL, '1157651916', '1157651916', 'natalia000@live.com.ar', 1, 0, 1, 1, 0),
+(54, 'LumièRe', NULL, NULL, 3, 52, 63, 'https://www.facebook.com/lumiere_hurlingham', 'https://www.instagram.com/lumiere_hurlingham', NULL, '1151233636', '115491151233', 'dipiapanapa@gmail.com', 0, 0, 1, 1, 0),
+(55, 'Lo Que Te Gusta', NULL, NULL, 13, 59, 10, NULL, NULL, NULL, '2281651276', '2281651276', 'elizabethchamorro808@hotmail.com', 0, 1, 1, 1, 0),
+(56, 'Tibi Kids', 'Independencia 4716', 0x00000000010100000058569a94824641c0e57e87a240474dc0, 8, 202, 58, NULL, 'https://www.instagram.com/mimovb', NULL, '1134703267', '1147684919', 'gabriela99@hotmail.com', 0, 0, 1, 1, 0),
+(57, 'Cyslegalesestudiojuridico', 'Hipolito Irigoyen 2281,Piso 8 A ,Portero 501', 0x000000000101000000632827da550043c049a297512cc74cc0, 11, 212, 56, NULL, NULL, NULL, '2235819039', '223155819039', 'anacostante@hotmail.com', 0, 0, 1, 1, 0),
+(58, 'Instalaciones Y Mantenimiento', NULL, NULL, 11, 85, 64, NULL, NULL, NULL, '1121704884', '111121704884', 'stoquinblopa@gmail.com', 0, 0, 1, 1, 0),
+(59, 'Rh Tres Arroyos Recursos Humanos', 'Dorrego 379', 0x0000000001010000002254a9d9033143c0ab048bc399234ec0, 11, 212, 129, 'https://www.facebook.com/recursoshumanos.tresarroyos/', 'https://www.instagram.com/rhtresarroyosrecursoshumanos', NULL, '2983618336', '2983618336', 'arielmantovano@hotmail.com', 0, 0, 1, 1, 0),
+(60, 'Sahira Modas', 'Avenida Alvear 77', 0x0000000001010000009f93de37be2641c0f35487dc0ca74ec0, 8, 200, 47, NULL, 'https://www.instagram.com/sahiramodas', NULL, '2364417340', '2364236441734', 'm.caro.olguin@hotmail.com', 0, 0, 1, 1, 0),
+(61, 'Fiambreria Lo De Mingo', 'Gorriti 856', 0x000000000101000000b97020240b3441c095607138f35b4dc0, 2, 30, 125, NULL, NULL, NULL, '1136448143', '1136448143', 'pablomarguti373@gmail.com', 0, 0, 1, 1, 0),
+(62, 'Servicio De Mantenimiento General', 'Las Tres Marias 6115', 0x0000000001010000002905dd5ed24441c045bb0a293f654dc0, 11, 8, 65, 'https://www.facebook.com/smg.solucionesintegrales', 'https://www.instagram.com/smg.solucionesintegrales', 'https://www.serviciodemantenimientogeneral.com', '1164420413', '1164420413', 'sebastiangaite@gmail.com', 0, 0, 1, 1, 0),
+(63, 'Coneja Blanka', 'Calle 382 N°2563', 0x000000000101000000c39e76f86b5e41c06e3480b740264dc0, 11, 145, 103, 'https://www.facebook.com/conejablanka', 'https://www.instagram.com/conrjablanka', 'https://www.conejablanka', '68484819', '1168484819', 'saucedolilia1@gmail.com', 0, 0, 1, 1, 0),
+(64, 'Jys Losduendecitos', '142 N 4286', 0x0000000001010000005a2f8672a26541c02ae3df675c184dc0, 8, 202, 15, 'https://www.facebook.com/jys.losduendecitos', NULL, NULL, '1523423163', '111523423163', 'jysconfecciones.los3duendecitos@hotmail.com', 0, 0, 1, 1, 0),
+(65, 'Scorpions Gym', 'Av Ceballos 222', 0x0000000001010000005f24b4e55c7241c0de76a1b94e034ec0, 10, 122, 29, NULL, NULL, NULL, '2346538131', '2346538131', 'javieroschefer@gmail.com', 0, 0, 1, 1, 0),
+(66, 'Boomerang Indumentaria', 'Calle 3 Y 26', 0x000000000101000000639cbf0985c043c0ddea39e97d574fc0, 8, 200, 134, 'https://www.facebook.com/boomerang.indumentaria/', NULL, NULL, '2915761988', '2912915761988', 'adrianamloczi@hotmail.com', 0, 0, 1, 1, 0),
+(67, 'Nucleo De Belleza', 'Gutierrez 210', 0x0000000001010000000f62670a9dfb41c09e98f562285f4fc0, 10, 75, 128, NULL, NULL, NULL, '2392527515', '239215527515', 'cssgl1981@gmail.com', 0, 0, 1, 1, 0),
+(68, 'Dlsa Construcciones', NULL, NULL, 6, 8, 43, NULL, NULL, NULL, '1140769209', '111540769209', 'demianleonmoreno@gmail.com', 0, 0, 1, 1, 0),
+(69, 'La Cabana Beer Store', 'Avenida 22 De Octubre 386', 0x0000000001010000001500e319347441c050df32a7cb024ec0, 2, 10, 29, 'https://www.facebook.com/lacabana_winebeer2018', 'https://www.instagram.com/lacabana_beers', 'https://www.lacabanabeers.com.ar', '2346502135', '23462346502135', 'federicoraulg@gmail.com', 0, 0, 1, 1, 0),
+(70, 'Carpinteria La Florida', 'Calle 888 Y 849Y 848', 0x000000000101000000b30c71ac8b6341c09f8ec70c54264dc0, 7, 168, 103, NULL, NULL, NULL, '69873577', '1169873577', 'leonardocarpintero02@gmail.com', 0, 0, 1, 1, 0),
+(71, 'Campeonas', 'Santa Rosa 560', 0x0000000001010000003f355eba495841c0f4f8bd4d7f564dc0, 13, 59, 86, 'https://www.facebook.com/https://www.facebook.com/profile.php?id=100024150138875', NULL, NULL, '1130407553', '111630407553', 'lalypasalacqua83@gmail.com', 0, 0, 1, 1, 0),
+(72, '4 Reynas', 'Narciso De Lapreida 2629', 0x0000000001010000008be07f2bd96941c0551344dd07404dc0, 7, 201, 107, NULL, NULL, NULL, '1166223566', '1121061923', 'glorialedesma1@hotmail.com', 0, 0, 1, 1, 0),
+(73, 'Pueblo Madera', 'Saavedra 280', 0x0000000001010000004f232d95b75f41c011c7bab88d7e4ec0, 13, 96, 59, 'https://www.facebook.com/Mueblespueblomadera/', NULL, 'https://www.pueblomadera.com', '15412284', '23642364493160', 'federicoandrespavon@hotmail.com', 0, 0, 1, 1, 0),
+(74, 'Metalurgica Frey', 'Calle 38 N°1120', 0x000000000101000000aef545425b5241c00dc347c494b84dc0, 13, 127, 85, 'https://www.facebook.com/profile.php?id=100063613868940', NULL, NULL, '2324491959', '232415491959', 'metalurgicafrey@gmail.com', 0, 0, 1, 1, 0),
+(75, 'Lenceria V & A', 'San Martin De Balcarce 4947', 0x000000000101000000bb0a293fa95e43c089247a19c5164fc0, 13, 147, 11, 'https://www.facebook.com/profile.php?id=100043147313437', 'https://instagram.com/lenceria.vya?igshid=YmMyMTA2M2Y=', NULL, '2914398007', '2914398007', 'gaeteveronica31@gmail.com', 0, 0, 1, 1, 0),
+(76, 'Higia', NULL, NULL, 10, 200, 87, NULL, NULL, NULL, '2226683710', '2226683710', 'romi_1986_17@live.com', 0, 0, 1, 1, 0),
+(77, 'Confesiones En General', 'Tres Marias 2895', 0x000000000101000000234a7b832f4841c0d3872ea86f614dc0, 8, 200, 118, NULL, NULL, NULL, '1156657265', '1156657265', 'soniadalilamolina@gmail.com', 0, 0, 1, 1, 0),
+(78, 'Roberto Hdls.', NULL, NULL, 5, 1, 56, 'https://www.facebook.com/roberto.hdls.1', 'https://www.instagram.com/roberto.hdls', NULL, '2235992411', '223155992411', 'ezehdls_87@hotmail.com', 0, 0, 1, 1, 0),
+(79, 'Emiliana Electricista', 'Calle: 2 Nro: 1582 Piso: Pa', 0x000000000101000000a857ca32c47541c00f0bb5a679f74cc0, 11, 84, 69, NULL, NULL, NULL, '2213525557', '2213525557', 'emilianareds@gmail.com', 0, 0, 1, 1, 0),
+(80, 'Medicinas.Delatierra', NULL, NULL, 10, 212, 90, NULL, 'https://www.instagram.com/medicinas.delatierra', 'https://medicinasdelatierra33.mercadoshops.com.ar/', '1164701724', '111654701724', 'akbal.anabel@gmail.com', 0, 0, 1, 1, 0),
+(81, 'Dani Nails', 'Santo Domingo 1096', 0x00000000010100000023f8df4a767c41c0643bdf4f8d2f4dc0, 13, 75, 121, 'https://www.facebook.com/profile.php?id=100011158772064', 'https://www.instagram.com/lescanodaniela168', NULL, '2224562612', '222415552612', 'dlescano929@gmail.com', 0, 0, 1, 1, 0),
+(82, 'Celeste', NULL, NULL, 9, 245, 43, NULL, NULL, NULL, '1137854073', '1137854073', 'ma.cel.fernandez.2011@hotmail.com', 0, 0, 1, 1, 0),
+(83, 'Pastas De La Nonna', 'Uriburu', 0x000000000101000000ffb27bf2b04041c0c30df8fc306e4ec0, 2, 120, 66, NULL, 'https://www.instagram.com/pastas_de_la_nonna', NULL, '549362120', '236154362120', 'joannapietkowsky@gmail.com', 0, 0, 1, 1, 0),
+(84, 'Kiiro Petshop', 'Marques De Aviles 1282', 0x000000000101000000ad2f12da724a41c01895d40968524dc0, 2, 9, 63, 'https://www.facebook.com/kiiropetshop', 'https://www.instagram.com/kiiropetshop', 'https://www.pency.app/kiiropetshop', '1139264934', '111134425968', 'ambhar46@gmail.com', 0, 0, 1, 1, 0),
+(85, 'Estetica Pauline', 'Rivadavia 1223', 0x0000000001010000008065a54929c041c0064ce0d6dd7c4fc0, 10, 92, 106, NULL, 'https://www.instagram.com/estetica.pauline', NULL, '2392564332', '2392564332', 'cecigette26@gmail.com', 0, 0, 1, 1, 0),
+(86, 'Pila', NULL, NULL, 7, 130, 84, 'https://www.facebook.com/pilamarcospaz', 'https://www.instagram.com/pilamarcospaz', NULL, '1169486724', '1169486724', 'aldana.cresto@gmail.com', 0, 0, 1, 1, 0),
+(87, 'Mia Mundo Tarjetas', NULL, NULL, 3, 213, 12, 'https://www.facebook.com/profile.php?id=100063479532588', 'https://www.instagram.com/miamundotarjetas_2020', NULL, '2266677336', '226615677336', 'brendalomonaco@gmail.com', 0, 0, 1, 1, 0),
+(88, 'Ambar Mora', 'Belgrano 506', 0x000000000101000000685c3810928142c06f641ef983354fc0, 8, 200, 61, NULL, 'https://www.instagram.com/ambarmora.fb/', NULL, '15506703', '292315506703', 'fiorellabarrera@hotmail.com', 0, 0, 1, 1, 0),
+(89, 'Roma Accesorios', '19 N620', 0x000000000101000000a25d85949fec42c0936fb6b931214dc0, 8, 52, 12, NULL, 'https://www.instagram.com/dulceromaok', NULL, '2266672218', '2266420167', 'roma.balcarce@hotmail.com', 0, 0, 1, 1, 0),
+(90, 'Lula Nails', 'Calle 21 Entre Garay Y Oro Numero 2618', 0x0000000001010000004e621058395842c0459e245d33594cc0, 13, 92, 67, NULL, NULL, NULL, '2257535013', '2257535013', 'luuciipoeta123@gmail.com', 0, 0, 1, 1, 0),
+(91, 'Isabelita', 'Los Helechos 1220', 0x0000000001010000005131cedf844641c0018750a5668f4dc0, 8, 200, 79, NULL, 'https://www.instagram.com/p/CiHP80oM3Hl/?igshid=MDE2OWE1N2Q=', NULL, '2323585767', '2323585767', 'mariselaranda2@gmail.com', 0, 0, 1, 1, 0),
+(92, 'Heladeria Mirta', 'Montevideo Numero 2263', 0x000000000101000000f2cd3637a67741c01b2ac6f99b304dc0, 2, 125, 100, NULL, NULL, NULL, '1159466385', '1159466385', 'maria.paranderi.m@gmail.com', 0, 0, 1, 1, 0),
+(93, 'Jeunesse Sarandi', 'Supisiche 25', 0x000000000101000000fb5c6dc5fe5641c04d672783a32c4dc0, 10, 212, 8, NULL, 'https://www.instagram.com/eunicesevillano', 'http://eunicesevillano.jeunesseglobal.com/', '1159227275', '1159227275', 'victoriosa977@gmail.com', 0, 0, 1, 1, 0),
+(94, 'Juliana Pilchitas', '11 De Septiembre 882', 0x000000000101000000e960fd9fc3a842c0f1f44a5986904dc0, 8, 200, 123, 'https://www.facebook.com/julianapilchitas', 'https://www.instagram.com/julianapilchitas', NULL, '2494207848', '2494207848', 'loslescanitoss@gmail.com', 0, 0, 1, 1, 0),
+(95, 'Bijuteria Rainbow', '134 Y 80', 0x0000000001010000009e077767ed7a41c068226c787af94cc0, 3, 95, 69, NULL, NULL, NULL, '221547280', '2215472807', 'diajul97@gmail.com', 1, 0, 1, 1, 0),
+(96, 'Comidas Caseras Leon-Azul', NULL, NULL, 2, 34, 10, 'https://www.facebook.com/fruterialasflores.lasflores', 'https://www.instagram.com/comidascaserasleonazul', NULL, '2984281885', '2984281885', 'gbuenopr@gmail.com', 0, 0, 1, 1, 0),
+(97, 'ÑAna Pinatas', 'Parque Avellaneda', 0x00000000010100000050c24cdbbf5241c07e5704ff5b3d4dc0, 11, 174, 136, NULL, 'https://www.instagram.com/nanapinatas', NULL, '1132762072', '1132762072', 'ingridrosemariebratt@gmail.com', 0, 0, 1, 1, 0),
+(98, 'Venesabores', NULL, NULL, 2, 34, 107, 'https://www.facebook.com/Venesabores.Rojas', NULL, NULL, '2475407350', '54912475407350', 'yanez.deisy@gmail.com', 1, 0, 1, 1, 0),
+(99, 'Josmar', NULL, NULL, 13, 202, 8, NULL, NULL, NULL, '1123237391', '1123237391', 'lospuchys19@gmail.com', 0, 0, 1, 1, 0),
+(100, 'Gp Audiovisual', 'Avellaneda 1384', 0x0000000001010000000551f701483941c0ffe7305f5eb84dc0, 11, 116, 113, 'https://www.facebook.com/eduardogonzalezperez.yabo', 'https://www.instagram.com/gpaudiovisual', 'https://eduardogonzalezp.wixsite.com/fotografia', '2325564225', '2325564225', 'eduardogonzalezperez@gmail.com', 0, 0, 1, 1, 0),
+(196, 'Venegestion', NULL, NULL, 11, 217, 136, 'https://www.facebook.com/venegestionag1', 'https://www.instagram.com/venegestionag1', 'https://www.venegestionag1.com', '1154620292', '5491154620292', 'admin@venegestionag1.com', 1, 0, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -374,6 +470,34 @@ CREATE TABLE `formulario` (
   `activo` int(11) DEFAULT NULL,
   `eliminado` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `formulario`
+--
+
+INSERT INTO `formulario` (`id`, `documento`, `tipoformulario_id`, `mensaje`, `estatus_id`, `fecharegistro`, `activo`, `eliminado`) VALUES
+(1, '94504649', 1, '', 4, '2022-10-06 04:18:00', 1, 0),
+(2, '94504649', 1, '', 4, '2022-10-06 04:18:11', 1, 0),
+(3, '94504649', 1, '', 4, '2022-10-06 04:19:24', 1, 0),
+(4, '33334071', 1, 'ke', 4, '2022-10-11 04:16:25', 1, 0),
+(5, '33334071', 1, 'hj', 4, '2022-10-11 04:18:14', 1, 0),
+(6, '24628312', 1, 'prueba', 4, '2022-10-11 04:21:05', 1, 0),
+(7, '33334071', 1, 'ke', 4, '2022-10-11 04:37:09', 1, 0),
+(8, '33334071', 1, 'uk', 4, '2022-10-11 04:37:38', 1, 0),
+(9, '33334071', 1, 'kjh', 4, '2022-10-11 04:39:11', 1, 0),
+(10, '33334071', 1, 'ytrhtd', 4, '2022-10-11 04:43:27', 1, 0),
+(11, '33334071', 1, 'kjh', 4, '2022-10-11 04:44:47', 1, 0),
+(12, '33334071', 1, 'ytrhtd', 4, '2022-10-11 04:44:48', 1, 0),
+(13, '33334071', 1, 'teh', 4, '2022-10-11 04:49:54', 1, 0),
+(14, '33334071', 1, 'jkjlkj', 4, '2022-10-11 05:18:03', 1, 0),
+(15, '33334071', 1, 'a', 4, '2022-10-11 05:18:10', 1, 0),
+(16, '33334071', 1, 'iuju', 4, '2022-10-11 05:43:40', 1, 0),
+(17, '33334071', 1, 'iuju', 4, '2022-10-11 08:03:25', 1, 0),
+(18, '33334071', 1, 'dvx', 4, '2022-10-11 08:03:32', 1, 0),
+(19, '33334071', 1, 'l', 4, '2022-10-12 07:48:12', 1, 0),
+(20, '33334071', 1, 'iuju', 4, '2022-10-12 08:31:33', 1, 0),
+(21, '', 1, '', 4, '2022-10-13 10:18:23', 1, 0),
+(22, '31616372', 1, 'Hola, soy Candia Pablo, ya saque varios creditos con ustedes y queria saber las tasas de interes y como me quedarian las cuotas si sacara un credito por 250000 pesos a pagar en 24 cuotas, siguen siendo cuotas fijas?', 4, '2022-10-25 02:24:05', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -3833,7 +3957,7 @@ ALTER TABLE `actividad`
 -- AUTO_INCREMENT for table `comercio`
 --
 ALTER TABLE `comercio`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=198;
 
 --
 -- AUTO_INCREMENT for table `estatus`
@@ -3845,7 +3969,7 @@ ALTER TABLE `estatus`
 -- AUTO_INCREMENT for table `formulario`
 --
 ALTER TABLE `formulario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `municipio`

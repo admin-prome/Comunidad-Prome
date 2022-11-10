@@ -98,7 +98,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-1 col-sm-1 col-1" style="padding-left: 0px; padding-top: 14px">
-                                            <span style="cursor: pointer" onclick="verfiltrosbusquedamunicipio()">
+                                            <span style="cursor: pointer" onclick="verfiltrosbusquedabuscador()">
                                                 <i class="fa fa-filter" style="font-size: 20px"></i>
                                             </span>
                                         </div>
@@ -126,7 +126,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row" id="div_municipios" <?php echo $divBusquedaMunicipios;?>>
+                                    <div class="row" id="div_municipios" <?php echo $aaaadivBusquedaMunicipiossss;?> style='display: none' >
                                         <div class="col-md-12 mb-3" style="text-align: left; padding: 0px 10px">
                                             <div class="mb-1">
                                                 Municipio
@@ -134,6 +134,20 @@
                                             
                                             <div class="mt-2">
                                                 <?php echo $optionmunicipiob;?>
+                                            </div>
+                                            <button type="submit" class='btn' style="background-color: #23952E; color: #FFF; font-weight: 700; font-size: 18px; width: 100%; margin-top: 10">
+                                                Aplicar filtros
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="div_rubros" <?php echo $divBusquedaRubros;?>>
+                                        <div class="col-md-12 mb-3" style="text-align: left; padding: 0px 10px">
+                                            <div class="mb-1">
+                                                Rubro
+                                            </div>
+                                            
+                                            <div class="mt-2">
+                                                <?php echo $optionrubrob;?>
                                             </div>
                                             <button type="submit" class='btn' style="background-color: #23952E; color: #FFF; font-weight: 700; font-size: 18px; width: 100%; margin-top: 10">
                                                 Aplicar filtros
@@ -435,7 +449,7 @@
             // Icono ubicacion actual
             var iconActual = L.icon({
                 iconUrl: '../img/icono_puntero.png',		
-                iconSize:     [38, 50], 
+                iconSize:     [38, 45], 
                 shadowSize:   [50, 64], 
                 iconAnchor:   [45, 50], 
                 shadowAnchor: [4, 62], 
@@ -450,7 +464,6 @@
                 L.marker([<?php echo $getlatitudactual;?>, <?php echo $getlongitudactual;?>], {icon: iconActual}).addTo(map).bindPopup('<b><?php echo $getdireccionactual;?> </b>');                 
             }
 
-            
             
             // Icono ubicacion buscada
             var iconBusqueda = L.icon({
