@@ -149,7 +149,7 @@ Son los municipios que se tienen en el sistema para relacionar al comercio en el
 
 
 # Requerimientos Técnicos:<br>
-<b>Lenguaje de Programación: </b>PHP Versión 7.4<br>
+<b>Lenguaje de Programación: </b>PHP Versión 8.0<br>
 <b>Servidor de Base de Datos: </b> MySQL<br>
 
 # Soporte:<br>
