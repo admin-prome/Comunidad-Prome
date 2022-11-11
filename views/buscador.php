@@ -126,7 +126,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row" id="div_municipios" <?php echo $aaaadivBusquedaMunicipiossss;?> style='display: none' >
+                                    <div class="row" id="div_municipios" <?php echo $divBusquedaMunicipios;?> >
                                         <div class="col-md-12 mb-3" style="text-align: left; padding: 0px 10px">
                                             <div class="mb-1">
                                                 Municipio

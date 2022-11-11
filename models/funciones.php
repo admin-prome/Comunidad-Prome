@@ -217,12 +217,10 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
 
     if ($latitudbuscar!=""){
 
-        
-
         $where  .=" and 
             ST_Distance_Sphere(
                 coordenadas, POINT($latitudbuscar, $longitudbuscar)
-            ) <= 200000 and  
+            ) <= 2000 and  
             ST_Distance_Sphere(
                 coordenadas, POINT($latitudbuscar, $longitudbuscar)
             ) > 0
@@ -263,6 +261,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
 
         
         WHERE comercio.activo = 1 AND estatus.activo = 1 AND estatus.visibleresultado = 1 $where
+        $orderby
         
     ";
  
@@ -484,7 +483,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
                             <div class='col-md-8 col-sm-8 col-8'>
                                 $div_iconos
                             </div>
-                            <div class='col-md-4 col-sm-4 col-4' style='padding-right: 30px'>
+                            <div class='col-md-4 col-sm-4 col-4' style='padding-right: 30px; padding-left: 0px'>
                                 <p style='font-size: 17px; margin-bottom: 4px; color: #5C5B5B; text-align: right; font-weight: 600'>
                                     $distancia
                                 </p>

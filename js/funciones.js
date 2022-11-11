@@ -323,16 +323,16 @@ function mostrarubicacion(latitud, longitud, nombre, direccion, whatsapp, telefo
         document.getElementById('det_web').href = web;
 
         cont = cont + 1;
-    }
+    }    
 
-    if (facebookurl!="" && cont < 3){
+    if (facebookurl!="" && cont < 4){
         document.getElementById('det_div_facebook').style.display = "";
         document.getElementById('det_facebook').href = facebookurl;
 
         cont = cont + 1;
     }
 
-    if (instagram!="" && cont < 3){
+    if (instagram!="" && cont < 4){
         document.getElementById('det_div_instagram').style.display = "";
         document.getElementById('det_instagram').href = instagram;
 
@@ -392,19 +392,5 @@ function mostrarubicacion(latitud, longitud, nombre, direccion, whatsapp, telefo
 
         cant = cant + 1;
     });
-    //console.log(map._layers);
-    /*
-    document.getElementById('irdetalle').click();
-    
-    if (latitud!="" && longitud!=""){
-        var marker = L.marker([latitud, longitud]).addTo(map)
-        .bindPopup('<b>'+nombre+'</b><br>'+direccion).openPopup();
-    }
-    */
-
-    
-    
 
 }
-
-

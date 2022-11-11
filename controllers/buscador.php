@@ -55,16 +55,6 @@ if ($getdireccion!=""){
     $cercamio="on";
 }
 
-/*
-if ($tipodir=="1"){
-    $tipodirchecked = " checked='checked' ";
-    $divbuscadormapa = " ; display: none";
-}else{
-    $tipodirchecked = "  ";
-    $divbuscadormapa = " ";
-}
-*/
-
 $displaymapaa = " style='display: none' ";
 $displaycomercios = " ";
 $divComercios2 = "";
