@@ -213,7 +213,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         $where .= " and comercio.haceenvios = '1' ";
     }
 
-   
+    $tieneubicacion=0; 
 
     if ($latitudbuscar!=""){
 
@@ -238,7 +238,10 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
             ) as distancia
         ";
 
+        $tieneubicacion=1;
+
     }else{
+        //$tieneubicacion=0;
         //$latitudbuscar = 0;
         //$longitudbuscar = 0;
     }
@@ -288,18 +291,13 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         ORDER BY rubro.nombre asc
     ";
 
-    //echo "where:$where";
-    //exit();
-    
     $conexion = new Conexion();
     $arrResultado = $conexion->consulta($sql);
-    
-    /*
-     echo "<pre>";
-    print_r($arrResultado);
-    echo "</pre>";
-    exit(); 
-    */
+
+    if ($tieneubicacion!="1"){ // Colocar aleatorio resultados cuando no tiene ubicacion colocada
+        shuffle($arrResultado);
+    }
+
 
     $totalResultados = count($arrResultado);
 
@@ -419,8 +417,10 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
                 popupAnchor:  [-3, -46]
             });
         ";
-        
 
+        $cursorpointer = " cursor: pointer; ";
+        $arrowright = "<i style='font-size: 18px' class='fas fa-chevron-right'></i>";
+        
         if ($latitud!="" && $longitud!=""){
             $divComercioMarkers .= " L.marker([$latitud, $longitud], {icon: L.icon({
                 iconUrl: '../img/rubro/mapa/icono_$rubro_img.png',		
@@ -431,6 +431,11 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
                 popupAnchor:  [-3, -46]
             })}).addTo(map).bindPopup('<b>$nombre </b><br>$direccion'); ";
 
+        }else{
+            $arrowright = "";
+            $cursorpointer = "";
+            $latitud = 0;
+            $longitud = 0;
         }
 
         if ($rubro_img==""){
@@ -444,10 +449,15 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
             $distancia ="";
         }
 
-        // 
+        
+
+        if ($tieneubicacion!="1"){
+            $distancia ="";
+        }
+
 
         $divComercio .="
-            <div style='background-color: #FBF8F8; border: 1px solid #D5D3D3; cursor: pointer; margin-top: 10px; padding-bottom: 10px; box-shadow: 2px 2px #B9B9B9' onclick='mostrarubicacion($latitud,$longitud,\"".$nombre."\",\"".$direccion."\",\"".$whatsapp."\",\"".$telefono."\",\"".$web."\",\"".$email."\",\"".$instagramurl."\",\"".$distancia."\",\"".$cuentadni."\",\"".$urlicono."\",\"".$facebookurl."\",\"".$facebooknombre."\")'>
+            <div style='background-color: #FBF8F8; border: 1px solid #D5D3D3; $cursorpointer margin-top: 10px; padding-bottom: 10px; box-shadow: 2px 2px #B9B9B9' onclick='mostrarubicacion($latitud,$longitud,\"".$nombre."\",\"".$direccion."\",\"".$whatsapp."\",\"".$telefono."\",\"".$web."\",\"".$email."\",\"".$instagramurl."\",\"".$distancia."\",\"".$cuentadni."\",\"".$urlicono."\",\"".$facebookurl."\",\"".$facebooknombre."\")'>
 
 
                 <div class='row'>
@@ -473,7 +483,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
                                 $div_cuentadni
                                 
                                 <div style='margin-top: 15px'>
-                                    <i style='font-size: 18px' class='fas fa-chevron-right'></i>
+                                    $arrowright
                                 </div>
                             </div>
                         </div>

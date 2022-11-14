@@ -342,10 +342,12 @@ function mostrarubicacion(latitud, longitud, nombre, direccion, whatsapp, telefo
     
 
     //3
-    
-    document.getElementById('det2_div_direccion').style.display = "";
-    document.getElementById('det2_div_direccionurl').href = "https://www.google.com.ar/maps/@"+latitud+","+longitud+",13z";
-    document.getElementById('det2_div_direcciontexto').innerHTML = direccion+""+cuentadni;
+    if (latitud!=""){
+   
+        document.getElementById('det2_div_direccion').style.display = "";
+        document.getElementById('det2_div_direccionurl').href = "https://www.google.com.ar/maps/@"+latitud+","+longitud+",13z";
+        document.getElementById('det2_div_direcciontexto').innerHTML = direccion+""+cuentadni;
+    }
 
 
     if (telefono!=""){
@@ -372,25 +374,32 @@ function mostrarubicacion(latitud, longitud, nombre, direccion, whatsapp, telefo
         document.getElementById('det2_div_facebooktexto').innerHTML = facebooknombre;
     } */
 
+    
     if (mobile=="1"){
         document.getElementById('divComercios2').style.display = "none";
         document.getElementById('mobileclickcomercio').value = "1";
         
     }
-    
-    if (distancia!=""){
-        document.getElementById('det2_div_metros').innerHTML = distancia;
-    }
 
-    var cant = 0;
-    map.eachLayer(function(layer){
-        if (cant>0){
-            if (latitud==layer._latlng.lat && longitud == layer._latlng.lng){
-                layer.openPopup();
-            }
+   
+
+    if (latitud!="0"){
+
+        if (distancia!=""){
+            document.getElementById('det2_div_metros').innerHTML = distancia;
         }
 
-        cant = cant + 1;
-    });
+        var cant = 0;
+        map.eachLayer(function(layer){
+            if (cant>0){
+                if (latitud==layer._latlng.lat && longitud == layer._latlng.lng){
+                    layer.openPopup();
+                    map.setView([latitud, longitud], 15);
+                }
+            }
+
+            cant = cant + 1;
+        });
+    }
 
 }

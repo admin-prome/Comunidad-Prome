@@ -6,6 +6,7 @@ class Conexion {
     function consulta($sql){  
         
         $conexion = mysqli_connect(servidor,usuario,clave,basededatos);
+        mysqli_set_charset( $conexion, 'utf8');
 
         $resultado = mysqli_query($conexion, $sql);
 
@@ -29,6 +30,7 @@ class Conexion {
     function ejecucion($sql){  
         
         $conexion = mysqli_connect(servidor,usuario,clave,basededatos);
+        mysqli_set_charset( $conexion, 'utf8');
 
         $resultado = mysqli_query($conexion, $sql);
 

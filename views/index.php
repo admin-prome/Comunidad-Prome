@@ -228,8 +228,8 @@
 
         const onErrorDeUbicacion = err => {
 
-            $latitud.value = "Error obteniendo ubicación: " + err.message;
-            $longitud.value = "Error obteniendo ubicación: " + err.message;
+            $latitud.value = "";
+            $longitud.value = "";
             console.log("Error obteniendo ubicación: ", err);
         }
 
