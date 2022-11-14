@@ -1,0 +1,26 @@
+version: "3.3"
+
+services:
+  prome:
+    image: gitlab.provincianet.com.ar:5050/devphp/prome:dev
+    networks:
+      - traefik-public
+    deploy:
+      placement:
+        constraints:
+          - node.role==worker
+      labels:
+        - "traefik.enable=true"
+        - "traefik.docker.network=traefik-public"
+        - "traefik.constraint-label=traefik-public"
+        - "traefik.http.routers.prome.rule=Host(`dev-prome.provincianet.com.ar`)"
+        - "traefik.http.routers.prome.entrypoints=http"
+        - "traefik.http.routers.prome-secured.rule=Host(`dev-prome.provincianet.com.ar`)"
+        - "traefik.http.routers.prome-secured.entrypoints=https"
+        - "traefik.http.routers.prome-secured.tls.certresolver=leresolver"
+        - "traefik.http.services.prome.loadbalancer.server.port=80"
+        - "traefik.http.routers.prome.middlewares=prome-redirect"
+        - "traefik.http.middlewares.prome-redirect.redirectscheme.scheme=https"
+networks:
+  traefik-public:
+    external: true
