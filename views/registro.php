@@ -116,7 +116,16 @@ $(document).ready(function(){
         var tipo = jQuery('#tipo').val();
         var message = jQuery('#message').val();
 
-        $("#mensajeprocesar").html("<div class='alert alert-info' role='alert'>Procesando...</div> ");
+        $("#btnRegistro").prop("disabled", true );
+
+
+        if (documento==""){
+            $("#mensajeprocesar").html("<div class='alert alert-info' role='alert'>EL DNI del titular es obligatorio</div> ");
+            $("#btnRegistro").prop("disabled", false );
+            return false;
+        }
+
+        $("#mensajeprocesar").html("<div class='alert alert-info' role='alert'>Por favor espere...</div> ");
        
         $.ajax({
             url:"verificar-registro.php",
@@ -125,9 +134,13 @@ $(document).ready(function(){
             data:{documento:documento,tipo:tipo,message:message},
             success:function(data){
                 if (data =="false") {                    
-                    $("#mensajeprocesar").html("<div class='alert alert-danger' role='alert'>El DNI no se encuentra en nuestra base de datos</div> ");
+                    $("#mensajeprocesar").html("<div class='alert alert-danger' role='alert'>El DNI no se encuentra registrado</div> ");
+                    $("#btnRegistro").prop("disabled", false );
                 }else{
-                    window.open('https://www.provinciamicrocreditos.com.ar/comunidad-prome-alta/');
+                    if (tipo=="1"){
+                        window.open('https://www.provinciamicrocreditos.com.ar/comunidad-prome-alta/');
+                    }
+                   
                     window.location ="confirmacion-registro.php?tipo=registro";
                     /*
                     $("#mensajeprocesar").html("<div class='alert alert-success' role='alert'><a href='https://www.provinciamicrocreditos.com.ar/comunidad-prome-alta/' style='text-decoration: none; color: #000000' target='_blank'>Por favor completar la solicitud en la ventana que se le abrió o haz click aquí</a></div>");

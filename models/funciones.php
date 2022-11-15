@@ -146,6 +146,8 @@ function formatearDistancia($distancia=null){
 
 function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $latitudbuscar=null, $longitudbuscar=null, $getmunicipio=null, $getactividad=null, $getrubro=null, $cercamio=null, $getmunicipiob=null, $getrubrob=null){
 
+  
+
     $where = "";
     $agregarselect = "";
     $orderby = "";
@@ -176,6 +178,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
     if($filtrowheremunicipiomultiple!=""){
         $where .= " and comercio.municipio_id in ($filtrowheremunicipiomultiple)  ";
     }
+
 
 
     $filtrowhererubromultiple = "";
@@ -215,12 +218,12 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
 
     $tieneubicacion=0; 
 
-    if ($latitudbuscar!=""){
+    if ($latitudbuscar!="" && $cercamio=="on"){
 
         $where  .=" and 
             ST_Distance_Sphere(
                 coordenadas, POINT($latitudbuscar, $longitudbuscar)
-            ) <= 2000 and  
+            ) <= 2000000 and  
             ST_Distance_Sphere(
                 coordenadas, POINT($latitudbuscar, $longitudbuscar)
             ) > 0
@@ -245,6 +248,8 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         //$latitudbuscar = 0;
         //$longitudbuscar = 0;
     }
+
+    
 
     $sql = "
         SELECT DISTINCT comercio.id, comercio.nombre, comercio.direccion, 
@@ -455,6 +460,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
             $distancia ="";
         }
 
+        if ($cuentadni=="0"){$cuentadni="";}
 
         $divComercio .="
             <div style='background-color: #FBF8F8; border: 1px solid #D5D3D3; $cursorpointer margin-top: 10px; padding-bottom: 10px; box-shadow: 2px 2px #B9B9B9' onclick='mostrarubicacion($latitud,$longitud,\"".$nombre."\",\"".$direccion."\",\"".$whatsapp."\",\"".$telefono."\",\"".$web."\",\"".$email."\",\"".$instagramurl."\",\"".$distancia."\",\"".$cuentadni."\",\"".$urlicono."\",\"".$facebookurl."\",\"".$facebooknombre."\")'>
@@ -512,7 +518,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
             <div style='background-color: #FBF8F8; border: 1px solid #D5D3D3; cursor: pointer; margin-top: 10px; padding-bottom: 10px; margin-right: 10px' onclick='mostrarubicacion(\"".$latitud."\",\"".$longitud."\",\"".$nombre."\",\"".$direccion."\",\"".$whatsapp."\",\"".$telefono."\",\"".$web."\",\"".$email."\",\"".$instagramurl."\",\"".$distancia."\",\"".$cuentadni."\",\"".$urlicono."\",\"".$facebookurl."\",\"".$facebooknombre."\",\"".$mobile."\")'>
                 <div class='row'>
                     <div class='col-md-3 col-sm-3 col-3'  style='padding-right: 0px; text-align: center'>
-                        <div style='padding-top: 10px'>
+                        <div style='padding-top: 10px; padding-left: 5'>
                             <img src='$urlicono' style='max-height: 60px; max-width: auto' alt='$nombre' title='$nombre' />
                         </div>
                     </div>
@@ -544,9 +550,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
                                 $div_iconos
                             </div>
                             <div class='col-md-4 col-sm-4 col-4' style='padding-right: 30px'>
-                                <p style='font-size: 17px; margin-bottom: 4px; color: #5C5B5B; text-align: right; font-weight: 600'>
-                                    $distancia
-                                </p>
+                                
                             </div>
 
                         </div>
@@ -650,7 +654,8 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
             "divRubros" => $optionRubro, 
             "divComercioMarkers" => 0,
             "divTotalComercios" => $totalDivResultados,
-            "divComercioListaOver" => $divComercioListaOver
+            "divComercioListaOver" => $divComercioListaOver,
+            "totalResultados" => $totalResultados
         );
         
     }else{
@@ -662,7 +667,8 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
             "divRubros" => $optionRubro, 
             "divComercioMarkers" => $divComercioMarkers,
             "divTotalComercios" => $totalDivResultados,
-            "divComercioListaOver" => $divComercioListaOver
+            "divComercioListaOver" => $divComercioListaOver,
+            "totalResultados" => $totalResultados
         );
     }
 

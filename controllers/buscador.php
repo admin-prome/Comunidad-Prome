@@ -43,16 +43,16 @@ $tipodir = isset($_GET['tipodir']) ? $_GET['tipodir'] : '';
 
 if ($getdireccionactual!="" && $getdireccionmapa==""){
     $getdireccionmapa = $getdireccionactual;
-    $cercamio="on";
+    //$cercamio="on";
 }
 
 if ($tipodir=="1"){
-    $cercamio="on";
+    //$cercamio="on";
 }
 
 if ($getdireccion!=""){
     $getdireccionmapa = $getdireccion;
-    $cercamio="on";
+    //$cercamio="on";
 }
 
 $displaymapaa = " style='display: none' ";
@@ -68,6 +68,7 @@ if ($getmunicipiob!=""){
 }else if ($getrubrob!=""){
     $divBusquedaRubros = "";
 }
+
 
 if ($cercamio=="on"){
     $getmunicipio = "";
@@ -124,6 +125,12 @@ $divComercioMarkers = $comercios["divComercioMarkers"];
 $divTotalComercios = $comercios["divTotalComercios"];
 $optionmunicipiob = $comercios["divMunicipios"];
 $optionrubrob = $comercios["divRubros"];
+$totalResultados = $comercios["totalResultados"];
+
+$displayfiltros = "";
+if ($totalResultados=="0"){
+    $displayfiltros = "; display: none";
+}
 
 
 $optionmunicipio = consultarMunicipios($getmunicipio);

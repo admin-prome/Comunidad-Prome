@@ -97,7 +97,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class="col-md-1 col-sm-1 col-1" style="padding-left: 0px; padding-top: 14px">
+                                        <div class="col-md-1 col-sm-1 col-1" style="padding-left: 0px; padding-top: 14px; <?php echo $displayfiltros;?>">
                                             <span style="cursor: pointer" onclick="verfiltrosbusquedabuscador()">
                                                 <i class="fa fa-filter" style="font-size: 20px"></i>
                                             </span>
@@ -265,7 +265,7 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class='col-md-3 col-sm-3 col-3 d-block d-sm-none' id="det_div_compartir"  style='text-align: center;'>
+                                <!-- <div class='col-md-3 col-sm-3 col-3 d-block d-sm-none' id="det_div_compartir"  style='text-align: center;'>
                                     <div style='padding-top: 10px'>
                                         <a id="det_compartir" style="text-decoration: none">
                                             <img src='../img/det_compartir.png' style='height: 60px; max-width: auto' alt='Compartir' title='Compartir' />
@@ -274,7 +274,7 @@
                                             </p>
                                         </a>
                                     </div>
-                                </div>
+                                </div> -->
                                 
                             </div>
                             <div class='row'>                                    
@@ -284,7 +284,7 @@
                                             <div id="det2_div_direccion" style="display: none">
                                                 <a id="det2_div_direccionurl" target='_blank' title='Abrir Web' href='#' style='color: #5C5B5B; text-decoration: none'>
                                                     <i style='font-size: 18px' class='fa fa-map-marker-alt'></i>
-                                                    <span  id="det2_div_direcciontexto"></span>
+                                                    <span  id="det2_div_direcciontexto"></span>999
                                                 </a>
                                             </div> 
                                             <div id="det2_div_tel" style="display: none">
@@ -375,17 +375,34 @@
 
 
 <script>
+/* 
+    async function share(titulo, url) {
+        try {
+            await navigator.share({
+            text: titulo,
+            url: url
+            })
+        } catch (error) {
+            console.log('Sharing failed!', error)
+        }
+    }
+
     const shareButton = document.getElementById("det_compartir");
  
     // Creamos una función que se ejecutará cuando el usuario haga click en el botón
     shareButton.addEventListener("click", (event) => {
-    
+        if ("share" in navigator) {
+            share(document.getElementById('det_nombre').innerHTML, "http://catalogo-prome.provinciamicrocreditos.com/");
+        }else{
+            alert('Lo siento, este navegador no tiene soporte para compartir')
+        }
+    }); */
+    /*
     // Verificamos si el navegador tiene soporte para el API compartir
     if ("share" in navigator) {
         navigator
         .share({
-            title: document.getElementById('det_nombre').innerHTML, 
-            url: "http://catalogo-prome.provinciamicrocreditos.com/"
+            
         })
     
         // Mensaje en Consola cuando se presiona el botón de compartir 
@@ -397,7 +414,9 @@
         // Si el navegador no tiene soporte para la API compartir, le enviamos un mensaje al usuario
         alert('Lo siento, este navegador no tiene soporte para recursos compartidos.')
     }
-    });
+    */
+    //
+    
    
     const funcionInit = () => {
         if (!"geolocation" in navigator) {

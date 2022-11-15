@@ -200,7 +200,7 @@ function btnCheckCercaMio(){
         var actual_lon = document.getElementById('actual_lon').value;
         var actual_direccion = document.getElementById('actual_direccion').value;
 
-        window.location = "buscador.php?lat="+actual_lat+"&lon="+actual_lon+"&dir="+actual_direccion+"&tipodir=1";
+        window.location = "buscador.php?cercamio=on&lat="+actual_lat+"&lon="+actual_lon+"&dir="+actual_direccion+"&tipodir=1";
 
     }else{        
         document.getElementById('div_buscadordireccion').style.display = "none";
