@@ -69,7 +69,7 @@ function consultarActividad($actividad=null, $rubro=null){
     }
 
     $sql = "
-        SELECT DISTINCT id, nombre 
+        SELECT DISTINCT nombre 
         FROM actividad 
         WHERE activo = 1 $where
         ORDER BY nombre asc
@@ -82,13 +82,13 @@ function consultarActividad($actividad=null, $rubro=null){
 
     foreach($arrResultado as $resultado){
 
-        $id = $resultado["id"];
+        //$id = $resultado["id"];
         $nombre = $resultado["nombre"];
 
-        if ($actividad==$id){
-            $option .= "<option value='$id' selected='selected'>$nombre</option>";
+        if ($actividad==$nombre){
+            $option .= "<option value='$nombre' selected='selected'>$nombre</option>";
         }else{
-            $option .= "<option value='$id'>$nombre</option>";
+            $option .= "<option value='$nombre'>$nombre</option>";
         }
 
     }
@@ -201,7 +201,8 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
     }
 
     if ($getactividad!=""){
-        $where .= " and (comercio.actividad_id = '$getactividad')";
+        //$where .= " and (comercio.actividad_id = '$getactividad')";
+        $where .= " and (actividad.nombre = '$getactividad')";
     }
 
     if ($getrubro!=""){
@@ -223,7 +224,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         $where  .=" and 
             ST_Distance_Sphere(
                 coordenadas, POINT($latitudbuscar, $longitudbuscar)
-            ) <= 2000000 and  
+            ) <= 2000 and  
             ST_Distance_Sphere(
                 coordenadas, POINT($latitudbuscar, $longitudbuscar)
             ) > 0
@@ -247,6 +248,10 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         //$tieneubicacion=0;
         //$latitudbuscar = 0;
         //$longitudbuscar = 0;
+
+        $orderby = " 
+            ORDER BY comercio.cuentadni DESC, rubro.nombre ASC, RAND()
+        ";
     }
 
     
@@ -257,13 +262,15 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         comercio.instagramurl, comercio.web, comercio.whatsapp, comercio.telefono, comercio.email, 
         comercio.estatus_id, comercio.activo, comercio.eliminado,
         comercio.cuentadni, comercio.haceenvios,
-        rubro.nombre as rubro_nombre,
+        rubro.nombre as rubro_nombre,municipio.nombre as municipio_nombre,
         X(coordenadas) as latitud, Y(coordenadas) as longitud
         $agregarselect
 
         FROM comercio 
         INNER JOIN rubro ON comercio.rubro_id = rubro.id
         INNER JOIN estatus on estatus.id = comercio.estatus_id
+        LEFT JOIN municipio ON municipio.id = comercio.municipio_id
+        LEFT JOIN actividad ON actividad.id = comercio.actividad_id
 
         LEFT JOIN rubrobusqueda ON rubrobusqueda.rubro_id = rubro.id
 
@@ -272,7 +279,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         $orderby
         
     ";
- 
+
 
     $sqlMunicipio = "
         SELECT DISTINCT municipio.id as id, municipio.nombre as nombre
@@ -281,6 +288,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         INNER JOIN estatus on estatus.id = comercio.estatus_id
         INNER JOIN municipio ON municipio.id = comercio.municipio_id
         LEFT JOIN rubrobusqueda ON rubrobusqueda.rubro_id = rubro.id
+        LEFT JOIN actividad ON actividad.id = comercio.actividad_id
         WHERE comercio.activo = 1 AND estatus.activo = 1 AND estatus.visibleresultado = 1 $where
         ORDER BY municipio.nombre asc
     ";
@@ -291,6 +299,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         INNER JOIN rubro ON comercio.rubro_id = rubro.id
         INNER JOIN estatus on estatus.id = comercio.estatus_id
         INNER JOIN municipio ON municipio.id = comercio.municipio_id
+        LEFT JOIN actividad ON actividad.id = comercio.actividad_id
         LEFT JOIN rubrobusqueda ON rubrobusqueda.rubro_id = rubro.id
         WHERE comercio.activo = 1 AND estatus.activo = 1 AND estatus.visibleresultado = 1 $where
         ORDER BY rubro.nombre asc
@@ -300,7 +309,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
     $arrResultado = $conexion->consulta($sql);
 
     if ($tieneubicacion!="1"){ // Colocar aleatorio resultados cuando no tiene ubicacion colocada
-        shuffle($arrResultado);
+        //shuffle($arrResultado);
     }
 
 
@@ -335,6 +344,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         $rubro_id = $resultado["rubro_id"];
         $actividad_id = $resultado["actividad_id"];
         $municipio_id = $resultado["municipio_id"];
+        $municipio_nombre = $resultado["municipio_nombre"];
         $facebookurl = $resultado["facebookurl"];
         $instagramurl = $resultado["instagramurl"];
         $web = $resultado["web"];
@@ -461,6 +471,10 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         }
 
         if ($cuentadni=="0"){$cuentadni="";}
+
+        if ($municipio_nombre!=""){
+            $direccion .= " - ".$municipio_nombre;
+        }
 
         $divComercio .="
             <div style='background-color: #FBF8F8; border: 1px solid #D5D3D3; $cursorpointer margin-top: 10px; padding-bottom: 10px; box-shadow: 2px 2px #B9B9B9' onclick='mostrarubicacion($latitud,$longitud,\"".$nombre."\",\"".$direccion."\",\"".$whatsapp."\",\"".$telefono."\",\"".$web."\",\"".$email."\",\"".$instagramurl."\",\"".$distancia."\",\"".$cuentadni."\",\"".$urlicono."\",\"".$facebookurl."\",\"".$facebooknombre."\")'>

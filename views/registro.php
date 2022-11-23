@@ -19,11 +19,13 @@
             <div class="container" style="background-color: #F3F3F3; opacity: 0.9; padding: 20px; padding-bottom: 50px; padding-top: 30px">
                 <div class="container">
                     <div class="row" >
-                        <div class="col-md-10 offset-1">
-                            <h1 style="color: #23952E; text-align: left; font-weight: 600">
+                        <div class="col-md-1 ">
+                        </div>
+                        <div class="col-md-10 ">
+                            <h1 style="color: #23952E; text-align: center; font-weight: 600">
                                 Te damos la bienvenida a la Comunidad Prome
                             </h1>
-                            <h2 style="color: #4E4E4E; text-align: left; font-size: 24px">
+                            <h2 style="color: #4E4E4E; text-align: center; font-size: 24px">
                                 Un espacio pensado para potenciar tu negocio.
                             </h2>
                         </div>                       
