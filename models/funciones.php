@@ -156,7 +156,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
     $divComercioListaOver = "";
 
     if ($buscador!=""){
-        $where .= " and (comercio.nombre like '%$buscador%' or rubrobusqueda.palabra like '%$buscador%' )";
+        $where .= " and (comercio.nombre like '%$buscador%' or rubrobusqueda.palabra like '%$buscador%' )"; //like binary '%$buscador%'
 
     }
 
@@ -248,6 +248,8 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         //$tieneubicacion=0;
         //$latitudbuscar = 0;
         //$longitudbuscar = 0;
+        
+        $agregarselect = ",'' as distancia ";
 
         $orderby = " 
             ORDER BY comercio.cuentadni DESC, rubro.nombre ASC, RAND()
@@ -257,7 +259,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
     
 
     $sql = "
-        SELECT DISTINCT comercio.id, comercio.nombre, comercio.direccion, 
+        SELECT DISTINCT comercio.id, comercio.nombre,rubrobusqueda.palabra, comercio.direccion, 
         comercio.rubro_id, comercio.actividad_id, comercio.municipio_id, comercio.facebookurl, 
         comercio.instagramurl, comercio.web, comercio.whatsapp, comercio.telefono, comercio.email, 
         comercio.estatus_id, comercio.activo, comercio.eliminado,
@@ -275,11 +277,10 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         LEFT JOIN rubrobusqueda ON rubrobusqueda.rubro_id = rubro.id
 
         
-        WHERE comercio.activo = 1 AND estatus.activo = 1 AND estatus.visibleresultado = 1 $where
+        WHERE comercio.activo = 1 AND estatus.activo = 1 AND estatus.visibleresultado = 1 AND rubrobusqueda.activo = 1 $where
         $orderby
         
     ";
-
 
     $sqlMunicipio = "
         SELECT DISTINCT municipio.id as id, municipio.nombre as nombre
@@ -314,9 +315,6 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
 
 
     $totalResultados = count($arrResultado);
-
-    ini_set ('display_errors','0');
-    ini_set ('memory_limit','-1');
 
     foreach($arrResultado as $resultado){
 
@@ -438,7 +436,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         
         if ($latitud!="" && $longitud!=""){
             $divComercioMarkers .= " L.marker([$latitud, $longitud], {icon: L.icon({
-                iconUrl: '../img/rubro/mapa/icono_$rubro_img.png',		
+                iconUrl: '../img/rubro/mapa/icono_$rubro_img.png',	
                 iconSize:     [38, 50], 
                 shadowSize:   [50, 64], 
                 iconAnchor:   [38, 50], 
@@ -577,23 +575,25 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         ";
 
     }
-    $totalDivResultados = "";
 
-    if ($totalResultados>0){
-
+    if($totalResultados>0){
+        $color="#23952E";
+    }else{
+        $color="#ff0000; font-weight: bold";
+    }
     
     $totalDivResultados = "
             <div class='row' style='margin-top: 0px; margin-bottom: 5px'>
                 <div class='col-md-12' style='text-align: right; padding: 0px 30px'>
                     <div>
-                        <p style='margin-bottom: 0px; color: #23952E'>
+                        <p style='margin-bottom: 0px; color: $color'>
                             $totalResultados resultados
                         </p>
                     </div>                                            
                 </div>                                   
             </div>
         ";
-    }
+    
 
     // Municipios
     $arrResultado = $conexion->consulta($sqlMunicipio);
@@ -655,11 +655,11 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
 
     if ($divComercio==""){
         $divComercio ="
-            <div>
+            <!--<div>
                 <div class='alert alert-info' role='alert' style='text-align: center'>
                     No se encontraron resultados
                 </div>
-            </div>
+            </div>-->
         ";
 
         $resultado = array(            

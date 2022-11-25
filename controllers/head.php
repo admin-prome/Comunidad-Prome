@@ -17,7 +17,7 @@ crossorigin=""/>
 integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
 crossorigin=""></script>
 
-<script async
+<script 
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgohyH98VEPgrrtHzVjZmm-d89eCNlktw&libraries=places">
 </script>
 

@@ -173,13 +173,13 @@
                                     <div class="col-md-12" style="text-align: left; padding: 0px 30px">
                                         <div>
                                             <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="checkAdherido" name="cuentadni" <?php echo $cuentadnichecked;?> onclick="refrescar()" >
+                                                <input class="form-check-input" type="checkbox" id="checkAdherido" name="cuentadni" <?php echo $cuentadnichecked;?>  >
                                                 <label class="form-check-label" for="checkAdherido" style="color: #626161">Adherido a Cuenta DNI Comercios</label>
                                             </div>                                               
                                         </div>
                                         <div style="margin-top: 10px; margin-bottom: 10px">
                                             <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="checkEnvios" name="envios" <?php echo $envioschecked;?>  onclick="refrescar()">
+                                                <input class="form-check-input" type="checkbox" id="checkEnvios" name="envios" <?php echo $envioschecked;?> >
                                                 <label class="form-check-label" for="checkEnvios" style="color: #626161">Hace envíos/Servicio a domicilio</label>
                                             </div>                                               
                                         </div>
@@ -190,7 +190,7 @@
                         </form>
 
 
-                        <div id="div_detalle" style='background-color: #FBF8F8; border: 1px solid #D5D3D3; cursor: pointer; margin-top: 20px; padding-bottom: 10px; display: none' >
+                        <div id="div_detalle" style='background-color: #FBF8F8; border: 1px solid #D5D3D3; cursor: pointer; margin-top: 20px; padding-bottom: 10px; padding-left: 10px; padding-right: 15px; display: none' >
                             <a href="#inicio" id="irdetalle"></a>
                             <div style="float: right; margin-right: 10px; margin-top: 10px" onclick="cerrardetalle()">
                                 <i class="far fa-times-circle" style="color: #6E7679; font-size: 20px"></i>
@@ -214,7 +214,7 @@
                                                                             
                                 </div>                                    
                             </div>
-                            <div class='row'>
+                            <div class='row' style="font-size:14px">
                                 <div class='col-md-3 col-sm-3 col-3' id="det_div_whatsapp" style='text-align: center; display: none'>
                                     <div style='padding-top: 10px'>
                                         <a id="det_whatsapp" target='_blank' style="; text-decoration: none">
@@ -582,7 +582,11 @@
 
             var buscadordireccion = document.getElementById('buscadordireccion').value;
 
-            window.location = "buscador.php?lat="+near_place.geometry.location.lat()+"&lon="+near_place.geometry.location.lng()+"&dir="+buscadordireccion;
+            document.getElementById('lat').value = near_place.geometry.location.lat();
+            document.getElementById('lon').value = near_place.geometry.location.lng();
+            document.getElementById('dir').value = buscadordireccion;
+
+            //window.location = "buscador.php?lat="+near_place.geometry.location.lat()+"&lon="+near_place.geometry.location.lng()+"&dir="+buscadordireccion;
         });
     });
 

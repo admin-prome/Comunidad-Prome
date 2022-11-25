@@ -40,6 +40,10 @@ $getdireccionmapa = isset($_GET['dirmapa']) ? $_GET['dirmapa'] : '';
 $getdireccionactual = isset($_GET['diract']) ? $_GET['diract'] : '';
 
 $tipodir = isset($_GET['tipodir']) ? $_GET['tipodir'] : '';
+    
+if($getdireccionmapa==""){
+    $cercamio="";
+}
 
 if ($getdireccionactual!="" && $getdireccionmapa==""){
     $getdireccionmapa = $getdireccionactual;
@@ -95,6 +99,7 @@ $longitudbuscarcomercios  = "";
 $latitudbuscar = -35.1194969;
 $longitudbuscar = -60.4916407;
 
+/*
 if ($getlatitud!=""){
     $latitudbuscarcomercios = $getlatitud;
     $latitudbuscar = $getlatitud;
@@ -110,11 +115,30 @@ if ($getlatitudactual!=""){
     $latitudbuscarcomercios = $getlatitudactual;
     $latitudbuscar = $getlatitudactual;
 }
-
-
 if ($getlongitudactual!=""){
     $longitudbuscarcomercios = $getlongitudactual;
     $longitudbuscar = $getlongitudactual;
+}
+*/
+
+if ($cercamio=="on"){
+    if($getlatitud!=""){
+        $latitudbuscarcomercios     = $getlatitud;
+        $longitudbuscarcomercios    = $getlongitud;
+        $latitudbuscar              = $getlatitud;
+        $longitudbuscar             = $getlongitud;
+    }elseif($getlatitudactual!=""){
+        $latitudbuscarcomercios     = $getlatitudactual;
+        $longitudbuscarcomercios    = $getlongitudactual;
+        $latitudbuscar              = $getlatitudactual;
+        $longitudbuscar             = $getlongitudactual;
+    }else{
+        $latitudbuscarcomercios     = "";
+        $longitudbuscarcomercios    = "";
+    }
+}else{
+    $latitudbuscarcomercios     = "";
+    $longitudbuscarcomercios    = "";
 }
 
 $comercios = consultarComercios($buscador, $cuentadni, $envios, $latitudbuscarcomercios, $longitudbuscarcomercios, $getmunicipio, $getactividad, $getrubro, $cercamio, $getmunicipiob,  $getrubrob);

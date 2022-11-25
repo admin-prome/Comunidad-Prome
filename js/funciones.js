@@ -183,7 +183,8 @@ function btnCheckCercaMioIndex(){
         var actual_direccion = document.getElementById('div_direccion').value;
 
         window.location = "buscador.php?lat="+actual_lat+"&lon="+actual_lon+"&dir="+actual_direccion+"&tipodir=1";
-*/
+        */
+
     }else{
         document.getElementById('div_direccion').style.display = "none";
   //      document.getElementById('div_direccion').style.display = "";
@@ -200,21 +201,25 @@ function btnCheckCercaMio(){
         var actual_lon = document.getElementById('actual_lon').value;
         var actual_direccion = document.getElementById('actual_direccion').value;
 
-        window.location = "buscador.php?cercamio=on&lat="+actual_lat+"&lon="+actual_lon+"&dir="+actual_direccion+"&tipodir=1";
+        //window.location = "buscador.php?cercamio=on&lat="+actual_lat+"&lon="+actual_lon+"&dir="+actual_direccion+"&tipodir=1";
+        document.getElementById('div_buscadordireccion').style.display = "";
+        document.getElementById('actual_lat').value = actual_lat;
+        document.getElementById('actual_lon').value = actual_lon;
+        document.getElementById('actual_direccion').value = actual_direccion;
+        document.getElementById('buscadordireccion').value = actual_direccion;
 
     }else{        
         document.getElementById('div_buscadordireccion').style.display = "none";
-        
+        /*
         document.getElementById('actual_lat').value = "";
         document.getElementById('actual_lon').value = "";
         document.getElementById('actual_direccion').value = "";
         document.getElementById('buscadordireccion').value = "";
-        
 
         document.getElementById('lat').value = "";
         document.getElementById('lon').value = "";
         document.getElementById('dir').value = "";
-
+        */
 
     }
 

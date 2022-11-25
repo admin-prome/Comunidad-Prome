@@ -218,6 +218,7 @@
                     if (results[1]) {
                         //alert("Location: " + results[1].formatted_address);
                         document.getElementById('actual_direccion').value = results[1].formatted_address;
+                        document.getElementById('buscadordireccion').value = results[1].formatted_address;
                     }
                 }
             });
