@@ -10,7 +10,6 @@ $getlatitud ="";
 $getlongitud ="";
 $getdireccion ="";
 
-
 $buscador = isset($_GET['q']) ? $_GET['q'] : '';
 $cuentadni = isset($_GET['cuentadni']) ? $_GET['cuentadni'] : '';
 if ($cuentadni=="on"){$cuentadnichecked = " checked='checked' ";}
@@ -40,6 +39,7 @@ $getdireccionmapa = isset($_GET['dirmapa']) ? $_GET['dirmapa'] : '';
 $getdireccionactual = isset($_GET['diract']) ? $_GET['diract'] : '';
 
 $tipodir = isset($_GET['tipodir']) ? $_GET['tipodir'] : '';
+$comercio_id = isset($_GET['comercio_id']) ? $_GET['comercio_id'] : '';
     
 if($getdireccionmapa==""){
     $cercamio="";

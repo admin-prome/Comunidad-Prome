@@ -204,7 +204,8 @@
                                 <div class='col-md-9 col-sm-9 col-9'  style='text-align: left; padding-top: 10px'>
                                     <div class='row'>
                                         <div class='col-md-12'>
-                                            <h3 id="det_nombre" style='font-size: 18px; margin-bottom: 4px; font-weight: 700'></h3>    
+                                            <h3 id="det_nombre" style='font-size: 18px; margin-bottom: 4px; font-weight: 700'></h3>
+                                            <input type='hidden' id='det_id' name='det_id' value='' />    
                                             <span id="det_direccion" style='font-size: 15px; margin-bottom: 4px'>
                                                 
                                             </span>
@@ -265,7 +266,8 @@
                                         </a>
                                     </div>
                                 </div>
-                                <!-- <div class='col-md-3 col-sm-3 col-3 d-block d-sm-none' id="det_div_compartir"  style='text-align: center;'>
+
+                                <div class='col-md-3 col-sm-3 col-3 d-block d-sm-none' id="det_div_compartir"  style='text-align: center;'><!---->
                                     <div style='padding-top: 10px'>
                                         <a id="det_compartir" style="text-decoration: none">
                                             <img src='../img/det_compartir.png' style='height: 60px; max-width: auto' alt='Compartir' title='Compartir' />
@@ -274,7 +276,7 @@
                                             </p>
                                         </a>
                                     </div>
-                                </div> -->
+                                </div>
                                 
                             </div>
                             <div class='row'>                                    
@@ -377,48 +379,17 @@
 
 
 <script>
-/* 
-    async function share(titulo, url) {
-        try {
-            await navigator.share({
-            text: titulo,
-            url: url
-            })
-        } catch (error) {
-            console.log('Sharing failed!', error)
-        }
-    }
 
-    const shareButton = document.getElementById("det_compartir");
- 
-    // Creamos una función que se ejecutará cuando el usuario haga click en el botón
+    //BOTON COMPARTIR
+    shareButton = document.getElementById("det_compartir");
     shareButton.addEventListener("click", (event) => {
-        if ("share" in navigator) {
-            share(document.getElementById('det_nombre').innerHTML, "http://catalogo-prome.provinciamicrocreditos.com/");
+        if (navigator.share) {
+            var url = window.location+'&comercio_id='+document.getElementById('det_id').value;
+            navigator.share({ title: document.getElementById('det_nombre').innerHTML, text: document.getElementById('det_nombre').innerHTML, url: url})
         }else{
             alert('Lo siento, este navegador no tiene soporte para compartir')
         }
-    }); */
-    /*
-    // Verificamos si el navegador tiene soporte para el API compartir
-    if ("share" in navigator) {
-        navigator
-        .share({
-            
-        })
-    
-        // Mensaje en Consola cuando se presiona el botón de compartir 
-        .then(() => {
-            console.log("Contenido Compartido !");
-        })
-        .catch(console.error);
-    } else {
-        // Si el navegador no tiene soporte para la API compartir, le enviamos un mensaje al usuario
-        alert('Lo siento, este navegador no tiene soporte para recursos compartidos.')
-    }
-    */
-    //
-    
+    })
    
     const funcionInit = () => {
         if (!"geolocation" in navigator) {
@@ -614,6 +585,9 @@ $(document).ready(function(){
             }
         });
     });
+   <?php if($comercio_id!=""){?>
+   $("#comercio_<?php echo $comercio_id?>").click();
+   <?php }?>
 });
 </script>
 

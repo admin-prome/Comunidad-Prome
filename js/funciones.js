@@ -244,6 +244,7 @@ function limpiarDivDetalle(){
     document.getElementById('div_detalle').style.display = "none";
     document.getElementById('det_logo').src = "";
     document.getElementById('det_nombre').innerHTML = "";
+    document.getElementById('det_id').value = "";
     document.getElementById('det_direccion').innerHTML = "";
     document.getElementById('det_dni').style.display = "none";  
     document.getElementById('det_div_whatsapp').style.display = "none";
@@ -289,17 +290,19 @@ function limpiarDivDetalle(){
 
 }
 
-function mostrarubicacion(latitud, longitud, nombre, direccion, whatsapp, telefono, web, email, instagram, distancia, cuentadni, urlicono, facebookurl, mobile){  
+function mostrarubicacion(latitud, longitud, nombre, direccion, whatsapp, telefono, web, email, instagram, distancia, cuentadni, urlicono, facebookurl, mobile, id){  
 
     limpiarDivDetalle();
 
     var cont = 0;
+    var last = '';
 
     document.getElementById('div_detalle').style.display = "";
 
     // 1:    
     document.getElementById('det_logo').src = urlicono;
     document.getElementById('det_nombre').innerHTML = nombre;
+    document.getElementById('det_id').value = id;
     document.getElementById('det_direccion').innerHTML = direccion;
     
     if (cuentadni=="1"){
@@ -313,6 +316,7 @@ function mostrarubicacion(latitud, longitud, nombre, direccion, whatsapp, telefo
         document.getElementById('det_whatsapp').href = "https://api.whatsapp.com/send?phone="+whatsapp;
 
         cont = cont + 1;
+        last = 'det_div_whatsapp';
     }
     
 
@@ -321,6 +325,7 @@ function mostrarubicacion(latitud, longitud, nombre, direccion, whatsapp, telefo
         document.getElementById('det_tel').href = "tel:"+telefono;
 
         cont = cont + 1;
+        last = 'det_div_tel';
     }
 
     if (web!=""){
@@ -328,6 +333,7 @@ function mostrarubicacion(latitud, longitud, nombre, direccion, whatsapp, telefo
         document.getElementById('det_web').href = web;
 
         cont = cont + 1;
+        last = 'det_div_web';
     }    
 
     if (facebookurl!="" && cont < 4){
@@ -335,6 +341,7 @@ function mostrarubicacion(latitud, longitud, nombre, direccion, whatsapp, telefo
         document.getElementById('det_facebook').href = facebookurl;
 
         cont = cont + 1;
+        last = 'det_div_facebook';
     }
 
     if (instagram!="" && cont < 4){
@@ -342,13 +349,18 @@ function mostrarubicacion(latitud, longitud, nombre, direccion, whatsapp, telefo
         document.getElementById('det_instagram').href = instagram;
 
         cont = cont + 1;
+        last = 'det_div_instagram';
+    }
+    
+    if(cont == 4){
+        if($('#det_div_compartir').is(':visible')){
+            //SOLO OSULTA SI HAY 4 ICONOS Y COMPARTIR ES VISIBLE PORQUE ES CELULAR
+            document.getElementById(last).style.display = "none";
+        }        
     }
 
-    
-
     //3
-    if (latitud!=""){
-   
+    if (latitud!=""){   
         document.getElementById('det2_div_direccion').style.display = "";
         document.getElementById('det2_div_direccionurl').href = "https://www.google.com.ar/maps/@"+latitud+","+longitud+",13z";
         document.getElementById('det2_div_direcciontexto').innerHTML = direccion+""+cuentadni;

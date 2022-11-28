@@ -259,7 +259,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
     
 
     $sql = "
-        SELECT DISTINCT comercio.id, comercio.nombre,rubrobusqueda.palabra, comercio.direccion, 
+        SELECT DISTINCT comercio.id, comercio.nombre, comercio.direccion, 
         comercio.rubro_id, comercio.actividad_id, comercio.municipio_id, comercio.facebookurl, 
         comercio.instagramurl, comercio.web, comercio.whatsapp, comercio.telefono, comercio.email, 
         comercio.estatus_id, comercio.activo, comercio.eliminado,
@@ -281,7 +281,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         $orderby
         
     ";
-
+    
     $sqlMunicipio = "
         SELECT DISTINCT municipio.id as id, municipio.nombre as nombre
         FROM comercio 
@@ -475,8 +475,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         }
 
         $divComercio .="
-            <div style='background-color: #FBF8F8; border: 1px solid #D5D3D3; $cursorpointer margin-top: 10px; padding-bottom: 10px; box-shadow: 2px 2px #B9B9B9' onclick='mostrarubicacion($latitud,$longitud,\"".$nombre."\",\"".$direccion."\",\"".$whatsapp."\",\"".$telefono."\",\"".$web."\",\"".$email."\",\"".$instagramurl."\",\"".$distancia."\",\"".$cuentadni."\",\"".$urlicono."\",\"".$facebookurl."\",\"".$facebooknombre."\")'>
-
+            <div id='comercio_$id' style='background-color: #FBF8F8; border: 1px solid #D5D3D3; $cursorpointer margin-top: 10px; padding-bottom: 10px; box-shadow: 2px 2px #B9B9B9' onclick='mostrarubicacion($latitud,$longitud,\"".$nombre."\",\"".$direccion."\",\"".$whatsapp."\",\"".$telefono."\",\"".$web."\",\"".$email."\",\"".$instagramurl."\",\"".$distancia."\",\"".$cuentadni."\",\"".$urlicono."\",\"".$facebookurl."\",\"".$facebooknombre."\",\"".$id."\")'>
 
                 <div class='row'>
                     <div class='col-md-3 col-sm-3 col-3'  style='padding-right: 0px; text-align: center'>
