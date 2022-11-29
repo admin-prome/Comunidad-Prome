@@ -59,6 +59,14 @@ if ($getdireccion!=""){
     //$cercamio="on";
 }
 
+//PARA QUE NO MARQUE EN EL MAPA LAS 2 UBICACIONES
+if($cercamio=="on"){
+    if($getlatitud!="" && $getlongitud!=""){
+        $getlatitudactual = '';
+        $getlongitudactual = '';
+    }
+}
+
 $displaymapaa = " style='display: none' ";
 $displaycomercios = " ";
 $divComercios2 = "";
