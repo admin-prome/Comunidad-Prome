@@ -354,8 +354,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         $cuentadni = $resultado["cuentadni"];
         $haceenvios = $resultado["haceenvios"];
         $distancia = $resultado["distancia"];
-		$facebooknombre = "";
-
+		
 
         $distancia = formatearDistancia($distancia);
 
@@ -475,7 +474,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         }
 
         $divComercio .="
-            <div id='comercio_$id' style='background-color: #FBF8F8; border: 1px solid #D5D3D3; $cursorpointer margin-top: 10px; padding-bottom: 10px; box-shadow: 2px 2px #B9B9B9' onclick='mostrarubicacion($latitud,$longitud,\"".$nombre."\",\"".$direccion."\",\"".$whatsapp."\",\"".$telefono."\",\"".$web."\",\"".$email."\",\"".$instagramurl."\",\"".$distancia."\",\"".$cuentadni."\",\"".$urlicono."\",\"".$facebookurl."\",\"".$facebooknombre."\",\"".$id."\")'>
+            <div id='comercio_$id' style='background-color: #FBF8F8; border: 1px solid #D5D3D3; $cursorpointer margin-top: 10px; padding-bottom: 10px; box-shadow: 2px 2px #B9B9B9' onclick='mostrarubicacion(\"".$latitud."\",\"".$longitud."\",\"".$nombre."\",\"".$direccion."\",\"".$whatsapp."\",\"".$telefono."\",\"".$web."\",\"".$email."\",\"".$instagramurl."\",\"".$distancia."\",\"".$cuentadni."\",\"".$urlicono."\",\"".$facebookurl."\",\"0\",\"".$id."\")'>
 
                 <div class='row'>
                     <div class='col-md-3 col-sm-3 col-3'  style='padding-right: 0px; text-align: center'>
@@ -526,7 +525,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         ";
         $mobile = 1;
         $divComercioListaOver .="
-            <div style='background-color: #FBF8F8; border: 1px solid #D5D3D3; cursor: pointer; margin-top: 10px; padding-bottom: 10px; margin-right: 10px' onclick='mostrarubicacion(\"".$latitud."\",\"".$longitud."\",\"".$nombre."\",\"".$direccion."\",\"".$whatsapp."\",\"".$telefono."\",\"".$web."\",\"".$email."\",\"".$instagramurl."\",\"".$distancia."\",\"".$cuentadni."\",\"".$urlicono."\",\"".$facebookurl."\",\"".$facebooknombre."\",\"".$mobile."\")'>
+            <div id='comercio_$id' style='background-color: #FBF8F8; border: 1px solid #D5D3D3; cursor: pointer; margin-top: 10px; padding-bottom: 10px; margin-right: 10px' onclick='mostrarubicacion(\"".$latitud."\",\"".$longitud."\",\"".$nombre."\",\"".$direccion."\",\"".$whatsapp."\",\"".$telefono."\",\"".$web."\",\"".$email."\",\"".$instagramurl."\",\"".$distancia."\",\"".$cuentadni."\",\"".$urlicono."\",\"".$facebookurl."\",\"".$mobile."\",\"".$id."\")'>
                 <div class='row'>
                     <div class='col-md-3 col-sm-3 col-3'  style='padding-right: 0px; text-align: center'>
                         <div style='padding-top: 10px; padding-left: 5'>
@@ -580,13 +579,18 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
     }else{
         $color="#ff0000; font-weight: bold";
     }
+    if($totalResultados==1){
+        $text= "resultado"; 
+    }else{
+        $text= "resultados";
+    }
     
     $totalDivResultados = "
             <div class='row' style='margin-top: 0px; margin-bottom: 5px'>
                 <div class='col-md-12' style='text-align: right; padding: 0px 30px'>
                     <div>
                         <p style='margin-bottom: 0px; color: $color'>
-                            $totalResultados resultados
+                            $totalResultados $text
                         </p>
                     </div>                                            
                 </div>                                   

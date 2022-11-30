@@ -55,7 +55,7 @@ if ($tipodir=="1"){
 }
 
 if ($getdireccion!=""){
-    $getdireccionmapa = $getdireccion;
+    //$getdireccionmapa = $getdireccion;
     //$cercamio="on";
 }
 
@@ -65,7 +65,13 @@ if($cercamio=="on"){
         $getlatitudactual = '';
         $getlongitudactual = '';
     }
+}else{
+    $getlatitud = '';
+    $getlongitud = '';
+    $getlatitudactual = '';
+    $getlongitudactual = '';
 }
+
 
 $displaymapaa = " style='display: none' ";
 $displaycomercios = " ";

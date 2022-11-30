@@ -85,6 +85,7 @@
                                             class="form-control"
                                             placeholder="Indicá un domicilio"
                                             value="<?php echo $getdireccionmapa;?>"
+                                            onclick="limpiarDireccion()"
                                         />
                                     </div>
                                     <div class="row">
@@ -588,6 +589,7 @@ $(document).ready(function(){
    <?php if($comercio_id!=""){?>
    $("#comercio_<?php echo $comercio_id?>").click();
    <?php }?>
+
 });
 </script>
 

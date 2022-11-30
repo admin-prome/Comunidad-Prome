@@ -17,6 +17,18 @@ function seleccionarTipoBuscador(tipo){
 
 
 function procesarFormBusqueda(){
+    if(document.getElementById("buscadordireccion").value!= ''){
+        var lon = document.getElementById('lon').value;
+        var lat = document.getElementById('lat').value;
+        var dir = document.getElementById('dir').value;
+        if(lon=='' && lat=='' && dir == ''){
+            alert("Si ingresa una direcci\u00f3n, debe seleccionarla del desplegable para activar la b\u00fasqueda.");
+            document.getElementById("buscadordireccion").value = '';
+            return false
+        }
+
+    }
+
     document.getElementById("formBusqueda").submit();
 }
 
@@ -176,7 +188,7 @@ function btnCheckCercaMioIndex(){
     if (checkCercaMio==true){
 
         document.getElementById('div_direccion').style.display = "";
-
+        document.getElementById('buscadordireccion').value = document.getElementById('actual_direccion').value;
         /*
         var actual_lat = document.getElementById('actual_lat').value;
         var actual_lon = document.getElementById('actual_lon').value;
@@ -188,6 +200,10 @@ function btnCheckCercaMioIndex(){
     }else{
         document.getElementById('div_direccion').style.display = "none";
   //      document.getElementById('div_direccion').style.display = "";
+        document.getElementById('lat').value = "";
+        document.getElementById('lon').value = "";
+        document.getElementById('dir').value = "";
+        document.getElementById('buscadordireccion').value = "";
     }
 }
 
@@ -215,15 +231,13 @@ function btnCheckCercaMio(){
         document.getElementById('actual_lon').value = "";
         document.getElementById('actual_direccion').value = "";
         document.getElementById('buscadordireccion').value = "";
+        */
 
         document.getElementById('lat').value = "";
         document.getElementById('lon').value = "";
         document.getElementById('dir').value = "";
-        */
 
-    }
-
-   
+    }  
     
 }
 
@@ -287,6 +301,14 @@ function limpiarDivDetalle(){
 
     document.getElementById('det2_div_metros').innerHTML = "";
 
+
+}
+
+function limpiarDireccion(){
+    document.getElementById('buscadordireccion').value = "";
+    document.getElementById('lon').value = "";
+    document.getElementById('lat').value = "";
+    document.getElementById('dir').value = "";
 
 }
 
