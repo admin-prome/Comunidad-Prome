@@ -17,16 +17,22 @@ function seleccionarTipoBuscador(tipo){
 
 
 function procesarFormBusqueda(){
-    if(document.getElementById("buscadordireccion").value!= ''){
-        var lon = document.getElementById('lon').value;
-        var lat = document.getElementById('lat').value;
-        var dir = document.getElementById('dir').value;
-        if(lon=='' && lat=='' && dir == ''){
-            alert("Si ingresa una direcci\u00f3n, debe seleccionarla del desplegable para activar la b\u00fasqueda.");
-            document.getElementById("buscadordireccion").value = '';
-            return false
-        }
 
+    var checkCercaMio = document.getElementById('checkCercaMio').checked;
+    var type_on = document.getElementById('type_on').value;
+    
+    if (checkCercaMio==true && type_on=='on'){
+        if(document.getElementById("buscadordireccion").value!= ''){
+            var lon = document.getElementById('lon').value;
+            var lat = document.getElementById('lat').value;
+            var dir = document.getElementById('dir').value;
+            if(lon=='' && lat=='' && dir == ''){
+                alert("Si ingresa una direcci\u00f3n, debe seleccionarla del desplegable para activar la b\u00fasqueda.");
+                document.getElementById("buscadordireccion").value = '';
+                return false
+            }
+
+        }
     }
 
     document.getElementById("formBusqueda").submit();
@@ -309,6 +315,7 @@ function limpiarDireccion(){
     document.getElementById('lon').value = "";
     document.getElementById('lat').value = "";
     document.getElementById('dir').value = "";
+    document.getElementById('type_on').value = "on";    
 
 }
 

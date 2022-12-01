@@ -10,3 +10,4 @@ include_once "../models/config.php";
 <input type="hidden" id="dir" name="dir" value="<?php echo $getdireccion;?>" /> 
 
 <input type="hidden" id="tipovisualizacion" name="tp" value="<?php echo $gettipovisualizacion;?>" >
+<input type="hidden" id="type_on" name="type_on" value="off" >

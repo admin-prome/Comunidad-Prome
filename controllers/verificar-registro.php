@@ -8,16 +8,13 @@ $message = isset($_POST['message']) ? $_POST['message'] : '';
 
 if ($tipo!=""){
     $verificar = verificarExisteDocumento($document);
-
     if ($verificar=="false"){
         echo "false";
     }else{
         $resultado = registrarFormulario($document, $tipo, $message);
         echo "true";
     }
-
 }else{
     header("Location: index.php");
 }
-
 ?>

@@ -59,6 +59,7 @@
                                                     name="dirmapa"
                                                     class="form-control"
                                                     placeholder="Indicá un domicilio"
+                                                    onclick="limpiarDireccion()"
                                                     
                                                 />
                                             </div>

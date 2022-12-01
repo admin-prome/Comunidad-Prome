@@ -11,7 +11,11 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous"> 
 
     <link rel="stylesheet" href="../css/style.css" >
-
+    <script type="text/javascript">
+        <?php if ($tipoget==1){?>
+            window.open('https://www.provinciamicrocreditos.com.ar/comunidad-prome-alta/');
+        <?php } ?>
+    </script>
 </head>
 <body style="background-color: #F3F3F3">
    

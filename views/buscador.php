@@ -557,7 +557,7 @@
             document.getElementById('lat').value = near_place.geometry.location.lat();
             document.getElementById('lon').value = near_place.geometry.location.lng();
             document.getElementById('dir').value = buscadordireccion;
-
+            document.getElementById('type_on').value = "off"; 
             //window.location = "buscador.php?lat="+near_place.geometry.location.lat()+"&lon="+near_place.geometry.location.lng()+"&dir="+buscadordireccion;
         });
     });

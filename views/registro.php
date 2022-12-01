@@ -139,11 +139,13 @@ $(document).ready(function(){
                     $("#mensajeprocesar").html("<div class='alert alert-danger' role='alert'>El DNI no se encuentra registrado</div> ");
                     $("#btnRegistro").prop("disabled", false );
                 }else{
-                    if (tipo=="1"){
-                        window.open('https://www.provinciamicrocreditos.com.ar/comunidad-prome-alta/');
-                    }
+                    
+                    //if (tipo=="1"){
+                        //SE ABRE EN confirmacion-registro.php
+                        //window.open('https://www.provinciamicrocreditos.com.ar/comunidad-prome-alta/');
+                    //}
                    
-                    window.location ="confirmacion-registro.php?tipo=registro";
+                    window.location ="confirmacion-registro.php?tipo="+tipo;
                     /*
                     $("#mensajeprocesar").html("<div class='alert alert-success' role='alert'><a href='https://www.provinciamicrocreditos.com.ar/comunidad-prome-alta/' style='text-decoration: none; color: #000000' target='_blank'>Por favor completar la solicitud en la ventana que se le abrió o haz click aquí</a></div>");
                     */
