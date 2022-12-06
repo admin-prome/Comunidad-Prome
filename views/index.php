@@ -130,7 +130,7 @@
             </div>
             <div class="div-solicitar-index">
                 <div class="row">
-                    <div class="col-md-12" style="padding-right: 0px; text-align: center">
+                    <div class="col-md-12" style="padding-right: 0px; text-align: center;text-shadow: black 1px 1px 2px;">
                         <a href="registro.php?tipo=modificar" style="color: #FFF; font-size: 18px">
                             Solicitar baja/modificación de Comunidad Prome
                         </a>

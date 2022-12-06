@@ -287,7 +287,7 @@
                                             <div id="det2_div_direccion" style="display: none">
                                                 <a id="det2_div_direccionurl" target='_blank' title='Abrir Web' href='#' style='color: #5C5B5B; text-decoration: none'>
                                                     <i style='font-size: 18px' class='fa fa-map-marker-alt'></i>
-                                                    <span  id="det2_div_direcciontexto"></span>999
+                                                    <span  id="det2_div_direcciontexto"></span>
                                                 </a>
                                             </div> 
                                             <div id="det2_div_tel" style="display: none">

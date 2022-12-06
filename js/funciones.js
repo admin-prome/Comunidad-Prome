@@ -327,6 +327,7 @@ function mostrarubicacion(latitud, longitud, nombre, direccion, whatsapp, telefo
     var last = '';
 
     document.getElementById('div_detalle').style.display = "";
+    window.scroll(0, 50);
 
     // 1:    
     document.getElementById('det_logo').src = urlicono;

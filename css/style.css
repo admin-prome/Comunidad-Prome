@@ -4,7 +4,7 @@
 }
 
 .tabactivobuscador {
-    background-color: #23952E;
+    background-color: #23952E !important;
 }
 
 .tabactivobuscador > h3 {
@@ -13,7 +13,7 @@
 
 
 .tabinactivobuscador {
-    background-color: #E3E3E3;
+    background-color: #E3E3E3 !important;
 }
 
 .tabinactivobuscador > h3 {
