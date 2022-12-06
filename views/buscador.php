@@ -91,7 +91,7 @@
                                     <div class="row">
                                         <div class="col-md-11 col-sm-11 col-11">
                                             <div class="input-group mb-1" style="margin-top: 5px">
-                                                <i class="fa fa-list" style ="border-top: 1px solid #ced4da;border-left: 1px solid #ced4da; border-bottom: 1px solid #ced4da; border-right: 0px solid #ced4da; padding-left: 5px; padding-top: 10px; color: #C4C4C4; cursor: pointer" onclick="verfiltrosbusqueda()"></i>
+                                                <i class="fa fa-list" style ="border-top: 1px solid #ced4da;border-left: 1px solid #ced4da; border-bottom: 1px solid #ced4da; border-right: 0px solid #ced4da; padding: 10px; color: #C4C4C4; cursor: pointer" onclick="verfiltrosbusqueda()"></i>
                                                 <input type="text" class="form-control" placeholder="Escribí una marca, insumo, producto o servicio" aria-label="Escribí una marca, insumo, producto o servicio" name="q" aria-describedby="basic-addon2"  value="<?php echo $buscador;?>" autocomplete="off" style="border-left: 0px solid #FFF">
                                                 <span class="input-group-text" id="basic-addon2" style="background-color: #23952E; color: #FFF; cursor: pointer" onclick="procesarFormBusqueda()">
                                                     <i class="fas fa-search"></i>
