@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+    web:
+        build: 
+            context: .
+            dockerfile: Dockerfile.dev
+        ports:
+            - "8080:80"
+        environment:
+            - DB=db
+        links:
+            - db 
+    db:
+        image: mariadb
+        environment:
+            - MARIADB_USER=prome
+            - MARIADB_PASSWORD=prome
+            - MARIADB_ROOT_PASSWORD=prome
+            - MARIADB_DATABASE=prome  
+        volumes:
+            - "${PWD}/models/config_example.php:/var/www/html/models/config.php"
+            - "${PWD}/bd/prome.sql:/docker-entrypoint-initdb.d/dump.sql"
+            
+

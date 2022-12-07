@@ -1,0 +1,11 @@
+FROM php:7.3-apache
+
+WORKDIR /var/www/html
+
+RUN docker-php-ext-install mysqli pdo pdo_mysql 
+
+COPY [".", "."]
+
+RUN ls -la 
+
+RUN cp /var/www/html/models/config_example.php /var/www/html/models/config.php
