@@ -393,7 +393,7 @@ function mostrarubicacion(latitud, longitud, nombre, direccion, whatsapp, telefo
     if (latitud!=""){   
         document.getElementById('det2_div_direccion').style.display = "";
         document.getElementById('det2_div_direccionurl').href = "https://www.google.com.ar/maps/@"+latitud+","+longitud+",13z";
-        document.getElementById('det2_div_direcciontexto').innerHTML = direccion+""+cuentadni;
+        document.getElementById('det2_div_direcciontexto').innerHTML = direccion;
     }
 
 
