@@ -325,16 +325,41 @@ function mostrarubicacion(latitud, longitud, nombre, direccion, whatsapp, telefo
 
     var cont = 0;
     var last = '';
+    var text = '';
 
     document.getElementById('div_detalle').style.display = "";
-    window.scroll(0, 50);
+    
+    //MUEVE EL DIV LISTADO HACIA ARRIBA
+    window.scroll(0,50);
+    document.getElementById('divComercios').scroll(0,0);
 
     // 1:    
     document.getElementById('det_logo').src = urlicono;
     document.getElementById('det_nombre').innerHTML = nombre;
     document.getElementById('det_id').value = id;
     document.getElementById('det_direccion').innerHTML = direccion;
-    
+
+    //DETALLE PARA COMPARTIR
+    text = nombre +"\n";
+    if(direccion!=''){
+        text = text+direccion +"\n";
+    }
+    if(whatsapp!=''){
+        text = text+whatsapp +"\n";
+    }
+    if(web!=''){
+        text = text+web +"\n";
+    }
+    if(facebookurl!=''){
+        text = text+facebookurl +"\n";
+    }
+    if(email!=''){
+        text = text+email +"\n";
+    }
+
+    document.getElementById('det_detalle').value = text;
+    //FIN DETALLE PARA COMPARTIR
+
     if (cuentadni=="1"){
         document.getElementById('det_dni').style.display = "";        
     }

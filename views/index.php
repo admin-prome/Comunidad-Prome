@@ -5,10 +5,10 @@
     <?php include_once "head.php"; ?>
 
 </head>
-<body>
+<body  style="background-image: url('../img/fondo.jpg'); background-size: cover;">
     
 
-    <div class="container-fluid div-back-index" style="background-image: url('../img/fondo.jpg'); height: 100%; background-size: cover;">
+    <div class="container-fluid div-back-index">
         <div >
             <div class="container-fluid" style="background-color: #323232; opacity: 0.9; padding: 20px; padding-bottom: 30px; padding-top: 30px">
                 <div class="container">

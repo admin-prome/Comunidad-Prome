@@ -35,16 +35,15 @@
 <body style="background-color: #FFFFFF" id="inicio">
 
     <div>
-        <div class="container" style="background-color: #FFF; opacity: 0.9; padding-bottom: 50px; padding-top: 10px">
+        <div class="container" style="background-color: #FFF; opacity: 0.9; padding-bottom: 5px; padding-top: 5px">
             <div class="container">     
-                
+                <!--
                 <div class="row" style="margin-top: 0px; padding-bottom: 20px; margin-left: 10px">
                     <div class="col-md-4"> 
-                        <a href="./">
-                            <img src="../img/prome.png" style="height: 40px" />
-                        </a>
+                        <a href="./"><img src="../img/prome.png" style="height: 40px" /></a>
                     </div>
                 </div>
+                -->
                 <div class="row" style="margin-top: 0px">
                     <div class="col-md-4"> 
                         <form name="formBusqueda" id="formBusqueda" action="buscador.php" method="GET" style="margin-bottom: 0px">
@@ -190,145 +189,147 @@
                         </div>
                         </form>
 
-
-                        <div id="div_detalle" style='background-color: #FBF8F8; border: 1px solid #D5D3D3; cursor: pointer; margin-top: 20px; padding-bottom: 10px; padding-left: 10px; padding-right: 15px; display: none' >
-                            <a href="#inicio" id="irdetalle"></a>
-                            <div style="float: right; margin-right: 10px; margin-top: 10px" onclick="cerrardetalle()">
-                                <i class="far fa-times-circle" style="color: #6E7679; font-size: 20px"></i>
-                            </div> 
-                            <div class='row'>
-                                <div class='col-md-3 col-sm-3 col-3'  style='padding-right: 0px; text-align: center'>
-                                    <div style='padding-top: 10px'>
-                                        <img id="det_logo" style='height: 60px; max-width: auto'/>
+                        <div id="divComercios" class="d-none d-sm-block" style="height: 340px; overflow-y: scroll; overflow-x: hidden;">
+                            <!-- div_detalle -->
+                            <div id="div_detalle" style='background-color: #FBF8F8; border: 1px solid #D5D3D3; cursor: pointer; padding-bottom: 10px; margin-bottom: 10px; padding-left: 10px; padding-right: 15px; display: none' >
+                                <a href="#inicio" id="irdetalle"></a>
+                                <div style="float: right; margin-right: 10px; margin-top: 10px" onclick="cerrardetalle()">
+                                    <i class="far fa-times-circle" style="color: #6E7679; font-size: 20px"></i>
+                                </div> 
+                                <div class='row'>
+                                    <div class='col-md-3 col-sm-3 col-3'  style='padding-right: 0px; text-align: center'>
+                                        <div style='padding-top: 10px'>
+                                            <img id="det_logo" style='height: 60px; max-width: auto'/>
+                                        </div>
                                     </div>
+                                    <div class='col-md-9 col-sm-9 col-9'  style='text-align: left; padding-top: 10px'>
+                                        <div class='row'>
+                                            <div class='col-md-12'>
+                                                <h3 id="det_nombre" style='font-size: 18px; margin-bottom: 4px; font-weight: 700'></h3>
+                                                <input type='hidden' id='det_id' name='det_id' value='' />
+                                                <input type='hidden' id='det_detalle' name='det_detalle' value='' />    
+                                                <span id="det_direccion" style='font-size: 15px; margin-bottom: 4px'>
+                                                    
+                                                </span>
+                                                <img id="det_dni" title='Cuenta DNI Comercios' src='../img/logocomercios.png' style='height: 23px; margin-right: 10px; margin-top: -5px; display: none' />                                            
+                                            </div>                                            
+                                        </div>
+                                                                                
+                                    </div>                                    
                                 </div>
-                                <div class='col-md-9 col-sm-9 col-9'  style='text-align: left; padding-top: 10px'>
-                                    <div class='row'>
-                                        <div class='col-md-12'>
-                                            <h3 id="det_nombre" style='font-size: 18px; margin-bottom: 4px; font-weight: 700'></h3>
-                                            <input type='hidden' id='det_id' name='det_id' value='' />    
-                                            <span id="det_direccion" style='font-size: 15px; margin-bottom: 4px'>
+                                <div class='row' style="font-size:14px">
+                                    <div class='col-md-3 col-sm-3 col-3' id="det_div_whatsapp" style='text-align: center; display: none'>
+                                        <div style='padding-top: 10px'>
+                                            <a id="det_whatsapp" target='_blank' style="; text-decoration: none">
+                                                <img src='../img/det_whatsapp.png' style='height: 60px; max-width: auto' alt='Contactar' title='Contactar' />
+                                                <p style="color: #23952E">
+                                                    Contactar
+                                                </p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class='col-md-3 col-sm-3 col-3'  id="det_div_tel" style=' text-align: center; display: none'>
+                                        <div style='padding-top: 10px'>
+                                            <a id="det_tel" style="; text-decoration: none">
+                                                <img src='../img/det_tel.png' style='height: 60px; max-width: auto' alt='Llamar' title='Llamar' />
+                                                <p style="color: #23952E">
+                                                    Llamar
+                                                </p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class='col-md-3 col-sm-3 col-3' id="det_div_web"  style='text-align: center; display: none'>
+                                        <div style='padding-top: 10px'>
+                                            <a id="det_web" target='_blank' style="; text-decoration: none">
+                                                <img src='../img/det_web.png' style='height: 60px; max-width: auto' alt='Ver web' title='Ver web' />
+                                                <p style="color: #23952E">
+                                                    Ver web
+                                                </p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class='col-md-3 col-sm-3 col-3' id="det_div_facebook"  style='text-align: center; display: none'>
+                                        <div style='padding-top: 10px'>
+                                            <a id="det_facebook" target='_blank' style="; text-decoration: none">
+                                                <img src='../img/det_facebook.png' style='height: 60px; max-width: auto' alt='Ver web' title='Ver web' />
+                                                <p style="color: #23952E">
+                                                    Facebook
+                                                </p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class='col-md-3 col-sm-3 col-3' id="det_div_instagram"  style='text-align: center; display: none'>
+                                        <div style='padding-top: 10px'>
+                                            <a id="det_instagram" target='_blank' style="; text-decoration: none">
+                                                <img src='../img/det_instagram.png' style='height: 60px; max-width: auto' alt='Ver web' title='Ver web' />
+                                                <p style="color: #23952E">
+                                                    Instagram
+                                                </p>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class='col-md-3 col-sm-3 col-3 d-block d-sm-none' id="det_div_compartir"  style='text-align: center;'><!---->
+                                        <div style='padding-top: 10px'>
+                                            <a id="det_compartir" style="text-decoration: none">
+                                                <img src='../img/det_compartir.png' style='height: 60px; max-width: auto' alt='Compartir' title='Compartir' />
+                                                <p style="color: #23952E">
+                                                    Compartir
+                                                </p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class='row'>                                    
+                                    <div class='col-md-12' style='text-align: left; padding-left: 20px; padding-right: 20px'>                                        
+                                        <div class='row' style="padding-top: 0px;">
+                                            <div class='col-md-9 col-sm-9 col-9' style='text-align: left; padding-top: 0px'>
+                                                <div id="det2_div_direccion" style="display: none">
+                                                    <a id="det2_div_direccionurl" target='_blank' title='Abrir Web' href='#' style='color: #5C5B5B; text-decoration: none'>
+                                                        <i style='font-size: 18px' class='fa fa-map-marker-alt'></i>
+                                                        <span  id="det2_div_direcciontexto"></span>
+                                                    </a>
+                                                </div> 
+                                                <div id="det2_div_tel" style="display: none">
+                                                    <a id="det2_div_telurl" title='Llamar' href='tel:telefono' style='color: #5C5B5B; text-decoration: none'>
+                                                        <i style='font-size: 18px' class='fa fa-phone'></i>
+                                                        <span  id="det2_div_teltexto"></span>
+                                                    </a>
+                                                </div> 
+                                                <div id="det2_div_email" style="display: none">
+                                                    <a id="det2_div_emailurl" title='Email' href='mailto:email' style='color: #5C5B5B; text-decoration: none'>
+                                                        <i style='font-size: 18px' class='fa fa-envelope'></i>
+                                                        <span  id="det2_div_emailtexto"></span>
+                                                    </a>
+                                                </div> 
+                                                <div  id="det2_div_instagram"  style="display: none">
+                                                    <a id="det2_div_instagramurl" target="_blank" title='Instagram' href='#' style='color: #5C5B5B; text-decoration: none; '>
+                                                        <i style='font-size: 18px' class='fab fa-instagram'></i>
+                                                        <span  id="det2_div_instagramtexto"></span>
+                                                    </a>
+                                                </div>
+                                                <div  id="det2_div_facebook"  style="display: none">
+                                                    <a id="det2_div_facebookurl" target="_blank" title='Facebook' href='#' style='color: #5C5B5B; text-decoration: none; '>
+                                                        <i style='font-size: 18px' class='fab fa-facebook-square'></i>
+                                                        <span  id="det2_div_facebooktexto"></span>
+                                                    </a>
+                                                </div>
                                                 
-                                            </span>
-                                            <img id="det_dni" title='Cuenta DNI Comercios' src='../img/logocomercios.png' style='height: 23px; margin-right: 10px; margin-top: -5px; display: none' />                                            
-                                        </div>                                            
-                                    </div>
-                                                                            
-                                </div>                                    
-                            </div>
-                            <div class='row' style="font-size:14px">
-                                <div class='col-md-3 col-sm-3 col-3' id="det_div_whatsapp" style='text-align: center; display: none'>
-                                    <div style='padding-top: 10px'>
-                                        <a id="det_whatsapp" target='_blank' style="; text-decoration: none">
-                                            <img src='../img/det_whatsapp.png' style='height: 60px; max-width: auto' alt='Contactar' title='Contactar' />
-                                            <p style="color: #23952E">
-                                                Contactar
-                                            </p>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class='col-md-3 col-sm-3 col-3'  id="det_div_tel" style=' text-align: center; display: none'>
-                                    <div style='padding-top: 10px'>
-                                        <a id="det_tel" style="; text-decoration: none">
-                                            <img src='../img/det_tel.png' style='height: 60px; max-width: auto' alt='Llamar' title='Llamar' />
-                                            <p style="color: #23952E">
-                                                Llamar
-                                            </p>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class='col-md-3 col-sm-3 col-3' id="det_div_web"  style='text-align: center; display: none'>
-                                    <div style='padding-top: 10px'>
-                                        <a id="det_web" target='_blank' style="; text-decoration: none">
-                                            <img src='../img/det_web.png' style='height: 60px; max-width: auto' alt='Ver web' title='Ver web' />
-                                            <p style="color: #23952E">
-                                                Ver web
-                                            </p>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class='col-md-3 col-sm-3 col-3' id="det_div_facebook"  style='text-align: center; display: none'>
-                                    <div style='padding-top: 10px'>
-                                        <a id="det_facebook" target='_blank' style="; text-decoration: none">
-                                            <img src='../img/det_facebook.png' style='height: 60px; max-width: auto' alt='Ver web' title='Ver web' />
-                                            <p style="color: #23952E">
-                                                Facebook
-                                            </p>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class='col-md-3 col-sm-3 col-3' id="det_div_instagram"  style='text-align: center; display: none'>
-                                    <div style='padding-top: 10px'>
-                                        <a id="det_instagram" target='_blank' style="; text-decoration: none">
-                                            <img src='../img/det_instagram.png' style='height: 60px; max-width: auto' alt='Ver web' title='Ver web' />
-                                            <p style="color: #23952E">
-                                                Instagram
-                                            </p>
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class='col-md-3 col-sm-3 col-3 d-block d-sm-none' id="det_div_compartir"  style='text-align: center;'><!---->
-                                    <div style='padding-top: 10px'>
-                                        <a id="det_compartir" style="text-decoration: none">
-                                            <img src='../img/det_compartir.png' style='height: 60px; max-width: auto' alt='Compartir' title='Compartir' />
-                                            <p style="color: #23952E">
-                                                Compartir
-                                            </p>
-                                        </a>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                            <div class='row'>                                    
-                                <div class='col-md-12' style='text-align: left; padding-left: 20px; padding-right: 20px'>                                        
-                                    <div class='row' style="padding-top: 0px;">
-                                        <div class='col-md-9 col-sm-9 col-9' style='text-align: left; padding-top: 0px'>
-                                            <div id="det2_div_direccion" style="display: none">
-                                                <a id="det2_div_direccionurl" target='_blank' title='Abrir Web' href='#' style='color: #5C5B5B; text-decoration: none'>
-                                                    <i style='font-size: 18px' class='fa fa-map-marker-alt'></i>
-                                                    <span  id="det2_div_direcciontexto"></span>
-                                                </a>
-                                            </div> 
-                                            <div id="det2_div_tel" style="display: none">
-                                                <a id="det2_div_telurl" title='Llamar' href='tel:telefono' style='color: #5C5B5B; text-decoration: none'>
-                                                    <i style='font-size: 18px' class='fa fa-phone'></i>
-                                                    <span  id="det2_div_teltexto"></span>
-                                                </a>
-                                            </div> 
-                                            <div id="det2_div_email" style="display: none">
-                                                <a id="det2_div_emailurl" title='Email' href='mailto:email' style='color: #5C5B5B; text-decoration: none'>
-                                                    <i style='font-size: 18px' class='fa fa-envelope'></i>
-                                                    <span  id="det2_div_emailtexto"></span>
-                                                </a>
-                                            </div> 
-                                            <div  id="det2_div_instagram"  style="display: none">
-                                                <a id="det2_div_instagramurl" target="_blank" title='Instagram' href='#' style='color: #5C5B5B; text-decoration: none; '>
-                                                    <i style='font-size: 18px' class='fab fa-instagram'></i>
-                                                    <span  id="det2_div_instagramtexto"></span>
-                                                </a>
-                                            </div>
-                                            <div  id="det2_div_facebook"  style="display: none">
-                                                <a id="det2_div_facebookurl" target="_blank" title='Facebook' href='#' style='color: #5C5B5B; text-decoration: none; '>
-                                                    <i style='font-size: 18px' class='fab fa-facebook-square'></i>
-                                                    <span  id="det2_div_facebooktexto"></span>
-                                                </a>
-                                            </div>
                                             
-                                        
+                                            </div>
+                                            <div class='col-md-3 col-sm-3 col-3' style='text-align: right; padding-top: 0px'>
+                                                <span  id="det2_div_metros" style='font-weight: 600'></span>
+                                            </div>
                                         </div>
-                                        <div class='col-md-3 col-sm-3 col-3' style='text-align: right; padding-top: 0px'>
-                                            <span  id="det2_div_metros" style='font-weight: 600'></span>
-                                        </div>
+
                                     </div>
-
+                                    
                                 </div>
-                                
-                            </div>
 
-                        </div>
-                        
-                        <div id="divComercios" class="d-none d-sm-block" style="height: 400px; overflow-y: scroll; overflow-x: hidden;">
+                            </div>
+                            <!-- FIN div_detalle -->
+
                             <div  <?php echo $displaycomercios;?>>
                                 <?php echo $divComercios;?>
                             </div>  
@@ -338,18 +339,19 @@
                             
                     </div>  
                     <div class="col-md-8" id="div_mapa" <?php echo $displaymapa;?>>
-                        <div id="map"></div> 
-                        <br>
-                        <div class="d-none d-sm-block"> 
-                            <!--
+                        <div id="map"></div>                                                                      
+                    </div>
+                    
+                    <div class="col-md-12">
+                        <div class="d-none d-sm-block" style="padding: 8px; text-align: center;">                            
                             <a href="registro.php?tipo=alta">
                                 <button class='btn' style="background-color: #23952E; color: #FFF; font-weight: 700; font-size: 18px">
                                     Quiero sumarme a la Comunidad Prome
                                 </button>
-                            </a>
-                            -->
-                        </div>                                              
+                            </a>                            
+                        </div>
                     </div>
+
                     <div class="d-block d-md-none" onclick="mostrarBuscadorMobile()">
                         <a class="btn-flotante">
                             <i id="iconMapaResultado" class="fa fa-map-marker-alt" style="font-size: 20px; display: none"></i> 
@@ -386,7 +388,8 @@
     shareButton.addEventListener("click", (event) => {
         if (navigator.share) {
             var url = window.location+'&comercio_id='+document.getElementById('det_id').value;
-            navigator.share({ title: document.getElementById('det_nombre').innerHTML, text: document.getElementById('det_nombre').innerHTML, url: url})
+            navigator.share({ title: document.getElementById('det_nombre').innerHTML, text: document.getElementById('det_detalle').value, url: url})
+            //navigator.share({ title: "titulo", text: "detalle", url: url})
         }else{
             alert('Lo siento, este navegador no tiene soporte para compartir')
         }
