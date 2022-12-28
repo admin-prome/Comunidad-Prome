@@ -37,13 +37,13 @@
     <div>
         <div class="container" style="background-color: #FFF; opacity: 0.9; padding-bottom: 5px; padding-top: 5px">
             <div class="container">     
-                <!--
+                
                 <div class="row" style="margin-top: 0px; padding-bottom: 20px; margin-left: 10px">
                     <div class="col-md-4"> 
                         <a href="./"><img src="../img/prome.png" style="height: 40px" /></a>
                     </div>
                 </div>
-                -->
+                
                 <div class="row" style="margin-top: 0px">
                     <div class="col-md-4"> 
                         <form name="formBusqueda" id="formBusqueda" action="buscador.php" method="GET" style="margin-bottom: 0px">
@@ -189,7 +189,7 @@
                         </div>
                         </form>
 
-                        <div id="divComercios" class="d-none d-sm-block" style="height: 340px; overflow-y: scroll; overflow-x: hidden;">
+                        <div id="divComercios" class="d-none d-sm-block" style="height: 340px; overflow-y: auto; overflow-x: hidden;">
                             <!-- div_detalle -->
                             <div id="div_detalle" style='background-color: #FBF8F8; border: 1px solid #D5D3D3; cursor: pointer; padding-bottom: 10px; margin-bottom: 10px; padding-left: 10px; padding-right: 15px; display: none' >
                                 <a href="#inicio" id="irdetalle"></a>
@@ -342,10 +342,10 @@
                         <div id="map"></div>                                                                      
                     </div>
                     
-                    <div class="col-md-12">
+                    <div class="col-md-12" style="border-top: 1px solid #ddd; margin-top:10px">
                         <div class="d-none d-sm-block" style="padding: 8px; text-align: center;">                            
                             <a href="registro.php?tipo=alta">
-                                <button class='btn' style="background-color: #23952E; color: #FFF; font-weight: 700; font-size: 18px">
+                                <button class='btn' style="background-color: #23952E; color: #FFF; font-weight: 700; font-size: 18px; padding-left:30px; padding-right:30px; letter-spacing:1px">
                                     Quiero sumarme a la Comunidad Prome
                                 </button>
                             </a>                            

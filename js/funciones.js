@@ -118,7 +118,7 @@ function verfiltrosbusquedabuscador(){
 
 
 function mostrarBuscadorMobile(){
-        
+    cerrardetalle();  
     var tipovisualizacion = document.getElementById('tipovisualizacion').value;
     if (tipovisualizacion==""){ // Se cambia para lista
 
@@ -255,7 +255,7 @@ function cerrardetalle(){
     var mobileclickcomercio = document.getElementById('mobileclickcomercio').value;
 
     if (mobileclickcomercio=="1"){
-        document.getElementById('divComercios').style.display = "";
+        document.getElementById('divComercios').style.display = "inline !important";
     }
     
 }
@@ -330,7 +330,7 @@ function mostrarubicacion(latitud, longitud, nombre, direccion, whatsapp, telefo
     document.getElementById('div_detalle').style.display = "";
     
     //MUEVE EL DIV LISTADO HACIA ARRIBA
-    window.scroll(0,50);
+    window.scroll(0,0);
     document.getElementById('divComercios').scroll(0,0);
 
     // 1:    
