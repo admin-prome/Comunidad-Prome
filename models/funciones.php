@@ -131,6 +131,9 @@ function consultarRubros($rubro=null){
 }
 
 function formatearDistancia($distancia=null){
+    if(is_null($distancia) || $distancia == ''){
+        return null;
+    }
 
     $distancia = round($distancia,0);    
     $distanciaFormateo ="";
@@ -145,8 +148,6 @@ function formatearDistancia($distancia=null){
 }
 
 function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $latitudbuscar=null, $longitudbuscar=null, $getmunicipio=null, $getactividad=null, $getrubro=null, $cercamio=null, $getmunicipiob=null, $getrubrob=null){
-
-  
 
     $where = "";
     $agregarselect = "";
@@ -178,8 +179,6 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
     if($filtrowheremunicipiomultiple!=""){
         $where .= " and comercio.municipio_id in ($filtrowheremunicipiomultiple)  ";
     }
-
-
 
     $filtrowhererubromultiple = "";
     if ($getrubrob!=""){
@@ -254,9 +253,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         $orderby = " 
             ORDER BY comercio.cuentadni DESC, rubro.nombre ASC, RAND()
         ";
-    }
-
-    
+    }    
 
     $sql = "
         SELECT DISTINCT comercio.id, comercio.nombre, comercio.direccion, 
@@ -265,7 +262,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         comercio.estatus_id, comercio.activo, comercio.eliminado,
         comercio.cuentadni, comercio.haceenvios,
         rubro.nombre as rubro_nombre,municipio.nombre as municipio_nombre,
-        X(coordenadas) as latitud, Y(coordenadas) as longitud
+        ST_X(coordenadas) as latitud, ST_Y(coordenadas) as longitud
         $agregarselect
 
         FROM comercio 
@@ -354,10 +351,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         $cuentadni = $resultado["cuentadni"];
         $haceenvios = $resultado["haceenvios"];
         $distancia = $resultado["distancia"];
-		
-
         $distancia = formatearDistancia($distancia);
-
         $div_cuentadni = "";
         $div_cuentadniMapa = "";
 
@@ -410,11 +404,11 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
             popupAnchor:  [-3, -76]
         });
         
-        var latitudget = "<?php echo $getlatitud;?>"; 
+        var latitudget = "$getlatitud"; 
         if (latitudget ==""){
             //L.marker([coordenadas.latitude, coordenadas.longitude], {icon: iconActual}).addTo(map).bindPopup('<b>Mi Ubicación Actual </b>'); 
         }else{
-            L.marker([<?php echo $getlatitud;?>, <?php echo $getlongitud;?>], {icon: iconBusqueda}).addTo(map).bindPopup('<b><?php echo $getdireccion;?> </b>');                 
+            L.marker([$getlatitud, $getlongitud], {icon: iconBusqueda}).addTo(map).bindPopup('<b>$getdireccion </b>');                 
         }
         */
 
@@ -510,7 +504,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
                                 $div_iconos
                             </div>
                             <div class='col-md-4 col-sm-4 col-4' style='padding-right: 30px; padding-left: 0px'>
-                                <p style='font-size: 17px; margin-bottom: 4px; color: #212529; text-align: right; font-weight: 600'>
+                                <p style='font-size: 17px; margin-bottom: 4px; color: #5C5B5B; text-align: right; font-weight: 600'> <!-- antes color: #212529-->
                                     $distancia
                                 </p>
                             </div>

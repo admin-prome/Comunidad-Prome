@@ -38,14 +38,16 @@
         <div class="container" style="background-color: #FFF; opacity: 0.9; padding-bottom: 5px; padding-top: 5px">
             <div class="container">     
                 
+                <!--
                 <div class="row" style="margin-top: 0px; padding-bottom: 20px; margin-left: 10px">
                     <div class="col-md-4"> 
                         <a href="./"><img src="../img/prome.png" style="height: 40px" /></a>
                     </div>
                 </div>
-                
+                -->
+
                 <div class="row" style="margin-top: 0px">
-                    <div class="col-md-4"> 
+                    <div class="col-md-4" style="padding: 0px"> 
                         <form name="formBusqueda" id="formBusqueda" action="buscador.php" method="GET" style="margin-bottom: 0px">
                         <div style="background-color: #FBF8F8; border: 1px solid #CFCFCF; box-shadow: 0px 2px #A9A9A9; margin-bottom: 10px">
 
@@ -319,7 +321,7 @@
                                             
                                             </div>
                                             <div class='col-md-3 col-sm-3 col-3' style='text-align: right; padding-top: 0px'>
-                                                <span  id="det2_div_metros" style='font-weight: 600'></span>
+                                                <span  id="det2_div_metros" style='font-weight: 600; color: #5C5B5B'></span><!-- antes color: #212529-->
                                             </div>
                                         </div>
 
@@ -338,7 +340,7 @@
 
                             
                     </div>  
-                    <div class="col-md-8" id="div_mapa" <?php echo $displaymapa;?>>
+                    <div class="col-md-8" id="div_mapa" style="padding-left: 0px" <?php echo $displaymapa;?>>
                         <div id="map"></div>                                                                      
                     </div>
                     
