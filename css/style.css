@@ -81,23 +81,51 @@
 	.div-solicitar-index{
 		margin-top: 3px;
 	}
+	
+	.container-box{
+		position: absolute; 
+		top: 10%; 
+		bottom: 10%; 
+		left: 10px;
+		right: 10px;
+		margin: auto;
+		height: fit-content;
+	}
+
+	.link_solicitar {
+		color: #FFF; 
+		font-size: 18px;
+		letter-spacing: 0.099em;
+	}
+
+	#map { height: 600px !important; width: 100% }
+
 } 
 
-
-#map { height: 600px; width: 100% }
+#map { height: 100%; width: 100% }
 
 .div_comercio{
 	background-color: #FBF8F8; 
 	border: 1px solid #D5D3D3; 
-	margin-top: 10px; 
+	margin-top: 0px; 
+	margin-bottom: 10px; 
 	padding-bottom: 10px; 
 	box-shadow: 2px 2px #B9B9B9;
 }
 
-.div_comercio:first-child {
-    margin-top: 0px;
+.div_comercio:hover{
+	background-color: #ececec; 
 }
 
 select.form-control {
     -webkit-appearance: menulist;
+}
+
+.container-box{
+	width: 100%;
+}
+
+.link_solicitar {
+	color: #FFF; 
+	font-size: 18px;
 }

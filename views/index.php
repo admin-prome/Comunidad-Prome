@@ -9,7 +9,7 @@
     
 
     <div class="container-fluid div-back-index">
-        <div >
+        <div class="container-box" >
             <div class="container-fluid" style="background-color: #323232; opacity: 0.9; padding: 20px; padding-bottom: 30px; padding-top: 30px">
                 <div class="container">
                     <div class="row" >
@@ -131,7 +131,7 @@
             <div class="div-solicitar-index">
                 <div class="row">
                     <div class="col-md-12" style="padding-right: 0px; text-align: center;text-shadow: black 1px 1px 2px;">
-                        <a href="registro.php?tipo=modificar" style="color: #FFF; font-size: 18px">
+                        <a href="registro.php?tipo=modificar" class="link_solicitar">
                             Solicitar baja/modificación de Comunidad Prome
                         </a>
                     </div>                                    
@@ -201,7 +201,7 @@
             $longitud = document.querySelector("#actual_lon");
 
         const onUbicacionConcedida = ubicacion => {
-            console.log("Tengo la ubicación: ", ubicacion);
+            //console.log("Tengo la ubicación: ", ubicacion);
             const coordenadas = ubicacion.coords;
 
             try{

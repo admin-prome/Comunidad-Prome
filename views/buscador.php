@@ -36,16 +36,14 @@
 
     <div>
         <div class="container" style="background-color: #FFF; opacity: 0.9; padding-bottom: 5px; padding-top: 5px">
-            <div class="container">     
+            <div class="container">               
                 
-                <!--
                 <div class="row" style="margin-top: 0px; padding-bottom: 20px; margin-left: 10px">
                     <div class="col-md-4"> 
                         <a href="./"><img src="../img/prome.png" style="height: 40px" /></a>
                     </div>
                 </div>
-                -->
-
+                
                 <div class="row" style="margin-top: 0px">
                     <div class="col-md-4" style="padding: 0px"> 
                         <form name="formBusqueda" id="formBusqueda" action="buscador.php" method="GET" style="margin-bottom: 0px">
@@ -162,13 +160,7 @@
                             </div>
 
                             <?php echo $divTotalComercios;?>
-
-                            
                             <?php include_once "include_camposmapa.php"; ?>
-
-
-                            
-                            
                         </div>
                         <div style="background-color: #FFF; border: 0px solid #CFCFCF; box-shadow: 0px 0px #A9A9A9; margin-bottom: 10px">                            
                                 <div class="row" style="margin-top: 14px">
@@ -190,161 +182,163 @@
                                 
                         </div>
                         </form>
-
-                        <div id="divComercios" class="d-none d-sm-block" style="height: 340px; overflow-y: auto; overflow-x: hidden;">
-                            <!-- div_detalle -->
-                            <div id="div_detalle" style='background-color: #FBF8F8; border: 1px solid #D5D3D3; cursor: pointer; padding-bottom: 10px; margin-bottom: 10px; padding-left: 10px; padding-right: 15px; display: none' >
-                                <a href="#inicio" id="irdetalle"></a>
-                                <div style="float: right; margin-right: 10px; margin-top: 10px" onclick="cerrardetalle()">
-                                    <i class="far fa-times-circle" style="color: #6E7679; font-size: 20px"></i>
-                                </div> 
-                                <div class='row'>
-                                    <div class='col-md-3 col-sm-3 col-3'  style='padding-right: 0px; text-align: center'>
-                                        <div style='padding-top: 10px'>
-                                            <img id="det_logo" style='height: 60px; max-width: auto'/>
-                                        </div>
+                        
+                        <!-- div_detalle -->
+                        <div id="div_detalle" draggable="true" style='background-color: #FBF8F8; border: 1px solid #D5D3D3; padding-bottom: 10px; margin-bottom: 10px; padding-left: 10px; padding-right: 15px; display: none' >
+                            <a href="#inicio" id="irdetalle"></a>
+                            <div style="float: right; margin-right: 10px; margin-top: 10px; cursor: pointer" onclick="cerrardetalle()">
+                                <i class="far fa-times-circle" style="color: #6E7679; font-size: 20px"></i>
+                            </div> 
+                            <div class='row'>
+                                <div class='col-md-3 col-sm-3 col-3'  style='padding-right: 0px; text-align: center'>
+                                    <div style='padding-top: 10px'>
+                                        <img id="det_logo" style='height: 60px; max-width: auto'/>
                                     </div>
-                                    <div class='col-md-9 col-sm-9 col-9'  style='text-align: left; padding-top: 10px'>
-                                        <div class='row'>
-                                            <div class='col-md-12'>
-                                                <h3 id="det_nombre" style='font-size: 18px; margin-bottom: 4px; font-weight: 700'></h3>
-                                                <input type='hidden' id='det_id' name='det_id' value='' />
-                                                <input type='hidden' id='det_detalle' name='det_detalle' value='' />    
-                                                <span id="det_direccion" style='font-size: 15px; margin-bottom: 4px'>
-                                                    
-                                                </span>
-                                                <img id="det_dni" title='Cuenta DNI Comercios' src='../img/logocomercios.png' style='height: 23px; margin-right: 10px; margin-top: -5px; display: none' />                                            
-                                            </div>                                            
-                                        </div>
-                                                                                
-                                    </div>                                    
                                 </div>
-                                <div class='row' style="font-size:14px">
-                                    <div class='col-md-3 col-sm-3 col-3' id="det_div_whatsapp" style='text-align: center; display: none'>
-                                        <div style='padding-top: 10px'>
-                                            <a id="det_whatsapp" target='_blank' style="; text-decoration: none">
-                                                <img src='../img/det_whatsapp.png' style='height: 60px; max-width: auto' alt='Contactar' title='Contactar' />
-                                                <p style="color: #23952E">
-                                                    Contactar
-                                                </p>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class='col-md-3 col-sm-3 col-3'  id="det_div_tel" style=' text-align: center; display: none'>
-                                        <div style='padding-top: 10px'>
-                                            <a id="det_tel" style="; text-decoration: none">
-                                                <img src='../img/det_tel.png' style='height: 60px; max-width: auto' alt='Llamar' title='Llamar' />
-                                                <p style="color: #23952E">
-                                                    Llamar
-                                                </p>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class='col-md-3 col-sm-3 col-3' id="det_div_web"  style='text-align: center; display: none'>
-                                        <div style='padding-top: 10px'>
-                                            <a id="det_web" target='_blank' style="; text-decoration: none">
-                                                <img src='../img/det_web.png' style='height: 60px; max-width: auto' alt='Ver web' title='Ver web' />
-                                                <p style="color: #23952E">
-                                                    Ver web
-                                                </p>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class='col-md-3 col-sm-3 col-3' id="det_div_facebook"  style='text-align: center; display: none'>
-                                        <div style='padding-top: 10px'>
-                                            <a id="det_facebook" target='_blank' style="; text-decoration: none">
-                                                <img src='../img/det_facebook.png' style='height: 60px; max-width: auto' alt='Ver web' title='Ver web' />
-                                                <p style="color: #23952E">
-                                                    Facebook
-                                                </p>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class='col-md-3 col-sm-3 col-3' id="det_div_instagram"  style='text-align: center; display: none'>
-                                        <div style='padding-top: 10px'>
-                                            <a id="det_instagram" target='_blank' style="; text-decoration: none">
-                                                <img src='../img/det_instagram.png' style='height: 60px; max-width: auto' alt='Ver web' title='Ver web' />
-                                                <p style="color: #23952E">
-                                                    Instagram
-                                                </p>
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                    <div class='col-md-3 col-sm-3 col-3 d-block d-sm-none' id="det_div_compartir"  style='text-align: center;'><!---->
-                                        <div style='padding-top: 10px'>
-                                            <a id="det_compartir" style="text-decoration: none">
-                                                <img src='../img/det_compartir.png' style='height: 60px; max-width: auto' alt='Compartir' title='Compartir' />
-                                                <p style="color: #23952E">
-                                                    Compartir
-                                                </p>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                                <div class='row'>                                    
-                                    <div class='col-md-12' style='text-align: left; padding-left: 20px; padding-right: 20px'>                                        
-                                        <div class='row' style="padding-top: 0px;">
-                                            <div class='col-md-9 col-sm-9 col-9' style='text-align: left; padding-top: 0px'>
-                                                <div id="det2_div_direccion" style="display: none">
-                                                    <a id="det2_div_direccionurl" target='_blank' title='Abrir Web' href='#' style='color: #5C5B5B; text-decoration: none'>
-                                                        <i style='font-size: 18px' class='fa fa-map-marker-alt'></i>
-                                                        <span  id="det2_div_direcciontexto"></span>
-                                                    </a>
-                                                </div> 
-                                                <div id="det2_div_tel" style="display: none">
-                                                    <a id="det2_div_telurl" title='Llamar' href='tel:telefono' style='color: #5C5B5B; text-decoration: none'>
-                                                        <i style='font-size: 18px' class='fa fa-phone'></i>
-                                                        <span  id="det2_div_teltexto"></span>
-                                                    </a>
-                                                </div> 
-                                                <div id="det2_div_email" style="display: none">
-                                                    <a id="det2_div_emailurl" title='Email' href='mailto:email' style='color: #5C5B5B; text-decoration: none'>
-                                                        <i style='font-size: 18px' class='fa fa-envelope'></i>
-                                                        <span  id="det2_div_emailtexto"></span>
-                                                    </a>
-                                                </div> 
-                                                <div  id="det2_div_instagram"  style="display: none">
-                                                    <a id="det2_div_instagramurl" target="_blank" title='Instagram' href='#' style='color: #5C5B5B; text-decoration: none; '>
-                                                        <i style='font-size: 18px' class='fab fa-instagram'></i>
-                                                        <span  id="det2_div_instagramtexto"></span>
-                                                    </a>
-                                                </div>
-                                                <div  id="det2_div_facebook"  style="display: none">
-                                                    <a id="det2_div_facebookurl" target="_blank" title='Facebook' href='#' style='color: #5C5B5B; text-decoration: none; '>
-                                                        <i style='font-size: 18px' class='fab fa-facebook-square'></i>
-                                                        <span  id="det2_div_facebooktexto"></span>
-                                                    </a>
-                                                </div>
+                                <div class='col-md-9 col-sm-9 col-9'  style='text-align: left; padding-top: 10px'>
+                                    <div class='row'>
+                                        <div class='col-md-12'>
+                                            <h3 id="det_nombre" style='font-size: 18px; margin-bottom: 4px; font-weight: 700'></h3>
+                                            <input type='hidden' id='det_id' name='det_id' value='' />
+                                            <input type='hidden' id='det_detalle' name='det_detalle' value='' />    
+                                            <span id="det_direccion" style='font-size: 15px; margin-bottom: 4px'>
                                                 
-                                            
-                                            </div>
-                                            <div class='col-md-3 col-sm-3 col-3' style='text-align: right; padding-top: 0px'>
-                                                <span  id="det2_div_metros" style='font-weight: 600; color: #5C5B5B'></span><!-- antes color: #212529-->
-                                            </div>
+                                            </span>
+                                            <img id="det_dni" title='Cuenta DNI Comercios' src='../img/logocomercios.png' style='height: 23px; margin-right: 10px; margin-top: -5px; display: none' />                                            
                                         </div>
-
                                     </div>
-                                    
+                                </div>
+                            </div>
+                            <div class='row' style="font-size:14px">
+                                <div class='col-md-3 col-sm-3 col-3' id="det_div_whatsapp" style='text-align: center; display: none'>
+                                    <div style='padding-top: 10px'>
+                                        <a id="det_whatsapp" target='_blank' style="; text-decoration: none">
+                                            <img src='../img/det_whatsapp.png' style='height: 60px; max-width: auto' alt='Contactar' title='Contactar' />
+                                            <p style="color: #23952E">
+                                                Contactar
+                                            </p>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class='col-md-3 col-sm-3 col-3'  id="det_div_tel" style=' text-align: center; display: none'>
+                                    <div style='padding-top: 10px'>
+                                        <a id="det_tel" style="; text-decoration: none">
+                                            <img src='../img/det_tel.png' style='height: 60px; max-width: auto' alt='Llamar' title='Llamar' />
+                                            <p style="color: #23952E">
+                                                Llamar
+                                            </p>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class='col-md-3 col-sm-3 col-3' id="det_div_web"  style='text-align: center; display: none'>
+                                    <div style='padding-top: 10px'>
+                                        <a id="det_web" target='_blank' style="; text-decoration: none">
+                                            <img src='../img/det_web.png' style='height: 60px; max-width: auto' alt='Ver web' title='Ver web' />
+                                            <p style="color: #23952E">
+                                                Ver web
+                                            </p>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class='col-md-3 col-sm-3 col-3' id="det_div_facebook"  style='text-align: center; display: none'>
+                                    <div style='padding-top: 10px'>
+                                        <a id="det_facebook" target='_blank' style="; text-decoration: none">
+                                            <img src='../img/det_facebook.png' style='height: 60px; max-width: auto' alt='Ver web' title='Ver web' />
+                                            <p style="color: #23952E">
+                                                Facebook
+                                            </p>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class='col-md-3 col-sm-3 col-3' id="det_div_instagram"  style='text-align: center; display: none'>
+                                    <div style='padding-top: 10px'>
+                                        <a id="det_instagram" target='_blank' style="; text-decoration: none">
+                                            <img src='../img/det_instagram.png' style='height: 60px; max-width: auto' alt='Ver web' title='Ver web' />
+                                            <p style="color: #23952E">
+                                                Instagram
+                                            </p>
+                                        </a>
+                                    </div>
                                 </div>
 
+                                <div class='col-md-3 col-sm-3 col-3 d-block d-sm-none' id="det_div_compartir"  style='text-align: center;'><!---->
+                                    <div style='padding-top: 10px'>
+                                        <a id="det_compartir" style="text-decoration: none">
+                                            <img src='../img/det_compartir.png' style='height: 60px; max-width: auto' alt='Compartir' title='Compartir' />
+                                            <p style="color: #23952E">
+                                                Compartir
+                                            </p>
+                                        </a>
+                                    </div>
+                                </div>
+                                
                             </div>
-                            <!-- FIN div_detalle -->
+                            <div class='row'>                                    
+                                <div class='col-md-12' style='text-align: left; padding-left: 20px; padding-right: 20px'>                                        
+                                    <div class='row' style="padding-top: 0px;">
+                                        <div class='col-md-9 col-sm-9 col-9' style='text-align: left; padding-top: 0px'>
+                                            <div id="det2_div_direccion" style="display: none">
+                                                <a id="det2_div_direccionurl" target='_blank' title='Abrir Web' href='#' style='color: #5C5B5B; text-decoration: none'>
+                                                    <i style='font-size: 18px' class='fa fa-map-marker-alt'></i>
+                                                    <span  id="det2_div_direcciontexto"></span>
+                                                </a>
+                                            </div> 
+                                            <div id="det2_div_tel" style="display: none">
+                                                <a id="det2_div_telurl" title='Llamar' href='tel:telefono' style='color: #5C5B5B; text-decoration: none'>
+                                                    <i style='font-size: 18px' class='fa fa-phone'></i>
+                                                    <span  id="det2_div_teltexto"></span>
+                                                </a>
+                                            </div> 
+                                            <div id="det2_div_email" style="display: none">
+                                                <a id="det2_div_emailurl" title='Email' href='mailto:email' style='color: #5C5B5B; text-decoration: none'>
+                                                    <i style='font-size: 18px' class='fa fa-envelope'></i>
+                                                    <span  id="det2_div_emailtexto"></span>
+                                                </a>
+                                            </div> 
+                                            <div  id="det2_div_instagram"  style="display: none">
+                                                <a id="det2_div_instagramurl" target="_blank" title='Instagram' href='#' style='color: #5C5B5B; text-decoration: none; '>
+                                                    <i style='font-size: 18px' class='fab fa-instagram'></i>
+                                                    <span  id="det2_div_instagramtexto"></span>
+                                                </a>
+                                            </div>
+                                            <div  id="det2_div_facebook"  style="display: none">
+                                                <a id="det2_div_facebookurl" target="_blank" title='Facebook' href='#' style='color: #5C5B5B; text-decoration: none; '>
+                                                    <i style='font-size: 18px' class='fab fa-facebook-square'></i>
+                                                    <span  id="det2_div_facebooktexto"></span>
+                                                </a>
+                                            </div>
+                                            
+                                        
+                                        </div>
+                                        <div class='col-md-3 col-sm-3 col-3' style='text-align: right; padding-top: 0px'>
+                                            <span  id="det2_div_metros" style='font-weight: 600; color: #5C5B5B'></span><!-- antes color: #212529-->
+                                        </div>
+                                    </div>
 
+                                </div>
+                                
+                            </div>
+
+                        </div>
+                        <!-- FIN div_detalle -->
+                        
+                        <!-- div lista comercios -->                        
+                        <div id="divComercios" class="d-none d-sm-block" style="height: 340px; overflow-y: auto; overflow-x: hidden;">
                             <div  <?php echo $displaycomercios;?>>
                                 <?php echo $divComercios;?>
                             </div>  
-                        </div> 
-                        
-
-                            
+                        </div>
+                        <!-- FIN div lista comercios --> 
+                           
                     </div>  
-                    <div class="col-md-8" id="div_mapa" style="padding-left: 0px" <?php echo $displaymapa;?>>
+
+                    <!-- div mapa -->
+                    <div class="col-md-8" id="div_mapa" style="padding: 0px; float:right" <?php echo $displaymapa;?>>
                         <div id="map"></div>                                                                      
                     </div>
+                    <!-- FIN div mapa -->
                     
-                    <div class="col-md-12" style="border-top: 1px solid #ddd; margin-top:10px">
+                    <div class="col-md-12 d-none d-sm-block" style="border-top: 1px solid #ddd; margin-top:10px">
                         <div class="d-none d-sm-block" style="padding: 8px; text-align: center;">                            
                             <a href="registro.php?tipo=alta">
                                 <button class='btn' style="background-color: #23952E; color: #FFF; font-weight: 700; font-size: 18px; padding-left:30px; padding-right:30px; letter-spacing:1px">
@@ -362,14 +356,11 @@
                         </a>
                         
                     </div>
-                    <div id="divComercios2" class="d-block d-sm-none" <?php echo $divComercios2;?>>
-                        <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2">
+                    <div id="divComercios2" class="d-block d-sm-none" style="margin-left: -10px; margin-bottom:-20px" <?php echo $divComercios2;?>>
+                        <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2 pl-0">
                             <?php echo $divComercioListaOver;?>
                         </div>
-                    </div>  
-
-
-
+                    </div> 
 
                 </div>
                 
@@ -382,21 +373,21 @@
 
 <?php include_once "footer.php"; ?>
 
-
 <script>
 
     //BOTON COMPARTIR
     shareButton = document.getElementById("det_compartir");
     shareButton.addEventListener("click", (event) => {
         if (navigator.share) {
-            var url = window.location+'&comercio_id='+document.getElementById('det_id').value;
-            navigator.share({ title: document.getElementById('det_nombre').innerHTML, text: document.getElementById('det_detalle').value, url: url})
+            //var url = window.location+'&comercio_id='+document.getElementById('det_id').value;
+            navigator.share({ title: document.getElementById('det_nombre').innerHTML, text: document.getElementById('det_detalle').value})
             //navigator.share({ title: "titulo", text: "detalle", url: url})
         }else{
             alert('Lo siento, este navegador no tiene soporte para compartir')
         }
     })
    
+    //CARGA MAPA
     const funcionInit = () => {
         if (!"geolocation" in navigator) {
             return alert("Tu navegador no soporta el acceso a la ubicación. Intenta con otro");
@@ -408,7 +399,7 @@
 
 
         const onUbicacionConcedida = ubicacion => {
-            console.log("Tengo la ubicación: ", ubicacion);
+            //console.log("Tengo la ubicación: ", ubicacion);
             
             const coordenadas = ubicacion.coords;
 
@@ -433,8 +424,9 @@
 
             document.getElementById('actual_lat').value = coordenadas.latitude;
             document.getElementById('actual_lon').value = coordenadas.longitude;
+            
             /*
- var iconActual = L.icon({
+            var iconActual = L.icon({
                 iconUrl: '../img/icono_puntero.png',		
                 iconSize:     [38, 50], 
                 shadowSize:   [50, 64], 
@@ -482,11 +474,8 @@
                 L.marker([<?php echo $getlatitud;?>, <?php echo $getlongitud;?>], {icon: iconBusqueda}).addTo(map).bindPopup('<b><?php echo $getdireccion;?> </b>');                 
             }
 
-            
-
-
-
         }
+
         const onErrorDeUbicacion = err => {
 
             //$latitud.value = "Error obteniendo ubicación: " + err.message;
@@ -523,16 +512,11 @@
         };
         navigator.geolocation.getCurrentPosition(onUbicacionConcedida, onErrorDeUbicacion, opcionesDeSolicitud);
 
-
-
     };
 
     document.addEventListener("DOMContentLoaded", funcionInit);
     
-</script>
-
-<script>
-
+    ///MAPA
 	var map = L.map('map').setView([<?php echo $latitudbuscar;?>, <?php echo $longitudbuscar;?>], 8);
 
 	var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -567,10 +551,6 @@
         });
     });
 
-
-
-    
-
 </script>
 
 
@@ -578,6 +558,7 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
+
     $(document).on("change","#select_rubro", function(){
         var select_rubro = jQuery('#select_rubro').val();
 
@@ -597,7 +578,5 @@ $(document).ready(function(){
 
 });
 </script>
-
-
 </body>
 </html>

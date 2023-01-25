@@ -258,7 +258,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
     $sql = "
         SELECT DISTINCT comercio.id, comercio.nombre, comercio.direccion, 
         comercio.rubro_id, comercio.actividad_id, comercio.municipio_id, comercio.facebookurl, 
-        comercio.instagramurl, comercio.web, comercio.whatsapp, comercio.telefono, comercio.email, 
+        comercio.instagramurl, comercio.web, comercio.whatsapp, comercio.whatsapp_msg, comercio.telefono, comercio.email, 
         comercio.estatus_id, comercio.activo, comercio.eliminado,
         comercio.cuentadni, comercio.haceenvios,
         rubro.nombre as rubro_nombre,municipio.nombre as municipio_nombre,
@@ -344,6 +344,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         $instagramurl = $resultado["instagramurl"];
         $web = $resultado["web"];
         $whatsapp = $resultado["whatsapp"];
+        $whatsapp_msg = $resultado["whatsapp_msg"];
         $telefono = $resultado["telefono"];
         $email = $resultado["email"];
         $estatus_id = $resultado["estatus_id"];
@@ -424,7 +425,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
             });
         ";
 
-        $cursorpointer = " cursor: pointer; ";
+        $cursorpointer = " cursor: hand; ";
         $arrowright = "<i style='font-size: 18px' class='fas fa-chevron-right'></i>";
         
         if ($latitud!="" && $longitud!=""){
@@ -468,7 +469,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         }
 
         $divComercio .="
-            <div id='comercio_$id' class='div_comercio' style='$cursorpointer' onclick='mostrarubicacion(\"".$latitud."\",\"".$longitud."\",\"".$nombre."\",\"".$direccion."\",\"".$whatsapp."\",\"".$telefono."\",\"".$web."\",\"".$email."\",\"".$instagramurl."\",\"".$distancia."\",\"".$cuentadni."\",\"".$urlicono."\",\"".$facebookurl."\",\"0\",\"".$id."\")'>
+            <div id='comercio_$id' class='div_comercio' style='$cursorpointer' onclick='mostrarubicacion(\"".$latitud."\",\"".$longitud."\",\"".$nombre."\",\"".$direccion."\",\"".$whatsapp."\",\"".$whatsapp_msg."\",\"".$telefono."\",\"".$web."\",\"".$email."\",\"".$instagramurl."\",\"".$distancia."\",\"".$cuentadni."\",\"".$urlicono."\",\"".$facebookurl."\",\"0\",\"".$id."\")'>
 
                 <div class='row'>
                     <div class='col-md-3 col-sm-3 col-3'  style='padding-right: 0px; text-align: center'>
@@ -519,7 +520,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
         ";
         $mobile = 1;
         $divComercioListaOver .="
-            <div id='comercio_$id' class='div_comercio' style='cursor: pointer; margin-right: 10px' onclick='mostrarubicacion(\"".$latitud."\",\"".$longitud."\",\"".$nombre."\",\"".$direccion."\",\"".$whatsapp."\",\"".$telefono."\",\"".$web."\",\"".$email."\",\"".$instagramurl."\",\"".$distancia."\",\"".$cuentadni."\",\"".$urlicono."\",\"".$facebookurl."\",\"".$mobile."\",\"".$id."\")'>
+            <div id='comercio_$id' class='div_comercio' style='cursor: pointer; margin-right: 10px' onclick='mostrarubicacion(\"".$latitud."\",\"".$longitud."\",\"".$nombre."\",\"".$direccion."\",\"".$whatsapp."\",\"".$whatsapp_msg."\",\"".$telefono."\",\"".$web."\",\"".$email."\",\"".$instagramurl."\",\"".$distancia."\",\"".$cuentadni."\",\"".$urlicono."\",\"".$facebookurl."\",\"".$mobile."\",\"".$id."\")'>
                 <div class='row'>
                     <div class='col-md-3 col-sm-3 col-3'  style='padding-right: 0px; text-align: center'>
                         <div style='padding-top: 10px; padding-left: 5'>

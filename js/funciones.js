@@ -61,6 +61,9 @@ function verfiltrosbusqueda(){
 
         document.getElementById('div_busquedaavanzada').style.display = "";        
     }
+
+    //ACTUALIZA TANIO DE MAPA
+    map.invalidateSize();
 }
 
 
@@ -101,19 +104,9 @@ function verfiltrosbusquedabuscador(){
             document.getElementById('div_rubros').style.display = "";      
         }   
     }
-
-    /*
-        
-    var div_municipios = document.getElementById('div_municipios').style.display;
-    if (div_municipios==""){
-        document.getElementById('div_municipios').style.display = "none";
-        document.getElementById('div_busquedaavanzada').style.display = "none";
-    }else{
-        document.getElementById('div_busquedaavanzada').style.display = "none";
-        document.getElementById('div_municipios').style.display = "";      
-    }
-
-    */
+    
+    //ACTUALIZA TANIO DE MAPA
+    map.invalidateSize();
 }
 
 
@@ -243,7 +236,10 @@ function btnCheckCercaMio(){
         document.getElementById('lon').value = "";
         document.getElementById('dir').value = "";
 
-    }  
+    } 
+
+    //ACTUALIZA TANIO DE MAPA
+    map.invalidateSize();
     
 }
 
@@ -319,7 +315,7 @@ function limpiarDireccion(){
 
 }
 
-function mostrarubicacion(latitud, longitud, nombre, direccion, whatsapp, telefono, web, email, instagram, distancia, cuentadni, urlicono, facebookurl, mobile, id){  
+function mostrarubicacion(latitud, longitud, nombre, direccion, whatsapp, whatsapp_msg, telefono, web, email, instagram, distancia, cuentadni, urlicono, facebookurl, mobile, id){
 
     limpiarDivDetalle();
 
@@ -368,7 +364,7 @@ function mostrarubicacion(latitud, longitud, nombre, direccion, whatsapp, telefo
     // 2:        
     if (whatsapp!=""){
         document.getElementById('det_div_whatsapp').style.display = "";
-        document.getElementById('det_whatsapp').href = "https://api.whatsapp.com/send?phone="+whatsapp;
+        document.getElementById('det_whatsapp').href = "https://api.whatsapp.com/send?phone="+whatsapp+"&text="+whatsapp_msg;
 
         cont = cont + 1;
         last = 'det_div_whatsapp';
