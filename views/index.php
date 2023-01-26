@@ -10,7 +10,7 @@
 
     <div class="container-fluid div-back-index">
         <div class="container-box" >
-            <div class="container-fluid" style="background-color: #323232; opacity: 0.9; padding: 20px; padding-bottom: 30px; padding-top: 30px">
+           <div class="container-fluid" style="background-color: #323232; opacity: 0.9; padding: 20px; padding-bottom: 30px; padding-top: 30px">
                 <div class="container">
                     <div class="row" >
                         <div class="col-md-12">
@@ -20,9 +20,9 @@
                             <h2 style="color: #FFF; text-align: center; font-size: 22px">
                                 Te damos la bienvenida a la <b>Comunidad Prome</b> un espacio pensado para potenciar tu negocio
                             </h2>
-                        </div>                       
+                        </div>
                     </div>
-                    <div class="row justify-content-center" style="margin-top: 20px">                       
+                    <div class="row justify-content-center" style="margin-top: 20px">
                         <div class="col-md-8 col-12 col-sm-12">
                             <div style="background-color: #FFFFFF;min-height: 170px; border-radius: 10px ">
                                 <div class="row">
@@ -49,7 +49,7 @@
                                                 <div class="form-check form-switch">
                                                     <input class="form-check-input" name="cercamio" type="checkbox" id="checkCercaMio" onclick="btnCheckCercaMioIndex()">
                                                     <label class="form-check-label" for="checkCercaMio">Cerca mío</label>
-                                                </div>                                                
+                                                </div>
                                             </div>
                                             <div id="div_direccion" style="margin-top: 10px; margin-bottom: 10px; display: none">
                                                 <input
@@ -71,7 +71,7 @@
                                                 </span>
                                             </div>
                                             
-                                        </div>                                   
+                                        </div>
                                     </div>
                                     <div class="row" id="div_busquedaavanzada" style="display: none">
                                         <div class="col-md-6 mb-3" style="text-align: left; padding: 0px 30px">
@@ -82,13 +82,13 @@
                                                 <div class="form-check form-switch">
                                                     <input class="form-check-input" type="checkbox" id="checkAdherido" name="cuentadni"  >
                                                     <label class="form-check-label" for="checkAdherido" style="color: #626161">Adherido a Cuenta DNI Comercios</label>
-                                                </div>                                               
+                                                </div>
                                             </div>
                                             <div style="margin-top: 10px; margin-bottom: 10px">
                                                 <div class="form-check form-switch">
                                                     <input class="form-check-input" type="checkbox" id="checkEnvios" name="envios"  >
                                                     <label class="form-check-label" for="checkEnvios" style="color: #626161">Hace envíos/Servicio a domicilio</label>
-                                                </div>                                               
+                                                </div>
                                             </div>
                                             
                                             <div class="mt-2">
@@ -119,22 +119,20 @@
                                                 Quiero sumarme a la Comunidad Prome
                                             </button>
                                         </a>
-                                    </div>                                    
+                                    </div>
                                 </div>
                                  
-                            </div>                          
-                        </div>                       
+                            </div>
+                        </div>
                     </div>
                    
                 </div>
             </div>
             <div class="div-solicitar-index">
-                <div class="row">
-                    <div class="col-md-12" style="padding-right: 0px; text-align: center;text-shadow: black 1px 1px 2px;">
-                        <a href="registro.php?tipo=modificar" class="link_solicitar">
-                            Solicitar baja/modificación de Comunidad Prome
-                        </a>
-                    </div>                                    
+                <div class="col-md-12 text-center">
+                    <a href="registro.php?tipo=modificar" class="link_solicitar">
+                        Solicitar baja/modificación de Comunidad Prome
+                    </a>
                 </div>
             </div>
             
@@ -145,10 +143,10 @@
                             <img src="../img/logocomercios.png" style="height: 30px; margin-right: 10px; margin-top: -5px" />
                             ¿Conocés <b>Cuenta DNI Comercios?</b>
                         </button>
-                    </div>                                    
+                    </div>
                 </div>
             </div> 
-        </div>           
+        </div>
     </div>
 
 

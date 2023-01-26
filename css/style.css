@@ -121,11 +121,12 @@ select.form-control {
     -webkit-appearance: menulist;
 }
 
-.container-box{
-	width: 100%;
-}
-
 .link_solicitar {
 	color: #FFF; 
 	font-size: 18px;
+	text-shadow: black 1px 1px 2px;
+}
+
+.link_solicitar:hover {
+	color: #FFF;
 }
