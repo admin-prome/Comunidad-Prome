@@ -581,7 +581,7 @@ function consultarComercios($buscador=null, $cuentadni=null, $envios=null, $lati
     }
     
     $totalDivResultados = "
-            <div class='row' style='margin-top: 0px; margin-bottom: 5px'>
+            <div class='row margin-box' style='margin-top: 0px; margin-bottom: 5px'>
                 <div class='col-md-12' style='text-align: right; padding: 0px 30px'>
                     <div>
                         <p style='margin-bottom: 0px; color: $color'>

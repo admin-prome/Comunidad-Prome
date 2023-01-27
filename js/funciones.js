@@ -349,6 +349,9 @@ function mostrarubicacion(latitud, longitud, nombre, direccion, whatsapp, whatsa
     if(facebookurl!=''){
         text = text+facebookurl +"\n";
     }
+    if(instagram!=''){
+        text = text+instagram +"\n";
+    }
     if(email!=''){
         text = text+email +"\n";
     }

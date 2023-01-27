@@ -25,8 +25,6 @@
             background-color: #4158D0;
             background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
         }
-
-
     </style>
 
     
@@ -36,58 +34,64 @@
 
     <div>
         <div class="container" style="background-color: #FFF; opacity: 0.9; padding-bottom: 5px; padding-top: 5px">
-            <div class="container">               
+            <div class="container">
                 
-                <div class="row" style="margin-top: 0px; padding-bottom: 20px; margin-left: 10px">
+                <div class="row margin-box" style="margin-top: 0px; padding-bottom: 20px; margin-left: 10px">
                     <div class="col-md-4"> 
                         <a href="./"><img src="../img/prome.png" style="height: 40px" /></a>
                     </div>
                 </div>
                 
-                <div class="row" style="margin-top: 0px">
+                <div class="row margin-box" style="margin-top: 0px">
                     <div class="col-md-4" style="padding: 0px"> 
                         <form name="formBusqueda" id="formBusqueda" action="buscador.php" method="GET" style="margin-bottom: 0px">
                         <div style="background-color: #FBF8F8; border: 1px solid #CFCFCF; box-shadow: 0px 2px #A9A9A9; margin-bottom: 10px">
-
-                            <div class="row">
-                                <div class="col-md-6 col-sm-6 col-6"  style="padding-right: 0px; text-align: center">
-                                    <div id="div_buscadorcomercio" class="tabactivobuscador" style="border-top-left-radius: 3px; cursor: pointer" onclick="seleccionarTipoBuscador(this.id)">
+                            
+                            <div class="row" style="margin: 0px">
+                                <div class="col-md-6 col-sm-6 col-6" style="padding: 0px;">
+                                    <div id="div_buscadorcomercio" class="tabactivobuscador" style="text-align: center;border-top-left-radius: 3px; cursor: pointer" onclick="seleccionarTipoBuscador(this.id)">
                                         <h3 style="font-size: 16px; padding: 10px">
                                             Comercios y Servicios
                                         </h3>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-sm-6 col-6" style="padding-left: 0px; text-align: center">
-                                    <div  id="div_buscadorproduccion" class="tabinactivobuscador" style="border-top-right-radius: 3px; cursor: pointer" onclick="seleccionarTipoBuscador(this.id)">
-                                        <h3 style="font-size: 16px; padding: 10px">
+                                <div class="col-md-6 col-sm-6 col-6" style="padding: 0px;">
+                                    <div  id="div_buscadorproduccion" class="tabinactivobuscador" style="text-align: center;border-top-right-radius: 3px; cursor: pointer" onclick="seleccionarTipoBuscador(this.id)">
+                                        <h3 style="font-size: 16px; padding: 10px 0px 10px 0px">
                                             Producción e Industria
                                         </h3>
                                     </div>
                                 </div>
                             </div>
-                        
                             
-                            <div class="row" style="margin-top: 0px">
-                                <div class="col-md-12" style="text-align: left; padding: 0px 30px">
-                                    <div>
+                            <div class="row margin-box">
+                                <div class="col-md-12">
+                                    
+                                    <div class="col-md-12" style="padding: 0px  10px 0px 10px ">
+                                        
                                         <div class="form-check form-switch">
                                             <input class="form-check-input"  name="cercamio" type="checkbox" id="checkCercaMio" onclick="btnCheckCercaMio()" <?php echo $tipodirchecked;?> >
                                             <label class="form-check-label" for="checkCercaMio"style="color: #626161">Cerca mío</label>
-                                        </div>                                               
+                                        </div>
+                                        
                                     </div>
-                                    <div id="div_buscadordireccion" class="auto-search-wrapper" style="margin-top: 10px; margin-bottom: 10px  <?php echo $divbuscadormapa;?> ">
-                                        <input
-                                            type="text"
-                                            autocomplete="off"
-                                            id="buscadordireccion"
-                                            name="dirmapa"
-                                            class="form-control"
-                                            placeholder="Indicá un domicilio"
-                                            value="<?php echo $getdireccionmapa;?>"
-                                            onclick="limpiarDireccion()"
-                                        />
+                                    
+                                    <div class="col-md-12" style="padding: 0px  10px 0px 10px ">
+                                        <div id="div_buscadordireccion" class="auto-search-wrapper" style="margin-top: 10px; margin-bottom: 10px  <?php echo $divbuscadormapa;?> ">
+                                            <input
+                                                type="text"
+                                                autocomplete="off"
+                                                id="buscadordireccion"
+                                                name="dirmapa"
+                                                class="form-control"
+                                                placeholder="Indicá un domicilio"
+                                                value="<?php echo $getdireccionmapa;?>"
+                                                onclick="limpiarDireccion()"
+                                            />
+                                        </div>
                                     </div>
-                                    <div class="row">
+                                    
+                                    <div class="row margin-box">
                                         <div class="col-md-11 col-sm-11 col-11">
                                             <div class="input-group mb-1" style="margin-top: 5px">
                                                 <i class="fa fa-list" style ="border-top: 1px solid #ced4da;border-left: 1px solid #ced4da; border-bottom: 1px solid #ced4da; border-right: 0px solid #ced4da; padding: 10px; color: #C4C4C4; cursor: pointer" onclick="verfiltrosbusqueda()"></i>
@@ -98,12 +102,13 @@
                                             </div>
                                         </div>
                                         <div class="col-md-1 col-sm-1 col-1" style="padding-left: 0px; padding-top: 14px; <?php echo $displayfiltros;?>">
-                                            <span style="cursor: pointer" onclick="verfiltrosbusquedabuscador()">
+                                            <span style="cursor: pointer; margin-left: 5px;" onclick="verfiltrosbusquedabuscador()">
                                                 <i class="fa fa-filter" style="font-size: 20px"></i>
                                             </span>
                                         </div>
                                     </div>
-                                    <div class="row" id="div_busquedaavanzada" <?php echo $divBusquedaAvanzada;?>>
+
+                                    <div class="row margin-box" id="div_busquedaavanzada" <?php echo $divBusquedaAvanzada;?>>
                                         <div class="col-md-12 mb-3" style="text-align: left; padding: 0px 10px">
                                             <div class="mb-1">
                                                 <i class="fa fa-list" style ="padding-left: 5px; padding-top: 10px; color: #C4C4C4; cursor: pointer" onclick="verfiltrosbusqueda()"></i> Búsqueda avanzada
@@ -126,7 +131,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row" id="div_municipios" <?php echo $divBusquedaMunicipios;?> >
+                                    
+                                    <div class="row margin-box" id="div_municipios" <?php echo $divBusquedaMunicipios;?> >
                                         <div class="col-md-12 mb-3" style="text-align: left; padding: 0px 10px">
                                             <div class="mb-1">
                                                 Municipio
@@ -139,8 +145,8 @@
                                                 Aplicar filtros
                                             </button>
                                         </div>
-                                    </div>
-                                    <div class="row" id="div_rubros" <?php echo $divBusquedaRubros;?>>
+                                    </div>                                    
+                                    <div class="row margin-box" id="div_rubros" <?php echo $divBusquedaRubros;?>>
                                         <div class="col-md-12 mb-3" style="text-align: left; padding: 0px 10px">
                                             <div class="mb-1">
                                                 Rubro
@@ -155,29 +161,29 @@
                                         </div>
                                     </div>
                                     
-                                    
-                                </div>                                   
+                                </div>
                             </div>
 
                             <?php echo $divTotalComercios;?>
                             <?php include_once "include_camposmapa.php"; ?>
                         </div>
                         <div style="background-color: #FFF; border: 0px solid #CFCFCF; box-shadow: 0px 0px #A9A9A9; margin-bottom: 10px">                            
-                                <div class="row" style="margin-top: 14px">
-                                    <div class="col-md-12" style="text-align: left; padding: 0px 30px">
+                                
+                                <div class="row margin-box" style="margin-top: 14px">
+                                    <div class="col-md-12">
                                         <div>
                                             <div class="form-check form-switch">
                                                 <input class="form-check-input" type="checkbox" id="checkAdherido" name="cuentadni" <?php echo $cuentadnichecked;?>  >
                                                 <label class="form-check-label" for="checkAdherido" style="color: #626161">Adherido a Cuenta DNI Comercios</label>
-                                            </div>                                               
+                                            </div>
                                         </div>
                                         <div style="margin-top: 10px; margin-bottom: 10px">
                                             <div class="form-check form-switch">
                                                 <input class="form-check-input" type="checkbox" id="checkEnvios" name="envios" <?php echo $envioschecked;?> >
                                                 <label class="form-check-label" for="checkEnvios" style="color: #626161">Hace envíos/Servicio a domicilio</label>
-                                            </div>                                               
+                                            </div>
                                         </div>
-                                    </div>                                   
+                                    </div>
                                 </div>
                                 
                         </div>
@@ -322,7 +328,7 @@
                         </div>
                         <!-- FIN div_detalle -->
                         
-                        <!-- div lista comercios -->                        
+                        <!-- div lista comercios -->
                         <div id="divComercios" class="d-none d-sm-block" style="height: 340px; overflow-y: auto; overflow-x: hidden;">
                             <div  <?php echo $displaycomercios;?>>
                                 <?php echo $divComercios;?>
@@ -334,7 +340,7 @@
 
                     <!-- div mapa -->
                     <div class="col-md-8" id="div_mapa" style="padding: 0px; float:right" <?php echo $displaymapa;?>>
-                        <div id="map"></div>                                                                      
+                        <div id="map"></div>
                     </div>
                     <!-- FIN div mapa -->
                     
@@ -344,7 +350,7 @@
                                 <button class='btn' style="background-color: #23952E; color: #FFF; font-weight: 700; font-size: 18px; padding-left:30px; padding-right:30px; letter-spacing:1px">
                                     Quiero sumarme a la Comunidad Prome
                                 </button>
-                            </a>                            
+                            </a>
                         </div>
                     </div>
 
@@ -356,11 +362,14 @@
                         </a>
                         
                     </div>
+
+                    <!-- div lista comercios mobile -->  
                     <div id="divComercios2" class="d-block d-sm-none" style="margin-left: -10px; margin-bottom:-20px" <?php echo $divComercios2;?>>
                         <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2 pl-0">
                             <?php echo $divComercioListaOver;?>
                         </div>
                     </div> 
+                    <!-- FIN div lista comercios mobile -->
 
                 </div>
                 
