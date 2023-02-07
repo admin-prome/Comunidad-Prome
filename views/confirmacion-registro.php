@@ -24,10 +24,10 @@
                 <div class="container">
                     <div class="row" >
                         <div class="col-md-10 offset-1">
-                            <h1 style="color: #23952E; text-align: left; font-weight: 600">
+                            <h1 style="color: #23952E; text-align: center; font-weight: 600">
                                 Te damos la bienvenida a la Comunidad Prome
                             </h1>
-                            <h2 style="color: #4E4E4E; text-align: left; font-size: 24px">
+                            <h2 style="color: #4E4E4E; text-align: center; font-size: 24px">
                                 Un espacio pensado para potenciar tu negocio.
                             </h2>
                         </div>                       
@@ -46,12 +46,22 @@
                                 </div>
                                 <div class="row" style="margin-top: 30px">
                                     <div class="col-md-12" style="text-align: center; padding: 0px 30px">
-                                        <p style="color: #23952E; text-align: center; font-weight: 600; font-size: 20px; margin-bottom: 0px">
+                                        
+                                        <?php if($error!=''){?>
+                                            <p style="color: #C11120; text-align: center; font-weight: 600; font-size: 20px; margin-bottom: 0px">
+                                            Error, el mensaje no se ha enviado
+                                            </p>
+                                            <p style="color: #4E4E4E; text-align: center;">
+                                            <?php echo $error?>
+                                            </p>
+                                        <?php }else{?>
+                                            <p style="color: #23952E; text-align: center; font-weight: 600; font-size: 20px; margin-bottom: 0px">
                                             Mensaje enviado con éxito
-                                        </p>
-                                        <p style="color: #4E4E4E; text-align: center;">
-                                        Nos estaremos contactando a la brevedad <br>para asistirte con la gestión.
-                                        </p>                                       
+                                            </p>
+                                            <p style="color: #4E4E4E; text-align: center;">
+                                            Nos estaremos contactando a la brevedad <br>para asistirte con la gestión.
+                                            </p>
+                                        <?php }?>                                                                               
                                     </div>                                   
                                 </div>                                    
                             </div>                                                  
