@@ -19,7 +19,7 @@ if ($tipo!="" || $tipoget!=""){
     //ENVIA CORREO
 
     if(user!='' && password !=""){
-
+        
         switch ($tipo) {
             case '1':
                 $subject = "Comunidad Prome: Alta";
@@ -41,17 +41,20 @@ if ($tipo!="" || $tipoget!=""){
 
             try {
                 //Server settings
-                //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+                //$mail->SMTPDebug = 1                                      //Enable verbose debug output
                 
                 $mail->isSMTP();                                            //Send using SMTP
                 //$mail->SMTPOptions = array( 'ssl' => array( 'verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true ) );
-                //$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-
+                //$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //SMTPS (implicit TLS on port 465) / Enable implicit TLS encryption
+                //$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         //STARTTLS (explicit TLS on port 587) / Enable explicit TLS encryption 
+                
+                $mail->CharSet    ="utf-8";                                 //Set the body charset
+                $mail->SMTPSecure = security;                               //Enable security encryption
                 $mail->Host       = host;                                   //Set the SMTP server to send through
                 $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
                 $mail->Username   = user;                                   //SMTP username
                 $mail->Password   = password;                               //SMTP password
-                $mail->Port       = port;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+                $mail->Port       = port;                                   //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
                 $mail->From       = from;                                   //Correo electrónico que estamos autenticando
                 $mail->FromName   = fromname;                               //Puedes poner tu nombre, el de tu empresa, nombre de tu web, etc.
 
