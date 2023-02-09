@@ -9,15 +9,15 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-$tipo           = isset($_POST['tipo']) ? $_POST['tipo'] : '';
+$tipo           = isset($_GET['tipo']) ? $_GET['tipo'] : '';
 $tipoget        = isset($_GET['tipo']) ? $_GET['tipo'] : '';
-$document       = isset($_POST['document']) ? $_POST['document'] : '';
-$message        = isset($_POST['message']) ? $_POST['message'] : '';
+$document       = isset($_GET['document']) ? $_GET['document'] : '';
+$message        = isset($_GET['message']) ? $_GET['message'] : '';
 $error          = '';
+
 
 if ($tipo!="" || $tipoget!=""){
     //ENVIA CORREO
-
     if(user!='' && password !=""){
         
         switch ($tipo) {
@@ -73,6 +73,8 @@ if ($tipo!="" || $tipoget!=""){
                 $error         = $mail->ErrorInfo;
             }
         }//FIN ($tipo>1)
+    }else{
+        $error          = 'Error 300: Credenciales incorrectas';
     }//FIN (user!='' && password !="")
 
     require_once "../views/confirmacion-registro.php";
