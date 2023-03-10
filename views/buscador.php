@@ -455,12 +455,13 @@
                 popupAnchor:  [-3, -46]
             });
 
-            
+            //AGREGAR EN $divComercioMarkers el .on('click', onMapClick)
+
             var latitudget = "<?php echo $getlatitudactual;?>"; 
             if (latitudget ==""){
                 //L.marker([coordenadas.latitude, coordenadas.longitude], {icon: iconActual}).addTo(map).bindPopup('<b>Mi Ubicación Actual </b>'); 
             }else{
-                L.marker([<?php echo $getlatitudactual;?>, <?php echo $getlongitudactual;?>], {icon: iconActual}).addTo(map).bindPopup('<b><?php echo $getdireccionactual;?> </b>');                 
+                L.marker([<?php echo $getlatitudactual;?>, <?php echo $getlongitudactual;?>], {icon: iconActual}).addTo(map).bindPopup('<b><?php echo $getdireccionactual;?> </b>');
             }
 
             
@@ -480,7 +481,7 @@
                 //console.log(1); 
             }else{
                 //console.log(2); 
-                L.marker([<?php echo $getlatitud;?>, <?php echo $getlongitud;?>], {icon: iconBusqueda}).addTo(map).bindPopup('<b><?php echo $getdireccion;?> </b>');                 
+                L.marker([<?php echo $getlatitud;?>, <?php echo $getlongitud;?>], {icon: iconBusqueda}).addTo(map).bindPopup('<b><?php echo $getdireccion;?> </b>');
             }
 
         }
@@ -503,6 +504,7 @@
                 shadowAnchor: [4, 62], 
                 popupAnchor:  [-3, -76]
             });
+           
             
             var latitudget = "<?php echo $getlatitud;?>"; 
             if (latitudget ==""){
@@ -510,7 +512,7 @@
                 //console.log(1); 
             }else{
                 //console.log(2); 
-                L.marker([<?php echo $getlatitud;?>, <?php echo $getlongitud;?>], {icon: iconBusqueda}).addTo(map).bindPopup('<b><?php echo $getdireccion;?> </b>');                 
+                L.marker([<?php echo $getlatitud;?>, <?php echo $getlongitud;?>], {icon: iconBusqueda}).addTo(map).bindPopup('<b><?php echo $getdireccion;?> </b>');
             }
         }
 
@@ -522,7 +524,7 @@
         navigator.geolocation.getCurrentPosition(onUbicacionConcedida, onErrorDeUbicacion, opcionesDeSolicitud);
 
     };
-
+ 
     document.addEventListener("DOMContentLoaded", funcionInit);
     
     ///MAPA

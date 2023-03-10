@@ -52,7 +52,7 @@
                                                 DNI del titular
                                             </label>
                                             <div style="margin-top: 5px">
-                                                <input type="text" class="form-control" placeholder="Sin guiones ni puntos" name="document" id="document" required="required" autocomplete="off">
+                                                <input type="text" class="form-control" placeholder="Sin guiones ni puntos" name="document" id="document" required="required" autocomplete="off" maxlength="11" onkeypress="return validaNumero(event);">
                                             </div>
                                         </div>                                   
                                     </div>
@@ -135,11 +135,7 @@ $(document).ready(function(){
             cache:false,
             data:{documento:documento,tipo:tipo,message:message},
             success:function(data){
-                if (data =="false") {                    
-                    $("#mensajeprocesar").html("<div class='alert alert-danger' role='alert'>El DNI no se encuentra registrado</div> ");
-                    $("#btnRegistro").prop("disabled", false );
-                }else{
-                    
+                if (data=="true") {
                     //if (tipo=="1"){
                         //SE ABRE EN confirmacion-registro.php
                         //window.open('https://www.provinciamicrocreditos.com.ar/comunidad-prome-alta/');
@@ -150,11 +146,29 @@ $(document).ready(function(){
                     $("#mensajeprocesar").html("<div class='alert alert-success' role='alert'><a href='https://www.provinciamicrocreditos.com.ar/comunidad-prome-alta/' style='text-decoration: none; color: #000000' target='_blank'>Por favor completar la solicitud en la ventana que se le abrió o haz click aquí</a></div>");
                     */
                     //document.getElementById('formRegistro').submit();
+                }else{
+                    $("#mensajeprocesar").html("<div class='alert alert-danger' role='alert'>El DNI no se encuentra registrado</div> ");
+                    $("#btnRegistro").prop("disabled", false );
                 }
             }
         });
     });
 });
+
+
+function validaNumero(evt){
+    
+    // code is the decimal ASCII representation of the pressed key.
+    var code = (evt.which) ? evt.which : evt.keyCode;
+    
+    if(code==8) { // backspace.
+      return true;
+    } else if(code>=48 && code<=57) { // is a number.
+      return true;
+    } else{ // other keys.
+      return false;
+    }
+}
 </script>
 
 </body>
