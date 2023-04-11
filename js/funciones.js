@@ -1,4 +1,4 @@
-function seleccionarTipoBuscador(tipo){
+function seleccionarTipoBuscador(tipo) {
 
     document.getElementById("div_buscadorcomercio").classList.remove("tabactivobuscador");
     document.getElementById("div_buscadorcomercio").classList.remove("tabinactivobuscador");
@@ -6,27 +6,27 @@ function seleccionarTipoBuscador(tipo){
     document.getElementById("div_buscadorproduccion").classList.remove("tabactivobuscador");
     document.getElementById("div_buscadorproduccion").classList.remove("tabinactivobuscador");
 
-    if (tipo=="div_buscadorcomercio"){
+    if (tipo == "div_buscadorcomercio") {
         document.getElementById("div_buscadorcomercio").classList.add("tabactivobuscador");
         document.getElementById("div_buscadorproduccion").classList.add("tabinactivobuscador");
-    }else if (tipo=="div_buscadorproduccion"){
+    } else if (tipo == "div_buscadorproduccion") {
         document.getElementById("div_buscadorproduccion").classList.add("tabactivobuscador");
         document.getElementById("div_buscadorcomercio").classList.add("tabinactivobuscador");
     }
 }
 
 
-function procesarFormBusqueda(){
+function procesarFormBusqueda() {
 
     var checkCercaMio = document.getElementById('checkCercaMio').checked;
     var type_on = document.getElementById('type_on').value;
-    
-    if (checkCercaMio==true && type_on=='on'){
-        if(document.getElementById("buscadordireccion").value!= ''){
+
+    if (checkCercaMio == true && type_on == 'on') {
+        if (document.getElementById("buscadordireccion").value != '') {
             var lon = document.getElementById('lon').value;
             var lat = document.getElementById('lat').value;
             var dir = document.getElementById('dir').value;
-            if(lon=='' && lat=='' && dir == ''){
+            if (lon == '' && lat == '' && dir == '') {
                 alert("Si ingresa una direcci\u00f3n, debe seleccionarla del desplegable para activar la b\u00fasqueda.");
                 document.getElementById("buscadordireccion").value = '';
                 return false
@@ -38,28 +38,28 @@ function procesarFormBusqueda(){
     document.getElementById("formBusqueda").submit();
 }
 
-function verfiltrosbusqueda(){
-        
+function verfiltrosbusqueda() {
+
     var div_busquedaavanzada = document.getElementById('div_busquedaavanzada').style.display;
-    if (div_busquedaavanzada==""){
+    if (div_busquedaavanzada == "") {
         document.getElementById('div_municipios').style.display = "none";
         document.getElementById('div_busquedaavanzada').style.display = "none";
-    }else{
+    } else {
         document.getElementById('div_municipios').style.display = "none";
 
         var checkCercaMio = document.getElementById('checkCercaMio').checked;
-        if (checkCercaMio==true){
+        if (checkCercaMio == true) {
             document.getElementById('filtro_municipio').style.display = "none";
             document.getElementById('filtro_rubro').style.display = "";
-            document.getElementById('filtro_actividad').style.display = "";            
-        }else{
+            document.getElementById('filtro_actividad').style.display = "";
+        } else {
             document.getElementById('filtro_municipio').style.display = "";
             document.getElementById('filtro_rubro').style.display = "";
-            document.getElementById('filtro_actividad').style.display = "";         
+            document.getElementById('filtro_actividad').style.display = "";
         }
 
 
-        document.getElementById('div_busquedaavanzada').style.display = "";        
+        document.getElementById('div_busquedaavanzada').style.display = "";
     }
 
     //ACTUALIZA TANIO DE MAPA
@@ -67,53 +67,53 @@ function verfiltrosbusqueda(){
 }
 
 
-function verfiltrosbusquedaindex(){
-        
+function verfiltrosbusquedaindex() {
+
     var div_busquedaavanzada = document.getElementById('div_busquedaavanzada').style.display;
-    if (div_busquedaavanzada==""){
+    if (div_busquedaavanzada == "") {
         document.getElementById('div_busquedaavanzada').style.display = "none";
-    }else{
-        document.getElementById('div_busquedaavanzada').style.display = "";        
+    } else {
+        document.getElementById('div_busquedaavanzada').style.display = "";
     }
 }
 
 
-function verfiltrosbusquedabuscador(){
+function verfiltrosbusquedabuscador() {
 
     var checkCercaMio = document.getElementById('checkCercaMio').checked;
-    if (checkCercaMio==false){
+    if (checkCercaMio == false) {
         document.getElementById('div_rubros').style.display = "none";
 
         var div_municipios = document.getElementById('div_municipios').style.display;
-        if (div_municipios==""){
+        if (div_municipios == "") {
             document.getElementById('div_municipios').style.display = "none";
             document.getElementById('div_busquedaavanzada').style.display = "none";
-        }else{
+        } else {
             document.getElementById('div_busquedaavanzada').style.display = "none";
-            document.getElementById('div_municipios').style.display = "";      
-        }        
-    }else{
+            document.getElementById('div_municipios').style.display = "";
+        }
+    } else {
         document.getElementById('div_municipios').style.display = "none";
 
         var div_rubros = document.getElementById('div_rubros').style.display;
-        if (div_rubros==""){
+        if (div_rubros == "") {
             document.getElementById('div_rubros').style.display = "none";
             document.getElementById('div_busquedaavanzada').style.display = "none";
-        }else{
+        } else {
             document.getElementById('div_busquedaavanzada').style.display = "none";
-            document.getElementById('div_rubros').style.display = "";      
-        }   
+            document.getElementById('div_rubros').style.display = "";
+        }
     }
-    
+
     //ACTUALIZA TANIO DE MAPA
     map.invalidateSize();
 }
 
 
-function mostrarBuscadorMobile(){
-    cerrardetalle();  
+function mostrarBuscadorMobile() {
+    cerrardetalle();
     var tipovisualizacion = document.getElementById('tipovisualizacion').value;
-    if (tipovisualizacion==""){ // Se cambia para lista
+    if (tipovisualizacion == "") { // Se cambia para lista
 
         document.getElementById('tipovisualizacion').value = "lista";
 
@@ -134,8 +134,8 @@ function mostrarBuscadorMobile(){
         // Oculto el mapa
         document.getElementById('div_mapa').style.display = "none";
 
-        
-    }else{ // Se cambia para mapa
+
+    } else { // Se cambia para mapa
 
         document.getElementById('tipovisualizacion').value = "";
 
@@ -155,13 +155,13 @@ function mostrarBuscadorMobile(){
 
         // Muestro el mapa
         document.getElementById('div_mapa').style.display = "";
-        
-        document.getElementById('tipovisualizacion').value = "";            
+
+        document.getElementById('tipovisualizacion').value = "";
         document.getElementById('divComercios').style.display = "inline";
 
         var divComercios2 = document.getElementById("divComercios2");
         var elemento = divComercios2.style.setProperty("display", "inline", "important")
-        
+
         /*
         //  document.getElementById('divComercios2').style.display = "none";
         document.getElementById('tituloBotonFlotante').innerHTML = "Mapa";
@@ -169,22 +169,22 @@ function mostrarBuscadorMobile(){
         document.getElementById('iconMapaResultado').style.display = "";
         document.getElementById('div_mapa').style.display = "none";
         */
-        
+
     }
 
-    
+
 
 }
 
-function refrescar(){
-    procesarFormBusqueda();        
+function refrescar() {
+    procesarFormBusqueda();
 }
 
 
-function btnCheckCercaMioIndex(){
+function btnCheckCercaMioIndex() {
 
     var checkCercaMio = document.getElementById('checkCercaMio').checked;
-    if (checkCercaMio==true){
+    if (checkCercaMio == true) {
 
         document.getElementById('div_direccion').style.display = "";
         document.getElementById('buscadordireccion').value = document.getElementById('actual_direccion').value;
@@ -196,9 +196,9 @@ function btnCheckCercaMioIndex(){
         window.location = "buscador.php?lat="+actual_lat+"&lon="+actual_lon+"&dir="+actual_direccion+"&tipodir=1";
         */
 
-    }else{
+    } else {
         document.getElementById('div_direccion').style.display = "none";
-  //      document.getElementById('div_direccion').style.display = "";
+        //      document.getElementById('div_direccion').style.display = "";
         document.getElementById('lat').value = "";
         document.getElementById('lon').value = "";
         document.getElementById('dir').value = "";
@@ -206,12 +206,12 @@ function btnCheckCercaMioIndex(){
     }
 }
 
-function btnCheckCercaMio(){
+function btnCheckCercaMio() {
 
     //procesarFormBusqueda();
-    
+
     var checkCercaMio = document.getElementById('checkCercaMio').checked;
-    if (checkCercaMio==true){
+    if (checkCercaMio == true) {
         var actual_lat = document.getElementById('actual_lat').value;
         var actual_lon = document.getElementById('actual_lon').value;
         var actual_direccion = document.getElementById('actual_direccion').value;
@@ -223,7 +223,7 @@ function btnCheckCercaMio(){
         document.getElementById('actual_direccion').value = actual_direccion;
         document.getElementById('buscadordireccion').value = actual_direccion;
 
-    }else{        
+    } else {
         document.getElementById('div_buscadordireccion').style.display = "none";
         /*
         document.getElementById('actual_lat').value = "";
@@ -236,36 +236,36 @@ function btnCheckCercaMio(){
         document.getElementById('lon').value = "";
         document.getElementById('dir').value = "";
 
-    } 
+    }
 
     //ACTUALIZA TANIO DE MAPA
     map.invalidateSize();
-    
+
 }
 
 
-function cerrardetalle(){
+function cerrardetalle() {
     document.getElementById('div_detalle').style.display = "none";
     limpiarDivDetalle();
 
     var mobileclickcomercio = document.getElementById('mobileclickcomercio').value;
 
-    if (mobileclickcomercio=="1"){
+    if (mobileclickcomercio == "1") {
         document.getElementById('divComercios').style.display = "inline !important";
     }
-    
+
 }
 
-function limpiarDivDetalle(){
+function limpiarDivDetalle() {
     document.getElementById('div_detalle').style.display = "none";
     document.getElementById('det_logo').src = "";
     document.getElementById('det_nombre').innerHTML = "";
     document.getElementById('det_id').value = "";
     document.getElementById('det_direccion').innerHTML = "";
-    document.getElementById('det_dni').style.display = "none";  
+    document.getElementById('det_dni').style.display = "none";
     document.getElementById('det_div_whatsapp').style.display = "none";
     document.getElementById('det_whatsapp').href = "";
-    
+
 
     document.getElementById('det_div_tel').style.display = "none";
     document.getElementById('det_tel').href = "";
@@ -306,16 +306,16 @@ function limpiarDivDetalle(){
 
 }
 
-function limpiarDireccion(){
+function limpiarDireccion() {
     document.getElementById('buscadordireccion').value = "";
     document.getElementById('lon').value = "";
     document.getElementById('lat').value = "";
     document.getElementById('dir').value = "";
-    document.getElementById('type_on').value = "on";    
+    document.getElementById('type_on').value = "on";
 
 }
 
-function mostrarubicacion(latitud, longitud, nombre, direccion, whatsapp, whatsapp_msg, telefono, web, email, instagram, distancia, cuentadni, urlicono, facebookurl, mobile, id){
+function mostrarubicacion(latitud, longitud, nombre, direccion, whatsapp, whatsapp_msg, telefono, web, email, instagram, distancia, cuentadni, urlicono, facebookurl, mobile, id) {
 
     limpiarDivDetalle();
 
@@ -324,10 +324,10 @@ function mostrarubicacion(latitud, longitud, nombre, direccion, whatsapp, whatsa
     var text = '';
 
     document.getElementById('div_detalle').style.display = "";
-    
+
     //MUEVE EL DIV LISTADO HACIA ARRIBA
-    window.scroll(0,0);
-    document.getElementById('divComercios').scroll(0,0);
+    window.scroll(0, 0);
+    document.getElementById('divComercios').scroll(0, 0);
 
     // 1:    
     document.getElementById('det_logo').src = urlicono;
@@ -336,61 +336,61 @@ function mostrarubicacion(latitud, longitud, nombre, direccion, whatsapp, whatsa
     document.getElementById('det_direccion').innerHTML = direccion;
 
     //DETALLE PARA COMPARTIR
-    text = nombre +"\n";
-    if(direccion!=''){
-        text = text+direccion +"\n";
+    text = nombre + "\n";
+    if (direccion != '') {
+        text = text + direccion + "\n";
     }
-    if(whatsapp!=''){
-        text = text+whatsapp +"\n";
+    if (whatsapp != '') {
+        text = text + whatsapp + "\n";
     }
-    if(web!=''){
-        text = text+web +"\n";
+    if (web != '') {
+        text = text + web + "\n";
     }
-    if(facebookurl!=''){
-        text = text+facebookurl +"\n";
+    if (facebookurl != '') {
+        text = text + facebookurl + "\n";
     }
-    if(instagram!=''){
-        text = text+instagram +"\n";
+    if (instagram != '') {
+        text = text + instagram + "\n";
     }
-    if(email!=''){
-        text = text+email +"\n";
+    if (email != '') {
+        text = text + email + "\n";
     }
 
     document.getElementById('det_detalle').value = text;
     //FIN DETALLE PARA COMPARTIR
 
-    if (cuentadni=="1"){
-        document.getElementById('det_dni').style.display = "";        
+    if (cuentadni == "1") {
+        document.getElementById('det_dni').style.display = "";
     }
-    
+
 
     // 2:        
-    if (whatsapp!=""){
+    if (whatsapp != "") {
         document.getElementById('det_div_whatsapp').style.display = "";
-        document.getElementById('det_whatsapp').href = "https://api.whatsapp.com/send?phone="+whatsapp+"&text="+whatsapp_msg;
+        document.getElementById('det_whatsapp').href = "https://api.whatsapp.com/send?phone=" + whatsapp + "&text=" + whatsapp_msg;
 
         cont = cont + 1;
         last = 'det_div_whatsapp';
     }
-    
 
-    if (telefono!=""){
+
+    if (telefono != "") {
         document.getElementById('det_div_tel').style.display = "";
-        document.getElementById('det_tel').href = "tel:"+telefono;
+        document.getElementById('det_tel').href = "tel:" + telefono;
 
         cont = cont + 1;
         last = 'det_div_tel';
     }
 
-    if (web!=""){
+    if (web != "") {
         document.getElementById('det_div_web').style.display = "";
         document.getElementById('det_web').href = web;
 
         cont = cont + 1;
         last = 'det_div_web';
-    }    
+    }
 
-    if (facebookurl!="" && cont < 4){
+    if (facebookurl != "" && cont < 4) {
         document.getElementById('det_div_facebook').style.display = "";
         document.getElementById('det_facebook').href = facebookurl;
 
@@ -398,40 +398,40 @@ function mostrarubicacion(latitud, longitud, nombre, direccion, whatsapp, whatsa
         last = 'det_div_facebook';
     }
 
-    if (instagram!="" && cont < 4){
+    if (instagram != "" && cont < 4) {
         document.getElementById('det_div_instagram').style.display = "";
         document.getElementById('det_instagram').href = instagram;
 
         cont = cont + 1;
         last = 'det_div_instagram';
     }
-    
-    if(cont == 4){
-        if($('#det_div_compartir').is(':visible')){
+
+    if (cont == 4) {
+        if ($('#det_div_compartir').is(':visible')) {
             //SOLO OSULTA SI HAY 4 ICONOS Y COMPARTIR ES VISIBLE PORQUE ES CELULAR
             document.getElementById(last).style.display = "none";
-        }        
+        }
     }
 
     //3
-    if (latitud!=""){   
+    if (latitud != "") {
         document.getElementById('det2_div_direccion').style.display = "";
-        document.getElementById('det2_div_direccionurl').href = "https://www.google.com.ar/maps/@"+latitud+","+longitud+",13z";
+        document.getElementById('det2_div_direccionurl').href = "https://www.google.com.ar/maps/@" + latitud + "," + longitud + ",13z";
         document.getElementById('det2_div_direcciontexto').innerHTML = direccion;
     }
 
 
-    if (telefono!=""){
+    if (telefono != "") {
         document.getElementById('det2_div_tel').style.display = "";
-        document.getElementById('det2_div_telurl').href = "tel:"+telefono;
+        document.getElementById('det2_div_telurl').href = "tel:" + telefono;
         document.getElementById('det2_div_teltexto').innerHTML = telefono;
     }
-    
-    if (email!=""){
+
+    if (email != "") {
         document.getElementById('det2_div_email').style.display = "";
-        document.getElementById('det2_div_emailurl').href = "mailto:"+email;
+        document.getElementById('det2_div_emailurl').href = "mailto:" + email;
         document.getElementById('det2_div_emailtexto').innerHTML = email;
-    }        
+    }
 
     /* if (instagram!=""){
         document.getElementById('det2_div_instagram').style.display = "";
@@ -445,25 +445,24 @@ function mostrarubicacion(latitud, longitud, nombre, direccion, whatsapp, whatsa
         document.getElementById('det2_div_facebooktexto').innerHTML = facebooknombre;
     } */
 
-    
-    if (mobile=="1"){
+
+    if (mobile == "1") {
         document.getElementById('divComercios2').style.display = "none";
         document.getElementById('mobileclickcomercio').value = "1";
-        
+
     }
 
-   
 
-    if (latitud!="0"){
+    if (latitud != "0") {
 
-        if (distancia!=""){
+        if (distancia != "") {
             document.getElementById('det2_div_metros').innerHTML = distancia;
         }
 
         var cant = 0;
-        map.eachLayer(function(layer){
-            if (cant>0){
-                if (latitud==layer._latlng.lat && longitud == layer._latlng.lng){
+        map.eachLayer(function (layer) {
+            if (cant > 0) {
+                if (latitud == layer._latlng.lat && longitud == layer._latlng.lng) {
                     layer.openPopup();
                     map.setView([latitud, longitud], 15);
                 }
@@ -474,3 +473,43 @@ function mostrarubicacion(latitud, longitud, nombre, direccion, whatsapp, whatsa
     }
 
 }
+
+
+function mostrarComercio(id) {  
+
+    
+    var comercio = document.getElementById("comercio_" + id);
+    var comerciosArray = document.getElementsByClassName("div_comercio");
+
+    for (var i = 0; i < comerciosArray.length; i++) {
+        comerciosArray[i].style.backgroundColor = "";
+    }
+
+    comercio.style.backgroundColor = "blue";    
+}
+
+
+// function mostrarCentroide(id, latitud, longitud) {
+
+//     document.getElementById('det_id').value = id;
+
+//     if (latitud != "0") {
+
+//         if (distancia != "") {
+//             document.getElementById('det2_div_metros').innerHTML = distancia;
+//         }
+
+//         var cant = 0;
+//         map.eachLayer(function (layer) {
+//             if (cant > 0) {
+//                 if (latitud == layer._latlng.lat && longitud == layer._latlng.lng) {
+//                     layer.openPopup();
+//                     map.setView([latitud, longitud], 15);
+//                 }
+//             }
+
+//             cant = cant + 1;
+//         });
+//     }
+
+// }

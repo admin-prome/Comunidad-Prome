@@ -13,4 +13,3 @@ $optionactividad = consultarActividad();
 $optionrubro = consultarRubros();
 
 require_once "../views/index.php";
-?>

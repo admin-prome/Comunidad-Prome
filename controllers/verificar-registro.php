@@ -6,15 +6,16 @@ $tipo = isset($_POST['tipo']) ? $_POST['tipo'] : '';
 $document = isset($_POST['documento']) ? $_POST['documento'] : '';
 $message = isset($_POST['message']) ? $_POST['message'] : '';
 
-if ($tipo!=""){
+if ($tipo != "") {
+
     $verificar = verificarExisteDocumento($document);
-    if ($verificar=="true"){
+
+    if ($verificar == "true") {
         $resultado = registrarFormulario($document, $tipo, $message);
         echo "true";
-    }else{
+    } else {
         echo "false";
-    }    
-}else{
+    }
+} else {
     header("Location: index.php");
 }
-?>
