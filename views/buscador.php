@@ -34,12 +34,12 @@
         <div class="container" style="background-color: #FFF; opacity: 0.9; padding-bottom: 5px; padding-top: 5px">
             <div class="container">
 
-                <div class="row margin-box" style="margin-top: 0px; padding-bottom: 20px; margin-left: 10px">
-                    <div class="col-md-6">
+                <div class="row justify-content-between" style="margin-top: 0px; padding-bottom: 6px">
+                    <div class="col-6 text-start">
                         <a href="./"><img src="../img/prome.png" style="height: 40px" /></a>
                     </div>
-                    <div class="col-md-6 text-md-end mt-2" >
-                        <a href="./" class="btn" style="background-color: #279D2E; color: #ffff">Volver</a>
+                    <div class="col-6 text-end">
+                        <a href="./" class="btn" style="background-color: #279D2E; color: #ffff; padding: 8px; font-size: 1em; border-radius: 5px;">Volver</a>
                     </div>
                 </div>
 
@@ -592,29 +592,70 @@
         });
     </script>
     <script>
-        $.ajax({
-            url: 'obtener-centroide.php?id=' + <?php echo $getmunicipio ?>,
-            type: 'GET',
-            success: function(data) {
-                const regex = /-?\d+\.\d+/g;
-                const numeros = data.match(regex);
-                const longitud = parseFloat(numeros[0]);
-                const latitud = parseFloat(numeros[1]);
+        var idMunicipioPostBusqueda = null;
+        var idMunicipioInicio = <?php echo ($getmunicipio !== null && $getmunicipio !== '') ? $getmunicipio : 'null' ?>;
+        var marcadorActual = null;
 
-                const markerOptions = {
-                    icon: L.icon({
-                        iconUrl: '../img/icono_puntero.png',
-                        iconSize: [60, 60],
-                        iconAnchor: [15, 30]
-                    })
-                };
-                const marker = L.marker([longitud, latitud], markerOptions).addTo(map);
-                map.setView([longitud, latitud], 9);
-            },
-            error: function(xhr, status, error) {
-                console.log(error);
-            }
+        $(document).ready(function() {
+            $('select[name="m"]').on('change', function() {
+                idMunicipioPostBusqueda = $(this).val();
+                obtenerCentroide(idMunicipioPostBusqueda || idMunicipioInicio);
+            });
         });
+
+        if (idMunicipioInicio !== null || idMunicipioPostBusqueda !== null) {
+            obtenerCentroide(idMunicipioInicio || idMunicipioPostBusqueda);
+        }
+
+        function obtenerCentroide(idMunicipio) {
+            if (idMunicipio != null) {
+                if (marcadorActual !== null) {
+                    map.removeLayer(marcadorActual);
+                }
+                $.ajax({
+                    url: 'obtener-centroide.php?id=' + idMunicipio,
+                    type: 'GET',
+                    success: function(data) {
+                        if (data !== null) {
+                            const regex = /-?\d+\.\d+/g;
+                            const numeros = data.match(regex);
+                            if (numeros !== null) {
+                                const longitud = parseFloat(numeros[0]);
+                                const latitud = parseFloat(numeros[1]);
+                                const markerOptions = {
+                                    icon: L.icon({
+                                        iconUrl: '../img/icono_puntero.png',
+                                        iconSize: [60, 60],
+                                        iconAnchor: [15, 30]
+                                    })
+                                };
+                                marcadorActual = L.marker([longitud, latitud], markerOptions).addTo(map);
+                                map.setView([longitud, latitud], 9);
+
+                                // Actualizar las variables PHP
+                                $.ajax({
+                                    url: 'busqueda.php',
+                                    type: 'POST',
+                                    data: {
+                                        latitud: latitud,
+                                        longitud: longitud
+                                    },
+                                    success: function(response) {
+                                        console.log(response);
+                                    },
+                                    error: function(xhr, status, error) {
+                                        console.log(error);
+                                    }
+                                });
+                            }
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+            }
+        }
     </script>
 </body>
 

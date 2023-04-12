@@ -168,10 +168,10 @@ $optionrubrob = $comercios["divRubros"];
 $totalResultados = $comercios["totalResultados"];
 
 $displayfiltros = "";
+
 if ($totalResultados == "0") {
     $displayfiltros = "; display: none";
 }
-
 
 $optionmunicipio = consultarMunicipios($getmunicipio);
 //$optionmunicipiob = consultarMunicipios($getmunicipiob, true);

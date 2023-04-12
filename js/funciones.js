@@ -471,45 +471,4 @@ function mostrarubicacion(latitud, longitud, nombre, direccion, whatsapp, whatsa
             cant = cant + 1;
         });
     }
-
 }
-
-
-function mostrarComercio(id) {  
-
-    
-    var comercio = document.getElementById("comercio_" + id);
-    var comerciosArray = document.getElementsByClassName("div_comercio");
-
-    for (var i = 0; i < comerciosArray.length; i++) {
-        comerciosArray[i].style.backgroundColor = "";
-    }
-
-    comercio.style.backgroundColor = "blue";    
-}
-
-
-// function mostrarCentroide(id, latitud, longitud) {
-
-//     document.getElementById('det_id').value = id;
-
-//     if (latitud != "0") {
-
-//         if (distancia != "") {
-//             document.getElementById('det2_div_metros').innerHTML = distancia;
-//         }
-
-//         var cant = 0;
-//         map.eachLayer(function (layer) {
-//             if (cant > 0) {
-//                 if (latitud == layer._latlng.lat && longitud == layer._latlng.lng) {
-//                     layer.openPopup();
-//                     map.setView([latitud, longitud], 15);
-//                 }
-//             }
-
-//             cant = cant + 1;
-//         });
-//     }
-
-// }
