@@ -39,7 +39,7 @@
                         <a href="./"><img src="../img/prome.png" style="height: 40px" /></a>
                     </div>
                     <div class="col-6 text-end">
-                        <a href="./" class="btn" style="background-color: #279D2E; color: #ffff; padding: 8px; font-size: 1em; border-radius: 5px;">Volver</a>
+                        <a href="./" class="btn" style="background-color: #279D2E; color: #ffff; padding: 8px; font-size: 1em; border-radius: 5px; margin-right: 0.8rem;">Volver</a>
                     </div>
                 </div>
 
@@ -631,29 +631,19 @@
                                 };
                                 marcadorActual = L.marker([longitud, latitud], markerOptions).addTo(map);
                                 map.setView([longitud, latitud], 9);
-
-                                // Actualizar las variables PHP
-                                $.ajax({
-                                    url: 'busqueda.php',
-                                    type: 'POST',
-                                    data: {
-                                        latitud: latitud,
-                                        longitud: longitud
-                                    },
-                                    success: function(response) {
-                                        console.log(response);
-                                    },
-                                    error: function(xhr, status, error) {
-                                        console.log(error);
-                                    }
-                                });
+                            } else {
+                                console.log("numeros es null");
                             }
+                        } else {
+                            console.log("data es null");
                         }
                     },
                     error: function(xhr, status, error) {
                         console.log(error);
                     }
                 });
+            } else {
+                console.log("idMunicipio es null");
             }
         }
     </script>

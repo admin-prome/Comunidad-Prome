@@ -27,7 +27,7 @@
                 <div class="row">
                     <div class="col-md-10 offset-1">
                         <h1 style="color: #23952E; text-align: center; font-weight: 600">
-                            Te damos la bienvenida a Comunidad Prome
+                            Comunidad Prome
                         </h1>
                         <h2 style="color: #4E4E4E; text-align: center; font-size: 24px">
                             Un espacio pensado para potenciar tu negocio.
