@@ -116,7 +116,7 @@
                 $("#btnRegistro").prop("disabled", true);
 
                 if (documento == "") {
-                    $("#mensajeprocesar").html("<div class='alert alert-info' role='alert'>EL DNI del titular es obligatorio.</div> ");
+                    $("#mensajeprocesar").html("<div class='alert alert-info' role='alert'>El DNI es obligatorio.</div> ");
                     $("#btnRegistro").prop("disabled", false);
                     return false;
                 }
