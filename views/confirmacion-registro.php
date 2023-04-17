@@ -72,7 +72,7 @@
                 <div style="margin-top: 50px">
                     <div class="row">
                         <div class="col-md-12" style="padding-right: 0px; text-align: center">
-                            <a href="../" style="color: #23952E; text-decoration: none">
+                            <a href="./" style="color: #23952E; text-decoration: none">
                                 Volver al buscador
                             </a>
                         </div>

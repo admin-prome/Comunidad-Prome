@@ -85,7 +85,7 @@
                                 </div>
                                 <div class="row" style="margin-top: 40px">
                                     <div class="col-md-6 col-sm-6 col-6" style="text-align: center; padding: 0px 30px; padding-right: 15px">
-                                        <a href="../">
+                                        <a href="./">
                                             <button type="button" class='btn' style="background-color: #FFF; color: #23952E; font-weight: 500; font-size: 18px; border: 1px solid #23952E; width: 100%">
                                                 Volver
                                             </button>
