@@ -58,7 +58,6 @@ function verfiltrosbusqueda() {
             document.getElementById('filtro_actividad').style.display = "";
         }
 
-
         document.getElementById('div_busquedaavanzada').style.display = "";
     }
 
@@ -171,9 +170,6 @@ function mostrarBuscadorMobile() {
         */
 
     }
-
-
-
 }
 
 function refrescar() {
@@ -195,7 +191,6 @@ function btnCheckCercaMioIndex() {
 
         window.location = "buscador.php?lat="+actual_lat+"&lon="+actual_lon+"&dir="+actual_direccion+"&tipodir=1";
         */
-
     } else {
         document.getElementById('div_direccion').style.display = "none";
         //      document.getElementById('div_direccion').style.display = "";
@@ -231,16 +226,13 @@ function btnCheckCercaMio() {
         document.getElementById('actual_direccion').value = "";
         document.getElementById('buscadordireccion').value = "";
         */
-
         document.getElementById('lat').value = "";
         document.getElementById('lon').value = "";
         document.getElementById('dir').value = "";
-
     }
 
     //ACTUALIZA TANIO DE MAPA
     map.invalidateSize();
-
 }
 
 
@@ -253,7 +245,6 @@ function cerrardetalle() {
     if (mobileclickcomercio == "1") {
         document.getElementById('divComercios').style.display = "inline !important";
     }
-
 }
 
 function limpiarDivDetalle() {
@@ -261,11 +252,10 @@ function limpiarDivDetalle() {
     document.getElementById('det_logo').src = "";
     document.getElementById('det_nombre').innerHTML = "";
     document.getElementById('det_id').value = "";
-    document.getElementById('det_direccion').innerHTML = "";
+    document.getElementById('det_direccionCompleta').innerHTML = "";
     document.getElementById('det_dni').style.display = "none";
     document.getElementById('det_div_whatsapp').style.display = "none";
     document.getElementById('det_whatsapp').href = "";
-
 
     document.getElementById('det_div_tel').style.display = "none";
     document.getElementById('det_tel').href = "";
@@ -302,8 +292,6 @@ function limpiarDivDetalle() {
     */
 
     document.getElementById('det2_div_metros').innerHTML = "";
-
-
 }
 
 function limpiarDireccion() {
@@ -312,10 +300,9 @@ function limpiarDireccion() {
     document.getElementById('lat').value = "";
     document.getElementById('dir').value = "";
     document.getElementById('type_on').value = "on";
-
 }
 
-function mostrarubicacion(latitud, longitud, nombre, direccion, whatsapp, whatsapp_msg, telefono, web, email, instagram, distancia, cuentadni, urlicono, facebookurl, mobile, id) {
+function mostrarubicacion(latitud, longitud, nombre, direccionCompleta, whatsapp, whatsapp_msg, telefono, web, email, instagram, distancia, cuentadni, urlicono, facebookurl, mobile, id) {
 
     limpiarDivDetalle();
 
@@ -333,12 +320,12 @@ function mostrarubicacion(latitud, longitud, nombre, direccion, whatsapp, whatsa
     document.getElementById('det_logo').src = urlicono;
     document.getElementById('det_nombre').innerHTML = nombre;
     document.getElementById('det_id').value = id;
-    document.getElementById('det_direccion').innerHTML = direccion;
+    document.getElementById('det_direccionCompleta').innerHTML = direccionCompleta;
 
     //DETALLE PARA COMPARTIR
     text = nombre + "\n";
-    if (direccion != '') {
-        text = text + direccion + "\n";
+    if (direccionCompleta != '') {
+        text = text + direccionCompleta + "\n";
     }
     if (whatsapp != '') {
         text = text + whatsapp + "\n";
@@ -363,7 +350,6 @@ function mostrarubicacion(latitud, longitud, nombre, direccion, whatsapp, whatsa
         document.getElementById('det_dni').style.display = "";
     }
 
-
     // 2:        
     if (whatsapp != "") {
         document.getElementById('det_div_whatsapp').style.display = "";
@@ -372,7 +358,6 @@ function mostrarubicacion(latitud, longitud, nombre, direccion, whatsapp, whatsa
         cont = cont + 1;
         last = 'det_div_whatsapp';
     }
-
 
     if (telefono != "") {
         document.getElementById('det_div_tel').style.display = "";
@@ -417,7 +402,7 @@ function mostrarubicacion(latitud, longitud, nombre, direccion, whatsapp, whatsa
     if (latitud != "") {
         document.getElementById('det2_div_direccion').style.display = "";
         document.getElementById('det2_div_direccionurl').href = "https://www.google.com.ar/maps/@" + latitud + "," + longitud + ",13z";
-        document.getElementById('det2_div_direcciontexto').innerHTML = direccion;
+        document.getElementById('det2_div_direcciontexto').innerHTML = direccionCompleta;
     }
 
 
@@ -449,7 +434,6 @@ function mostrarubicacion(latitud, longitud, nombre, direccion, whatsapp, whatsa
     if (mobile == "1") {
         document.getElementById('divComercios2').style.display = "none";
         document.getElementById('mobileclickcomercio').value = "1";
-
     }
 
 

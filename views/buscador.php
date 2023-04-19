@@ -190,7 +190,7 @@
                             <div class='row'>
                                 <div class='col-md-3 col-sm-3 col-3' style='padding-right: 0px; text-align: center'>
                                     <div style='padding-top: 10px'>
-                                        <img id="det_logo" style='height: 60px; max-width: auto' />
+                                        <img id="det_logo" src="" style='height: 60px; max-width: auto' />
                                     </div>
                                 </div>
                                 <div class='col-md-9 col-sm-9 col-9' style='text-align: left; padding-top: 10px'>
@@ -199,9 +199,8 @@
                                             <h3 id="det_nombre" style='font-size: 18px; margin-bottom: 4px; font-weight: 700'></h3>
                                             <input type='hidden' id='det_id' name='det_id' value='' />
                                             <input type='hidden' id='det_detalle' name='det_detalle' value='' />
-                                            <span id="det_direccion" style='font-size: 15px; margin-bottom: 4px'>
-
-                                            </span>
+                                            <span id="det_direccionCompleta" style='font-size: 15px; margin-bottom: 4px'></span>
+                                            
                                             <img id="det_dni" title='Cuenta DNI Comercios' src='../img/logocomercios.png' style='height: 23px; margin-right: 10px; margin-top: -5px; display: none' />
                                         </div>
                                     </div>

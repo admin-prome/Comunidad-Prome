@@ -268,13 +268,9 @@ function consultarComercios($buscador = null, $cuentadni = null, $envios = null,
         INNER JOIN estatus on estatus.id = comercio.estatus_id
         LEFT JOIN municipio ON municipio.id = comercio.municipio_id
         LEFT JOIN actividad ON actividad.id = comercio.actividad_id
-
         LEFT JOIN rubrobusqueda ON rubrobusqueda.rubro_id = rubro.id
-
-        
         WHERE comercio.activo = 1 AND estatus.activo = 1 AND estatus.visibleresultado = 1 AND rubrobusqueda.activo = 1 $where
         $orderby
-        
     ";
 
     $sqlMunicipio = "
@@ -431,6 +427,12 @@ function consultarComercios($buscador = null, $cuentadni = null, $envios = null,
             $urlicono = "../img/rubro/icono/icono_$rubro_img.svg";
         }
 
+        if ($direccion != "") {
+            $direccionCompleta = $direccion . " - " . $municipio_nombre;
+        } else {
+            $direccionCompleta = $municipio_nombre;
+        }
+
         if ($latitud != "" && $longitud != "") {
             $divComercioMarkers .= " L.marker([$latitud, $longitud], {icon: L.icon({
                 iconUrl: '../img/rubro/mapa/icono_$rubro_img.png',	
@@ -440,9 +442,8 @@ function consultarComercios($buscador = null, $cuentadni = null, $envios = null,
                 shadowAnchor: [4, 62], 
                 popupAnchor:  [-3, -46]
             })}).addTo(map).bindPopup('<b>$nombre </b><br>$direccion').on('click', () => {
-
-                mostrarubicacion(\"" . $latitud . "\",\"" . $longitud . "\",\"" . $nombre . "\",\"" . $direccion . "\",\"" . $whatsapp . "\",\"" . $whatsapp_msg . "\",\"" . $telefono . "\",\"" . $web . "\",\"" . $email . "\",\"" . $instagramurl . "\",\"" . $distancia . "\",\"" . $cuentadni . "\",\"" . $urlicono . "\",\"" . $facebookurl . "\",\"0\",\"" . $id . "\")
-                
+             
+                mostrarubicacion(\"" . $latitud . "\",\"" . $longitud . "\",\"" . $nombre . "\",\"" . $direccionCompleta . "\",\"" . $whatsapp . "\",\"" . $whatsapp_msg . "\",\"" . $telefono . "\",\"" . $web . "\",\"" . $email . "\",\"" . $instagramurl . "\",\"" . $distancia . "\",\"" . $cuentadni . "\",\"" . $urlicono . "\",\"" . $facebookurl . "\",\"0\",\"" . $id . "\")
             }); ";
         } else {
             $arrowright = "";
@@ -451,11 +452,9 @@ function consultarComercios($buscador = null, $cuentadni = null, $envios = null,
             $longitud = 0;
         }
 
-
         if ($cercamio != "on") {
             $distancia = "";
         }
-
 
         if ($tieneubicacion != "1") {
             $distancia = "";
@@ -465,12 +464,18 @@ function consultarComercios($buscador = null, $cuentadni = null, $envios = null,
             $cuentadni = "";
         }
 
-        if ($municipio_nombre != "") {
-            $direccion .= " - " . $municipio_nombre;
-        }
+        // if ($municipio_nombre != "") {
+        //     $direccion .= " - " . $municipio_nombre;
+        // }
+
+        // if ($direccion != "") {
+        //     $direccion .= " - " . $municipio_nombre;
+        // } else {
+        //     $direccion = $municipio_nombre;
+        // }
 
         $divComercio .= "
-            <div id='comercio_$id' class='div_comercio' style='$cursorpointer' onclick='mostrarubicacion(\"" . $latitud . "\",\"" . $longitud . "\",\"" . $nombre . "\",\"" . $direccion . "\",\"" . $whatsapp . "\",\"" . $whatsapp_msg . "\",\"" . $telefono . "\",\"" . $web . "\",\"" . $email . "\",\"" . $instagramurl . "\",\"" . $distancia . "\",\"" . $cuentadni . "\",\"" . $urlicono . "\",\"" . $facebookurl . "\",\"0\",\"" . $id . "\")'>
+            <div id='comercio_$id' class='div_comercio' style='$cursorpointer' onclick='mostrarubicacion(\"" . $latitud . "\",\"" . $longitud . "\",\"" . $nombre . "\",\"" . $direccionCompleta . "\",\"" . $whatsapp . "\",\"" . $whatsapp_msg . "\",\"" . $telefono . "\",\"" . $web . "\",\"" . $email . "\",\"" . $instagramurl . "\",\"" . $distancia . "\",\"" . $cuentadni . "\",\"" . $urlicono . "\",\"" . $facebookurl . "\",\"0\",\"" . $id . "\")'>
 
                 <div class='row'>
                     <div class='col-md-3 col-sm-3 col-3'  style='padding-right: 0px; text-align: center'>
@@ -488,7 +493,7 @@ function consultarComercios($buscador = null, $cuentadni = null, $envios = null,
                                     $rubro_nombre
                                 </p>
                                 <p style='font-size: 16px; margin-bottom: 4px; color: #5C5B5B'>
-                                    $direccion
+                                    $direccionCompleta
                                 </p>                                               
                             </div>
                             <div class='col-md-3 col-sm-3 col-3' style='padding-right: 20px; padding-left: 0px; text-align: center'>
@@ -521,7 +526,7 @@ function consultarComercios($buscador = null, $cuentadni = null, $envios = null,
         ";
         $mobile = 1;
         $divComercioListaOver .= "
-            <div id='comercio_$id' class='div_comercio' style='cursor: pointer; margin-right: 10px' onclick='mostrarubicacion(\"" . $latitud . "\",\"" . $longitud . "\",\"" . $nombre . "\",\"" . $direccion . "\",\"" . $whatsapp . "\",\"" . $whatsapp_msg . "\",\"" . $telefono . "\",\"" . $web . "\",\"" . $email . "\",\"" . $instagramurl . "\",\"" . $distancia . "\",\"" . $cuentadni . "\",\"" . $urlicono . "\",\"" . $facebookurl . "\",\"" . $mobile . "\",\"" . $id . "\")'>
+            <div id='comercio_$id' class='div_comercio' style='cursor: pointer; margin-right: 10px' onclick='mostrarubicacion(\"" . $latitud . "\",\"" . $longitud . "\",\"" . $nombre . "\",\"" . $direccionCompleta . "\",\"" . $whatsapp . "\",\"" . $whatsapp_msg . "\",\"" . $telefono . "\",\"" . $web . "\",\"" . $email . "\",\"" . $instagramurl . "\",\"" . $distancia . "\",\"" . $cuentadni . "\",\"" . $urlicono . "\",\"" . $facebookurl . "\",\"0\",\"" . $id . "\")'>
                 <div class='row'>
                     <div class='col-md-3 col-sm-3 col-3'  style='padding-right: 0px; text-align: center'>
                         <div style='padding-top: 10px; padding-left: 5'>
@@ -549,7 +554,6 @@ function consultarComercios($buscador = null, $cuentadni = null, $envios = null,
                                 </div>
                             </div>
                         </div>
-                        
                         
                         <div class='row'>
                             <div class='col-md-8 col-sm-8 col-8'>
