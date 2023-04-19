@@ -526,7 +526,7 @@ function consultarComercios($buscador = null, $cuentadni = null, $envios = null,
         ";
         $mobile = 1;
         $divComercioListaOver .= "
-            <div id='comercio_$id' class='div_comercio' style='cursor: pointer; margin-right: 10px' onclick='mostrarubicacion(\"" . $latitud . "\",\"" . $longitud . "\",\"" . $nombre . "\",\"" . $direccionCompleta . "\",\"" . $whatsapp . "\",\"" . $whatsapp_msg . "\",\"" . $telefono . "\",\"" . $web . "\",\"" . $email . "\",\"" . $instagramurl . "\",\"" . $distancia . "\",\"" . $cuentadni . "\",\"" . $urlicono . "\",\"" . $facebookurl . "\",\"0\",\"" . $id . "\")'>
+        <div id='comercio_$id' class='div_comercio' style='cursor: pointer; margin-right: 10px' onclick='mostrarubicacion(\"" . $latitud . "\",\"" . $longitud . "\",\"" . $nombre . "\",\"" . $direccionCompleta . "\",\"" . $whatsapp . "\",\"" . $whatsapp_msg . "\",\"" . $telefono . "\",\"" . $web . "\",\"" . $email . "\",\"" . $instagramurl . "\",\"" . $distancia . "\",\"" . $cuentadni . "\",\"" . $urlicono . "\",\"" . $facebookurl . "\",\"" . $mobile . "\",\"" . $id . "\")'>
                 <div class='row'>
                     <div class='col-md-3 col-sm-3 col-3'  style='padding-right: 0px; text-align: center'>
                         <div style='padding-top: 10px; padding-left: 5'>
