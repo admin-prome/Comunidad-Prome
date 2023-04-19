@@ -8,7 +8,7 @@
 <body style="background-image: url('../img/fondo.jpg'); background-size: cover;">
     <div class="container-fluid div-back-index">
         <div class="container-box">
-            <div class="container-fluid" style="background-color: #323232; opacity: 0.9; padding: 20px; padding-bottom: 30px; padding-top: 30px">
+            <div class="container-fluid" style="background-color: #323232; opacity: 0.9; padding: 20px; padding-bottom: 30px; padding-top: 30px; border-radius: 10px">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">

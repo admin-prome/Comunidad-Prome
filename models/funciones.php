@@ -464,16 +464,6 @@ function consultarComercios($buscador = null, $cuentadni = null, $envios = null,
             $cuentadni = "";
         }
 
-        // if ($municipio_nombre != "") {
-        //     $direccion .= " - " . $municipio_nombre;
-        // }
-
-        // if ($direccion != "") {
-        //     $direccion .= " - " . $municipio_nombre;
-        // } else {
-        //     $direccion = $municipio_nombre;
-        // }
-
         $divComercio .= "
             <div id='comercio_$id' class='div_comercio' style='$cursorpointer' onclick='mostrarubicacion(\"" . $latitud . "\",\"" . $longitud . "\",\"" . $nombre . "\",\"" . $direccionCompleta . "\",\"" . $whatsapp . "\",\"" . $whatsapp_msg . "\",\"" . $telefono . "\",\"" . $web . "\",\"" . $email . "\",\"" . $instagramurl . "\",\"" . $distancia . "\",\"" . $cuentadni . "\",\"" . $urlicono . "\",\"" . $facebookurl . "\",\"0\",\"" . $id . "\")'>
 
