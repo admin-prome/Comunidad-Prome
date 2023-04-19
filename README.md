@@ -1,6 +1,6 @@
-# Prome - Provincia MicroCreditos
+# Comunidad Prome
 
-Proyecto para mostrar los comercios que tienen prestamos con Provincia MicroCreditos
+Comunidad Prome es una plataforma diseñada con el doble objetivo de proporcionar un espacio de visibilización de los emprendimientos financiados por Provincia Microcréditos así como también brindar una herramienta para la búsqueda y construcción de redes de proveedores y distribuidores dentro del ecosistema de trabajadores y trabajadoras independientes.
 
 # Configuración de Proyecto en el Servidor
 
