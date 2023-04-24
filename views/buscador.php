@@ -431,7 +431,7 @@
 
                 /*
                 var iconActual = L.icon({
-                    iconUrl: '../img/icono_puntero.png',		
+                    iconUrl: '../img/icono_estoy_aqui.png',		
                     iconSize:     [38, 50], 
                     shadowSize:   [50, 64], 
                     iconAnchor:   [22, 94], 
@@ -442,8 +442,8 @@
 
                 // Icono ubicacion actual
                 var iconActual = L.icon({
-                    iconUrl: '../img/icono_puntero.png',
-                    iconSize: [38, 45],
+                    iconUrl: '../img/icono_estoy_aqui.png',
+                    iconSize: [32, 40],
                     shadowSize: [50, 64],
                     iconAnchor: [45, 50],
                     shadowAnchor: [4, 62],
@@ -464,8 +464,8 @@
 
                 // Icono ubicacion buscada
                 var iconBusqueda = L.icon({
-                    iconUrl: '../img/icono_puntero.png',
-                    iconSize: [45, 50],
+                    iconUrl: '../img/icono_estoy_aqui.png',
+                    iconSize: [32, 40],
                     shadowSize: [50, 64],
                     iconAnchor: [45, 50],
                     shadowAnchor: [4, 62],
@@ -496,8 +496,8 @@
 
                 // Icono ubicacion buscada
                 var iconBusqueda = L.icon({
-                    iconUrl: '../img/icono_puntero.png',
-                    iconSize: [45, 50],
+                    iconUrl: '../img/icono_estoy_aqui.png',
+                    iconSize: [32, 40],
                     shadowSize: [50, 64],
                     iconAnchor: [45, 50],
                     shadowAnchor: [4, 62],
@@ -623,8 +623,8 @@
                                 const latitud = parseFloat(numeros[1]);
                                 const markerOptions = {
                                     icon: L.icon({
-                                        iconUrl: '../img/icono_puntero.png',
-                                        iconSize: [60, 60],
+                                        iconUrl: '../img/icono_estoy_aqui.png',
+                                        iconSize: [32, 40],
                                         iconAnchor: [15, 30]
                                     })
                                 };
