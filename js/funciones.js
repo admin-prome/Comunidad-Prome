@@ -34,13 +34,13 @@ function procesarFormBusqueda() {
 
         }
         // map.setView([lat, lon], 18);
-        map.setZoom(18);
-        console.log("zoooooom");
+        // map.setZoom(18);
+        // console.log("zoooooom");
     }
-    console.log("estoy en procesarFormBusqueda");
+    // console.log("estoy en procesarFormBusqueda");
 
     document.getElementById("formBusqueda").submit();
-    console.log("despues del submit");
+    // console.log("despues del submit");
 }
 
 function verfiltrosbusqueda() {
@@ -185,20 +185,20 @@ function refrescar() {
 function btnCheckCercaMioIndex() {
 
     var checkCercaMio = document.getElementById('checkCercaMio').checked;
-    console.log("entre a la funcion de index");
+    // console.log("entre a la funcion de index");
     if (checkCercaMio == true) {
 
         document.getElementById('div_direccion').style.display = "";
         document.getElementById('buscadordireccion').value = document.getElementById('actual_direccion').value;
         
-        var actual_lat = document.getElementById('actual_lat').value;
-        var actual_lon = document.getElementById('actual_lon').value;
-        var actual_direccion = document.getElementById('div_direccion').value;
+        // var actual_lat = document.getElementById('actual_lat').value;
+        // var actual_lon = document.getElementById('actual_lon').value;
+        // var actual_direccion = document.getElementById('div_direccion').value;
 
         //window.location = "buscador.php?lat="+actual_lat+"&lon="+actual_lon+"&dir="+actual_direccion+"&tipodir=1";
         
-        console.log("entre al if");
-        map.setView([actual_lat, actual_lon], 18);
+        // console.log("entre al if");
+        // map.setView([actual_lat, actual_lon], 18);
     } else {
         document.getElementById('div_direccion').style.display = "none";
         //      document.getElementById('div_direccion').style.display = "";
@@ -227,8 +227,8 @@ function btnCheckCercaMio() {
         document.getElementById('actual_direccion').value = actual_direccion;
         document.getElementById('buscadordireccion').value = actual_direccion;
 
-        map.invalidateSize();
-        map.setView([actual_lat, actual_lon], 18);
+        // map.invalidateSize();
+        // map.setView([actual_lat, actual_lon], 18);
 
     } else {
         document.getElementById('div_buscadordireccion').style.display = "none";
@@ -470,14 +470,14 @@ function mostrarubicacion(latitud, longitud, nombre, direccionCompleta, whatsapp
 
 
         var checkCercaMio = document.getElementById('checkCercaMio').checked;
-        console.log("checkCercaMio", checkCercaMio);
+        // console.log("checkCercaMio", checkCercaMio);
         // if (checkCercaMio == true) {
         //     map.setZoom(18);
         // }
 
-        if (checkCercaMio == true && type_on == 'on') {
-            console.log("hola");
-        }
+        // if (checkCercaMio == true && type_on == 'on') {
+        //     console.log("hola");
+        // }
 
     }
 }

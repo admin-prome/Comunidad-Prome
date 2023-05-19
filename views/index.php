@@ -49,7 +49,7 @@
                                                     <label class="form-check-label" for="checkCercaMio">Cerca mío</label>
                                                 </div>
                                             </div>
-                                            <div id="actual_direccion" style="margin-top: 10px; margin-bottom: 10px; display: none">
+                                            <div id="div_direccion" style="margin-top: 10px; margin-bottom: 10px; display: none">
                                                 <input type="text" autocomplete="off" id="buscadordireccion" name="dirmapa" class="form-control" placeholder="Indicá un domicilio" onclick="limpiarDireccion()" />
                                             </div>
                                             <div class="input-group mb-3 pl-1">

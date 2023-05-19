@@ -755,7 +755,6 @@ function consultarCentroidePorId($id)
     $sql = "
     SELECT longitud, latitud
     FROM centroide";
-    echo "hola";
     $conexion = new Conexion();
     $arrResultado = $conexion->consulta($sql, [':id' => $id]);
     var_dump($arrResultado);
