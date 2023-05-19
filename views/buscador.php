@@ -25,6 +25,49 @@
             background-color: #4158D0;
             background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
         }
+
+        .pill {
+            display: inline-block;
+            padding: 0.4rem 0.2rem;
+            padding-right: 0.8rem;
+            background-color: #f5f5f5;
+            border-radius: 20px;
+            margin-right: 0.3rem;
+            border-color: #23952E;
+            border-style: solid;
+            border-width: 0.1rem;
+        }
+
+        .pill img {
+            width: 20px;
+            height: 20px;
+            margin-right: 6px;
+        }
+
+        .pill span {
+            font-size: 11px;
+        }
+
+        @media (max-width: 576px) {
+
+            .pill {
+                padding: 0.4rem 0.2rem;
+                padding-right: 0.8rem;
+                margin-right: 8px;
+                margin-bottom: 0.4rem;
+            }
+
+            .pill img {
+                width: 16px;
+                height: 16px;
+                margin-right: 8px;
+            }
+
+            .pill span {
+                font-size: 10px;
+                margin-right: 8px;
+            }
+        }
     </style>
 </head>
 
@@ -35,10 +78,10 @@
             <div class="container">
 
                 <div class="row justify-content-between" style="margin-top: 0px; padding-bottom: 6px">
-                    <div class="col-6 text-start">
+                    <div class="col-4 text-start">
                         <a href="./"><img src="../img/prome.png" style="height: 40px" /></a>
                     </div>
-                    <div class="col-6 text-end">
+                    <div class="col-4 text-end">
                         <a href="./" class="btn" style="background-color: #279D2E; color: #ffff; padding: 8px; font-size: 1em; border-radius: 5px; margin-right: 0.8rem;">Volver</a>
                     </div>
                 </div>
@@ -200,7 +243,7 @@
                                             <input type='hidden' id='det_id' name='det_id' value='' />
                                             <input type='hidden' id='det_detalle' name='det_detalle' value='' />
                                             <span id="det_direccionCompleta" style='font-size: 15px; margin-bottom: 4px'></span>
-                                            
+
                                             <img id="det_dni" title='Cuenta DNI Comercios' src='../img/logocomercios.png' style='height: 23px; margin-right: 10px; margin-top: -5px; display: none' />
                                         </div>
                                     </div>
@@ -385,14 +428,14 @@
                 })
                 //navigator.share({ title: "titulo", text: "detalle", url: url})
             } else {
-                alert('Lo siento, este navegador no tiene soporte para compartir')
+                alert('Lo sentimos, éste navegador no tiene soporte para compartir.')
             }
         })
 
         //CARGA MAPA
         const funcionInit = () => {
             if (!"geolocation" in navigator) {
-                return alert("Tu navegador no soporta el acceso a la ubicación. Intenta con otro");
+                return alert("Tu navegador no soporta el acceso a la ubicación. Intentá con otro.");
             }
 
             const $latitud = document.querySelector("#actual_lat"),
@@ -428,17 +471,6 @@
 
                 document.getElementById('actual_lat').value = coordenadas.latitude;
                 document.getElementById('actual_lon').value = coordenadas.longitude;
-
-                /*
-                var iconActual = L.icon({
-                    iconUrl: '../img/icono_estoy_aqui.png',		
-                    iconSize:     [38, 50], 
-                    shadowSize:   [50, 64], 
-                    iconAnchor:   [22, 94], 
-                    shadowAnchor: [4, 62], 
-                    popupAnchor:  [-3, -76]
-                });
-                */
 
                 // Icono ubicacion actual
                 var iconActual = L.icon({
@@ -535,6 +567,36 @@
             maxZoom: 19,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
+
+        var pillsContainer = L.control({
+            position: 'topright'
+        });
+
+        pillsContainer.onAdd = function() {
+            var container = L.DomUtil.create('div', 'container pills-container');
+
+            var pillReal = L.DomUtil.create('div', 'pill');
+            var pillApprox = L.DomUtil.create('div', 'pill');
+
+            pillReal.innerHTML = '<div class="d-flex align-items-center">' +
+                '<img src="../img/refe_verde.png" alt="Imagen real" style="width: 16px; margin: 0 6px">' +
+                '<span>Ubicación real</span>' +
+                '</div>';
+
+            pillApprox.innerHTML = '<div class="d-flex align-items-center">' +
+                '<img src="../img/refe_blanca.png" alt="Imagen aproximada" style="width: 16px; margin: 0 6px">' +
+                '<span>Ubicación aproximada</span>' +
+                '</div>';
+
+            container.appendChild(pillReal);
+            container.appendChild(pillApprox);
+
+            return container;
+        };
+
+        pillsContainer.addTo(map);
+        tiles.bringToBack();
+
 
         <?php echo $divComercioMarkers; ?>
 

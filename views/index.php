@@ -49,7 +49,7 @@
                                                     <label class="form-check-label" for="checkCercaMio">Cerca mío</label>
                                                 </div>
                                             </div>
-                                            <div id="div_direccion" style="margin-top: 10px; margin-bottom: 10px; display: none">
+                                            <div id="actual_direccion" style="margin-top: 10px; margin-bottom: 10px; display: none">
                                                 <input type="text" autocomplete="off" id="buscadordireccion" name="dirmapa" class="form-control" placeholder="Indicá un domicilio" onclick="limpiarDireccion()" />
                                             </div>
                                             <div class="input-group mb-3 pl-1">
@@ -59,7 +59,6 @@
                                                     <i class="fas fa-search"></i>
                                                 </span>
                                             </div>
-
                                         </div>
                                     </div>
                                     <div class="row" id="div_busquedaavanzada" style="display: none">
@@ -149,6 +148,7 @@
                 event.preventDefault();
                 procesarFormBusqueda();
             }
+            console.log("index. procesarform");
         });
 
         var searchInput = 'buscadordireccion';

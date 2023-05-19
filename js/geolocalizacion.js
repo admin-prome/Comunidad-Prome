@@ -16,19 +16,17 @@ const funcionInit = () => {
 		$enlace.href = `https://www.google.com/maps/@${coordenadas.latitude},${coordenadas.longitude},20z`;
 
 		var iconActual = L.icon({
-			iconUrl: '../img/mapuser.png',		
-			iconSize:     [38, 55], 
-			shadowSize:   [50, 64], 
-			iconAnchor:   [22, 94], 
-			shadowAnchor: [4, 62], 
-			popupAnchor:  [-3, -76]
+			iconUrl: '../img/mapuser.png',
+			iconSize: [38, 55],
+			shadowSize: [50, 64],
+			iconAnchor: [22, 94],
+			shadowAnchor: [4, 62],
+			popupAnchor: [-3, -76]
 		});
 
-		L.marker([coordenadas.latitude, coordenadas.longitude], {icon: iconActual}).addTo(map).bindPopup('<b>Mi Ubicación Actual </b>'); 
-
-
-
+		L.marker([coordenadas.latitude, coordenadas.longitude], { icon: iconActual }).addTo(map).bindPopup('<b>Mi Ubicación Actual </b>');
 	}
+
 	const onErrorDeUbicacion = err => {
 
 		$latitud.innerText = "Error obteniendo ubicación: " + err.message;
@@ -45,9 +43,6 @@ const funcionInit = () => {
 	$latitud.innerText = "Cargando...";
 	$longitud.innerText = "Cargando...";
 	navigator.geolocation.getCurrentPosition(onUbicacionConcedida, onErrorDeUbicacion, opcionesDeSolicitud);
-
-
-
 };
 
 document.addEventListener("DOMContentLoaded", funcionInit);

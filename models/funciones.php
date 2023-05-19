@@ -431,7 +431,9 @@ function consultarComercios($buscador = null, $cuentadni = null, $envios = null,
             $direccionCompleta = $direccion . " - " . $municipio_nombre;
         } else {
             $direccionCompleta = $municipio_nombre;
+            $urlIconoMapa = "../img/rubro/mapa/icono_" . $rubro_img . "_negativo.png";
         }
+
 
         if ($latitud != "" && $longitud != "") {
             $divComercioMarkers .= " L.marker([$latitud, $longitud], {icon: L.icon({
@@ -445,6 +447,20 @@ function consultarComercios($buscador = null, $cuentadni = null, $envios = null,
              
                 mostrarubicacion(\"" . $latitud . "\",\"" . $longitud . "\",\"" . $nombre . "\",\"" . $direccionCompleta . "\",\"" . $whatsapp . "\",\"" . $whatsapp_msg . "\",\"" . $telefono . "\",\"" . $web . "\",\"" . $email . "\",\"" . $instagramurl . "\",\"" . $distancia . "\",\"" . $cuentadni . "\",\"" . $urlicono . "\",\"" . $facebookurl . "\",\"0\",\"" . $id . "\")
             }); ";
+
+            if ($direccion == "") {
+                $divComercioMarkers .= " L.marker([$latitud, $longitud], {icon: L.icon({
+                    iconUrl: '$urlIconoMapa',	
+                    iconSize:     [38, 50], 
+                    shadowSize:   [50, 64], 
+                    iconAnchor:   [38, 50], 
+                    shadowAnchor: [4, 62], 
+                    popupAnchor:  [-3, -46]
+                })}).addTo(map).bindPopup('<b>$nombre </b><br>$direccion').on('click', () => {
+                 
+                    mostrarubicacion(\"" . $latitud . "\",\"" . $longitud . "\",\"" . $nombre . "\",\"" . $direccionCompleta . "\",\"" . $whatsapp . "\",\"" . $whatsapp_msg . "\",\"" . $telefono . "\",\"" . $web . "\",\"" . $email . "\",\"" . $instagramurl . "\",\"" . $distancia . "\",\"" . $cuentadni . "\",\"" . $urlicono . "\",\"" . $facebookurl . "\",\"0\",\"" . $id . "\")
+                }); ";
+            }
         } else {
             $arrowright = "";
             $cursorpointer = "";
