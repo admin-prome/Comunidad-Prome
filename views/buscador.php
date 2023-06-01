@@ -6,6 +6,20 @@
     </title>
     <?php include_once "head.php"; ?>
     <style>
+        /* .background-image {
+            background-image: url("../img/background_cp.jpg");
+            background-size: cover;
+            background-position: center;
+        } */
+
+        .background-color {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .mas-oscuro {
+            background-color: rgba(50, 50, 50, 0.5);
+        }
+
         .scrolling-wrapper {
             overflow-x: auto;
         }
@@ -59,7 +73,7 @@
 
             .pill img {
                 width: 16px;
-                height: 16px;
+                height: 20px;
                 margin-right: 8px;
             }
 
@@ -69,15 +83,37 @@
             }
         }
     </style>
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-K2BDTBJ');
+    </script>
+    <!-- End Google Tag Manager -->
 </head>
 
-<body style="background-color: #FFFFFF" id="inicio">
+<body id="inicio"> <!--class="background-image"-->
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K2BDTBJ" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <div>
-        <div class="container" style="background-color: #FFF; opacity: 0.9; padding-bottom: 5px; padding-top: 5px">
+        <div class="container background-color" style="padding-bottom: 5px; padding-top: 5px; border-radius: 10px">
             <div class="container">
 
-                <div class="row justify-content-between" style="margin-top: 0px; padding-bottom: 6px">
+                <div class="row justify-content-between" style="margin-top: 0px; padding-bottom: 6px; border-radius: 10px">
                     <div class="col-4 text-start">
                         <a href="./"><img src="../img/prome.png" style="height: 40px" /></a>
                     </div>
@@ -378,7 +414,7 @@
                     </div>
                     <!-- FIN div mapa -->
 
-                    <div class="col-md-12 d-none d-sm-block" style="border-top: 1px solid #ddd; margin-top:10px">
+                    <div class="col-md-12 d-none d-sm-block" style="border-top: 1px solid #ddd; margin-top:10px;">
                         <div class="d-none d-sm-block" style="padding: 8px; text-align: center;">
                             <a href="registro.php?tipo=alta">
                                 <button class='btn' style="background-color: #23952E; color: #FFF; font-weight: 700; font-size: 18px; padding-left:30px; padding-right:30px; letter-spacing:1px">

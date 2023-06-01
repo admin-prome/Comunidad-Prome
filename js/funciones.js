@@ -229,6 +229,7 @@ function btnCheckCercaMio() {
 
         // map.invalidateSize();
         // map.setView([actual_lat, actual_lon], 18);
+        // console.log("btnCheckCercaMio");
 
     } else {
         document.getElementById('div_buscadordireccion').style.display = "none";
