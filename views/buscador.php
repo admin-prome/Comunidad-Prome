@@ -24,6 +24,10 @@
             overflow-x: auto;
         }
 
+        .comunidad-logo {
+            height: 78px;          
+        }
+
         .card-block {
             height: 300px;
             background-color: #fff;
@@ -115,10 +119,10 @@
 
                 <div class="row justify-content-between" style="margin-top: 0px; padding-bottom: 6px; border-radius: 10px">
                     <div class="col-4 text-start">
-                        <a href="./"><img src="../img/prome.png" style="height: 40px" /></a>
+                        <a href="./"><img src="../img/LogoComunidadPromeHorizontalCortado.png" class="comunidad-logo" /></a>
                     </div>
                     <div class="col-4 text-end">
-                        <a href="./" class="btn" style="background-color: #279D2E; color: #ffff; padding: 8px; font-size: 1em; border-radius: 5px; margin-right: 0.8rem;">Volver</a>
+                        <a href="./" class="btn" style="background-color: #279D2E; color: #ffff; padding: 8px; font-size: 1em; border-radius: 5px; margin-right: 0.8rem; margin-top: 1rem;">Volver</a>
                     </div>
                 </div>
 
