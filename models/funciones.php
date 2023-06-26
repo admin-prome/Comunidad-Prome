@@ -148,15 +148,16 @@ function formatearDistancia($distancia = null)
 
 function consultarComercios($buscador = null, $cuentadni = null, $envios = null, $latitudbuscar = null, $longitudbuscar = null, $getmunicipio = null, $getactividad = null, $getrubro = null, $cercamio = null, $getmunicipiob = null, $getrubrob = null)
 {
-
     $where = "";
     $agregarselect = "";
     $orderby = "";
     $divComercioMarkers = "";
     $divComercio = "";
     $divComercioListaOver = "";
-
+    
     if ($buscador != "") {
+        $buscador = preg_replace('/\s+/', ' ', trim($buscador));
+
         $where .= " and (comercio.nombre like '%$buscador%' or rubrobusqueda.palabra like '%$buscador%' )"; //like binary '%$buscador%'
     }
 

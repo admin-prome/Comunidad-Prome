@@ -25,7 +25,7 @@
         }
 
         .comunidad-logo {
-            height: 78px;          
+            height: 78px;
         }
 
         .card-block {
@@ -732,19 +732,13 @@
                                 };
                                 marcadorActual = L.marker([longitud, latitud], markerOptions).addTo(map);
                                 map.setView([longitud, latitud], 9);
-                            } else {
-                                console.log("numeros es null");
                             }
-                        } else {
-                            console.log("data es null");
                         }
                     },
                     error: function(xhr, status, error) {
                         console.log(error);
                     }
                 });
-            } else {
-                console.log("idMunicipio es null");
             }
         }
     </script>
