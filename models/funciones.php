@@ -154,11 +154,19 @@ function consultarComercios($buscador = null, $cuentadni = null, $envios = null,
     $divComercioMarkers = "";
     $divComercio = "";
     $divComercioListaOver = "";
-    
+
     if ($buscador != "") {
         $buscador = preg_replace('/\s+/', ' ', trim($buscador));
-
-        $where .= " and (comercio.nombre like '%$buscador%' or rubrobusqueda.palabra like '%$buscador%' )"; //like binary '%$buscador%'
+        
+        $where .= "AND comercio.nombre LIKE '$buscador'
+                   OR comercio.nombre LIKE '$buscador%'
+                   OR comercio.nombre LIKE '%$buscador%'
+                   OR actividad.nombre LIKE '$buscador'
+                   OR actividad.nombre LIKE '$buscador%'
+                   OR actividad.nombre LIKE '%$buscador%'
+                   OR actividadbusqueda.palabra LIKE '$buscador'
+                   OR actividadbusqueda.palabra LIKE '$buscador%'
+                   OR actividadbusqueda.palabra LIKE '%$buscador%'";
     }
 
     if ($getmunicipio != "") {
@@ -269,8 +277,8 @@ function consultarComercios($buscador = null, $cuentadni = null, $envios = null,
         INNER JOIN estatus on estatus.id = comercio.estatus_id
         LEFT JOIN municipio ON municipio.id = comercio.municipio_id
         LEFT JOIN actividad ON actividad.id = comercio.actividad_id
-        LEFT JOIN rubrobusqueda ON rubrobusqueda.rubro_id = rubro.id
-        WHERE comercio.activo = 1 AND estatus.activo = 1 AND estatus.visibleresultado = 1 AND rubrobusqueda.activo = 1 $where
+        LEFT JOIN actividadbusqueda ON actividadbusqueda.actividad_id = actividad.id
+        WHERE comercio.activo = 1 AND estatus.activo = 1 AND estatus.visibleresultado = 1 AND actividadbusqueda.activo = 1 $where
         $orderby
     ";
 
@@ -280,7 +288,7 @@ function consultarComercios($buscador = null, $cuentadni = null, $envios = null,
         INNER JOIN rubro ON comercio.rubro_id = rubro.id
         INNER JOIN estatus on estatus.id = comercio.estatus_id
         INNER JOIN municipio ON municipio.id = comercio.municipio_id
-        LEFT JOIN rubrobusqueda ON rubrobusqueda.rubro_id = rubro.id
+        LEFT JOIN actividadbusqueda ON actividadbusqueda.rubro_id = rubro.id
         LEFT JOIN actividad ON actividad.id = comercio.actividad_id
         WHERE comercio.activo = 1 AND estatus.activo = 1 AND estatus.visibleresultado = 1 $where
         ORDER BY municipio.nombre asc
@@ -293,7 +301,7 @@ function consultarComercios($buscador = null, $cuentadni = null, $envios = null,
         INNER JOIN estatus on estatus.id = comercio.estatus_id
         INNER JOIN municipio ON municipio.id = comercio.municipio_id
         LEFT JOIN actividad ON actividad.id = comercio.actividad_id
-        LEFT JOIN rubrobusqueda ON rubrobusqueda.rubro_id = rubro.id
+        LEFT JOIN actividadbusqueda ON actividadbusqueda.rubro_id = rubro.id
         WHERE comercio.activo = 1 AND estatus.activo = 1 AND estatus.visibleresultado = 1 $where
         ORDER BY rubro.nombre asc
     ";
