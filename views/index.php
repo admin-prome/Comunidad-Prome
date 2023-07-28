@@ -76,7 +76,7 @@
                                                 <input type="text" autocomplete="off" id="buscadordireccion" name="dirmapa" class="form-control" placeholder="Indicá un domicilio" onclick="limpiarDireccion()" />
                                             </div>
                                             <div class="input-group mb-3 pl-1">
-                                                <i class="fa fa-list" style="border-top: 1px solid #ced4da;border-left: 1px solid #ced4da; border-bottom: 1px solid #ced4da; padding: 10px; color: #C4C4C4; cursor: pointer" onclick="verfiltrosbusquedaindex()"></i>
+                                                <i class="fas fa-chevron-down" style="border-top: 1px solid #ced4da;border-left: 1px solid #ced4da; border-bottom: 1px solid #ced4da; padding: 10px; color: #C4C4C4; cursor: pointer" onclick="verfiltrosbusquedaindex()"></i>
                                                 <input type="text" class="form-control" placeholder="Escribí una marca, insumo, producto o servicio" aria-label="Escribí una marca, insumo, producto o servicio" aria-describedby="basic-addon2" name="q" required="required" id="buscador" autocomplete="off" style="border-left: 0px solid #FFF">
                                                 <span class="input-group-text" id="basic-addon2" style="background-color: #23952E; color: #FFF; cursor: pointer" onclick="procesarFormBusqueda()">
                                                     <i class="fas fa-search"></i>
@@ -87,7 +87,7 @@
                                     <div class="row" id="div_busquedaavanzada" style="display: none">
                                         <div class="col-md-6 mb-3" style="text-align: left; padding: 0px 30px">
                                             <div class="mb-1">
-                                                <i class="fa fa-list" style="padding-left: 5px; padding-top: 10px; color: #C4C4C4; cursor: pointer" onclick="verfiltrosbusquedaindex()"></i> Búsqueda avanzada
+                                                <i class="fas fa-chevron-down" style="padding-left: 5px; padding-top: 10px; color: #C4C4C4; cursor: pointer" onclick="verfiltrosbusquedaindex()"></i> Búsqueda avanzada
                                             </div>
                                             <div>
                                                 <div class="form-check form-switch">
