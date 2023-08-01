@@ -157,7 +157,7 @@ function consultarComercios($buscador = null, $cuentadni = null, $envios = null,
 
     if ($buscador != "") {
         $buscador = preg_replace('/\s+/', ' ', trim($buscador));
-        
+
         $where .= "AND comercio.nombre LIKE '$buscador'
                    OR comercio.nombre LIKE '$buscador%'
                    OR comercio.nombre LIKE '%$buscador%'
@@ -312,7 +312,6 @@ function consultarComercios($buscador = null, $cuentadni = null, $envios = null,
     if ($tieneubicacion != "1") { // Colocar aleatorio resultados cuando no tiene ubicacion colocada
         //shuffle($arrResultado);
     }
-
 
     $totalResultados = count($arrResultado);
 

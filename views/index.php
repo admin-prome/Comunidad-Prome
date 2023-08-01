@@ -40,6 +40,7 @@
                             </h1>
                             <h2 style="color: #FFF; text-align: center; font-size: 22px">
                                 Te damos la bienvenida a <b>Comunidad Prome</b> un espacio pensado para potenciar tu negocio
+                                <i class="fas fa-info-circle" style="color: #0049B0; background-color:#FFFFFF; border-radius: 50%; border-style: none;" data-bs-toggle="tooltip" data-bs-placement="top" title="Formar parte de Comunidad Prome permite que más personas conozcan tu negocio y ponerte en contacto con otros emprendimientos. Estos vínculos ayudan a fortalecer tu red de productores y compradores."></i>
                             </h2>
                         </div>
                     </div>
@@ -75,7 +76,11 @@
                                             <div id="div_direccion" style="margin-top: 10px; margin-bottom: 10px; display: none">
                                                 <input type="text" autocomplete="off" id="buscadordireccion" name="dirmapa" class="form-control" placeholder="Indicá un domicilio" onclick="limpiarDireccion()" />
                                             </div>
-                                            <div class="input-group mb-3 pl-1">
+
+                                            <div class="input-group mb-3 mt-2 pl-1">
+                                                <div class="d-flex align-items-center" style="margin-right: 8px;">
+                                                    <i class="fas fa-info-circle" style="color: #0049B0;" data-bs-toggle="tooltip" data-bs-placement="top" title=" Al hacer clic aquí podrás realizar una búsqueda avanzada para obtener mejores resultados."></i>
+                                                </div>
                                                 <i class="fas fa-chevron-down" style="border-top: 1px solid #ced4da;border-left: 1px solid #ced4da; border-bottom: 1px solid #ced4da; padding: 10px; color: #C4C4C4; cursor: pointer" onclick="verfiltrosbusquedaindex()"></i>
                                                 <input type="text" class="form-control" placeholder="Escribí una marca, insumo, producto o servicio" aria-label="Escribí una marca, insumo, producto o servicio" aria-describedby="basic-addon2" name="q" required="required" id="buscador" autocomplete="off" style="border-left: 0px solid #FFF">
                                                 <span class="input-group-text" id="basic-addon2" style="background-color: #23952E; color: #FFF; cursor: pointer" onclick="procesarFormBusqueda()">
@@ -275,6 +280,13 @@
                 });
             });
         });
+    </script>
+
+    <script type="text/javascript">
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
     </script>
 </body>
 
