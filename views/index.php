@@ -18,6 +18,7 @@
             border-style: none;
             font-size: 16px;
             vertical-align: super;
+            display: inline-block;
         }
 
         @media (max-width: 1199px) {
@@ -168,7 +169,7 @@
                                 Construí tu red de proveedores
                             </h1>
                             <h2 class="subtitle">
-                                Te damos la bienvenida a <b class="business-name">Comunidad Prome</b> un espacio pensado para potenciar tu <span>negocio <i class="fas fa-info-circle info-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Formar parte de Comunidad Prome permite que más personas conozcan tu negocio y ponerte en contacto con otros emprendimientos. Estos vínculos ayudan a fortalecer tu red de productores y compradores."></i></span>
+                                Te damos la bienvenida a <b class="business-name">Comunidad Prome</b> un espacio pensado para potenciar tu <span style="white-space: nowrap;">negocio <i class="fas fa-info-circle info-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Formar parte de Comunidad Prome permite que más personas conozcan tu negocio y ponerte en contacto con otros emprendimientos. Estos vínculos ayudan a fortalecer tu red de productores y compradores."></i></span>
                             </h2>
                         </div>
                     </div>
