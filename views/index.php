@@ -2,6 +2,135 @@
 
 <head>
     <title> Comunidad PROME </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+        .subtitle {
+            color: #FFF;
+            text-align: center;
+            font-size: 22px;
+        }
+
+        .info-icon {
+            color: #25B4BD;
+            background-color: #FFFFFF;
+            border-radius: 50%;
+            border-style: none;
+            font-size: 16px;
+            vertical-align: super;
+        }
+
+        @media (max-width: 1199px) {
+
+            .subtitle,
+            .business-name-name {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 1006px) {
+
+            .subtitle,
+            .business-name {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 776px) {
+
+            .subtitle,
+            .business-name {
+                font-size: 15px;
+            }
+
+        }
+
+        @media (max-width: 541px) {
+
+            .subtitle,
+            .business-name {
+                font-size: 14px;
+            }
+
+            .info-icon {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .subtitle,
+            .business-name {
+                font-size: 14px;
+            }
+
+            .info-icon {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 367px) {
+
+            .subtitle,
+            .business-name {
+                font-size: 16px;
+            }
+
+            .info-icon {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 358px) {
+
+            .subtitle,
+            .business-name {
+                font-size: 13px;
+            }
+
+            .info-icon {
+                font-size: 11px;
+            }
+        }
+
+        @media (max-width: 345px) {
+
+            .subtitle,
+            .business-name {
+                font-size: 14px;
+            }
+
+            .info-icon {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 298px) {
+
+            .subtitle,
+            .business-name {
+                font-size: 16px;
+            }
+
+            .info-icon {
+                font-size: 12px;
+            }
+        }
+
+
+        @media (max-width: 227px) {
+
+            .subtitle,
+            .business-name {
+                font-size: 15px;
+            }
+
+            .info-icon {
+                font-size: 11px;
+            }
+        }
+    </style>
+
     <?php include_once "head.php"; ?>
     <!-- Google Tag Manager -->
     <script>
@@ -38,9 +167,8 @@
                             <h1 style="color: #FFF; text-align: center; font-weight: bold">
                                 Construí tu red de proveedores
                             </h1>
-                            <h2 style="color: #FFF; text-align: center; font-size: 22px">
-                                Te damos la bienvenida a <b>Comunidad Prome</b> un espacio pensado para potenciar tu negocio
-                                <i class="fas fa-info-circle" style="color: #0049B0; background-color:#FFFFFF; border-radius: 50%; border-style: none;" data-bs-toggle="tooltip" data-bs-placement="top" title="Formar parte de Comunidad Prome permite que más personas conozcan tu negocio y ponerte en contacto con otros emprendimientos. Estos vínculos ayudan a fortalecer tu red de productores y compradores."></i>
+                            <h2 class="subtitle">
+                                Te damos la bienvenida a <b class="business-name">Comunidad Prome</b> un espacio pensado para potenciar tu <span>negocio <i class="fas fa-info-circle info-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Formar parte de Comunidad Prome permite que más personas conozcan tu negocio y ponerte en contacto con otros emprendimientos. Estos vínculos ayudan a fortalecer tu red de productores y compradores."></i></span>
                             </h2>
                         </div>
                     </div>
@@ -77,23 +205,21 @@
                                                 <input type="text" autocomplete="off" id="buscadordireccion" name="dirmapa" class="form-control" placeholder="Indicá un domicilio" onclick="limpiarDireccion()" />
                                             </div>
 
-                                            <div class="input-group mb-3 mt-2 pl-1">
-                                                <div class="d-flex align-items-center" style="margin-right: 8px;">
-                                                    <i class="fas fa-info-circle" style="color: #0049B0;" data-bs-toggle="tooltip" data-bs-placement="top" title=" Al hacer clic aquí podrás realizar una búsqueda avanzada para obtener mejores resultados."></i>
-                                                </div>
-                                                <i class="fas fa-chevron-down" style="border-top: 1px solid #ced4da;border-left: 1px solid #ced4da; border-bottom: 1px solid #ced4da; padding: 10px; color: #C4C4C4; cursor: pointer" onclick="verfiltrosbusquedaindex()"></i>
+                                            <div class="input-group mb-2 mt-2 pl-1">
                                                 <input type="text" class="form-control" placeholder="Escribí una marca, insumo, producto o servicio" aria-label="Escribí una marca, insumo, producto o servicio" aria-describedby="basic-addon2" name="q" required="required" id="buscador" autocomplete="off" style="border-left: 0px solid #FFF">
                                                 <span class="input-group-text" id="basic-addon2" style="background-color: #23952E; color: #FFF; cursor: pointer" onclick="procesarFormBusqueda()">
                                                     <i class="fas fa-search"></i>
                                                 </span>
                                             </div>
+                                            <div class="row">
+                                                <div class="mb-3" onclick="verfiltrosbusquedaindex()">
+                                                    <i class="fas fa-chevron-down" style="padding-left: 5px; padding-top: 10px; color: #C4C4C4; cursor: pointer"></i> Búsqueda avanzada
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row" id="div_busquedaavanzada" style="display: none">
                                         <div class="col-md-6 mb-3" style="text-align: left; padding: 0px 30px">
-                                            <div class="mb-1">
-                                                <i class="fas fa-chevron-down" style="padding-left: 5px; padding-top: 10px; color: #C4C4C4; cursor: pointer" onclick="verfiltrosbusquedaindex()"></i> Búsqueda avanzada
-                                            </div>
                                             <div>
                                                 <div class="form-check form-switch">
                                                     <input class="form-check-input" type="checkbox" id="checkAdherido" name="cuentadni">
