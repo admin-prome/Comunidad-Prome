@@ -20,116 +20,6 @@
             vertical-align: super;
             display: inline-block;
         }
-
-        @media (max-width: 1199px) {
-
-            .subtitle,
-            .business-name-name {
-                font-size: 18px;
-            }
-        }
-
-        @media (max-width: 1006px) {
-
-            .subtitle,
-            .business-name {
-                font-size: 16px;
-            }
-        }
-
-        @media (max-width: 776px) {
-
-            .subtitle,
-            .business-name {
-                font-size: 15px;
-            }
-
-        }
-
-        @media (max-width: 541px) {
-
-            .subtitle,
-            .business-name {
-                font-size: 14px;
-            }
-
-            .info-icon {
-                font-size: 12px;
-            }
-        }
-
-        @media (max-width: 500px) {
-
-            .subtitle,
-            .business-name {
-                font-size: 14px;
-            }
-
-            .info-icon {
-                font-size: 12px;
-            }
-        }
-
-        @media (max-width: 367px) {
-
-            .subtitle,
-            .business-name {
-                font-size: 16px;
-            }
-
-            .info-icon {
-                font-size: 14px;
-            }
-        }
-
-        @media (max-width: 358px) {
-
-            .subtitle,
-            .business-name {
-                font-size: 13px;
-            }
-
-            .info-icon {
-                font-size: 11px;
-            }
-        }
-
-        @media (max-width: 345px) {
-
-            .subtitle,
-            .business-name {
-                font-size: 14px;
-            }
-
-            .info-icon {
-                font-size: 12px;
-            }
-        }
-
-        @media (max-width: 298px) {
-
-            .subtitle,
-            .business-name {
-                font-size: 16px;
-            }
-
-            .info-icon {
-                font-size: 12px;
-            }
-        }
-
-
-        @media (max-width: 227px) {
-
-            .subtitle,
-            .business-name {
-                font-size: 15px;
-            }
-
-            .info-icon {
-                font-size: 11px;
-            }
-        }
     </style>
 
     <?php include_once "head.php"; ?>
@@ -207,7 +97,7 @@
                                             </div>
 
                                             <div class="input-group mb-2 mt-2 pl-1">
-                                                <input type="text" class="form-control" placeholder="Escribí una marca, insumo, producto o servicio" aria-label="Escribí una marca, insumo, producto o servicio" aria-describedby="basic-addon2" name="q" required="required" id="buscador" autocomplete="off" style="border-left: 0px solid #FFF">
+                                                <input type="text" class="form-control" placeholder="Escribí una marca, insumo, producto o servicio" aria-label="Escribí una marca, insumo, producto o servicio" aria-describedby="basic-addon2" name="q" required="required" id="buscador" autocomplete="off" >
                                                 <span class="input-group-text" id="basic-addon2" style="background-color: #23952E; color: #FFF; cursor: pointer" onclick="procesarFormBusqueda()">
                                                     <i class="fas fa-search"></i>
                                                 </span>
@@ -256,7 +146,7 @@
                             </div>
                             <div style="margin-top: 20px">
                                 <div class="row">
-                                    <div class="col-md-12" style="padding-right: 0px; text-align: center">
+                                    <div class="col-md-12" style="text-align: center">
                                         <a href="registro.php?tipo=alta">
                                             <button class='btn' style="background-color: #23952E; color: #FFF; font-weight: 700; font-size: 18px">
                                                 Quiero sumarme a Comunidad Prome
