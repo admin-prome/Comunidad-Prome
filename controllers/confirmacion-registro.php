@@ -25,7 +25,7 @@ if ($tipo != "" || $tipoget != "") {
             case '1':
                 $subject = "Comunidad Prome: Alta";
                 $titulo = "Redireccionando…";
-                $subtitulo = "Si no podés acceder al Formulario de Alta, hacé click <a href='https://www.provinciamicrocreditos.com.ar/comunidad-prome-alta/'>acá</a>.";
+                $subtitulo = "Si no podés acceder al Formulario de Alta, hacé click <a href='https://www.provinciamicrocreditos.com.ar/comunidad-prome-alta/' target='_blank'>acá</a>.";
                 break;
             case '2':
                 $subject = "Comunidad Prome: Baja";
