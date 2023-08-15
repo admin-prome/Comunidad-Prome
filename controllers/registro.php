@@ -19,7 +19,7 @@ if ($tipo == "alta") {
     $displaytiporamite = "; display: none";
     $tituloFormulario = "Ingresá tu DNI y accedé al formulario de registro.";
     $colorAlerta = "alert-info";
-    $alerta = "Comunidad Prome es una plataforma para clientes Prome. Conocé nuestros créditos <a href='https://www.provinciamicrocreditos.com.ar/creditos/'>acá</a>.";
+    $alerta = "Comunidad Prome es una plataforma para clientes Prome. Conocé nuestros créditos <a href='https://www.provinciamicrocreditos.com.ar/creditos/' target='_blank'>acá</a>.";
 }
 
 require_once "../views/registro.php";
