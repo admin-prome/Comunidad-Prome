@@ -146,8 +146,57 @@ function formatearDistancia($distancia = null)
     return $distanciaFormateo;
 }
 
+function obtenerComercios($buscador, $cuentadni, $envios, $latitudbuscar, $longitudbuscar, $getmunicipio, $getactividad, $getrubro, $cercamio, $getmunicipiob, $getrubrob)
+{
+    $cercamio = (int)$cercamio;
+    $latitudbuscar = (float)$latitudbuscar;
+    $longitudbuscar = (float)$longitudbuscar;
+
+
+    $apiUrl = 'https://localhost:7080/api/CommerceSearch';
+
+    $data = [
+        "cercaMio" => $cercamio,
+        "latitud" => $latitudbuscar,
+        "longitud" => $longitudbuscar,
+        "palabraClave" => $buscador ?? "",
+        "tieneCuentaDNIComercio" => (int)($cuentadni ?? 0),
+        "haceEnviosADomicilio" => (int)($envios ?? 0),
+        "municipio" => $getmunicipio ?? "",
+        "rubro" => $getrubro ?? "",
+        "actividad" => $getactividad ?? ""
+    ];
+
+    $dataJson = json_encode($data);
+    $ch = curl_init($apiUrl);
+
+
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        'Content-Type: application/json',
+    ]);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $dataJson);
+    curl_setopt($ch, CURLOPT_POST, true);
+
+    $response = curl_exec($ch);
+
+    if ($response === false) {
+        echo 'Error al realizar la solicitud: ' . curl_error($ch);
+    } else {
+        echo 'Respuesta de la API: ' . $response;
+    }   
+
+    curl_close($ch);
+}
+
 function consultarComercios($buscador = null, $cuentadni = null, $envios = null, $latitudbuscar = null, $longitudbuscar = null, $getmunicipio = null, $getactividad = null, $getrubro = null, $cercamio = null, $getmunicipiob = null, $getrubrob = null)
 {
+    echo '<br>antes<br><br>';
+    obtenerComercios($buscador, $cuentadni, $envios, $latitudbuscar, $longitudbuscar, $getmunicipio, $getactividad, $getrubro, $cercamio, $getmunicipiob, $getrubrob);
+    echo '<br><br>despues<br>';
+
+
     $where = "";
     $agregarselect = "";
     $orderby = "";
