@@ -82,7 +82,7 @@ $displaymapaa = " style='display: none' ";
 $displaycomercios = " ";
 $divComercios2 = "";
 //$divComercios2 = " style='display: none !important' ";
-$divBusquedaAvanzada = " style='display: none' ";
+// $divBusquedaAvanzada = " style='display: none' ";
 $divBusquedaMunicipios = " style='display: none' ";
 $divBusquedaRubros = " style='display: none' ";
 
@@ -106,9 +106,9 @@ if ($cercamio == "on") {
     $divbuscadormapa = " ; display: none";
 }
 
-if ($getmunicipio != "" || $getrubro != "" || $getactividad != "") {
-    $divBusquedaAvanzada = "";
-}
+// if ($getmunicipio != "" || $getrubro != "" || $getactividad != "") {
+//     $divBusquedaAvanzada = "";
+// }
 
 $latitudbuscarcomercios  = "";
 $longitudbuscarcomercios  = "";
@@ -157,7 +157,7 @@ if ($cercamio == "on") {
     $longitudbuscarcomercios    = "";
 }
 
-$comercios = consultarComercios($buscador, $cuentadni, $envios, $latitudbuscarcomercios, $longitudbuscarcomercios, $getmunicipio, $getactividad, $getrubro, $cercamio, $getmunicipiob,  $getrubrob);
+$comercios = consultar_comercios($buscador, $cuentadni, $envios, $latitudbuscarcomercios, $longitudbuscarcomercios, $getmunicipio, $getactividad, $getrubro, $cercamio, $getmunicipiob,  $getrubrob);
 
 $divComercios = $comercios["divComercio"];
 $divComercioListaOver = $comercios["divComercioListaOver"];

@@ -5,7 +5,6 @@ include_once '../models/conexion.php';
 
 function consultarMunicipios($municipio = null, $sinselect = null)
 {
-
     $option = "";
 
     $sql = "
@@ -61,7 +60,6 @@ function consultarMunicipios($municipio = null, $sinselect = null)
 
 function consultarActividad($actividad = null, $rubro = null)
 {
-
     $where = "";
 
     if ($rubro != "") {
@@ -129,7 +127,7 @@ function consultarRubros($rubro = null)
     return $option;
 }
 
-function formatearDistancia($distancia = null)
+function formatear_distancia($distancia = null)
 {
     if (is_null($distancia) || $distancia == '') {
         return null;
@@ -146,12 +144,11 @@ function formatearDistancia($distancia = null)
     return $distanciaFormateo;
 }
 
-function obtenerComercios($buscador, $cuentadni, $envios, $latitudbuscar, $longitudbuscar, $getmunicipio, $getactividad, $getrubro, $cercamio, $getmunicipiob, $getrubrob)
+function obtener_comercios($buscador, $cuentadni, $envios, $latitudbuscar, $longitudbuscar, $getmunicipio, $getactividad, $getrubro, $cercamio, $getmunicipiob, $getrubrob)
 {
     $cercamio = (int)$cercamio;
     $latitudbuscar = (float)$latitudbuscar;
     $longitudbuscar = (float)$longitudbuscar;
-
 
     $apiUrl = 'https://localhost:7080/api/CommerceSearch';
 
@@ -170,7 +167,6 @@ function obtenerComercios($buscador, $cuentadni, $envios, $latitudbuscar, $longi
     $dataJson = json_encode($data);
     $ch = curl_init($apiUrl);
 
-
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_HTTPHEADER, [
@@ -182,21 +178,276 @@ function obtenerComercios($buscador, $cuentadni, $envios, $latitudbuscar, $longi
     $response = curl_exec($ch);
 
     if ($response === false) {
-        echo 'Error al realizar la solicitud: ' . curl_error($ch);
+        return null;
     } else {
-        echo 'Respuesta de la API: ' . $response;
-    }   
+        $decodedResponse = json_decode($response, true);
+        $result = $decodedResponse['result'];
+
+        if ($decodedResponse !== null) {
+            return $result;
+        } else {
+            return null;
+        }
+    }
 
     curl_close($ch);
 }
 
-function consultarComercios($buscador = null, $cuentadni = null, $envios = null, $latitudbuscar = null, $longitudbuscar = null, $getmunicipio = null, $getactividad = null, $getrubro = null, $cercamio = null, $getmunicipiob = null, $getrubrob = null)
+function construir_lista_comercios_html($comercios)
 {
-    echo '<br>antes<br><br>';
-    obtenerComercios($buscador, $cuentadni, $envios, $latitudbuscar, $longitudbuscar, $getmunicipio, $getactividad, $getrubro, $cercamio, $getmunicipiob, $getrubrob);
-    echo '<br><br>despues<br>';
+    $html = '';
+
+    foreach ($comercios as $comercio) {
+
+        $id = $comercio['id'];
+        $nombre = $comercio['nombre'];
+        $direccion = $comercio['direccion'];
+        $municipio = $comercio['municipio'];
+        $rubro = $comercio['rubro'];
+        $latitud = $comercio['latitud'];
+        $longitud = $comercio['longitud'];
+        $facebook_url = $comercio['facebookurl'];
+        $instagram_url = $comercio['instagramurl'];
+        $web = $comercio['web'];
+        $whatsapp = $comercio['whatsapp'];
+        $whatsapp_msg = $comercio['whatsappMsg'];
+        $telefono = $comercio['telefono'];
+        $email = $comercio['email'];
+        $cuenta_dni = $comercio['cuentadni'];
+
+        $distancia = formatear_distancia($comercio['distancia']);
+
+        $rubro_formateado = eliminar_caracteres_especiales(str_replace(' ', '', $rubro));
+
+        if ($rubro == "") {
+            $url_icono_rubro = "../img/rubro/icono/icono_varios.svg";
+        } else {
+            $url_icono_rubro = "../img/rubro/icono/icono_" . $rubro_formateado . ".svg";
+        }
+
+        $cursor_pointer = " cursor: hand; ";
+        $arrow_right = "<i class='fas fa-chevron-right font-l'></i>";
+
+        $direccion_completa = ($direccion != "") ? $direccion . " - " . $municipio : $municipio;
+
+        $iconos_redes = '';
+        $iconos_redes = agregar_icono($iconos_redes, 'Contactar por WhatsApp', 'fab fa-whatsapp', $whatsapp);
+        $iconos_redes = agregar_icono($iconos_redes, 'Contactar por Email', 'fa fa-envelope', $email);
+        $iconos_redes = agregar_icono($iconos_redes, 'Abrir Web', 'fa fa-globe', $web, true);
+        $iconos_redes = agregar_icono($iconos_redes, 'Abrir Instagram', 'fab fa-instagram', $instagram_url, true);
+        $iconos_redes = agregar_icono($iconos_redes, 'Abrir Facebook', 'fab fa-facebook-square', $facebook_url, true);
+
+        $icono_cuenta_dni = ($cuenta_dni == "1") ? "<img title='Cuenta DNI Comercios' src='../img/logocomercios.svg' class='cuenta-dni-icon'/>" : "";
 
 
+        $html .= "
+            <div id='comercio_$id' class='div_comercio card-container bg-lightest-gray' style='$cursor_pointer' onclick='mostrarubicacion(\"" . $latitud . "\",\"" . $longitud . "\",\"" . $nombre . "\",\"" . $direccion_completa . "\",\"" . $whatsapp . "\",\"" . $whatsapp_msg . "\",\"" . $telefono . "\",\"" . $web . "\",\"" . $email . "\",\"" . $instagram_url . "\",\"" . $distancia . "\",\"" . $cuenta_dni . "\",\"" . $url_icono_rubro . "\",\"" . $facebook_url . "\",\"0\",\"" . $id . "\")'>
+
+                <div class='row'>
+                    <div class='col-md-3 col-sm-3 col-3 pr-0 text-center d-flex align-items-center'>
+                        <img src='$url_icono_rubro' alt='$nombre' title='$nombre' class='card-logo'/>
+                    </div>
+                    <div class='col-md-9 col-sm-9 col-9 text-left p-2'>
+                        <div class='row'>
+                            <div class='col-md-9 col-sm-9 col-9 pr-0'>
+                                <h3 class='detail-view-card-title font-l mb-1'>
+                                    $nombre                                   
+                                </h3> 
+                                <p class='detail-view-card-subtitle font-m mb-0'>
+                                    $rubro
+                                </p>
+                                <p class='detail-view-card-subtitle mb-1'>
+                                    $direccion_completa
+                                </p>                                               
+                            </div>
+                            <div class='col-md-3 col-sm-3 col-3 pl-0 text-center pr-2'>
+                                $icono_cuenta_dni
+                                
+                                <div class='mt-3'>
+                                    $arrow_right
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class='row'>
+                            <div class='col-md-8 col-sm-8 col-8'>
+                                $iconos_redes
+                            </div>
+                            <div class='col-md-4 col-sm-4 col-4 pr-2 pl-0'>
+                                <p class='distance-label font-m'>
+                                    $distancia
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>";
+    }
+
+    return $html;
+}
+
+function agregar_icono($html, $title, $icon_class, $url, $external = false)
+{
+    if ($url != "") {
+        $target = $external ? ' target="_blank"' : '';
+        $html .= "
+            <a class='social-icon font-l' title='$title' href='$url' $target><i class='$icon_class'></i></a>
+        ";
+    }
+    return $html;
+}
+
+function construir_lista_comercios_mobile_html($comercios)
+{
+    $html = '';
+
+    foreach ($comercios as $comercio) {
+        $nombre = $comercio['nombre'];
+        $direccion = $comercio['direccion'];
+        $rubro = $comercio['rubro_nombre'];
+
+        $html .= "
+            <div class='comercio-card'>
+                <h2>$nombre</h2>
+                <p>Dirección: $direccion</p>
+                <p>Rubro: $rubro</p>
+            </div>
+        ";
+    }
+
+    return $html;
+}
+
+function construir_mapa_comercios_html($comercios)
+{
+    $comercios_markers = "";
+
+    foreach ($comercios as $comercio) {
+        $id = $comercio['id'];
+        $nombre = $comercio['nombre'];
+        $direccion = $comercio['direccion'];
+        $municipio = $comercio['municipio'];
+        $rubro = $comercio['rubro'];
+        $latitud = $comercio['latitud'];
+        $longitud = $comercio['longitud'];
+        $facebook_url = $comercio['facebookurl'];
+        $instagram_url = $comercio['instagramurl'];
+        $web = $comercio['web'];
+        $whatsapp = $comercio['whatsapp'];
+        $whatsapp_msg = $comercio['whatsappMsg'];
+        $telefono = $comercio['telefono'];
+        $email = $comercio['email'];
+        $cuenta_dni = $comercio['cuentadni'];
+
+        $distancia = formatear_distancia($comercio['distancia']);
+        
+        $rubro_formateado = eliminar_caracteres_especiales(str_replace(' ', '', $rubro));
+       
+        if ($direccion != "") {
+            $direccion_completa = $direccion . " - " . $municipio;
+            $url_icono_marker = "../img/rubro/mapa/icono_" . $rubro_formateado . ".png";
+        } else {
+            $direccion_completa = $municipio;
+            $url_icono_marker = "../img/rubro/mapa/icono_" . $rubro_formateado . "_negativo.png";
+        }
+
+        if ($latitud != "" && $longitud != "") {
+            $comercios_markers .= "L.marker([$latitud, $longitud], {
+                                        icon: L.icon({
+                                            iconUrl: '$url_icono_marker',
+                                            iconSize: [38, 50],
+                                            shadowSize: [50, 64],
+                                            iconAnchor: [38, 50],
+                                            shadowAnchor: [4, 62],
+                                            popupAnchor: [-3, -46]
+                                        })
+                                    }).addTo(map).bindPopup('<b>$nombre</b><br>$direccion_completa').on('click', () => {
+                                        mostrarubicacion(\"$latitud\",\"$longitud\",\"$nombre\",\"$direccion_completa\",\"$whatsapp\",\"$whatsapp_msg\",\"$telefono\",\"$web\",\"$email\",\"$instagram_url\",\"$distancia\",\"$cuenta_dni\",\"$url_icono_marker\",\"$facebook_url\",\"0\",\"$id\");
+                                    });";
+        }
+    }
+
+    return $comercios_markers;
+}
+
+function eliminar_caracteres_especiales($cadena)
+{
+    $no_acentos = preg_replace('/[^a-z0-9]/i', '', 
+        iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $cadena)
+    );
+    
+    return strtolower($no_acentos);
+}
+
+function construir_total_resultados_html($comercios)
+{
+    if (empty($comercios)) {
+        return "
+            <div class='alert alert-info mx-3 my-3 text-center' role='alert'>
+                No se encontraron resultados
+            </div>
+        ";
+    }
+
+    $count = count($comercios);
+    $text = ($count === 1) ? "resultado" : "resultados";
+
+    return "<div class='d-flex justify-content-end'>
+                <p class='result-count-label m-0'>$count $text</p>
+            </div>";
+}
+
+
+function consultar_comercios($buscador = null, $cuentadni = null, $envios = null, $latitudbuscar = null, $longitudbuscar = null, $getmunicipio = null, $getactividad = null, $getrubro = null, $cercamio = null, $getmunicipiob = null, $getrubrob = null)
+{
+    $optionMunicipio = "";
+    $optionRubro = "";
+
+    $divComercioListaOver = "";
+    $comercios_lista_html = "";
+    $comercios_mapa_html = "";
+    $total_comercios_html = "";
+    $total_comercios = "";
+
+    $comercios = obtener_comercios($buscador, $cuentadni, $envios, $latitudbuscar, $longitudbuscar, $getmunicipio, $getactividad, $getrubro, $cercamio, $getmunicipiob, $getrubrob);
+
+    if (empty($comercios)) {
+
+        $total_comercios_html = construir_total_resultados_html($comercios);
+
+        $resultado = array(
+            "divComercio" => $comercios_lista_html,
+            "divMunicipios" => $optionMunicipio,
+            "divRubros" => $optionRubro,
+            "divComercioMarkers" => 0,
+            "divTotalComercios" => $total_comercios_html,
+            "divComercioListaOver" => $divComercioListaOver,
+            "totalResultados" => $total_comercios
+        );
+        return $resultado;
+    } else {
+        $comercios_lista_html = construir_lista_comercios_html($comercios);
+        $comercios_mapa_html = construir_mapa_comercios_html($comercios);
+        $total_comercios_html = construir_total_resultados_html($comercios);
+        $total_comercios = count($comercios);
+
+        $resultado = array(
+            "divComercio" => $comercios_lista_html,
+            "divMunicipios" => $optionMunicipio,
+            "divRubros" => $optionRubro,
+            "divComercioMarkers" => $comercios_mapa_html,
+            "divTotalComercios" => $total_comercios_html,
+            "divComercioListaOver" => $divComercioListaOver,
+            "totalResultados" => $total_comercios
+        );
+    }
+
+    return $resultado;
+}
+
+function consultarComerciosOLD($buscador = null, $cuentadni = null, $envios = null, $latitudbuscar = null, $longitudbuscar = null, $getmunicipio = null, $getactividad = null, $getrubro = null, $cercamio = null, $getmunicipiob = null, $getrubrob = null)
+{
     $where = "";
     $agregarselect = "";
     $orderby = "";
@@ -403,13 +654,13 @@ function consultarComercios($buscador = null, $cuentadni = null, $envios = null,
         $cuentadni = $resultado["cuentadni"];
         $haceenvios = $resultado["haceenvios"];
         $distancia = $resultado["distancia"];
-        $distancia = formatearDistancia($distancia);
+        $distancia = formatear_distancia($distancia);
         $div_cuentadni = "";
         $div_cuentadniMapa = "";
 
         if ($cuentadni == "1") {
             $div_cuentadni = "
-            <img title='Cuenta DNI Comercios' src='../img/logocomercios.png' style='height: 30px; margin-right: 10px; margin-top: -5px' />
+            <img title='Cuenta DNI Comercios' src='../img/logocomercios.svg' style='height: 30px; margin-right: 10px; margin-top: -5px' />
             ";
         }
 
@@ -475,8 +726,8 @@ function consultarComercios($buscador = null, $cuentadni = null, $envios = null,
             });
         ";
 
-        $cursorpointer = " cursor: hand; ";
         $arrowright = "<i style='font-size: 18px' class='fas fa-chevron-right'></i>";
+        $cursorpointer = " cursor: hand; ";
 
         if ($rubro_img == "") {
             $urlicono = "../img/rubro/icono/icono_varios.svg";
@@ -541,25 +792,23 @@ function consultarComercios($buscador = null, $cuentadni = null, $envios = null,
             <div id='comercio_$id' class='div_comercio' style='$cursorpointer' onclick='mostrarubicacion(\"" . $latitud . "\",\"" . $longitud . "\",\"" . $nombre . "\",\"" . $direccionCompleta . "\",\"" . $whatsapp . "\",\"" . $whatsapp_msg . "\",\"" . $telefono . "\",\"" . $web . "\",\"" . $email . "\",\"" . $instagramurl . "\",\"" . $distancia . "\",\"" . $cuentadni . "\",\"" . $urlicono . "\",\"" . $facebookurl . "\",\"0\",\"" . $id . "\")'>
 
                 <div class='row'>
-                    <div class='col-md-3 col-sm-3 col-3'  style='padding-right: 0px; text-align: center'>
-                        <div style='padding-top: 10px'>
-                            <img src='$urlicono' style='max-height: 60px; max-width: auto' alt='$nombre' title='$nombre' />
-                        </div>
+                    <div class='col-md-3 col-sm-3 col-3 pr-0 text-center '>
+                        <img src='$urlicono' class='commerce-logo' alt='$nombre' title='$nombre' />
                     </div>
-                    <div class='col-md-9 col-sm-9 col-9'  style='text-align: left; padding-top: 10px'>
+                    <div class='col-md-9 col-sm-9 col-9 text-left'>
                         <div class='row'>
-                            <div class='col-md-9 col-sm-9 col-9' style='padding-right: 0px'>
-                                <h3 style='font-size: 18px; margin-bottom: 4px'>
+                            <div class='col-md-9 col-sm-9 col-9 pr-0'>
+                                <h3 class='detail-commerce-card-title mb-2'>
                                     $nombre                                   
                                 </h3> 
-                                <p style='font-size: 16px; margin-bottom: 0px; color: #5C5B5B'>
+                                <p class='detail-commerce-card-subtitle'>
                                     $rubro_nombre
                                 </p>
-                                <p style='font-size: 16px; margin-bottom: 4px; color: #5C5B5B'>
+                                <p class='detail-commerce-card-subtitle' style='margin-bottom: 4px;'>
                                     $direccionCompleta
                                 </p>                                               
                             </div>
-                            <div class='col-md-3 col-sm-3 col-3' style='padding-right: 20px; padding-left: 0px; text-align: center'>
+                            <div class='col-md-3 col-sm-3 col-3 text-center pl-0' style='padding-right: 20px;'>
                                 $div_cuentadni
                                 
                                 <div style='margin-top: 15px'>
@@ -568,21 +817,17 @@ function consultarComercios($buscador = null, $cuentadni = null, $envios = null,
                             </div>
                         </div>
                         
-                        
                         <div class='row'>
                             <div class='col-md-8 col-sm-8 col-8'>
                                 $div_iconos
                             </div>
-                            <div class='col-md-4 col-sm-4 col-4' style='padding-right: 30px; padding-left: 0px'>
-                                <p style='font-size: 17px; margin-bottom: 4px; color: #5C5B5B; text-align: right; font-weight: 600'> <!-- antes color: #212529-->
+                            <div class='col-md-4 col-sm-4 col-4 pl-0' style='padding-right: 30px;'>
+                                <p class='text-right detail-commerce-card-subtitle' style='margin-bottom: 4px; font-weight: 600'>
                                     $distancia
                                 </p>
                             </div>
-
                         </div>
-                        
                     </div>
-                    
                 </div>
 
             </div>
@@ -737,8 +982,6 @@ function consultarComercios($buscador = null, $cuentadni = null, $envios = null,
             "totalResultados" => $totalResultados
         );
     } else {
-
-
         $resultado = array(
             "divComercio" => $divComercio,
             "divMunicipios" => $optionMunicipio,

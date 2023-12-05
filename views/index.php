@@ -3,24 +3,7 @@
 <head>
     <title> Comunidad PROME </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-    <style>
-        .subtitle {
-            color: #FFF;
-            text-align: center;
-            font-size: 22px;
-        }
-
-        .info-icon {
-            color: #25B4BD;
-            background-color: #FFFFFF;
-            border-radius: 50%;
-            border-style: none;
-            font-size: 16px;
-            vertical-align: super;
-            display: inline-block;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="../css/index.css">
 
     <?php include_once "head.php"; ?>
     <!-- Google Tag Manager -->
@@ -46,134 +29,141 @@
 <body style="background-image: url('../img/fondo.jpg'); background-size: cover;">
 
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K2BDTBJ" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K2BDTBJ" height="0" width="0" style="display:none; visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <div class="container-fluid div-back-index">
+    <div class="container-fluid content-top-padding">
         <div class="container-box">
-            <div class="container-fluid" style="background-color: #323232; opacity: 0.9; padding: 20px; padding-bottom: 30px; padding-top: 30px; border-radius: 10px">
+            <div class="container-fluid big-container">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 style="color: #FFF; text-align: center; font-weight: bold">
+                            <h1 class="title">
                                 Construí tu red de proveedores
                             </h1>
-                            <h2 class="subtitle">
-                                Te damos la bienvenida a <b class="business-name">Comunidad Prome</b> un espacio pensado para potenciar tu <span style="white-space: nowrap;">negocio <i class="fas fa-info-circle info-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Formar parte de Comunidad Prome permite que más personas conozcan tu negocio y ponerte en contacto con otros emprendimientos. Estos vínculos ayudan a fortalecer tu red de productores y compradores."></i></span>
+                            <h2 class="subtitle font-xl">
+                                Te damos la bienvenida a <b class="business-name">Comunidad Prome</b> un espacio pensado para potenciar tu <span style="white-space: nowrap;">negocio <i class="fas fa-info-circle info-icon font-m" data-bs-toggle="tooltip" data-bs-placement="top" title="Formar parte de Comunidad Prome permite que más personas conozcan tu negocio y ponerte en contacto con otros emprendimientos. Estos vínculos ayudan a fortalecer tu red de productores y compradores."></i></span>
                             </h2>
                         </div>
                     </div>
-                    <div class="row justify-content-center" style="margin-top: 20px">
+                    <div class="row justify-content-center mt-3 p-4">
                         <div class="col-md-8 col-12 col-sm-12">
-                            <div style="background-color: #FFFFFF;min-height: 170px; border-radius: 10px ">
-                                <div class="row">
-                                    <div class="col-md-6 col-sm-6 col-6" style="padding-right: 0px; text-align: center">
-                                        <div id="div_buscadorcomercio" class="tabactivobuscador" style="border-top-left-radius: 10px; cursor: pointer; background-color: #23952E" onclick="seleccionarTipoBuscador(this.id)">
-                                            <h3 style="font-size: 18px; padding: 10px; padding-right: 17px">
-                                                Comercios y Servicios
-                                            </h3>
-                                        </div>
+
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-6 px-0 text-center">
+                                    <div id="div_buscadorcomercio" class="tab tab-active" onclick="seleccionarTipoBuscador(this.id)">
+                                        <h3 class="tab-text m-0">
+                                            Comercios y Servicios
+                                        </h3>
                                     </div>
-                                    <div class="col-md-6 col-sm-6 col-6" style="padding-left: 0px; text-align: center">
-                                        <div id="div_buscadorproduccion" class="tabinactivobuscador" style="border-top-right-radius: 10px; cursor: pointer" onclick="seleccionarTipoBuscador(this.id)">
-                                            <h3 style="font-size: 18px; padding: 10px">
-                                                Producción e Industria
-                                            </h3>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-6 pl-0 pr-0 text-center">
+                                    <div id="div_buscadorproduccion" class="tab tab-inactive" onclick="seleccionarTipoBuscador(this.id)">
+                                        <h3 class="tab-text m-0">
+                                            Producción e Industria
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <form name="formBusqueda" id="formBusqueda" action="buscador.php" method="GET">
+                                <div class="row bg-lightest-gray search-form py-3">
+                                    <div class="col-md-12 text-left px-4">
+                                        <div>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" name="cercamio" type="checkbox" id="checkCercaMio" onclick="btnCheckCercaMioIndex()">
+                                                <label class="form-check-label" for="checkCercaMio">Cerca mío</label>
+                                            </div>
+                                        </div>
+                                        <div class="my-2" id="div_direccion" style="display: none">
+                                            <input type="text" autocomplete="off" id="buscadordireccion" name="dirmapa" class="form-control" placeholder="Indicá un domicilio" onclick="limpiarDireccion()" />
+                                        </div>
+
+                                        <div class="input-group my-2">
+                                            <input type="text" class="form-control" placeholder="Escribí una marca, insumo, producto o servicio" aria-label="Escribí una marca, insumo, producto o servicio" aria-describedby="basic-addon2" name="q" required="required" id="buscador" autocomplete="off">
+                                            <span class="input-group-text primary-button font-m" id="basic-addon2" onclick="procesarFormBusqueda()">
+                                                <i class="fas fa-search"></i>
+                                            </span>
+                                        </div>
+                                        <!-- <div class="row">
+                                            <div class="secondary-button-outline mb-3" onclick="verfiltrosbusquedaindex()">
+                                                <i class="fas fa-chevron-down"></i> Búsqueda avanzada
+                                            </div>
+                                        </div> -->
+                                        <div class="d-flex justify-content-start align-items-center p-0">
+                                            <span class="secondary-button-outline pr-2 pr-1 my-2" onclick="verfiltrosbusquedaindex()">
+                                                <i class="fa fa-filter font-xl"></i>
+                                                Búsqueda avanzada
+                                            </span>
+                                        </div>
+
+                                        <div class="row" id="div_busquedaavanzada" style="display: none">
+                                            <div class="col-md-6 mb-3 text-left py-0 p-4">
+                                                <div>
+                                                    <div class="form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox" id="checkAdherido" name="cuentadni">
+                                                        <label class="form-check-label" for="checkAdherido">Adherido a Cuenta DNI Comercios</label>
+                                                    </div>
+                                                </div>
+                                                <div class="my-2">
+                                                    <div class="form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox" id="checkEnvios" name="envios">
+                                                        <label class="form-check-label" for="checkEnvios">Hace envíos/Servicio a domicilio</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="mt-2">
+                                                    <select class="form-control" id="select_municipio" name="m">
+                                                        <?php echo $optionmunicipio; ?>
+                                                    </select>
+                                                </div>
+                                                <div class="mt-2">
+                                                    <select class="form-control" id="select_rubro" name="r">
+                                                        <?php echo $optionrubro; ?>
+                                                    </select>
+                                                </div>
+                                                <div class="mt-2">
+                                                    <select class="form-control" id="select_actividad" name="a">
+                                                        <?php echo $optionactividad; ?>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <form name="formBusqueda" id="formBusqueda" action="buscador.php" method="GET">
-                                    <div class="row" style="margin-top: 10px">
-                                        <div class="col-md-12" style="text-align: left; padding: 0px 30px">
-                                            <div>
-                                                <div class="form-check form-switch">
-                                                    <input class="form-check-input" name="cercamio" type="checkbox" id="checkCercaMio" onclick="btnCheckCercaMioIndex()">
-                                                    <label class="form-check-label" for="checkCercaMio">Cerca mío</label>
-                                                </div>
-                                            </div>
-                                            <div id="div_direccion" style="margin-top: 10px; margin-bottom: 10px; display: none">
-                                                <input type="text" autocomplete="off" id="buscadordireccion" name="dirmapa" class="form-control" placeholder="Indicá un domicilio" onclick="limpiarDireccion()" />
-                                            </div>
+                                <?php include_once "include_camposmapa.php"; ?>
+                            </form>
 
-                                            <div class="input-group mb-2 mt-2 pl-1">
-                                                <input type="text" class="form-control" placeholder="Escribí una marca, insumo, producto o servicio" aria-label="Escribí una marca, insumo, producto o servicio" aria-describedby="basic-addon2" name="q" required="required" id="buscador" autocomplete="off" >
-                                                <span class="input-group-text" id="basic-addon2" style="background-color: #23952E; color: #FFF; cursor: pointer" onclick="procesarFormBusqueda()">
-                                                    <i class="fas fa-search"></i>
-                                                </span>
-                                            </div>
-                                            <div class="row">
-                                                <div class="mb-3" onclick="verfiltrosbusquedaindex()">
-                                                    <i class="fas fa-chevron-down" style="padding-left: 5px; padding-top: 10px; color: #C4C4C4; cursor: pointer"></i> Búsqueda avanzada
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row" id="div_busquedaavanzada" style="display: none">
-                                        <div class="col-md-6 mb-3" style="text-align: left; padding: 0px 30px">
-                                            <div>
-                                                <div class="form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox" id="checkAdherido" name="cuentadni">
-                                                    <label class="form-check-label" for="checkAdherido" style="color: #626161">Adherido a Cuenta DNI Comercios</label>
-                                                </div>
-                                            </div>
-                                            <div style="margin-top: 10px; margin-bottom: 10px">
-                                                <div class="form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox" id="checkEnvios" name="envios">
-                                                    <label class="form-check-label" for="checkEnvios" style="color: #626161">Hace envíos/Servicio a domicilio</label>
-                                                </div>
-                                            </div>
-
-                                            <div class="mt-2">
-                                                <select class="form-control" id="select_municipio" name="m">
-                                                    <?php echo $optionmunicipio; ?>
-                                                </select>
-                                            </div>
-                                            <div class="mt-2">
-                                                <select class="form-control" id="select_rubro" name="r">
-                                                    <?php echo $optionrubro; ?>
-                                                </select>
-                                            </div>
-                                            <div class="mt-2">
-                                                <select class="form-control" id="select_actividad" name="a">
-                                                    <?php echo $optionactividad; ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <?php include_once "include_camposmapa.php"; ?>
-                                </form>
-                            </div>
-                            <div style="margin-top: 20px">
+                            <div class="mt-4">
                                 <div class="row">
-                                    <div class="col-md-12" style="text-align: center">
+                                    <div class="col-md-12 text-center">
                                         <a href="registro.php?tipo=alta">
-                                            <button class='btn' style="background-color: #23952E; color: #FFF; font-weight: 700; font-size: 18px">
+                                            <button class='btn primary-button rounded-button font-l fw-bold'>
                                                 Quiero sumarme a Comunidad Prome
                                             </button>
                                         </a>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
 
                 </div>
             </div>
-            <div class="div-solicitar-index">
-                <div class="col-md-12 text-center">
-                    <a href="registro.php?tipo=modificar" class="link_solicitar">
+            <div class="col-md-12 text-center p-2 mt-4">
+                <a href="registro.php?tipo=modificar" class="link_solicitar">
+                    <button class='btn light-button rounded-button font-m text-danger fw-bold'>
                         Solicitar baja/modificación de Comunidad Prome
-                    </a>
-                </div>
+                    </button>
+                </a>
             </div>
 
             <div style="margin-top: 30px; display: none">
                 <div class="row">
                     <div class="col-md-12" style="padding-right: 0px; text-align: center">
                         <button class='btn' style="background-color: #F0F0F0; color: #3C3B3B; font-weight: 400; font-size: 16px; padding-top: 17px; padding-left: 30px; padding-right: 30px; padding-bottom: 17px;">
-                            <img src="../img/logocomercios.png" style="height: 30px; margin-right: 10px; margin-top: -5px" />
+                            <img src="../img/logocomercios.svg" style="height: 30px; margin-right: 10px; margin-top: -5px" />
                             ¿Conocés <b>Cuenta DNI Comercios?</b>
                         </button>
                     </div>
@@ -209,7 +199,6 @@
 
             google.maps.event.addListener(autocomplete, 'place_changed', function() {
                 var near_place = autocomplete.getPlace();
-
                 var buscadordireccion = document.getElementById('buscadordireccion').value;
 
                 document.getElementById('lat').value = near_place.geometry.location.lat();
@@ -217,7 +206,6 @@
                 document.getElementById('dir').value = buscadordireccion;
 
                 //window.location = "buscador.php?lat="+near_place.geometry.location.lat()+"&lon="+near_place.geometry.location.lng()+"&dir="+buscadordireccion;
-
             });
         });
     </script>
@@ -225,23 +213,14 @@
     <script>
         const funcionInit = () => {
             if (!"geolocation" in navigator) {
-                return alert("Tu navegador no soporta el acceso a la ubicación. Intenta con otro");
+                return alert("Tu navegador no soporta el acceso a la ubicación. Por favor, intentá con otro");
             }
 
             const $latitud = document.querySelector("#actual_lat"),
                 $longitud = document.querySelector("#actual_lon");
 
             const onUbicacionConcedida = ubicacion => {
-                //console.log("Tengo la ubicación: ", ubicacion);
                 const coordenadas = ubicacion.coords;
-
-                try {
-                    if (google == undefined) {
-                        //alert("si esta definido google");
-                    }
-                } catch {
-                    //window.location.reload();
-                }
 
                 var latlng = new google.maps.LatLng(coordenadas.latitude, coordenadas.longitude);
                 var geocoder = geocoder = new google.maps.Geocoder();
@@ -250,7 +229,6 @@
                 }, function(results, status) {
                     if (status == google.maps.GeocoderStatus.OK) {
                         if (results[1]) {
-                            //alert("Location: " + results[1].formatted_address);
                             document.getElementById('actual_direccion').value = results[1].formatted_address;
                             document.getElementById('buscadordireccion').value = results[1].formatted_address;
                         }
@@ -262,7 +240,6 @@
             }
 
             const onErrorDeUbicacion = err => {
-
                 $latitud.value = "";
                 $longitud.value = "";
                 console.log("Error obteniendo ubicación: ", err);

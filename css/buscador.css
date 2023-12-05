@@ -1,0 +1,142 @@
+.main-container {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+}
+
+.logo {
+    height: 78px;
+}
+
+.search-form {
+    margin-bottom: 10px;
+    padding: 0 0 0.5rem 0;
+    border-radius: 10px;
+}
+
+.pr-0 {
+    padding-right: 0;
+}
+
+.filter-icon {
+    color: var(--tertiary-color) !important;
+    padding: 7.5px;
+}
+
+.result-count-label {
+    color: var(--primary-color);
+}
+
+.card-container {
+    border: 2px solid var(--secondary-color-darker);
+    border-radius: .375rem;
+    margin: 0 8px 10px 0;
+    padding: 15px;
+}
+
+.card-container:hover {
+    background-color: var(--lighter-gray);
+}
+
+.cuenta-dni-icon {
+    height: 30px;
+    margin-right: 10px;
+    margin-top: -5px;
+}
+
+.social-icon {
+    color: var(--tertiary-color);
+}
+
+.social-icon:hover {
+    color: var(--secondary-color-darker);
+}
+
+.distance-label {
+    color: var(--tertiary-color);
+    font-weight: 600;
+    text-align: right;
+    margin-bottom: 4px;
+}
+
+.detail-view-card {
+    background-color: var(--lightest-gray);
+    border: 2px solid var(--primary-color);
+    border-radius: .375rem;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    padding: 12px;
+}
+
+.detail-view-card-title {
+    color: var(--tertiary-color-darker);
+}
+
+.detail-view-card-subtitle {
+    color: var(--tertiary-color-darker);
+}
+
+.close-icon {
+    color: var(--tertiary-color-darker);
+    float: right;
+    margin-right: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.card-logo {
+    height: 60px;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.overflow-wrap {
+    overflow-wrap: break-word;
+}
+
+.scrolling-wrapper {
+    overflow-x: auto;
+    margin-right: 10px;
+}
+
+.pill {
+    display: inline-block;
+    padding: 0.4rem 0.2rem;
+    padding-right: 0.8rem;
+    background-color: var(--lightest-gray);
+    margin-right: 0.3rem;
+    border-color: var(--secondary-color-darker);
+    border-radius: 20px;
+    border-style: solid;
+    border-width: 0.1rem;
+}
+
+.pill img {
+    width: 20px;
+    height: 20px;
+    margin-right: 6px;
+}
+
+.pill span {
+    font-size: var(--font-size-s);
+}
+
+@media (max-width: 576px) {
+
+    .pill {
+        padding: 0.4rem 0.2rem;
+        padding-right: 0.8rem;
+        margin-right: 8px;
+        margin-bottom: 0.4rem;
+    }
+
+    .pill img {
+        width: 16px;
+        height: 20px;
+        margin-right: 8px;
+    }
+
+    .pill span {
+        font-size: var(--font-size-xs);
+        margin-right: 8px;
+    }
+}

@@ -1,17 +1,17 @@
 function seleccionarTipoBuscador(tipo) {
 
-    document.getElementById("div_buscadorcomercio").classList.remove("tabactivobuscador");
-    document.getElementById("div_buscadorcomercio").classList.remove("tabinactivobuscador");
+    document.getElementById("div_buscadorcomercio").classList.remove("tab-active");
+    document.getElementById("div_buscadorcomercio").classList.remove("tab-inactive");
 
-    document.getElementById("div_buscadorproduccion").classList.remove("tabactivobuscador");
-    document.getElementById("div_buscadorproduccion").classList.remove("tabinactivobuscador");
+    document.getElementById("div_buscadorproduccion").classList.remove("tab-active");
+    document.getElementById("div_buscadorproduccion").classList.remove("tab-inactive");
 
     if (tipo == "div_buscadorcomercio") {
-        document.getElementById("div_buscadorcomercio").classList.add("tabactivobuscador");
-        document.getElementById("div_buscadorproduccion").classList.add("tabinactivobuscador");
+        document.getElementById("div_buscadorcomercio").classList.add("tab-active");
+        document.getElementById("div_buscadorproduccion").classList.add("tab-inactive");
     } else if (tipo == "div_buscadorproduccion") {
-        document.getElementById("div_buscadorproduccion").classList.add("tabactivobuscador");
-        document.getElementById("div_buscadorcomercio").classList.add("tabinactivobuscador");
+        document.getElementById("div_buscadorproduccion").classList.add("tab-active");
+        document.getElementById("div_buscadorcomercio").classList.add("tab-inactive");
     }
 }
 
@@ -43,34 +43,6 @@ function procesarFormBusqueda() {
     // console.log("despues del submit");
 }
 
-function verfiltrosbusqueda() {
-
-    var div_busquedaavanzada = document.getElementById('div_busquedaavanzada').style.display;
-    if (div_busquedaavanzada == "") {
-        document.getElementById('div_municipios').style.display = "none";
-        document.getElementById('div_busquedaavanzada').style.display = "none";
-    } else {
-        document.getElementById('div_municipios').style.display = "none";
-
-        var checkCercaMio = document.getElementById('checkCercaMio').checked;
-        if (checkCercaMio == true) {
-            document.getElementById('filtro_municipio').style.display = "none";
-            document.getElementById('filtro_rubro').style.display = "";
-            document.getElementById('filtro_actividad').style.display = "";
-        } else {
-            document.getElementById('filtro_municipio').style.display = "";
-            document.getElementById('filtro_rubro').style.display = "";
-            document.getElementById('filtro_actividad').style.display = "";
-        }
-
-        document.getElementById('div_busquedaavanzada').style.display = "";
-    }
-
-    //ACTUALIZA TANIO DE MAPA
-    map.invalidateSize();
-}
-
-
 function verfiltrosbusquedaindex() {
 
     var div_busquedaavanzada = document.getElementById('div_busquedaavanzada').style.display;
@@ -81,30 +53,28 @@ function verfiltrosbusquedaindex() {
     }
 }
 
-
 function verfiltrosbusquedabuscador() {
 
     var checkCercaMio = document.getElementById('checkCercaMio').checked;
+
     if (checkCercaMio == false) {
         document.getElementById('div_rubros').style.display = "none";
 
         var div_municipios = document.getElementById('div_municipios').style.display;
+        
         if (div_municipios == "") {
             document.getElementById('div_municipios').style.display = "none";
-            document.getElementById('div_busquedaavanzada').style.display = "none";
         } else {
-            document.getElementById('div_busquedaavanzada').style.display = "none";
             document.getElementById('div_municipios').style.display = "";
         }
     } else {
         document.getElementById('div_municipios').style.display = "none";
 
         var div_rubros = document.getElementById('div_rubros').style.display;
+        
         if (div_rubros == "") {
             document.getElementById('div_rubros').style.display = "none";
-            document.getElementById('div_busquedaavanzada').style.display = "none";
         } else {
-            document.getElementById('div_busquedaavanzada').style.display = "none";
             document.getElementById('div_rubros').style.display = "";
         }
     }
@@ -190,13 +160,13 @@ function btnCheckCercaMioIndex() {
 
         document.getElementById('div_direccion').style.display = "";
         document.getElementById('buscadordireccion').value = document.getElementById('actual_direccion').value;
-        
+
         // var actual_lat = document.getElementById('actual_lat').value;
         // var actual_lon = document.getElementById('actual_lon').value;
         // var actual_direccion = document.getElementById('div_direccion').value;
 
         //window.location = "buscador.php?lat="+actual_lat+"&lon="+actual_lon+"&dir="+actual_direccion+"&tipodir=1";
-        
+
         // console.log("entre al if");
         // map.setView([actual_lat, actual_lon], 18);
     } else {
@@ -222,11 +192,16 @@ function btnCheckCercaMio() {
 
         //window.location = "buscador.php?cercamio=on&lat="+actual_lat+"&lon="+actual_lon+"&dir="+actual_direccion+"&tipodir=1";
         document.getElementById('div_buscadordireccion').style.display = "";
+        console.log("cerca mio checked");
         document.getElementById('actual_lat').value = actual_lat;
         document.getElementById('actual_lon').value = actual_lon;
         document.getElementById('actual_direccion').value = actual_direccion;
         document.getElementById('buscadordireccion').value = actual_direccion;
 
+
+        document.getElementById('filtro_municipio').style.display = "none";
+        document.getElementById('filtro_rubro').style.display = "";
+        document.getElementById('filtro_actividad').style.display = "";
         // map.invalidateSize();
         // map.setView([actual_lat, actual_lon], 18);
         // console.log("btnCheckCercaMio");
@@ -242,6 +217,10 @@ function btnCheckCercaMio() {
         document.getElementById('lat').value = "";
         document.getElementById('lon').value = "";
         document.getElementById('dir').value = "";
+
+        document.getElementById('filtro_municipio').style.display = "";
+        document.getElementById('filtro_rubro').style.display = "";
+        document.getElementById('filtro_actividad').style.display = "";
     }
 
     //ACTUALIZA TANIO DE MAPA
