@@ -18,6 +18,7 @@ function seleccionarTipoBuscador(tipo) {
 
 function procesarFormBusqueda() {
 
+    console.log("procesarformbusqueda");
     var checkCercaMio = document.getElementById('checkCercaMio').checked;
     var type_on = document.getElementById('type_on').value;
 
@@ -26,22 +27,19 @@ function procesarFormBusqueda() {
             var lon = document.getElementById('lon').value;
             var lat = document.getElementById('lat').value;
             var dir = document.getElementById('dir').value;
+
             if (lon == '' && lat == '' && dir == '') {
                 alert("Si ingresa una direcci\u00f3n, debe seleccionarla del desplegable para activar la b\u00fasqueda.");
                 document.getElementById("buscadordireccion").value = '';
                 return false
             }
-
         }
-        // map.setView([lat, lon], 18);
-        // map.setZoom(18);
-        // console.log("zoooooom");
     }
-    // console.log("estoy en procesarFormBusqueda");
 
     document.getElementById("formBusqueda").submit();
-    // console.log("despues del submit");
 }
+
+
 
 function verfiltrosbusquedaindex() {
 
@@ -61,7 +59,7 @@ function verfiltrosbusquedabuscador() {
         document.getElementById('div_rubros').style.display = "none";
 
         var div_municipios = document.getElementById('div_municipios').style.display;
-        
+
         if (div_municipios == "") {
             document.getElementById('div_municipios').style.display = "none";
         } else {
@@ -71,7 +69,7 @@ function verfiltrosbusquedabuscador() {
         document.getElementById('div_municipios').style.display = "none";
 
         var div_rubros = document.getElementById('div_rubros').style.display;
-        
+
         if (div_rubros == "") {
             document.getElementById('div_rubros').style.display = "none";
         } else {

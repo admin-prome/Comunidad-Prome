@@ -91,8 +91,7 @@
                                             </div>
                                         </div> -->
                                         <div class="d-flex justify-content-start align-items-center p-0">
-                                            <span class="secondary-button-outline pr-2 pr-1 my-2" onclick="verfiltrosbusquedaindex()">
-                                                <i class="fa fa-filter font-xl"></i>
+                                            <span class="secondary-button-outline p-2 my-2" onclick="verfiltrosbusquedaindex()">
                                                 Búsqueda avanzada
                                             </span>
                                         </div>

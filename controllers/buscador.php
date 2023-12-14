@@ -52,17 +52,8 @@ if ($getdireccionmapa == "") {
 
 if ($getdireccionactual != "" && $getdireccionmapa == "") {
     $getdireccionmapa = $getdireccionactual;
-    //$cercamio="on";
 }
 
-if ($tipodir == "1") {
-    //$cercamio="on";
-}
-
-if ($getdireccion != "") {
-    //$getdireccionmapa = $getdireccion;
-    //$cercamio="on";
-}
 
 //PARA QUE NO MARQUE EN EL MAPA LAS 2 UBICACIONES
 if ($cercamio == "on") {
@@ -92,7 +83,6 @@ if ($getmunicipiob != "") {
     $divBusquedaRubros = "";
 }
 
-
 if ($cercamio == "on") {
     $getmunicipio = "";
     $tipodirchecked = " checked='checked' ";
@@ -106,36 +96,13 @@ if ($cercamio == "on") {
     $divbuscadormapa = " ; display: none";
 }
 
-// if ($getmunicipio != "" || $getrubro != "" || $getactividad != "") {
-//     $divBusquedaAvanzada = "";
-// }
-
 $latitudbuscarcomercios  = "";
 $longitudbuscarcomercios  = "";
 
 $latitudbuscar = -36.285823;
 $longitudbuscar = -60.440858;
-/*
-if ($getlatitud!=""){
-    $latitudbuscarcomercios = $getlatitud;
-    $latitudbuscar = $getlatitud;
 
-}
 
-if ($getlongitud!=""){
-    $longitudbuscarcomercios = $getlongitud;
-    $longitudbuscar = $getlongitud;
-}
-
-if ($getlatitudactual!=""){
-    $latitudbuscarcomercios = $getlatitudactual;
-    $latitudbuscar = $getlatitudactual;
-}
-if ($getlongitudactual!=""){
-    $longitudbuscarcomercios = $getlongitudactual;
-    $longitudbuscar = $getlongitudactual;
-}
-*/
 
 if ($cercamio == "on") {
     if ($getlatitud != "") {
@@ -173,9 +140,14 @@ if ($totalResultados == "0") {
     $displayfiltros = "; display: none";
 }
 
-$optionmunicipio = consultarMunicipios($getmunicipio);
-//$optionmunicipiob = consultarMunicipios($getmunicipiob, true);
-$optionactividad = consultarActividad($getactividad, $getrubro);
-$optionrubro = consultarRubros($getrubro);
+$optionmunicipio = obtener_opciones_select('municipio');
+// $optionactividad = obtener_opciones_select('actividad', null, $getactividad);
+$optionactividad = cargarOpcionesActividad($getrubro, $getactividad);
+$optionrubro = obtener_opciones_select('rubro', $getrubro);
+
+
+
+
+
 
 require_once "../views/buscador.php";

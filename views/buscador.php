@@ -41,112 +41,107 @@
         <div class="row m-0">
             <div class="col-md-4">
 
-                <form name="formBusqueda" id="formBusqueda" action="buscador.php" method="GET">
+                <div class="search-form bg-lightest-gray">
 
-                    <div class="search-form bg-lightest-gray">
-
-                        <div class="row m-0 bg-white">
-                            <div class="col-md-6 col-sm-6 col-6 p-0">
-                                <div id="div_buscadorcomercio" class="tab tab-active" onclick="seleccionarTipoBuscador(this.id)">
-                                    <h3 class="tab-text m-0">Comercios y Servicios</h3>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-6 p-0">
-                                <div id="div_buscadorproduccion" class="tab tab-inactive" onclick="seleccionarTipoBuscador(this.id)">
-                                    <h3 class="tab-text m-0">Producción e Industria</h3>
-                                </div>
+                    <div class="row m-0 bg-white">
+                        <div class="col-md-6 col-sm-6 col-6 p-0">
+                            <div id="div_buscadorcomercio" class="tab tab-active" onclick="seleccionarTipoBuscador(this.id)">
+                                <h3 class="tab-text m-0">Comercios y Servicios</h3>
                             </div>
                         </div>
-
-
-
-                        <div class="row" style="padding: 0.8rem;">
-                            <div class="col-md-12 my-2">
-                                <div class="d-flex justify-content-around">
-                                    <button type="button" class="btn primary-button my-2" data-bs-toggle="modal" data-bs-target="#newSearch">
-                                        Nueva búsqueda
-                                    </button>
-
-                                    <button type="button" class="btn secondary-button-outline my-2" data-bs-toggle="modal" data-bs-target="#filterResults">
-                                        Filtrar resultados
-                                    </button>
-                                </div>
+                        <div class="col-md-6 col-sm-6 col-6 p-0">
+                            <div id="div_buscadorproduccion" class="tab tab-inactive" onclick="seleccionarTipoBuscador(this.id)">
+                                <h3 class="tab-text m-0">Producción e Industria</h3>
                             </div>
-
-                            <?php echo $divTotalComercios; ?>
-
-                            <?php include_once "include_camposmapa.php"; ?>
                         </div>
                     </div>
-                </form>
+
+
+
+                    <div class="row" style="padding: 0.8rem;">
+                        <div class="col-md-12 my-2">
+                            <div class="d-flex justify-content-around">
+                                <button type="button" class="btn primary-button my-2" data-bs-toggle="modal" data-bs-target="#newSearch">
+                                    Nueva búsqueda
+                                </button>
+
+                                <button type="button" class="btn secondary-button-outline my-2" data-bs-toggle="modal" data-bs-target="#filterResults">
+                                    Filtrar resultados
+                                </button>
+                            </div>
+                        </div>
+
+                        <?php echo $divTotalComercios; ?>
+
+                        <?php include_once "include_camposmapa.php"; ?>
+                    </div>
+                </div>
 
                 <!-- Modal Nueva búsqueda -->
                 <div class="modal fade" id="newSearch" tabindex="-1" aria-labelledby="newSearchLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="newSearchLabel">Nueva búsqueda</h1>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-md-12">
+                            <form name="formBusqueda" id="formBusqueda" action="buscador.php" method="GET">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="newSearchLabel">Nueva búsqueda</h1>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-md-12">
 
-                                            <div class="form-check form-switch my-3">
-                                                <input class="form-check-input" name="cercamio" type="checkbox" id="checkCercaMio" onclick="btnCheckCercaMio()" <?php echo $tipodirchecked; ?>>
-                                                <label class="form-check-label" for="checkCercaMio">Cerca mío</label>
-                                            </div>
-
-                                            <div class="auto-search-wrapper my-3" id="div_buscadordireccion" style="<?php echo $divbuscadormapa; ?>">
-                                                <input type="text" autocomplete="off" id="buscadordireccion" name="dirmapa" class="form-control" placeholder="Indicá un domicilio" value="<?php echo $getdireccionmapa; ?>" onclick="limpiarDireccion()" />
-                                            </div>
-
-                                            <div class="input-group my-3">
-                                                <input type="text" class="form-control" placeholder="Escribí una marca, insumo, producto o servicio" aria-label="Escribí una marca, insumo, producto o servicio" name="q" value="<?php echo $buscador; ?>" autocomplete="off">
-                                                <span class="input-group-text primary-button" id="basic-addon2" onclick="procesarFormBusqueda()">
-                                                    <i class="fas fa-search"></i>
-                                                </span>
-                                            </div>
-
-                                            <div class="my-3">
-                                                <div class="my-3" id="filtro_municipio" <?php echo $displaymunicipio; ?>>
-                                                    <select class="form-control" name="m">
-                                                        <?php echo $optionmunicipio; ?>
-                                                    </select>
+                                                <div class="form-check form-switch my-3">
+                                                    <input class="form-check-input" name="cercamio" type="checkbox" id="checkCercaMio" onclick="btnCheckCercaMio()" <?php echo $tipodirchecked; ?>>
+                                                    <label class="form-check-label" for="checkCercaMio">Cerca mío</label>
                                                 </div>
-                                                <div class="my-3" id="filtro_rubro">
-                                                    <select class="form-control" id="select_rubro" name="r">
-                                                        <?php echo $optionrubro; ?>
-                                                    </select>
+
+                                                <div class="auto-search-wrapper my-3" id="div_buscadordireccion" style="<?php echo $divbuscadormapa; ?>">
+                                                    <input type="text" autocomplete="off" id="buscadordireccion" name="dirmapa" class="form-control" placeholder="Indicá un domicilio" value="<?php echo $getdireccionmapa; ?>" onclick="limpiarDireccion()" />
                                                 </div>
-                                                <div class="my-3" id="filtro_actividad">
-                                                    <select class="form-control" id="select_actividad" name="a">
-                                                        <?php echo $optionactividad; ?>
-                                                    </select>
+
+
+                                                <div class="input-group my-3">
+                                                    <input type="text" class="form-control" placeholder="Escribí una marca, insumo, producto o servicio" aria-label="Escribí una marca, insumo, producto o servicio" name="q" value="<?php echo $buscador; ?>" autocomplete="off">
                                                 </div>
+
+                                                <div class="my-3">
+                                                    <div class="my-3" id="filtro_municipio" <?php echo $displaymunicipio; ?>>
+                                                        <select class="form-control" name="m">
+                                                            <?php echo $optionmunicipio; ?>
+                                                        </select>
+                                                    </div>
+                                                    <div class="my-3" id="filtro_rubro">
+                                                        <select class="form-control" id="select_rubro" name="r">
+                                                            <?php echo $optionrubro; ?>
+                                                        </select>
+                                                    </div>
+                                                    <div class="my-3" id="filtro_actividad">
+                                                        <select class="form-control" id="select_actividad" name="a">
+                                                            <?php echo $optionactividad; ?>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-check form-switch my-3">
+                                                    <input class="form-check-input" type="checkbox" id="checkAdherido" name="cuentadni" <?php echo $cuentadnichecked; ?>>
+                                                    <label class="form-check-label" for="checkAdherido">Adherido a Cuenta DNI Comercios</label>
+                                                </div>
+
+                                                <div class="form-check form-switch my-3">
+                                                    <input class="form-check-input" type="checkbox" id="checkEnvios" name="envios" <?php echo $envioschecked; ?>>
+                                                    <label class="form-check-label" for="checkEnvios">Hace envíos/Servicio a domicilio</label>
+                                                </div>
+                                                <?php include_once "include_camposmapa.php"; ?>
                                             </div>
-
-                                            <div class="form-check form-switch my-3">
-                                                <input class="form-check-input" type="checkbox" id="checkAdherido" name="cuentadni" <?php echo $cuentadnichecked; ?>>
-                                                <label class="form-check-label" for="checkAdherido">Adherido a Cuenta DNI Comercios</label>
-                                            </div>
-
-                                            <div class="form-check form-switch my-3">
-                                                <input class="form-check-input" type="checkbox" id="checkEnvios" name="envios" <?php echo $envioschecked; ?>>
-                                                <label class="form-check-label" for="checkEnvios">Hace envíos/Servicio a domicilio</label>
-                                            </div>
-
-                                            <?php echo $divTotalComercios; ?>
-
-                                            <?php include_once "include_camposmapa.php"; ?>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary rounded-button" data-bs-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn primary-button rounded-button">Aplicar</button>
-                            </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary rounded-button" data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-secondary rounded-button" onclick="limpiarCampos()">Limpiar</button>
+                                    <button type="submit" class="btn primary-button rounded-button" onclick="procesarFormBusqueda()">Aplicar</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -162,60 +157,18 @@
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-md-6 border-end">
-                                            Municipio
-                                            <div class="mt-2">
+                                            <h5>Municipio</h5>
+                                            <div class="mt-2" style="max-height: 300px; overflow-y: auto;">
                                                 <?php echo $optionmunicipiob; ?>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            Rubro
-                                            <div class="mt-2">
+                                            <h5>Rubro</h5>
+                                            <div class="mt-2" style="max-height: 300px; overflow-y: auto;">
                                                 <?php echo $optionrubrob; ?>
                                             </div>
                                         </div>
-
-
-
-                                        <br><br><br>
-
-                                        <div class="col-md-12">
-                                            <div class="col-2 d-flex justify-content-center align-items-center p-0" <?php echo $displayfiltros; ?>>
-                                                <span class="secondary-button-outline" onclick="verfiltrosbusquedabuscador()">
-                                                    <i class="fa fa-filter font-xl"></i>
-                                                </span>
-                                            </div>
-
-                                            <div class="row margin-box" id="div_municipios" <?php echo $divBusquedaMunicipios; ?>>
-                                                <div class="col-md-12 mb-3" style="text-align: left; padding: 0px 10px">
-                                                    <div class="mb-1">
-                                                        Municipio
-                                                    </div>
-
-                                                    <div class="mt-2">
-                                                        <?php echo $optionmunicipiob; ?>
-                                                    </div>
-                                                    <button type="submit" class="btn primary-button rounded-button">
-                                                        Aplicar filtros
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <div class="row margin-box" id="div_rubros" <?php echo $divBusquedaRubros; ?>>
-                                                <div class="col-md-12 mb-3" style="text-align: left; padding: 0px 10px">
-                                                    <div class="mb-1">
-                                                        Rubro
-                                                    </div>
-
-                                                    <div class="mt-2">
-                                                        <?php echo $optionrubrob; ?>
-                                                    </div>
-                                                    <button type="submit" class="btn primary-button rounded-button">
-                                                        Aplicar filtros
-                                                    </button>
-                                                </div>
-                                            </div>
-
-                                            <?php include_once "include_camposmapa.php"; ?>
-                                        </div>
+                                        <?php include_once "include_camposmapa.php"; ?>
                                     </div>
                                 </div>
                             </div>
@@ -226,6 +179,7 @@
                         </div>
                     </div>
                 </div>
+
 
 
                 <!-- div_detalle -->
@@ -403,8 +357,6 @@
                 </div>
             </div>
             <!-- FIN div lista comercios mobile -->
-
-
         </div>
     </div>
 
@@ -626,7 +578,7 @@
         $(document).ready(function() {
 
             $(document).on("change", "#select_rubro", function() {
-                var select_rubro = jQuery('#select_rubro').val();
+                var select_rubro = $('#select_rubro').val();
 
                 $.ajax({
                     url: "cargar-actividad.php",
@@ -637,14 +589,51 @@
                     },
                     success: function(data) {
                         $('#select_actividad').empty().append(data);
+                        console.log("sucesss" + data);
                     }
                 });
             });
+
             <?php if ($comercio_id != "") { ?>
                 $("#comercio_<?php echo $comercio_id ?>").click();
             <?php } ?>
 
         });
+
+        function limpiarCampos() {
+            var formulario = document.getElementById('formBusqueda');
+            var selectActividad = formulario.querySelector('#select_actividad');
+
+            for (var i = 0; i < formulario.elements.length; i++) {
+                var elemento = formulario.elements[i];
+                var tipoElemento = elemento.type.toLowerCase();
+
+                switch (tipoElemento) {
+                    case 'text':
+                    case 'textarea':
+                    case 'select-one':
+                        elemento.value = '';
+                        break;
+                    case 'checkbox':
+                    case 'radio':
+                        elemento.checked = false;
+                        break;
+                }
+            }
+
+            $(document).ready(function() {
+
+                $.ajax({
+                    url: "vaciar-actividad.php",
+                    type: "POST",
+                    cache: false,
+                    success: function(data) {
+                        $('#select_actividad').empty().append(data);
+                        console.log("sucesss" + data);
+                    }
+                });
+            });
+        }
     </script>
     <script>
         var idMunicipioPostBusqueda = null;

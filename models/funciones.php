@@ -2,149 +2,15 @@
 include_once "../models/config.php";
 include_once '../models/conexion.php';
 
+$rubro = isset($_POST['rubro']) ? $_POST['rubro'] : null;
 
-function consultarMunicipios($municipio = null, $sinselect = null)
+function consultar_base_datos($sql)
 {
-    $option = "";
-
-    $sql = "
-        SELECT id, nombre 
-        FROM municipio 
-        WHERE activo = 1
-        ORDER BY nombre asc
-    ";
-
     $conexion = new Conexion();
-    $arrResultado = $conexion->consulta($sql);
-
-    if ($sinselect == "") {
-        $option = "<option value=''>Seleccioná el municipio</option>";
-    }
-
-    foreach ($arrResultado as $resultado) {
-
-        $id = $resultado["id"];
-        $nombre = $resultado["nombre"];
-
-        if ($sinselect != "") {
-
-            $checked = " ";
-            if ($municipio != "") {
-                foreach ($municipio as $getmunicipioDetalle) {
-                    if ($id == $getmunicipioDetalle) {
-                        $checked = " checked = 'checked' ";
-                    }
-                }
-            }
-
-            $option .= "
-            <div class='form-check'>
-                <input class='form-check-input' $checked name='mb[]' type='checkbox' value='$id' id='municipio_$id'>
-                <label class='form-check-label' for='municipio_$id'>
-                    $nombre
-                    
-                </label>
-            </div>
-            ";
-        } else {
-
-            if ($municipio == $id) {
-                $option .= "<option value='$id' selected='selected'>$nombre</option>";
-            } else {
-                $option .= "<option value='$id'>$nombre</option>";
-            }
-        }
-    }
-    return $option;
+    return $conexion->consulta($sql);
 }
 
-function consultarActividad($actividad = null, $rubro = null)
-{
-    $where = "";
-
-    if ($rubro != "") {
-        $where = " and actividad.rubro_id = '$rubro' ";
-    }
-
-    $sql = "
-        SELECT DISTINCT nombre 
-        FROM actividad 
-        WHERE activo = 1 $where
-        ORDER BY nombre asc
-    ";
-
-    $conexion = new Conexion();
-    $arrResultado = $conexion->consulta($sql);
-
-    $option = "<option value=''>Seleccioná la actividad</option>";
-
-    foreach ($arrResultado as $resultado) {
-
-        //$id = $resultado["id"];
-        $nombre = $resultado["nombre"];
-
-        if ($actividad == $nombre) {
-            $option .= "<option value='$nombre' selected='selected'>$nombre</option>";
-        } else {
-            $option .= "<option value='$nombre'>$nombre</option>";
-        }
-    }
-
-    if (count($arrResultado) == 0) {
-        $option = "<option value=''>No existen actividaddes</option>";
-    }
-
-    return $option;
-}
-
-function consultarRubros($rubro = null)
-{
-
-    $sql = "
-        SELECT id, nombre 
-        FROM rubro 
-        WHERE activo = 1
-        ORDER BY nombre asc
-    ";
-
-    $conexion = new Conexion();
-    $arrResultado = $conexion->consulta($sql);
-
-    $option = "<option value=''>Seleccioná el rubro</option>";
-
-    foreach ($arrResultado as $resultado) {
-
-        $id = $resultado["id"];
-        $nombre = $resultado["nombre"];
-
-        if ($rubro == $id) {
-            $option .= "<option value='$id' selected='selected'>$nombre</option>";
-        } else {
-            $option .= "<option value='$id'>$nombre</option>";
-        }
-    }
-
-    return $option;
-}
-
-function formatear_distancia($distancia = null)
-{
-    if (is_null($distancia) || $distancia == '') {
-        return null;
-    }
-
-    $distancia = round($distancia, 0);
-    $distanciaFormateo = "";
-    if ($distancia > 1000) {
-        $distanciaFormateo =  round(($distancia / 1000), 1) . " km";
-    } else {
-        $distanciaFormateo = round(($distancia), 0) . " m";
-    }
-
-    return $distanciaFormateo;
-}
-
-function obtener_comercios($buscador, $cuentadni, $envios, $latitudbuscar, $longitudbuscar, $getmunicipio, $getactividad, $getrubro, $cercamio, $getmunicipiob, $getrubrob)
+function obtener_comercios($palabra_buscador, $cuentadni, $envios, $latitudbuscar, $longitudbuscar, $getmunicipio, $getactividad, $getrubro, $cercamio, $getmunicipiob, $getrubrob)
 {
     $cercamio = (int)$cercamio;
     $latitudbuscar = (float)$latitudbuscar;
@@ -156,7 +22,7 @@ function obtener_comercios($buscador, $cuentadni, $envios, $latitudbuscar, $long
         "cercaMio" => $cercamio,
         "latitud" => $latitudbuscar,
         "longitud" => $longitudbuscar,
-        "palabraClave" => $buscador ?? "",
+        "palabraClave" => $palabra_buscador ?? "",
         "tieneCuentaDNIComercio" => (int)($cuentadni ?? 0),
         "haceEnviosADomicilio" => (int)($envios ?? 0),
         "municipio" => $getmunicipio ?? "",
@@ -192,6 +58,103 @@ function obtener_comercios($buscador, $cuentadni, $envios, $latitudbuscar, $long
 
     curl_close($ch);
 }
+
+function cargarOpcionesActividad($rubro, $actividad) {
+    $option = "<option value='' selected disabled>Seleccionar actividad</option>";
+    $columnName = 'nombre';
+    $sql = '';
+
+    if ($rubro !== null && $rubro != "") {
+        $conexion = new Conexion();
+        $query = "SELECT id FROM rubro WHERE nombre = '$rubro' AND activo = 1";
+        $resultado = $conexion->consulta($query);
+        $rubroId = null;
+
+        if ($resultado) {
+            $rubroId = $resultado[0]['id'];
+        }
+
+        if ($rubroId !== null) {
+            $sql = "SELECT DISTINCT id, nombre FROM actividad WHERE activo = 1 AND rubro_id = '$rubroId' ORDER BY nombre ASC";
+        }
+    } else {
+        $sql = "SELECT DISTINCT id, nombre FROM actividad WHERE activo = 1 ORDER BY nombre ASC";
+    }
+
+    if ($sql !== '') {
+        $conexion = new Conexion();
+        $resultado_consulta = $conexion->consulta($sql);
+
+        foreach ($resultado_consulta as $resultado) {
+            $nombre = $resultado[$columnName];
+            $selected = ($actividad === $nombre) ? "selected='selected'" : "";
+            $option .= "<option value='$nombre' $selected>$nombre</option>";
+        }
+
+        if (empty($resultado_consulta)) {
+            $option = "<option value='' selected disabled>No existen opciones disponibles en este momento</option>";
+        }
+    }
+
+    return $option;
+}
+
+
+function obtener_opciones_select($tipo, $rubro = null, $actividad = null)
+{
+    $option = "<option value='' selected disabled>Seleccionar $tipo</option>";
+    $columnName = 'nombre';
+    $sql = '';
+
+    switch ($tipo) {
+        case 'municipio':
+            $sql = "SELECT id, nombre FROM municipio WHERE activo = 1 ORDER BY nombre ASC";
+            break;
+        case 'rubro':
+            $sql = "SELECT id, nombre FROM rubro WHERE activo = 1 ORDER BY nombre ASC";
+            break;
+        case 'actividad':
+            if ($rubro !== null && $rubro != "") {
+                $conexion = new Conexion();
+                $query = "SELECT id FROM rubro WHERE nombre = '$rubro' AND activo = 1";
+                $resultado = $conexion->consulta($query);
+                $rubroId = null;
+                
+                if ($resultado) {
+                    $rubroId = $resultado[0]['id'];
+                }
+
+                if ($rubroId !== null) {
+                    $sql = "SELECT DISTINCT id, nombre FROM actividad WHERE activo = 1 AND rubro_id = '$rubroId' ORDER BY nombre ASC";
+                }
+            } else {
+                $sql = "SELECT DISTINCT id, nombre FROM actividad WHERE activo = 1 ORDER BY nombre ASC";
+            }
+            break;
+        default:
+            break;
+    }
+
+    if ($sql !== '') {
+        $conexion = new Conexion();
+        $resultado_consulta = $conexion->consulta($sql);
+
+        foreach ($resultado_consulta as $resultado) {
+            $nombre = $resultado[$columnName];
+            $selected = ($actividad === $nombre) ? "selected='selected'" : "";
+            $option .= "<option value='$nombre' $selected>$nombre</option>";
+        }
+
+        if (empty($resultado_consulta)) {
+            $option = "<option value='' selected disabled>No existen opciones disponibles en este momento</option>";
+        }
+    }
+
+    return $option;
+}
+
+
+
 
 function construir_lista_comercios_html($comercios)
 {
@@ -287,16 +250,6 @@ function construir_lista_comercios_html($comercios)
     return $html;
 }
 
-function agregar_icono($html, $title, $icon_class, $url, $external = false)
-{
-    if ($url != "") {
-        $target = $external ? ' target="_blank"' : '';
-        $html .= "
-            <a class='social-icon font-l' title='$title' href='$url' $target><i class='$icon_class'></i></a>
-        ";
-    }
-    return $html;
-}
 
 function construir_lista_comercios_mobile_html($comercios)
 {
@@ -341,9 +294,9 @@ function construir_mapa_comercios_html($comercios)
         $cuenta_dni = $comercio['cuentadni'];
 
         $distancia = formatear_distancia($comercio['distancia']);
-        
+
         $rubro_formateado = eliminar_caracteres_especiales(str_replace(' ', '', $rubro));
-       
+
         if ($direccion != "") {
             $direccion_completa = $direccion . " - " . $municipio;
             $url_icono_marker = "../img/rubro/mapa/icono_" . $rubro_formateado . ".png";
@@ -371,22 +324,17 @@ function construir_mapa_comercios_html($comercios)
     return $comercios_markers;
 }
 
-function eliminar_caracteres_especiales($cadena)
-{
-    $no_acentos = preg_replace('/[^a-z0-9]/i', '', 
-        iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $cadena)
-    );
-    
-    return strtolower($no_acentos);
-}
-
 function construir_total_resultados_html($comercios)
 {
     if (empty($comercios)) {
         return "
-            <div class='alert alert-info mx-3 my-3 text-center' role='alert'>
-                No se encontraron resultados
+        <div class='row d-flex text-center'>
+            <div class='col-md-12'>
+                <div class='alert alert-info mx-3 my-3 text-center' role='alert'>
+                    No se encontraron resultados
+                </div>
             </div>
+        </div>
         ";
     }
 
@@ -398,8 +346,46 @@ function construir_total_resultados_html($comercios)
             </div>";
 }
 
+function construir_checkboxes_html($campo, $elementos_seleccionados = null)
+{
+    $option = "";
 
-function consultar_comercios($buscador = null, $cuentadni = null, $envios = null, $latitudbuscar = null, $longitudbuscar = null, $getmunicipio = null, $getactividad = null, $getrubro = null, $cercamio = null, $getmunicipiob = null, $getrubrob = null)
+    $tabla = ($campo === 'municipio') ? 'municipio' : 'rubro';
+
+    $sql = "
+        SELECT id, nombre 
+        FROM $tabla 
+        WHERE activo = 1
+        ORDER BY nombre ASC
+    ";
+
+    $conexion = new Conexion();
+    $resultado_consulta = $conexion->consulta($sql);
+
+    foreach ($resultado_consulta as $resultado) {
+        $id = $resultado["id"];
+        $nombre = $resultado["nombre"];
+
+        $checked = "";
+        if ($elementos_seleccionados != null && in_array($id, $elementos_seleccionados)) {
+            $checked = " checked='checked' ";
+        }
+
+        $option .= "
+            <div class='form-check'>
+                <input class='form-check-input' $checked name='{$campo}[]' type='checkbox' value='$id' id='{$campo}_$id'>
+                <label class='form-check-label' for='{$campo}_$id'>
+                    $nombre
+                </label>
+            </div>
+        ";
+    }
+
+    return $option;
+}
+
+
+function consultar_comercios($palabra_buscador = null, $cuenta_dni = null, $hace_envios = null, $latitudbuscar = null, $longitudbuscar = null, $getmunicipio = null, $getactividad = null, $getrubro = null, $cercamio = null, $getmunicipiob = null, $getrubrob = null)
 {
     $optionMunicipio = "";
     $optionRubro = "";
@@ -410,7 +396,7 @@ function consultar_comercios($buscador = null, $cuentadni = null, $envios = null
     $total_comercios_html = "";
     $total_comercios = "";
 
-    $comercios = obtener_comercios($buscador, $cuentadni, $envios, $latitudbuscar, $longitudbuscar, $getmunicipio, $getactividad, $getrubro, $cercamio, $getmunicipiob, $getrubrob);
+    $comercios = obtener_comercios($palabra_buscador, $cuenta_dni, $hace_envios, $latitudbuscar, $longitudbuscar, $getmunicipio, $getactividad, $getrubro, $cercamio, $getmunicipiob, $getrubrob);
 
     if (empty($comercios)) {
 
@@ -431,11 +417,14 @@ function consultar_comercios($buscador = null, $cuentadni = null, $envios = null
         $comercios_mapa_html = construir_mapa_comercios_html($comercios);
         $total_comercios_html = construir_total_resultados_html($comercios);
         $total_comercios = count($comercios);
+        $checkboxes_municipio_html = construir_checkboxes_html('municipio');
+        $checkboxes_rubro_html = construir_checkboxes_html('rubro');
+
 
         $resultado = array(
             "divComercio" => $comercios_lista_html,
-            "divMunicipios" => $optionMunicipio,
-            "divRubros" => $optionRubro,
+            "divMunicipios" => $checkboxes_municipio_html,
+            "divRubros" => $checkboxes_rubro_html,
             "divComercioMarkers" => $comercios_mapa_html,
             "divTotalComercios" => $total_comercios_html,
             "divComercioListaOver" => $divComercioListaOver,
@@ -445,6 +434,201 @@ function consultar_comercios($buscador = null, $cuentadni = null, $envios = null
 
     return $resultado;
 }
+
+//extras
+
+function formatear_distancia($distancia = null)
+{
+    if (is_null($distancia) || $distancia == '') {
+        return null;
+    }
+
+    $distancia = round($distancia, 0);
+    $distanciaFormateo = "";
+    if ($distancia > 1000) {
+        $distanciaFormateo =  round(($distancia / 1000), 1) . " km";
+    } else {
+        $distanciaFormateo = round(($distancia), 0) . " m";
+    }
+
+    return $distanciaFormateo;
+}
+
+function eliminar_caracteres_especiales($cadena)
+{
+    $cadena_limpia = preg_replace(
+        '/[^a-z0-9]/i',
+        '',
+        iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $cadena)
+    );
+
+    return strtolower($cadena_limpia);
+}
+
+function agregar_icono($html, $title, $icon_class, $url, $external = false)
+{
+    if ($url != "") {
+        $target = $external ? ' target="_blank"' : '';
+        $html .= "
+            <a class='social-icon font-l' title='$title' href='$url' $target><i class='$icon_class'></i></a>
+        ";
+    }
+    return $html;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function consultarMunicipios($municipio = null, $sinselect = null)
+{
+    $option = "";
+
+    $sql = "
+        SELECT id, nombre 
+        FROM municipio 
+        WHERE activo = 1
+        ORDER BY nombre asc
+    ";
+
+    $conexion = new Conexion();
+    $arrResultado = $conexion->consulta($sql);
+
+    if ($sinselect == "") {
+        $option = "<option value=''>Seleccioná el municipio</option>";
+    }
+
+    foreach ($arrResultado as $resultado) {
+
+        $id = $resultado["id"];
+        $nombre = $resultado["nombre"];
+
+        if ($sinselect != "") {
+
+            $checked = " ";
+            if ($municipio != "") {
+                foreach ($municipio as $getmunicipioDetalle) {
+                    if ($id == $getmunicipioDetalle) {
+                        $checked = " checked = 'checked' ";
+                    }
+                }
+            }
+
+            $option .= "
+            <div class='form-check'>
+                <input class='form-check-input' $checked name='mb[]' type='checkbox' value='$id' id='municipio_$id'>
+                <label class='form-check-label' for='municipio_$id'>
+                    $nombre
+                    
+                </label>
+            </div>
+            ";
+        } else {
+
+            if ($municipio == $id) {
+                $option .= "<option value='$id' selected='selected'>$nombre</option>";
+            } else {
+                $option .= "<option value='$id'>$nombre</option>";
+            }
+        }
+    }
+    return $option;
+}
+
+function consultarActividad($actividad = null, $rubro = null)
+{
+    $where = "";
+
+    if ($rubro != "") {
+        $where = " and actividad.rubro_id = '$rubro' ";
+    }
+
+    $sql = "
+        SELECT DISTINCT nombre 
+        FROM actividad 
+        WHERE activo = 1 $where
+        ORDER BY nombre asc
+    ";
+
+    $conexion = new Conexion();
+    $arrResultado = $conexion->consulta($sql);
+
+    $option = "<option value=''>Seleccioná la actividad</option>";
+
+    foreach ($arrResultado as $resultado) {
+
+        //$id = $resultado["id"];
+        $nombre = $resultado["nombre"];
+
+        if ($actividad == $nombre) {
+            $option .= "<option value='$nombre' selected='selected'>$nombre</option>";
+        } else {
+            $option .= "<option value='$nombre'>$nombre</option>";
+        }
+    }
+
+    if (count($arrResultado) == 0) {
+        $option = "<option value=''>No existen actividades</option>";
+    }
+
+    return $option;
+}
+
+function consultarRubros($rubro = null)
+{
+    $sql = "
+        SELECT id, nombre 
+        FROM rubro 
+        WHERE activo = 1
+        ORDER BY nombre asc
+    ";
+
+    $conexion = new Conexion();
+    $arrResultado = $conexion->consulta($sql);
+
+    $option = "<option value=''>Seleccioná el rubro</option>";
+
+    foreach ($arrResultado as $resultado) {
+
+        $id = $resultado["id"];
+        $nombre = $resultado["nombre"];
+
+        if ($rubro == $id) {
+            $option .= "<option value='$id' selected='selected'>$nombre</option>";
+        } else {
+            $option .= "<option value='$id'>$nombre</option>";
+        }
+    }
+
+    return $option;
+}
+
+
 
 function consultarComerciosOLD($buscador = null, $cuentadni = null, $envios = null, $latitudbuscar = null, $longitudbuscar = null, $getmunicipio = null, $getactividad = null, $getrubro = null, $cercamio = null, $getmunicipiob = null, $getrubrob = null)
 {
@@ -1001,31 +1185,9 @@ function consultarComerciosOLD($buscador = null, $cuentadni = null, $envios = nu
 
 function verificarExisteDocumento($document = null)
 {
-
     $result = file_get_contents("https://catalogoprome.azurewebsites.net/Catalogo/$document");
     return $result;
-
-    /*
-
-
-    $urlAPI = "https://catalogoprome.azurewebsites.net/Catalogo/$document";
-
-    $ch = curl_init($urlAPI);
-    curl_setopt($ch, CURLOPT_URL, $urlAPI);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-    $result = curl_exec($ch);
-    curl_close($ch);
-    
-    $result = json_decode($result, true);
-
-    return $result;
-
-
-    */
 }
-
 
 function registrarFormulario($document = null, $tipoformulario = null, $mensaje = null)
 {
@@ -1048,7 +1210,6 @@ function fechaActual()
     $fechaactual = date('Y-m-d h:i:s', time());
     return $fechaactual;
 }
-
 
 function consultarCentroidePorId($id)
 {
