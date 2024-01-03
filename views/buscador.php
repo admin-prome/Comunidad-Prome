@@ -123,13 +123,13 @@
                                                 </div>
 
                                                 <div class="form-check form-switch my-3">
-                                                    <input class="form-check-input" type="checkbox" id="checkAdherido" name="cuentadni" <?php echo $cuentadnichecked; ?>>
-                                                    <label class="form-check-label" for="checkAdherido">Adherido a Cuenta DNI Comercios</label>
+                                                    <input class="form-check-input" type="checkbox" id="cuenta_dni" name="cuenta_dni" value="1">
+                                                    <label class="form-check-label" for="cuenta_dni">Adherido a Cuenta DNI Comercios</label>
                                                 </div>
 
                                                 <div class="form-check form-switch my-3">
-                                                    <input class="form-check-input" type="checkbox" id="checkEnvios" name="envios" <?php echo $envioschecked; ?>>
-                                                    <label class="form-check-label" for="checkEnvios">Hace envíos/Servicio a domicilio</label>
+                                                    <input class="form-check-input" type="checkbox" id="envios" name="envios" value="1">
+                                                    <label class="form-check-label" for="envios">Hace envíos/Servicio a domicilio</label>
                                                 </div>
                                                 <?php include_once "include_camposmapa.php"; ?>
                                             </div>
@@ -575,6 +575,7 @@
     </script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script type="text/javascript">
+
         $(document).ready(function() {
 
             $(document).on("change", "#select_rubro", function() {
@@ -629,7 +630,6 @@
                     cache: false,
                     success: function(data) {
                         $('#select_actividad').empty().append(data);
-                        console.log("sucesss" + data);
                     }
                 });
             });

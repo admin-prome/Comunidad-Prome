@@ -2,8 +2,7 @@
 include_once "../models/config.php";
 include_once "../models/funciones.php";
 
-$cuentadnichecked = "";
-$envioschecked = "";
+
 $displaymunicipio = "";
 $displaymapa = "";
 $getlatitud = "";
@@ -11,18 +10,9 @@ $getlongitud = "";
 $getdireccion = "";
 
 $buscador = isset($_GET['q']) ? $_GET['q'] : '';
-$cuentadni = isset($_GET['cuentadni']) ? $_GET['cuentadni'] : '';
 
-if ($cuentadni == "on") {
-    $cuentadnichecked = " checked='checked' ";
-}
-
+$cuenta_dni = isset($_GET['cuenta_dni']) ? $_GET['cuenta_dni'] : '';
 $envios = isset($_GET['envios']) ? $_GET['envios'] : '';
-
-if ($envios == "on") {
-    $envioschecked = " checked='checked' ";
-}
-
 $cercamio = isset($_GET['cercamio']) ? $_GET['cercamio'] : '';
 
 $getmunicipio = isset($_GET['m']) ? $_GET['m'] : '';
@@ -124,7 +114,7 @@ if ($cercamio == "on") {
     $longitudbuscarcomercios    = "";
 }
 
-$comercios = consultar_comercios($buscador, $cuentadni, $envios, $latitudbuscarcomercios, $longitudbuscarcomercios, $getmunicipio, $getactividad, $getrubro, $cercamio, $getmunicipiob,  $getrubrob);
+$comercios = consultar_comercios($buscador, $cuenta_dni, $envios, $cercamio, $latitudbuscarcomercios, $longitudbuscarcomercios, $getmunicipio, $getrubro, $getactividad, $getmunicipiob, $getrubrob);
 
 $divComercios = $comercios["divComercio"];
 $divComercioListaOver = $comercios["divComercioListaOver"];

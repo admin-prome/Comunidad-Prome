@@ -18,7 +18,6 @@ function seleccionarTipoBuscador(tipo) {
 
 function procesarFormBusqueda() {
 
-    console.log("procesarformbusqueda");
     var checkCercaMio = document.getElementById('checkCercaMio').checked;
     var type_on = document.getElementById('type_on').value;
 
@@ -292,7 +291,7 @@ function limpiarDireccion() {
     document.getElementById('type_on').value = "on";
 }
 
-function mostrarubicacion(latitud, longitud, nombre, direccionCompleta, whatsapp, whatsapp_msg, telefono, web, email, instagram, distancia, cuentadni, urlicono, facebookurl, mobile, id) {
+function mostrarubicacion(latitud, longitud, nombre, direccionCompleta, whatsapp, whatsapp_msg, telefono, web, email, instagram, distancia, cuenta_dni, urlicono, facebookurl, mobile, id) {
 
     limpiarDivDetalle();
 
@@ -336,7 +335,7 @@ function mostrarubicacion(latitud, longitud, nombre, direccionCompleta, whatsapp
     document.getElementById('det_detalle').value = text;
     //FIN DETALLE PARA COMPARTIR
 
-    if (cuentadni == "1") {
+    if (cuenta_dni == "1") {
         document.getElementById('det_dni').style.display = "";
     }
 

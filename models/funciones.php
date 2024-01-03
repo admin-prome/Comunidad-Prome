@@ -10,24 +10,24 @@ function consultar_base_datos($sql)
     return $conexion->consulta($sql);
 }
 
-function obtener_comercios($palabra_buscador, $cuentadni, $envios, $latitudbuscar, $longitudbuscar, $getmunicipio, $getactividad, $getrubro, $cercamio, $getmunicipiob, $getrubrob)
+function obtener_comercios($palabra_buscador, $cuenta_dni, $envios, $cerca_mio, $latitud_buscar, $longitud_buscar, $municipio, $rubro, $actividad, $getmunicipiob, $getrubrob)
 {
-    $cercamio = (int)$cercamio;
-    $latitudbuscar = (float)$latitudbuscar;
-    $longitudbuscar = (float)$longitudbuscar;
+    $cerca_mio = (int)$cerca_mio;
+    $latitud_buscar = (float)$latitud_buscar;
+    $longitud_buscar = (float)$longitud_buscar;
 
     $apiUrl = 'https://localhost:7080/api/CommerceSearch';
 
     $data = [
-        "cercaMio" => $cercamio,
-        "latitud" => $latitudbuscar,
-        "longitud" => $longitudbuscar,
+        "cercaMio" => $cerca_mio,
+        "latitud" => $latitud_buscar,
+        "longitud" => $longitud_buscar,
         "palabraClave" => $palabra_buscador ?? "",
-        "tieneCuentaDNIComercio" => (int)($cuentadni ?? 0),
+        "tieneCuentaDNIComercio" => (int)($cuenta_dni ?? 0),
         "haceEnviosADomicilio" => (int)($envios ?? 0),
-        "municipio" => $getmunicipio ?? "",
-        "rubro" => $getrubro ?? "",
-        "actividad" => $getactividad ?? ""
+        "municipio" => $municipio ?? "",
+        "rubro" => $rubro ?? "",
+        "actividad" => $actividad ?? ""
     ];
 
     $dataJson = json_encode($data);
@@ -59,7 +59,8 @@ function obtener_comercios($palabra_buscador, $cuentadni, $envios, $latitudbusca
     curl_close($ch);
 }
 
-function cargarOpcionesActividad($rubro, $actividad) {
+function cargarOpcionesActividad($rubro, $actividad)
+{
     $option = "<option value='' selected disabled>Seleccionar actividad</option>";
     $columnName = 'nombre';
     $sql = '';
@@ -119,7 +120,7 @@ function obtener_opciones_select($tipo, $rubro = null, $actividad = null)
                 $query = "SELECT id FROM rubro WHERE nombre = '$rubro' AND activo = 1";
                 $resultado = $conexion->consulta($query);
                 $rubroId = null;
-                
+
                 if ($resultado) {
                     $rubroId = $resultado[0]['id'];
                 }
@@ -291,7 +292,7 @@ function construir_mapa_comercios_html($comercios)
         $whatsapp_msg = $comercio['whatsappMsg'];
         $telefono = $comercio['telefono'];
         $email = $comercio['email'];
-        $cuenta_dni = $comercio['cuentadni'];
+        $cuenta_dni = $comercio['cuenta_dni'];
 
         $distancia = formatear_distancia($comercio['distancia']);
 
@@ -385,8 +386,9 @@ function construir_checkboxes_html($campo, $elementos_seleccionados = null)
 }
 
 
-function consultar_comercios($palabra_buscador = null, $cuenta_dni = null, $hace_envios = null, $latitudbuscar = null, $longitudbuscar = null, $getmunicipio = null, $getactividad = null, $getrubro = null, $cercamio = null, $getmunicipiob = null, $getrubrob = null)
+function consultar_comercios($palabra_buscador = null, $cuenta_dni = null, $envios = null, $cerca_mio = null, $latitud_buscar = null, $longitud_buscar = null, $municipio = null, $rubro = null, $actividad = null, $getmunicipiob = null, $getrubrob = null)
 {
+    echo "<br>envios en consultar_comercios: " . $envios;
     $optionMunicipio = "";
     $optionRubro = "";
 
@@ -396,7 +398,8 @@ function consultar_comercios($palabra_buscador = null, $cuenta_dni = null, $hace
     $total_comercios_html = "";
     $total_comercios = "";
 
-    $comercios = obtener_comercios($palabra_buscador, $cuenta_dni, $hace_envios, $latitudbuscar, $longitudbuscar, $getmunicipio, $getactividad, $getrubro, $cercamio, $getmunicipiob, $getrubrob);
+
+    $comercios = obtener_comercios($palabra_buscador, $cuenta_dni, $envios, $cerca_mio, $latitud_buscar, $longitud_buscar, $municipio, $rubro, $actividad, $getmunicipiob, $getrubrob);
 
     if (empty($comercios)) {
 

@@ -100,7 +100,7 @@
                                             <div class="col-md-6 mb-3 text-left py-0 p-4">
                                                 <div>
                                                     <div class="form-check form-switch">
-                                                        <input class="form-check-input" type="checkbox" id="checkAdherido" name="cuentadni">
+                                                        <input class="form-check-input" type="checkbox" id="checkAdherido" name="cuenta_dni">
                                                         <label class="form-check-label" for="checkAdherido">Adherido a Cuenta DNI Comercios</label>
                                                     </div>
                                                 </div>
